@@ -1,0 +1,33 @@
+{% extends "crm\base.html" %}
+{% load i18n %}
+{% block content %}
+
+      <h3 class="content"> {% trans "Менеджеры по продажам." %} {{ number_of_sale_persons }} {% trans "чел." %}</h3>
+   
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr class="success" >
+            <th> {% trans "Фамилия" %}</th>
+            <th> {% trans "Имя" %}</th>
+            <th> {% trans "Подразделение" %}</th>
+            <th> {% trans "Телефон" %}</th>
+            <th> {% trans "Эл.почта" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for person in list_all_sales_persons %}
+              <tr>
+                <td><a href="/crm/salespersons/{{ person.id }}">{{ person.first_name }}</a></td>
+                <td>{{ person.second_name }}</td>
+                <td>{{ person.division }}</td>
+                <td>{{ person.phone_number }}</td>
+                <td>{{ person.email_address }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      
+{% endblock %}
+
+
+

@@ -1,0 +1,17 @@
+{% extends "crm\base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block content %}
+
+ <p class="content">
+ 	{{ sales_person.first_name }}
+     {{ sales_person.second_name }}
+     {{ sales_person.phone_number }}
+     {{ sales_person.division }}
+     {{ sales_person.email_address}}
+     <img src="{% static "my_app/myexample.jpg" %}" alt="My image"/>
+     <img src="{% static "{{ image }}" %}" alt="{% trans "Менеджер по продажам." %}" class="img-circle">
+     
+ </p>
+
+{% endblock %}
