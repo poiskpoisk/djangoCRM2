@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('first_name', models.CharField(max_length=30)),
                 ('second_name', models.CharField(max_length=30)),
-                ('avatar', models.ImageField(blank=True, upload_to='crm/pic/')),
+                ('avatar', models.ImageField(blank=True, upload_to='crm/media/')),
                 ('phone_number', models.CharField(blank=True, max_length=15, validators=[django.core.validators.RegexValidator(message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.", regex='^\\+?1?\\d{9,15}$')])),
                 ('company', models.CharField(max_length=50)),
                 ('position', models.CharField(max_length=50)),
@@ -48,7 +48,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='salesperson',
             name='avatar',
-            field=models.ImageField(blank=True, upload_to='crm/pic/'),
+            field=models.ImageField(blank=True, upload_to='crm/media/'),
         ),
         migrations.DeleteModel(
             name='Contacts',

@@ -8,7 +8,8 @@ from django.utils.translation import ugettext as _
 class Person(models.Model):                                                 # ABS class define abstract Person
     first_name   = models.CharField(max_length=30, verbose_name = _('Фамилия'))
     second_name  = models.CharField(max_length=30, verbose_name = _('Имя'), blank=True )
-    avatar       = models.ImageField(upload_to = 'crm/pic/', blank=True )
+    # upload_to - URL относительно MEDIA_URL
+    avatar       = models.ImageField(upload_to = 'crm/', blank=True )
     phone_number = models.CharField(max_length=15, verbose_name = _('Телефон'),
                                     validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$',
                                     message="Phone number must be entered in the format: '+999999999'."

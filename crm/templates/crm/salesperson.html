@@ -1,4 +1,4 @@
-{% extends "crm\base.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% load staticfiles %}
 {% block content %}
@@ -9,8 +9,9 @@
      {{ sales_person.phone_number }}
      {{ sales_person.division }}
      {{ sales_person.email_address}}
-     <img src="{% static "my_app/myexample.jpg" %}" alt="My image"/>
-     <img src="{% static "{{ image }}" %}" alt="{% trans "Менеджер по продажам." %}" class="img-circle">
+
+     <!--model.ImageFile.url специальное поле, указывающее на URL -->
+     <img src="{{ sales_person.avatar.url}}" alt="{% trans "Менеджер по продажам." %}" class="img-circle">
      
  </p>
 

@@ -15,11 +15,29 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.conf.urls.i18n import i18n_patterns
+from django.conf.urls.static import static
+from .settings import MEDIA_ROOT, MEDIA_URL
+from registration.backends.default.views import RegistrationView
+from registration.forms import RegistrationFormUniqueEmail
+from django.views.generic import TemplateView
+
 
 urlpatterns = [url(r'^i18n/',  include('django.conf.urls.i18n')),]
 
 urlpatterns += [
-    url(r'^crm/',   include('crm.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^crm/',       include('crm.urls')),
+    url(r'^admin/',     include(admin.site.urls)),
+    # Меняем дефалтную форму, на форму с проверкой уникального e-mail'a
+    # Должна стоять именно тут, перед общим включением registration.backenda
+    url(r'^accounts/register/$', RegistrationView.as_view(form_class=RegistrationFormUniqueEmail),
+    name='registration_register'),
+    url(r'^accounts/',  include('registration.backends.default.urls')),
+
+
+    url(r'^accounts/register/complete/$',
+        TemplateView.as_view(template_name='registration/registration_complete.html'),
+        name='registration_complete'),
+
 ]
+
+urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

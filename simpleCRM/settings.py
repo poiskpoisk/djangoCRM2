@@ -33,10 +33,12 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration',                     # добавляем пакет для регистрации пользователей
     'crm',
 ]
 
@@ -131,4 +133,55 @@ LANGUAGES = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+# Список из возможных абсолютных путей
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+# URL относительно корня как будут показаны статические файла ( иконки, картинки, CSS )
 STATIC_URL = '/static/'
+
+# Абсолютный путь к загружаемым пользователем файлам
+MEDIA_ROOT = os.path.join( BASE_DIR, 'media')
+# Сылка относительно корня, как будут показаны загружаемые пользователем файлы
+MEDIA_URL = '/media/'
+
+REGISTRATION_OPEN = True        # Если равно True, то пользователи могут регистрироваться
+ACCOUNT_ACTIVATION_DAYS = 7     # время в течении которого можно активировать аккаунт;
+                                # в качестве примера выбрано 7 дней или одна неделя, но Вы можете указать другое значение.
+REGISTRATION_AUTO_LOGIN = True  # Если равно  True, то пользователь будет автоматически входить в систему.
+LOGIN_REDIRECT_URL = '/crm/'    # Страница, на которую будут попадать пользователи, после успешного входа в систему.
+LOGIN_URL = '/crm/login/'       # Страница, на которую перенаправляются пользователи, если они не вошли в систему и
+                                # пытаются получить доступ к страницам, которые требуют аутентификации
+
+# http://djbook.ru/forum/topic/220/
+SITE_ID = 1
+
+#localhost с запуском тестового SMTP сервера
+#EMAIL_HOST = 'localhost'
+#EMAIL_PORT = 1025
+
+# gmail.com
+#EMAIL_HOST          = 'smtp.gmail.com'
+#EMAIL_PORT          = 587
+#EMAIL_HOST_USER     = "alex.abakumov@gmail.com"
+#EMAIL_HOST_PASSWORD = "otchenash"
+#EMAIL_USE_TLS       = True
+
+# yandex.ru
+EMAIL_HOST          = 'smtp.yandex.ru'
+EMAIL_PORT          = 465
+EMAIL_HOST_USER     = "alex-abakumov@yandex.ru"
+EMAIL_HOST_PASSWORD = "eravnomc2eravnomc2"
+EMAIL_USE_SSL       = True
+
+
+# Добавьте ещё две следующие строчки для отправки писем (трейсбека) админам при возникновении ошибок на сайте:
+# Яндекс и mail без указания SERVER_EMAIL такого же как адрес пользователя при подключении к SMPT серверу,
+#  т.е. EMAIL_HOST_USER, не будет посылать письма об ошибках.
+
+SERVER_EMAIL        = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL  = EMAIL_HOST_USER
+
+# Тест на отправку писем
+#from django.core.mail import send_mail
+#send_mail('Тема', 'Тело письма', EMAIL_HOST_USER, ['alex.abakumov@gmail.com'])
