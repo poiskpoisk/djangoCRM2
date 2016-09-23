@@ -27,16 +27,20 @@ urlpatterns = [url(r'^i18n/',  include('django.conf.urls.i18n')),]
 urlpatterns += [
     url(r'^crm/',       include('crm.urls')),
     url(r'^admin/',     include(admin.site.urls)),
+
     # Меняем дефалтную форму, на форму с проверкой уникального e-mail'a
     # Должна стоять именно тут, перед общим включением registration.backenda
     url(r'^accounts/register/$', RegistrationView.as_view(form_class=RegistrationFormUniqueEmail),
     name='registration_register'),
-    url(r'^accounts/',  include('registration.backends.default.urls')),
-
 
     url(r'^accounts/register/complete/$',
         TemplateView.as_view(template_name='registration/registration_complete.html'),
         name='registration_complete'),
+
+    url(r'^accounts/',  include('registration.backends.default.urls')),
+
+
+
 
 ]
 

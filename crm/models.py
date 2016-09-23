@@ -6,7 +6,9 @@ from django.utils.translation import ugettext as _
 
 
 class Person(models.Model):                                                 # ABS class define abstract Person
-    first_name   = models.CharField(max_length=30, verbose_name = _('Фамилия'))
+    first_name   = models.CharField(max_length=30, verbose_name = _('Фамилия'),
+                 help_text = _("Фамилия") )
+
     second_name  = models.CharField(max_length=30, verbose_name = _('Имя'), blank=True )
     # upload_to - URL относительно MEDIA_URL
     avatar       = models.ImageField(upload_to = 'crm/', blank=True )
@@ -14,7 +16,7 @@ class Person(models.Model):                                                 # AB
                                     validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$',
                                     message="Phone number must be entered in the format: '+999999999'."
                                     " Up to 15 digits allowed.")], blank=True)   # validators should be a list
-    email_address = models.EmailField(max_length=80, verbose_name = _('Эл.почта')) # EmaiField has validator
+    email_address = models.EmailField(max_length=80, verbose_name = _('Эл.почта')) # EmaiField has validator'
 
     class Meta:
         abstract = True

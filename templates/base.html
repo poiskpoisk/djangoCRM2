@@ -23,11 +23,11 @@
       <![endif]-->
     </head>
     <body>
+
       <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
             <a class="navbar-brand" href=# >simpleCRM</a>
-            <!-- Гамбургер -->
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
               <span class="sr-only"></span>
               <span class="icon-bar"></span>
@@ -36,23 +36,26 @@
             </button>
           </div>
           <div class="collapse navbar-collapse" id="responsive-menu">
-            <div class="nav navbar-nav">
+
+              <ul class="nav navbar-nav">
                 <li><a href="/crm/reports/">{% trans "Отчеты" %}</a></li>
                 <li><a href="#">Deals</a></li>
                 <li><a href="/crm/salespersons/">{% trans "Менеджеры по продажам" %}</a></li>
                 <li><a href="http://{{ host }}">Item 4</a></li>
+              </ul>
 
-                <form action="" class="navbar-form navbar-right">
+              <form action="" class="navbar-form navbar-right" >
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="E-mail" value="">
-                    <input type="password" class="form-control" placeholder="********" value="">
+                    <input type="text" class="form-control input-sm" placeholder="E-mail" value="">
                   </div>
-                  <button type="submit" class="btn btn-primary">
+                  <div class="form-group">
+                    <input type="password" class="form-control input-sm" placeholder="********" value="">
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-sm">
                     <i class="fa fa-sign-in" > </i> {% trans "Войти" %}
                   </button>
-                </form>
+              </form>
 
-            </div>
           </div>
         </div>
       </div>
@@ -66,7 +69,7 @@
       </div>
 
       {% block content %}
-      
+
       {% endblock %}
 
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -75,5 +78,7 @@
       <script src="{% static 'crm/bootstrap3/js/bootstrap.min.js' %}"></script>
     </body>
     </html>
+
+
 
 

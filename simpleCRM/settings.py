@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from.secret import login,pwd,sec_key
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-8h8mq3b$2s7yhp0w)y@u%h1^7b@_5)^^bmhfuhh9e87*^t%0w'
+SECRET_KEY = sec_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -163,15 +165,15 @@ SITE_ID = 1
 # gmail.com
 #EMAIL_HOST          = 'smtp.gmail.com'
 #EMAIL_PORT          = 587
-#EMAIL_HOST_USER     = "alex.abakumov@gmail.com"
-#EMAIL_HOST_PASSWORD = "otchenash"
+#EMAIL_HOST_USER     = ""
+#EMAIL_HOST_PASSWORD = ""
 #EMAIL_USE_TLS       = True
 
 # yandex.ru
 EMAIL_HOST          = 'smtp.yandex.ru'
 EMAIL_PORT          = 465
-EMAIL_HOST_USER     = "alex-abakumov@yandex.ru"
-EMAIL_HOST_PASSWORD = "eravnomc2eravnomc2"
+EMAIL_HOST_USER     = login
+EMAIL_HOST_PASSWORD = pwd
 EMAIL_USE_SSL       = True
 
 

@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load staticfiles %}
 {% block content %}
-
+{% csrf_token %}
  <p class="content">
  	{{ sales_person.first_name }}
      {{ sales_person.second_name }}
@@ -10,9 +10,11 @@
      {{ sales_person.division }}
      {{ sales_person.email_address}}
 
-     <!--model.ImageFile.url специальное поле, указывающее на URL -->
-     <img src="{{ sales_person.avatar.url}}" alt="{% trans "Менеджер по продажам." %}" class="img-circle">
-     
+     {% if sales_person.avatar %}
+        <!--model.ImageFile.url специальное поле, указывающее на URL -->
+        <img src="{{ sales_person.avatar.url}}" alt="{% trans 'Менеджер по продажам.' %}" class="img-circle">
+     {% endif %}
+
  </p>
 
 {% endblock %}

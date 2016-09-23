@@ -12,6 +12,8 @@ from django.views.generic.base import View
 from django.http import HttpResponseRedirect
 from .models import SalesPerson
 from registration.backends.simple.views import RegistrationView
+from .forms import SalesPersonForm
+from django.shortcuts import redirect
 
 
 def index(request):
@@ -28,11 +30,11 @@ def salesPersonsList(request):
     return render(request, 'crm/salespersons.html', context)
 
 
-def salesPersonPage(request, salesperson_id):
+def salesPersonPage(request, salesperson_id=None ):
     # get list of NOT NULL
     obj = get_object_or_404(SalesPerson, id = salesperson_id)
-    print( obj.avatar.url )
     context = {'sales_person': obj }
+    print( obj.avatar )
     return render(request, 'crm/salesperson.html', context)
 
 
@@ -40,6 +42,18 @@ def setLang(request):
     # get list of NOT NULL
     return render(request, 'crm/lang.html')
 
+# Add new sale person
+def salesperson_new(request):
+
+    if request.method == "POST":
+        form = SalesPersonForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_sale = form.save()
+            # Перейти на страницу с данными нового сотрудника
+            return redirect(salesPersonPage, salesperson_id=new_sale.pk )
+    else:
+        form = SalesPersonForm()
+    return render(request, 'crm/salesperson_new.html', {'form': form})
 
 '''
 class RegisterFormView(FormView):
