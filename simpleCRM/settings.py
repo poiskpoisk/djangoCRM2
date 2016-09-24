@@ -184,6 +184,5 @@ EMAIL_USE_SSL       = True
 SERVER_EMAIL        = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL  = EMAIL_HOST_USER
 
-# Тест на отправку писем
-#from django.core.mail import send_mail
-#send_mail('Тема', 'Тело письма', EMAIL_HOST_USER, ['alex.abakumov@gmail.com'])
+
+LOGIN_REDIRECT_URL = '/crm/'
