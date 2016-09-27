@@ -18,28 +18,28 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from .settings import MEDIA_ROOT, MEDIA_URL
 from registration.backends.default.views import RegistrationView
-from registration.forms import RegistrationFormUniqueEmail
 from django.views.generic import TemplateView
+from crm.views import LoginView
+from crm.views import registerNewUser
 
 
 urlpatterns = [url(r'^i18n/',  include('django.conf.urls.i18n')),]
 
 urlpatterns += [
+    url(r'^$', LoginView.as_view(), name='login' ),
     url(r'^crm/',       include('crm.urls')),
     url(r'^admin/',     include(admin.site.urls)),
 
-    # Меняем дефалтную форму, на форму с проверкой уникального e-mail'a
-    # Должна стоять именно тут, перед общим включением registration.backenda
-    url(r'^accounts/register/$', RegistrationView.as_view(form_class=RegistrationFormUniqueEmail),
-    name='registration_register'),
+    url(r'^accounts/register/$', registerNewUser, name='register'),
+
 
     url(r'^accounts/register/complete/$',
         TemplateView.as_view(template_name='registration/registration_complete.html'),
         name='registration_complete'),
 
+    url(r'^accounts/login/$', LoginView.as_view(), name='login') ,
+
     url(r'^accounts/',  include('registration.backends.default.urls')),
-
-
 
 
 ]

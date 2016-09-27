@@ -9,11 +9,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Bootstrap 101 Template</title>
+  <title>sCRM</title>
 
   <!-- Bootstrap -->
   <link href="{% static 'crm/bootstrap3/css/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static 'crm/style.css' %}" rel="stylesheet">
+  <link href="{% static 'crm/login.css' %}" rel="stylesheet">
+  <link href="{% static 'crm/register_page.css' %}" rel="stylesheet">
+
+
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,7 +31,7 @@
       <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href=# >simpleCRM</a>
+            <a class="navbar-brand" href=# >sCRM</a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
               <span class="sr-only"></span>
               <span class="icon-bar"></span>
@@ -44,31 +48,12 @@
                 <li><a href="http://{{ host }}">Item 4</a></li>
               </ul>
 
-              <form method="post" action="/accounts/login/" class="navbar-form navbar-right" >{% csrf_token %}
-                  {% if form.non_field_errors %}
-                      <div class="form-group has-error">
-                  {% else %}
-                       <div class="form-group">
-                  {% endif %}
-                            <input autofocus="" class="form-control input-sm" id="id_username" maxlength="254" placeholder="E-mail" name="username" type="text" required="">
-                      </div>
-
-                  {% if form.non_field_errors %}
-                      <div class="form-group has-error">
-                  {% else %}
-                       <div class="form-group">
-                  {% endif %}
-                      <input id="id_password" name="password" class="form-control input-sm" placeholder="********" type="password" required="">
-                  </div>
-
-                  <button type="submit" class="btn btn-primary btn-sm">
-                    <i class="fa fa-sign-in" > </i> {% trans "Войти" %}
-                  </button>
-                        {% if request.user.username %}
+              <div class="navbar-form navbar-right" >
+            {% if request.user.username %}
                             {% trans "Привет," %}<strong>{{request.user.username}}</strong>
                             <a href="/accounts/logout/" >{% trans "Выход" %}</a>
                         {% endif %}
-              </form>
+            </div>
 
           </div>
         </div>

@@ -3,18 +3,77 @@
 {% load staticfiles %}
 {% block content %}
 {% csrf_token %}
- <p class="content">
- 	{{ sales_person.first_name }}
-     {{ sales_person.second_name }}
-     {{ sales_person.phone_number }}
-     {{ sales_person.division }}
-     {{ sales_person.email_address}}
+<p>&nbsp;</p>
+<div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{ sales_person.first_name }} {{ sales_person.second_name }}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center">
+                    {% if sales_person.avatar %}
+                        <!--model.ImageFile.url специальное поле, указывающее на URL -->
+                        <img src="{{ sales_person.avatar.url}}" alt="{% trans 'Менеджер по продажам.' %}" class="img-circle img-responsive">
+                    {% endif %}
+                </div>
+                    <div class=" col-md-9 col-lg-9 ">
+                        <table class="table table-user-information">
+                            <tbody>
+                              <tr>
+                                <td>{% trans "Подразделение" %}:</td>
+                                <td>{{ sales_person.division }}</td>
+                              </tr>
+                              <tr>
+                                <td>Hire date:</td>
+                                <td>06/23/2013</td>
+                              </tr>
+                              <tr>
+                                <td>Date of Birth</td>
+                                <td>01/24/1988</td>
+                              </tr>
 
-     {% if sales_person.avatar %}
-        <!--model.ImageFile.url специальное поле, указывающее на URL -->
-        <img src="{{ sales_person.avatar.url}}" alt="{% trans 'Менеджер по продажам.' %}" class="img-circle">
-     {% endif %}
+                                 <tr>
+                                     <tr>
+                                <td>Gender</td>
+                                <td>Male</td>
+                              </tr>
+                                <tr>
+                                <td>Home Address</td>
+                                <td>Metro Manila,Philippines</td>
+                              </tr>
+                              <tr>
+                                <td>{% trans "Электронная почта" %}</td>
+                                <td><a href="mailto:{{ sales_person.email_address}}">{{ sales_person.email_address}}</a></td>
+                              </tr>
+                              <tr>
+                                <td>{% trans "Телефонный номер (моб):" %}</td>
+                                <td>{{ sales_person.phone_number }}</td>
+                              </tr>
+                              <tr>
+                                <td>{% trans "Телефонный номер (станц.):" %}</td>
+                                <td>23456789</td>
+                              </tr>
+                    </tbody>
+                  </table>
 
- </p>
+                  <a href="#" class="btn btn-primary">My Sales Performance</a>
+                  <a href="#" class="btn btn-primary">Team Sales Performance</a>
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer">
+                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                        <span class="pull-right">
+                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
+                    </div>
 
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}

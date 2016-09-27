@@ -6,7 +6,6 @@ from . import views
 
 # /crm/
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
     url(r'^salespersons/(?P<salesperson_id>[0-9]+)/$', views.salesPersonPage, name='salespersonpage'),
     url(r'^salespersons/$', views.salesPersonsList,     name='salespersons'),
     url(r'^salespersons/new/$', views.salesperson_new,  name='salesperson_new'),

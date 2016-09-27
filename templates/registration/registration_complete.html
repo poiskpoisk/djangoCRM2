@@ -2,7 +2,19 @@
 {% load i18n %}
 
 {% block content %}
-    <p class="content">
-        <p>{% trans "You are now registered. Activation email sent." %}</p>
-    </p>
+{% load staticfiles %}
+
+<div class="container">
+	<div class="row text-center">
+        <div class="col-sm-6 col-sm-offset-3">
+        <br><br> <h2 style="color:#0fad00">{% trans "Успешная регистрация" %}</h2>
+        <img src="{% static 'crm/check-true.jpg' %}">
+        <p style="font-size:20px;color:#5C5C5C;">{% trans "Спасибо за регистрацию. Для завершения регистрации Вам надо подтвердить свой E-mail. Письмо с сылкой для подтверждения мы отправили на адрес, указанный при регистрации." %}.</p>
+        <a href="/" class="btn btn-success">   {% trans "Войти" %}      </a>
+    <br><br>
+        </div>
+
+	</div>
+</div>
+
 {% endblock %}

@@ -11,12 +11,11 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-from.secret import login,pwd,sec_key
+from .secret import login,pwd,sec_key
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -27,12 +26,14 @@ SECRET_KEY = sec_key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Белый список хостов куда можно переходить без проверки токена CSFR
 ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'registration',                     # добавляем пакет для регистрации пользователей
+    'crispy_forms',
     'crm',
 ]
 
@@ -113,13 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # язык сайта по умолчанию, если не удалось определить язык другими способами
 LANGUAGE_CODE = 'en'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 # указываем, где лежат файлы перевода
@@ -147,12 +145,12 @@ MEDIA_ROOT = os.path.join( BASE_DIR, 'media')
 # Сылка относительно корня, как будут показаны загружаемые пользователем файлы
 MEDIA_URL = '/media/'
 
+# Настройки для django-registration-redux
 REGISTRATION_OPEN = True        # Если равно True, то пользователи могут регистрироваться
-ACCOUNT_ACTIVATION_DAYS = 7     # время в течении которого можно активировать аккаунт;
-                                # в качестве примера выбрано 7 дней или одна неделя, но Вы можете указать другое значение.
+ACCOUNT_ACTIVATION_DAYS = 7     # время в днях течении которого можно активировать аккаунт;
 REGISTRATION_AUTO_LOGIN = True  # Если равно  True, то пользователь будет автоматически входить в систему.
 LOGIN_REDIRECT_URL = '/crm/'    # Страница, на которую будут попадать пользователи, после успешного входа в систему.
-LOGIN_URL = '/crm/login/'       # Страница, на которую перенаправляются пользователи, если они не вошли в систему и
+LOGIN_URL = '/crm/'             # Страница, на которую перенаправляются пользователи, если они не вошли в систему и
                                 # пытаются получить доступ к страницам, которые требуют аутентификации
 
 # http://djbook.ru/forum/topic/220/
@@ -185,4 +183,5 @@ SERVER_EMAIL        = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL  = EMAIL_HOST_USER
 
 
-LOGIN_REDIRECT_URL = '/crm/'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+

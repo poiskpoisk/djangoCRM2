@@ -1,13 +1,61 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block content %}
-  <p class="content">
-    <form method="post" action=".">
-      {% csrf_token %}
-      {{ form.as_p }}
 
-      <input type="submit" value="{% trans 'Submit' %}" />
-    </form>
-  </p>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<div class="container">
+    <div class="row main">
+        <div class="panel-heading">
+           <div class="panel-title text-center">
+                <h2 class="title">{% trans "Новый пользователь" %}</h2>
+                <hr id='hrreg' />
+            </div>
+        </div>
+        <div class="main-login main-center">
+
+            <form class="form-horizontal" method="POST" action="">{% csrf_token %}
+
+
+                    {% for field in form1 %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        <div class="cols-sm-10 input-group">
+                            <span class="input-group-addon"><i class="{{ field.logo }}" aria-hidden="true"></i></span>
+                            {{ field }}
+                        </div>
+                        {{ field.errors}}
+                    </div>
+                    {% endfor %}
+
+                    {% for field in form2 %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        <div class="cols-sm-10 input-group">
+                            <span class="input-group-addon"><i class="{{ field.logo }}" aria-hidden="true"></i></span>
+                            {{ field }}
+                        </div>
+                        {{ field.errors}}
+                    </div>
+                    {% endfor %}
+
+                  <div class="form-group ">
+                      <button class="btn btn-primary btn-lg btn-block login-button" type="submit" >{%trans 'Зарегистрироваться' %}</button>
+                  </div>
+
+                </form>
+
+                <div class="login-register">
+                    <a href="/accounts/login/">{% trans 'Войти'%}</a>
+                 </div>
+
+
+                {% for field in form %}
+                    {{field.errors}}
+                {% endfor %}
+
+        </div>
+    </div>
+</div>
+<p>&nbsp;</p>
 {% endblock %}

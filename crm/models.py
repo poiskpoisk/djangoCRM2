@@ -1,32 +1,45 @@
-from __future__ import unicode_literals
-
 from django.db import models
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 
 
 class Person(models.Model):                                                 # ABS class define abstract Person
-    first_name   = models.CharField(max_length=30, verbose_name = _('Фамилия'),
-                 help_text = _("Фамилия") )
 
-    second_name  = models.CharField(max_length=30, verbose_name = _('Имя'), blank=True )
-    # upload_to - URL относительно MEDIA_URL
-    avatar       = models.ImageField(upload_to = 'crm/', blank=True )
     phone_number = models.CharField(max_length=15, verbose_name = _('Телефон'),
                                     validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$',
-                                    message="Phone number must be entered in the format: '+999999999'."
-                                    " Up to 15 digits allowed.")], blank=True)   # validators should be a list
-    email_address = models.EmailField(max_length=80, verbose_name = _('Эл.почта')) # EmaiField has validator'
+                                    message=_("Телефонный номер должен быть в формате: '+999999999. До 15 цифр."))],
+                                    blank=True)  # validators should be a list
+    mobile_number = models.CharField(max_length=15, verbose_name=_('Мобильный телефон'),
+                                    validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$',
+                                    message=_("Телефонный номер должен быть в формате: '+999999999. До 15 цифр."))],
+                                    blank=True)  # validators should be a list
+    # upload_to - URL относительно MEDIA_URL
+    avatar = models.ImageField(upload_to='crm/', blank=True, verbose_name=_('Фотография'))
 
     class Meta:
         abstract = True
 
+'''
+В Django есть четыре способа изменить модель User:
+
+ 1. proxy, только позволяет добавлять новые методы к User, изменяя ее поведение
+ 2. Связать User с пользовательской моделью, через соотношение OneToOne
+ 3. Образовать свой класс от AbstractUser и добваить новые атрибуты ( поля )
+ 4. Полностью создать свой новый класс, переопределив требуемые методы
+
+ 3 и 4 требуют переписания всех стандартных форм и будут скорее всего не совместимы с другими приложениями.
+ Рекомендованный способ 2, хотя он и будет несколько медленнее работать.
+
+'''
+
 class SalesPerson(Person):
+    # see http://djbook.ru/rel1.8/topics/auth/customizing.html
+    user = models.OneToOneField(User, on_delete=models.CASCADE ) # Связываем модель с данными стандартного USER
     division = models.CharField(max_length=50, blank=True, verbose_name = _('Подразделение'))
 
     def __str__(self):
         return '%s %s' % (self.first_name, self.second_name)
-
 
 class Todo(models.Model):
     ACTIONS_CHOICES = (
@@ -44,6 +57,9 @@ class Todo(models.Model):
 
 
 class Contact(Person):
+    first_name          = models.CharField(max_length=30, verbose_name = _('Фамилия'),
+                          help_text = _("Фамилия"), default=_('Иванов') )
+    second_name         = models.CharField(max_length=30, verbose_name=_('Имя'), blank=True)
     sales_person        = models.ForeignKey(SalesPerson, on_delete=models.CASCADE)  # Many-to-One relation
     company             = models.CharField(max_length=50, blank=True)
     position            = models.CharField(max_length=50, blank=True)
@@ -51,7 +67,7 @@ class Contact(Person):
                                                                message="Phone number must be entered in the format:"
                                                                    " '+999999999'. Up to 15 digits allowed.")],
                                                                 blank=True)   # validators should be a list
-    email_address = models.EmailField(max_length=80, blank=True)              # EmaiField has validator
+    email_address = models.EmailField(max_length=80, verbose_name=_('Эл.почта'), blank=True )  # EmaiField has validator
     brith_data          = models.DateField(blank=True, null=True)
     comment             = models.TextField(blank=True)
 
