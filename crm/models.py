@@ -6,6 +6,9 @@ from django.utils.translation import ugettext as _
 
 class Person(models.Model):                                                 # ABS class define abstract Person
 
+    first_name  = models.CharField(max_length=100, verbose_name = _('Фамилия'))
+    second_name = models.CharField(max_length=100, verbose_name=_('Имя'))
+
     phone_number = models.CharField(max_length=15, verbose_name = _('Телефон'),
                                     validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$',
                                     message=_("Телефонный номер должен быть в формате: '+999999999. До 15 цифр."))],

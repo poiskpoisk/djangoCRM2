@@ -14,8 +14,7 @@
   <!-- Bootstrap -->
   <link href="{% static 'crm/bootstrap3/css/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static 'crm/style.css' %}" rel="stylesheet">
-  <link href="{% static 'crm/login.css' %}" rel="stylesheet">
-  <link href="{% static 'crm/register_page.css' %}" rel="stylesheet">
+  <link href="{% static 'crm/login_register_page.css' %}" rel="stylesheet">
 
 
 
@@ -43,15 +42,26 @@
 
               <ul class="nav navbar-nav">
                 <li><a href="/crm/reports/">{% trans "Отчеты" %}</a></li>
-                <li><a href="#">Deals</a></li>
-                <li><a href="/crm/salespersons/">{% trans "Менеджеры по продажам" %}</a></li>
-                <li><a href="http://{{ host }}">Item 4</a></li>
+                <li><a href="#">{% trans "Продажи" %}</a></li>
+                <li class="dropdown">
+                  <a href="{% url 'salespersons' %}" class="dropdown-toggle" data-toggle="dropdown"> {% trans "Менеджеры по продажам" %}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{% url 'salespersons' %}">{% trans "Список менеджеров" %}</a></li>
+                      <li><a href="{% url 'register' %}">{% trans "Зарегистрировать нового" %}</a></li>
+                      <li><a href="#">Что-то еще</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Отдельная ссылка</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Еще одна отдельная ссылка</a></li>
+                    </ul>
+                </li>
+                <li><a href="http://{{ host }}">{% trans "Клиенты" %}</a></li>
               </ul>
 
-              <div class="navbar-form navbar-right" >
+              <div class="navbar-text navbar-right" >
             {% if request.user.username %}
-                            {% trans "Привет," %}<strong>{{request.user.username}}</strong>
-                            <a href="/accounts/logout/" >{% trans "Выход" %}</a>
+                            {% trans "Вы зашли как," %}<strong>{{request.user.username}}  </strong>
+                            <a href="{% url 'logout' %}" class="navbar-link"> &nbsp;{% trans "Выход" %}&nbsp;</a>
                         {% endif %}
             </div>
 
@@ -66,17 +76,18 @@
           <div class="col-lg-4"></div>
         </div>
       </div>
-       <div class="content">
+      
+      <div class="content">
 
-      {% block content %}
+        {% block content %}
 
+        {% endblock %}
 
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="{% static 'crm/bootstrap3/js/bootstrap.min.js' %}"></script>
 
-      {% endblock %}
-
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="{% static 'crm/bootstrap3/js/bootstrap.min.js' %}"></script>
+      </div>
     </body>
     </html>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-06 22:46+0300\n"
+"POT-Creation-Date: 2016-09-28 08:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,30 +17,295 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\crm\models.py:9
+#: crm/forms.py:17
+msgid "Телефон: +999999999. До 15 цифр."
+msgstr ""
+
+#: crm/forms.py:18 crm/models.py:42 crm/templates/crm/salesperson.html:26
+#: crm/templates/crm/salespersons.html:12
+msgid "Подразделение"
+msgstr ""
+
+#: crm/forms.py:19
+msgid "Моб. телефон: +999999999. До 15 цифр."
+msgstr ""
+
+#: crm/forms.py:20 crm/models.py:21
+msgid "Фотография"
+msgstr ""
+
+#: crm/forms.py:25 crm/forms.py:28 templates/registration/login.html:49
+#: templates/registration/login_.html:277
+msgid "Логин"
+msgstr ""
+
+#: crm/forms.py:26
+msgid "Не более 30 символов. Допустимо - A-z,1-9,@/./+/-/_ "
+msgstr ""
+
+#: crm/forms.py:27
+msgid "Допустимо только - A-z,1-9,@/./+/-/"
+msgstr ""
+
+#: crm/forms.py:30 crm/forms.py:32 crm/templates/crm/salesperson.html:48
+msgid "Электронная почта"
+msgstr ""
+
+#: crm/forms.py:34 crm/forms.py:35 templates/registration/login.html:58
+#: templates/registration/login_.html:287
+msgid "Пароль"
+msgstr ""
+
+#: crm/forms.py:36 crm/forms.py:38 templates/registration/login_.html:297
+msgid "Подтверждение пароля"
+msgstr ""
+
+#: crm/forms.py:39
+msgid "Оба пароля должны совпадать."
+msgstr ""
+
+#: crm/models.py:9 crm/models.py:63 crm/models.py:64
+#: crm/templates/crm/salespersons.html:10
+#: templates/registration/login_.html:258
+#: templates/registration/login_.html:323
 msgid "Фамилия"
 msgstr ""
 
-#: .\crm\models.py:10
+#: crm/models.py:10 crm/models.py:65 crm/templates/crm/salespersons.html:11
 msgid "Имя"
-msgstr "dsasds"
+msgstr ""
 
-#: .\crm\models.py:12
+#: crm/models.py:12 crm/templates/crm/salespersons.html:13
 msgid "Телефон"
 msgstr ""
 
-#: .\crm\models.py:16
+#: crm/models.py:14 crm/models.py:18
+msgid "Телефонный номер должен быть в формате: '+999999999. До 15 цифр."
+msgstr ""
+
+#: crm/models.py:16
+msgid "Мобильный телефон"
+msgstr ""
+
+#: crm/models.py:64
+msgid "Иванов"
+msgstr ""
+
+#: crm/models.py:73 crm/templates/crm/salespersons.html:14
 msgid "Эл.почта"
 msgstr ""
 
-#: .\crm\models.py:68
+#: crm/models.py:92
 msgid "Описание"
-msgstr "sdsadadasdasd"
+msgstr ""
 
-#: .\templates\admin\base_site.html:3
+#: crm/templates/crm/salesperson.html:19
+msgid "Менеджер по продажам."
+msgstr ""
+
+#: crm/templates/crm/salesperson.html:52
+msgid "Телефонный номер (моб):"
+msgstr ""
+
+#: crm/templates/crm/salesperson.html:56
+msgid "Телефонный номер (станц.):"
+msgstr ""
+
+#: crm/templates/crm/salesperson_new.html:12
+msgid "Добавление нового сотрудника-продавца"
+msgstr ""
+
+#: crm/templates/crm/salesperson_new.html:44
+msgid "Добавить"
+msgstr ""
+
+#: crm/templates/crm/salespersons.html:5
+msgid "Менеджеры по продажам."
+msgstr ""
+
+#: crm/templates/crm/salespersons.html:5
+msgid "чел."
+msgstr ""
+
+#: templates/admin/base_site.html:3
 msgid "Django site admin"
 msgstr ""
 
-#: .\templates\admin\base_site.html:6
+#: templates/admin/base_site.html:6
 msgid "Django administration"
+msgstr ""
+
+#: templates/base.html:45 templates/registration/login_.html:59
+#: templates/registration/login_.html:148
+msgid "Отчеты"
+msgstr ""
+
+#: templates/base.html:47 templates/registration/login_.html:61
+#: templates/registration/login_.html:150
+msgid "Менеджеры по продажам"
+msgstr ""
+
+#: templates/base.html:53
+msgid "Привет,"
+msgstr ""
+
+#: templates/base.html:54
+msgid "Выход"
+msgstr ""
+
+#: templates/registration/activate.html:6
+msgid "Account activation failed"
+msgstr ""
+
+#: templates/registration/activation_complete.html:10
+msgid "Успешная активация аккаунта."
+msgstr ""
+
+#: templates/registration/activation_complete.html:12
+msgid "Для начала работы войдите в систему."
+msgstr ""
+
+#: templates/registration/activation_complete.html:13
+#: templates/registration/login.html:68 templates/registration/login_.html:76
+#: templates/registration/login_.html:162
+#: templates/registration/login_.html:313
+#: templates/registration/registration_complete.html:13
+#: templates/registration/registration_form.html:49
+msgid "Войти"
+msgstr ""
+
+#: templates/registration/activation_email.txt:2
+msgid "Activate account at"
+msgstr ""
+
+#: templates/registration/activation_email.txt:6
+#, python-format
+msgid "Link is valid for %(expiration_days)s days."
+msgstr ""
+
+#: templates/registration/activation_email_subject.txt:1
+msgid "Account activation on"
+msgstr ""
+
+#: templates/registration/login.html:11
+msgid "Войти или"
+msgstr ""
+
+#: templates/registration/login.html:36
+msgid "или"
+msgstr ""
+
+#: templates/registration/login.html:61
+msgid "Ошибочный логин или пароль"
+msgstr ""
+
+#: templates/registration/login.html:77
+msgid "Запомнить меня"
+msgstr ""
+
+#: templates/registration/login.html:82
+msgid "Забыли пароль ?"
+msgstr ""
+
+#: templates/registration/login_.html:10
+#: templates/registration/password_reset_complete.html:8
+msgid "Log in"
+msgstr ""
+
+#: templates/registration/login_.html:14 templates/registration/login_.html:105
+msgid "Forgot password"
+msgstr ""
+
+#: templates/registration/login_.html:14 templates/registration/login_.html:105
+msgid "Reset it"
+msgstr ""
+
+#: templates/registration/login_.html:15 templates/registration/login_.html:106
+msgid "Not member"
+msgstr ""
+
+#: templates/registration/login_.html:15 templates/registration/login_.html:106
+msgid "Register"
+msgstr ""
+
+#: templates/registration/login_.html:227
+#: templates/registration/password_change_form.html:10
+#: templates/registration/password_reset_confirm.html:13
+#: templates/registration/password_reset_form.html:10
+msgid "Submit"
+msgstr ""
+
+#: templates/registration/login_.html:249
+#: templates/registration/registration_form.html:11
+msgid "Новый пользователь"
+msgstr ""
+
+#: templates/registration/login_.html:262
+#: templates/registration/login_.html:327
+msgid "Введите Вашу фамилию"
+msgstr ""
+
+#: templates/registration/login_.html:267
+msgid "Почта"
+msgstr ""
+
+#: templates/registration/login_.html:271
+msgid "Введите Вашу почту"
+msgstr ""
+
+#: templates/registration/login_.html:281
+msgid "Введите Ваш логин"
+msgstr ""
+
+#: templates/registration/login_.html:291
+msgid "Введите Ваш пароль"
+msgstr ""
+
+#: templates/registration/login_.html:301
+msgid "Подтвердите Ваш пароль"
+msgstr ""
+
+#: templates/registration/login_.html:307
+#: templates/registration/registration_form.html:43
+msgid "Зарегистрироваться"
+msgstr ""
+
+#: templates/registration/logout.html:6
+msgid "Logged out"
+msgstr ""
+
+#: templates/registration/password_change_done.html:6
+msgid "Password changed"
+msgstr ""
+
+#: templates/registration/password_reset_complete.html:6
+msgid "Password reset successfully"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:18
+msgid "Password reset failed"
+msgstr ""
+
+#: templates/registration/password_reset_done.html:6
+msgid "Email with password reset instructions has been sent."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:4
+#, python-format
+msgid "Reset password at %(site_name)s"
+msgstr ""
+
+#: templates/registration/registration_closed.html:6
+msgid "Registration is currently closed."
+msgstr ""
+
+#: templates/registration/registration_complete.html:10
+msgid "Успешная регистрация"
+msgstr ""
+
+#: templates/registration/registration_complete.html:12
+msgid ""
+"Спасибо за регистрацию. Для завершения регистрации Вам надо подтвердить свой "
+"E-mail. Письмо с сылкой для подтверждения мы отправили на адрес, указанный "
+"при регистрации."
 msgstr ""

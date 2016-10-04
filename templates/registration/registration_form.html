@@ -14,10 +14,12 @@
         </div>
         <div class="main-login main-center">
 
-            <form class="form-horizontal" method="POST" action="">{% csrf_token %}
+<!-- What is important to notice here is that the form has "enctype" of enctype="multipart/form-data" which is necessary for the file upload. -->
+
+            <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="">{% csrf_token %}
 
 
-                    {% for field in form1 %}
+                    {% for field in form %}
                     <div class="form-group">
                         {{ field.label_tag }}
                         <div class="cols-sm-10 input-group">
@@ -33,9 +35,9 @@
                         {{ field.label_tag }}
                         <div class="cols-sm-10 input-group">
                             <span class="input-group-addon"><i class="{{ field.logo }}" aria-hidden="true"></i></span>
-                            {{ field }}
+                                {{ field }}
                         </div>
-                        {{ field.errors}}
+                            {{ field.errors}}
                     </div>
                     {% endfor %}
 
@@ -48,14 +50,8 @@
                 <div class="login-register">
                     <a href="/accounts/login/">{% trans 'Войти'%}</a>
                  </div>
-
-
-                {% for field in form %}
-                    {{field.errors}}
-                {% endfor %}
-
         </div>
     </div>
 </div>
-<p>&nbsp;</p>
+<p>&nbsp;&nbsp;</p>
 {% endblock %}

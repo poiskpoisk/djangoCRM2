@@ -27,6 +27,9 @@ class SalePersonInline(admin.StackedInline):
     can_delete = False
     verbose_name_plural = 'SalesPersons'
 
+class SalesPersonAdmin(admin.ModelAdmin):
+    model = SalesPerson
+
 # Define a new User admin
 class UserAdmin(UserAdmin):
     inlines = (SalePersonInline, )
@@ -43,6 +46,7 @@ admin.site.register(Contact, ContactAdmin)
 admin.site.register(Todo, TodoAdmin)
 admin.site.register(Deal, DealAdmin )
 admin.site.register(Product, ProductAdmin )
+admin.site.register(SalesPerson, SalesPersonAdmin )
 # Re-register UserAdmin
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

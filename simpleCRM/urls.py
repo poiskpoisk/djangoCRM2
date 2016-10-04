@@ -16,32 +16,29 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.static import static
-from .settings import MEDIA_ROOT, MEDIA_URL
-from registration.backends.default.views import RegistrationView
+from simpleCRM.settings import MEDIA_ROOT, MEDIA_URL
 from django.views.generic import TemplateView
-from crm.views import LoginView
-from crm.views import registerNewUser
+from crm.forms import MyRegistrationFormUniqueEmail, MyAuthenticationForm
+from crm.registration_views import myLogin, MyRegistrationView
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [url(r'^i18n/',  include('django.conf.urls.i18n')),]
 
+# URLconfs have a hook that lets you pass extra arguments to your view FUNCTIONS (!), as a Python dictionary.
+#   url(r'^blog/(?P<year>[0-9]{4})/$', views.year_archive, {'foo': 'bar'}),
+#  for a request to /blog/2005/, Django will call views.year_archive(request, year='2005', foo='bar').
+
+
 urlpatterns += [
-    url(r'^$', LoginView.as_view(), name='login' ),
+    url(r'^$', myLogin, {  'authentication_form' : MyAuthenticationForm }, name='mainpage'),
     url(r'^crm/',       include('crm.urls')),
     url(r'^admin/',     include(admin.site.urls)),
-
-    url(r'^accounts/register/$', registerNewUser, name='register'),
-
-
-    url(r'^accounts/register/complete/$',
-        TemplateView.as_view(template_name='registration/registration_complete.html'),
-        name='registration_complete'),
-
-    url(r'^accounts/login/$', LoginView.as_view(), name='login') ,
-
+    url(r'^accounts/register/$', MyRegistrationView.as_view( form_class=MyRegistrationFormUniqueEmail), name='register'),
+    url(r'^accounts/register/complete/$', TemplateView.as_view(template_name='registration/registration_complete.html'), name='registration_complete'),
+    url(r'^accounts/login/$', myLogin, {  'authentication_form' : MyAuthenticationForm }, name='login'),
+    url(r'^accounts/logout/$', auth_views.logout, {'template_name': 'registration/logout.html'}, name='logout'),
     url(r'^accounts/',  include('registration.backends.default.urls')),
-
-
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
