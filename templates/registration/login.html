@@ -16,23 +16,7 @@
 
             <form class="form-horizontal" method="POST" action="">{% csrf_token %}
 
-                    {% for field in form %}
-                    <div class="form-group">
-                        {{ field.label_tag }}
-                        <div class="cols-sm-10 input-group">
-                            <span class="input-group-addon"><i class="{{ field.logo }}" aria-hidden="true"></i></span>
-							{% if field.errors %}
-                        		<div class="has-error">
-									{{ field }}
-								</div>
-							{% else %}
-								{{ field }}
-                    		{% endif %}
-
-                        </div>
-                        {{ field.errors}}
-                    </div>
-                    {% endfor %}
+                   {{ form.as_p }}
 
                   <div class="form-group ">
                       <button class="btn btn-primary btn-lg btn-block login-button" type="submit" >{%trans 'Войти' %}</button>

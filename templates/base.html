@@ -13,8 +13,10 @@
 
   <!-- Bootstrap -->
   <link href="{% static 'crm/bootstrap3/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'crm/style.css' %}" rel="stylesheet">
+
   <link href="{% static 'crm/login_register_page.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
+    <link href="{% static 'crm/style.css' %}" rel="stylesheet">
 
 
 
@@ -43,19 +45,39 @@
               <ul class="nav navbar-nav">
                 <li><a href="/crm/reports/">{% trans "Отчеты" %}</a></li>
                 <li><a href="#">{% trans "Продажи" %}</a></li>
+
                 <li class="dropdown">
-                  <a href="{% url 'salespersons' %}" class="dropdown-toggle" data-toggle="dropdown"> {% trans "Менеджеры по продажам" %}<b class="caret"></b></a>
+                  <a href="{% url 'salespersons' %}" class="dropdown-toggle" data-toggle="dropdown">{% trans "Менеджеры по продажам" %}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                       <li><a href="{% url 'salespersons' %}">{% trans "Список менеджеров" %}</a></li>
-                      <li><a href="{% url 'register' %}">{% trans "Зарегистрировать нового" %}</a></li>
-                      <li><a href="#">Что-то еще</a></li>
+                      <li><a href="{% url 'salesperson_new' %}">{% trans "Добавить нового" %}</a></li>
                       <li class="divider"></li>
                       <li><a href="#">Отдельная ссылка</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Еще одна отдельная ссылка</a></li>
                     </ul>
                 </li>
+
                 <li><a href="http://{{ host }}">{% trans "Клиенты" %}</a></li>
+
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Дела" %}<b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="{% url 'todolist' %}">{% trans "Список дел" %}</a></li>
+                          <li><a href="{% url 'register' %}">{% trans "Добавить дело" %}</a></li>
+                          <li class="divider"></li>
+                          <li><a href="{% url 'register' %}">{% trans "Что-то еще" %}</a></li>
+                      </ul>
+                </li>
+
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Сервис" %}<b class="caret"></b></a>
+                       <ul class="dropdown-menu">
+                          <li><a href="{% url 'userlist' %}">{% trans "Список пользователей" %}</a></li>
+                          <li><a href="{% url 'register' %}">{% trans "Добавить нового" %}</a></li>
+                          <li class="divider"></li>
+                          <li><a href="{% url 'register' %}">{% trans "Сменить пароль" %}</a></li>
+                          <li><a href="{% url 'register' %}">{% trans "Напомнить пароль" %}</a></li>
+                        </ul>
+                </li>
               </ul>
 
               <div class="navbar-text navbar-right" >

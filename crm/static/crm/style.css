@@ -6,3 +6,11 @@
 
     color: #9B2D30;
 }
+
+table.paleblue thead th, table.paleblue thead td {
+    font-size: 16px;
+}
+
+table.paleblue, table.paleblue + ul.pagination {
+    font: normal 14px 'Lucida Grande', Verdana, Helvetica, Arial, sans-serif;
+}

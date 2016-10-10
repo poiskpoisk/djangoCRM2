@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from simpleCRM.settings import MEDIA_ROOT, MEDIA_URL
 from django.views.generic import TemplateView
-from crm.forms import MyRegistrationFormUniqueEmail, MyAuthenticationForm
-from crm.registration_views import myLogin, MyRegistrationView
+from crm.registration_forms import MyRegistrationFormUniqueEmail, MyAuthenticationForm
+from crm.registration_views import MyRegistrationView, UserListView
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import login as loginView
 
 
 urlpatterns = [url(r'^i18n/',  include('django.conf.urls.i18n')),]
@@ -31,13 +33,14 @@ urlpatterns = [url(r'^i18n/',  include('django.conf.urls.i18n')),]
 
 
 urlpatterns += [
-    url(r'^$', myLogin, {  'authentication_form' : MyAuthenticationForm }, name='mainpage'),
+    url(r'^$', loginView, {  'authentication_form' : MyAuthenticationForm }, name='mainpage'),
     url(r'^crm/',       include('crm.urls')),
     url(r'^admin/',     include(admin.site.urls)),
     url(r'^accounts/register/$', MyRegistrationView.as_view( form_class=MyRegistrationFormUniqueEmail), name='register'),
     url(r'^accounts/register/complete/$', TemplateView.as_view(template_name='registration/registration_complete.html'), name='registration_complete'),
-    url(r'^accounts/login/$', myLogin, {  'authentication_form' : MyAuthenticationForm }, name='login'),
+    url(r'^accounts/login/$', loginView, {  'authentication_form' : MyAuthenticationForm }, name='login'),
     url(r'^accounts/logout/$', auth_views.logout, {'template_name': 'registration/logout.html'}, name='logout'),
+    url(r'^accounts/userlist/$', login_required(UserListView.as_view(template_name='registration/userlist.html')), name='userlist'),
     url(r'^accounts/',  include('registration.backends.default.urls')),
 ]
 

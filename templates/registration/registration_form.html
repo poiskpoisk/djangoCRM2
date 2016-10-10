@@ -19,27 +19,8 @@
             <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="">{% csrf_token %}
 
 
-                    {% for field in form %}
-                    <div class="form-group">
-                        {{ field.label_tag }}
-                        <div class="cols-sm-10 input-group">
-                            <span class="input-group-addon"><i class="{{ field.logo }}" aria-hidden="true"></i></span>
-                            {{ field }}
-                        </div>
-                        {{ field.errors}}
-                    </div>
-                    {% endfor %}
-
-                    {% for field in form2 %}
-                    <div class="form-group">
-                        {{ field.label_tag }}
-                        <div class="cols-sm-10 input-group">
-                            <span class="input-group-addon"><i class="{{ field.logo }}" aria-hidden="true"></i></span>
-                                {{ field }}
-                        </div>
-                            {{ field.errors}}
-                    </div>
-                    {% endfor %}
+                {{ form.as_p }}
+                <p>&nbsp;</p>
 
                   <div class="form-group ">
                       <button class="btn btn-primary btn-lg btn-block login-button" type="submit" >{%trans 'Зарегистрироваться' %}</button>

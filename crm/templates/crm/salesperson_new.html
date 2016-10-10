@@ -1,54 +1,40 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load staticfiles %}
+{% load bootstrap %}
 {% block content %}
 
-<!-- TODO Разбор ошибок и вывод об них уведомление -->
 
- <div class="content">
-     <div class="row">
-         <div class="col-lg-6 col-lg-offset-1">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-            <h2>{% trans "Добавление нового сотрудника-продавца" %}</h2>
+<div class="container">
+    <div class="row main">
+        <div class="panel-heading">
+           <div class="panel-title text-center">
+                <h2 class="title">{% trans "Новый менеджер по продажам" %}</h2>
+                <hr id='hrreg' />
+            </div>
+        </div>
 
-    <!-- What is important to notice here is that the form has "enctype" of enctype="multipart/form-data" which is necessary for the file upload. -->
+        <div class="main-login main-center-spnew">
 
-            <form role="form" method="post" class="post-form" enctype="multipart/form-data" >{% csrf_token %}
-                <!--токен CSRF должен быть ВНУТРИ каждой формы-->
-                <div class="form-group">
-                    <label for="id_first_name">Фамилия:</label>
-                    <input id="id_first_name" class="form-control" maxlength="30" name="first_name" type="text" required />
-                </div>
-                <div class="form-group">
-                    <label for="id_second_name">Dsasds:</label>
-                    <input id="id_second_name" class="form-control" maxlength="30" name="second_name" type="text" />
-                </div>
-                <div class="form-group">
-                    <label for="id_phone_number">Телефон:</label>
-                    <input id="id_phone_number" class="form-control" maxlength="15" name="phone_number" type="text" />
-                </div>
-                <div class="form-group">
-                    <label for="id_email_address">Эл.почта:</label>
-                    <input id="id_email_address"  class="form-control"maxlength="80" name="email_address" type="email" required />
-                </div>
-                <div class="form-group">
-                    <label for="id_division">Подразделение:</label>
-                    <input id="id_division" class="form-control" maxlength="50" name="division" type="text" />
-                </div>
-                <div class="form-group">
-                    <label class="btn btn-default btn-file" for="id_avatar">Avatar:
-                        <input id="id_avatar" name="avatar" type="file" />
-                    </label>
+            <form class="form-horizontal" method="POST" action="">{% csrf_token %}
+
+                {{ form|bootstrap_horizontal }}
+
+                <div class="form-group ">
+                      <button class="btn btn-primary btn-lg btn-block login-button" type="submit" >{%trans 'Создать' %}</button>
+					  <input type="hidden" name="next" value="{{ next }}" />
                 </div>
 
-                <button type="submit" class="btn btn-success">{% trans "Добавить" %}</button>
+                {% if form.errors %}
+						<div class="errorlist">
+							<p>{% trans "Что-то пошло не так" %}</p>
+						</div>
+                {% endif %}
             </form>
 
-         </div>
-         <div class="col-lg-5">
-
-         </div>
-     </div>
- </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
