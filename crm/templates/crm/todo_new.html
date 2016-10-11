@@ -3,13 +3,12 @@
 {% load bootstrap %}
 {% block content %}
 
-
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 <div class="container">
     <div class="row">
         <div  align="center" class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
-                    <h2 class="title">{% trans "Обновить данные менеджера по продажам" %}</h2>
+                    <h2 class="title">{% trans "Новый запланированное дело" %}</h2>
                     <hr id='hrreg' />
         </div>
 
@@ -22,19 +21,10 @@
 
                     <p>&nbsp;</p>
 
-                        <div class="row">
-                                <div class="col-lg-4">
-                                    <button class="btn btn-success btn-lg  btn-block" type="submit" ><i class="fa fa-pencil-square-o fa-lg"></i>&nbsp;&nbsp;{%trans 'Обновить' %}</button>
-                                </div>
-                                <div class="col-lg-4">
-                                    <a class="btn btn-danger btn-lg btn-block " href="{% url 'salesperson_del' object.pk %}" ><i class="fa fa-times fa-lg"></i>&nbsp;&nbsp;{%trans 'Удалить' %}</a>
-                                </div>
-                                <div class="col-lg-4">
-                                    <a class="btn btn-default btn-lg btn-block" href="{% url 'salespersons' %}"><i class="fa fa-sign-out fa-lg"></i>&nbsp;&nbsp;{%trans 'Выйти' %}</a>
-                                </div>
-                        </div>
-
-                          <input type="hidden" name="next" value="{{ next }}" />
+                     <div class="form-group ">
+                        <button class="btn btn-primary btn-lg btn-block login-button" type="submit" >{%trans 'Создать' %}</button>
+					    <input type="hidden" name="next" value="{{ next }}" />
+                    </div>
 
                     {% if form.errors %}
                             <div class="errorlist">
@@ -51,3 +41,4 @@
 </div>
 
 {% endblock %}
+

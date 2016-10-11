@@ -44,25 +44,7 @@ class SalesPerson(Person):
 
     class Meta:
         verbose_name = _('Менеджер по продажам')
-        verbose_name_plural =  _('Менеджеры по продажам')
-
-    # Что бы можно было перебирать поля в модели
-    def __iter__(self):
-        userModel = get_user_model()
-
-        for field in self._meta.fields:
-
-        # Выводим мэйл из связанной формы в общий список полей
-            if field.verbose_name == u'Логин':
-                user=field.value_to_string(self)
-                authUser = userModel.objects.get( pk= user )
-                yield (u'Электронная почта', authUser.email)
-
-            # Не показываем не нужные поля
-            elif  field.verbose_name !=u'Логин' and field.verbose_name !=u'Фотография':
-                yield (field.verbose_name, field.value_to_string(self))
-
-        yield (u'Логин', authUser.username)
+        verbose_name_plural =  _('Всего менеджеров по продажам')
 
     def __str__(self):
         return '%s %s' % (self.first_name, self.second_name)
@@ -70,24 +52,20 @@ class SalesPerson(Person):
 
 class Todo(models.Model):
     ACTIONS_CHOICES = (
-        ('E', 'Email'),
-        ('C', 'Phone call'),
-        ('O', 'Other'),
+        ('E', _('Электронная почта')),
+        ('P', _('Телефонный звонок')),
+        ('L', _('Личная встреча')),
+        ('S', _('Почта бумажная')),
+        ('O', _('Что-то еще')),
     )
     sales_person        = models.ForeignKey(SalesPerson, on_delete=models.CASCADE, verbose_name = _('Менеджер'))  # Many-to-One relation
     action              = models.CharField(max_length=1, choices=ACTIONS_CHOICES, verbose_name = _('Действие'))
     action_description  = models.TextField(verbose_name = _('Комментарий'))
     data_time           = models.DateTimeField(verbose_name = _('Дата и время'))
 
-    # Что бы можно было перебирать поля в модели
-    def __iter__(self):
-        for field in self._meta.fields:
-            if field.verbose_name == u'Менеджер':
-                salesmanager=SalesPerson.objects.get( pk=field.value_to_string(self) )
-                yield (field.verbose_name, salesmanager )
-                yield ('avatar', salesmanager.avatar.url )
-            else:
-                yield (field.verbose_name, field.value_to_string(self))
+    class Meta:
+        verbose_name = _('Список дел')
+        verbose_name_plural =  _('Всего дел')
 
     def __str__(self):
         return '%s %s' % (self.action_description, self.data_time)

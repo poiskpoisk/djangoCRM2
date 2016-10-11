@@ -17,7 +17,11 @@
   <link href="{% static 'crm/login_register_page.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
     <link href="{% static 'crm/style.css' %}" rel="stylesheet">
-
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="{% static 'crm/bootstrap3/js/bootstrap.min.js' %}"></script>
+    {{ form.media }}
 
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -61,8 +65,8 @@
                 <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Дела" %}<b class="caret"></b></a>
                       <ul class="dropdown-menu">
-                          <li><a href="{% url 'todolist' %}">{% trans "Список дел" %}</a></li>
-                          <li><a href="{% url 'register' %}">{% trans "Добавить дело" %}</a></li>
+                          <li><a href="{% url 'todos' %}">{% trans "Список дел" %}</a></li>
+                          <li><a href="{% url 'todo_new' %}">{% trans "Добавить дело" %}</a></li>
                           <li class="divider"></li>
                           <li><a href="{% url 'register' %}">{% trans "Что-то еще" %}</a></li>
                       </ul>
@@ -105,10 +109,7 @@
 
         {% endblock %}
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="{% static 'crm/bootstrap3/js/bootstrap.min.js' %}"></script>
+
 
       </div>
     </body>

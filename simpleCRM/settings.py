@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'crm',
     'django_tables2',
     'bootstrapform',
+    'floppyforms',
+    'datetimewidget',
 ]
 
 MIDDLEWARE = [

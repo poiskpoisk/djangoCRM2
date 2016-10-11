@@ -3,10 +3,9 @@
 {% load staticfiles %}
 {% block content %}
 {% load render_table from django_tables2 %}
-     <div class="container-fluid">
 
-    {% render_table table %}
-
-         </div>
+        <div class="container-fluid">
+            {% render_table table %}
+        </div>
 
 {% endblock %}
