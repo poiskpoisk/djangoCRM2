@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-#
+from crm.tables import ToDosTable, CustomersTable, DealsTable
+
 __author__ = 'AMA'
 
 from django.views.generic import UpdateView, CreateView, DeleteView
@@ -6,10 +8,9 @@ from django.conf.urls import url
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
-from crm.views import setLang, tableSalesPerson, tableToDos
-from crm.views import  ToDoDetail
-from crm.models import SalesPerson, Todo
-from crm.forms import SalesPersonForm, ToDoForm
+from crm.views import setLang, tableSalesPerson, tableCommon
+from crm.models import SalesPerson, Todo, Customer, Deal
+from crm.forms import SalesPersonForm, ToDoForm, CustomerForm, DealForm
 
 # common URLS prefix is /crm/
 urlpatterns = [
@@ -50,7 +51,7 @@ urlpatterns = [
                                                                                  success_url=reverse_lazy('todos')
                                                                                  )), name='todo_del'),
 
-    url(r'^todos/$', tableToDos, name='todos'),
+    url(r'^todos/$', tableCommon, { 'model':Todo, 'modelTable':ToDosTable }, name='todos'),
 
     url(r'^todos/new/$', login_required(CreateView.as_view( model=Todo,
                                                             template_name='crm/todo_new.html',
@@ -58,6 +59,47 @@ urlpatterns = [
                                                             success_url=reverse_lazy('todos')
                                                               )), name='todo_new'),
 
+    # ------------------------- Customer -----------------------------------------------------------------------
+
+    url(r'^customers/(?P<pk>[0-9]+)/$', login_required(UpdateView.as_view(model=Customer,
+                                                                      template_name='crm/customer.html',
+                                                                      form_class=CustomerForm,
+                                                                      success_url=reverse_lazy('customers')
+                                                                      )), name='customerpage'),
+
+    url(r'^customers/del/(?P<pk>[0-9]+)/$', login_required(DeleteView.as_view(model=Customer,
+                                                                          template_name='crm/customer_del.html',
+                                                                          success_url=reverse_lazy('customers')
+                                                                          )), name='customer_del'),
+
+    url(r'^customers/$', tableCommon, { 'model': Customer, 'modelTable': CustomersTable }, name='customers'),
+
+    url(r'^customers/new/$', login_required(CreateView.as_view(model=Customer,
+                                                           template_name='crm/customer_new.html',
+                                                           form_class=CustomerForm,
+                                                           success_url=reverse_lazy('customers')
+                                                           )), name='customer_new'),
+
+    # ----------------------------- Deal -------------------------------------------------------------------------
+
+    url(r'^deal/(?P<pk>[0-9]+)/$', login_required(UpdateView.as_view(model=Deal,
+                                                                      template_name='crm/deal.html',
+                                                                      form_class=DealForm,
+                                                                      success_url=reverse_lazy('deals')
+                                                                      )), name='dealpage'),
+
+    url(r'^desl/del/(?P<pk>[0-9]+)/$', login_required(DeleteView.as_view(model=Deal,
+                                                                          template_name='crm/deal_del.html',
+                                                                          success_url=reverse_lazy('deals')
+                                                                          )), name='deal_del'),
+
+    url(r'^deal/$', tableCommon, { 'model': Deal, 'modelTable': DealsTable }, name='deals'),
+
+    url(r'^deal/new/$', login_required(CreateView.as_view(model=Deal,
+                                                           template_name='crm/deal_new.html',
+                                                           form_class=DealForm,
+                                                           success_url=reverse_lazy('deals')
+                                                           )), name='deal_new'),
 
 
     url(r'^lang/', setLang, name='lang'),

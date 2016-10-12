@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
-from crm.models import Contact, SalesPerson, Todo, Deal, Product
+from crm.models import Customer, SalesPerson, Todo, Deal, Product
 
 # Customize admin panel
 admin.AdminSite.index_title = u'simpleCRM, simple administration.'
@@ -42,7 +42,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('sku', 'description', 'price')
 
 
-admin.site.register(Contact, ContactAdmin)
+admin.site.register(Customer, ContactAdmin)
 admin.site.register(Todo, TodoAdmin)
 admin.site.register(Deal, DealAdmin )
 admin.site.register(Product, ProductAdmin )

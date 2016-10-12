@@ -1,0 +1,89 @@
+{% load staticfiles %}
+{% load i18n %}
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href=# >sCRM</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="responsive-menu">
+            <ul class="nav navbar-nav">
+
+                <li><a href="/crm/reports/">{% trans "Отчеты" %}</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Продажи" %}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                          <li><a href="{% url 'deals' %}">{% trans "Список продаж" %}</a></li>
+                          <li><a href="{% url 'deal_new' %}">{% trans "Добавить новую" %}</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#">Отдельная ссылка</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                  <a href="{% url 'salespersons' %}" class="dropdown-toggle" data-toggle="dropdown">{% trans "Менеджеры по продажам" %}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{% url 'salespersons' %}">{% trans "Список менеджеров" %}</a></li>
+                      <li><a href="{% url 'salesperson_new' %}">{% trans "Добавить нового" %}</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Отдельная ссылка</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >{% trans "Клиенты" %}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'customers' %}">{% trans "Список клиентов" %}</a></li>
+                        <li><a href="{% url 'customer_new' %}">{% trans "Добавить нового" %}</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Отдельная ссылка</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Дела" %}<b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="{% url 'todos' %}">{% trans "Список дел" %}</a></li>
+                          <li><a href="{% url 'todo_new' %}">{% trans "Добавить дело" %}</a></li>
+                          <li class="divider"></li>
+                          <li><a href="{% url 'register' %}">{% trans "Что-то еще" %}</a></li>
+                      </ul>
+                </li>
+
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Сервис" %}<b class="caret"></b></a>
+                       <ul class="dropdown-menu">
+                          <li><a href="{% url 'userlist' %}">{% trans "Список пользователей" %}</a></li>
+                          <li><a href="{% url 'register' %}">{% trans "Добавить нового" %}</a></li>
+                          <li class="divider"></li>
+                          <li><a href="{% url 'register' %}">{% trans "Сменить пароль" %}</a></li>
+                          <li><a href="{% url 'register' %}">{% trans "Напомнить пароль" %}</a></li>
+                        </ul>
+                </li>
+
+            </ul>
+
+            <div class="navbar-text navbar-right" >
+                {% if request.user.username %}
+                    {% trans "Вы зашли как," %}<strong>{{request.user.username}}  </strong>
+                    <a href="{% url 'logout' %}" class="navbar-link"> &nbsp;{% trans "Выход" %}&nbsp;</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4"></div>
+    </div>
+</div>

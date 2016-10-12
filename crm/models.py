@@ -2,7 +2,6 @@ from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
-from django.contrib.auth import get_user_model
 
 
 class Person(models.Model):                                                 # ABS class define abstract Person
@@ -71,20 +70,25 @@ class Todo(models.Model):
         return '%s %s' % (self.action_description, self.data_time)
 
 
-class Contact(Person):
-    first_name          = models.CharField(max_length=30, verbose_name = _('Фамилия'),
-                          help_text = _("Фамилия"), default=_('Иванов') )
-    second_name         = models.CharField(max_length=30, verbose_name=_('Имя'), blank=True)
-    sales_person        = models.ForeignKey(SalesPerson, on_delete=models.CASCADE)  # Many-to-One relation
-    company             = models.CharField(max_length=50, blank=True)
-    position            = models.CharField(max_length=50, blank=True)
-    mobile_phone_number = models.CharField(max_length=15, validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$',
-                                                               message="Phone number must be entered in the format:"
-                                                                   " '+999999999'. Up to 15 digits allowed.")],
-                                                                blank=True)   # validators should be a list
-    email_address = models.EmailField(max_length=80, verbose_name=_('Эл.почта'), blank=True )  # EmaiField has validator
-    brith_data          = models.DateField(blank=True, null=True)
-    comment             = models.TextField(blank=True)
+class Customer(Person):
+    STATUS_CHOICES = (
+        ('C', _('Делал покупку')),
+        ('V', _('VIP')),
+        ('I', _('Интересовался покупкой')),
+        ('N', _('Негативно настроен')),
+        ('O', _('Что-то еще')),
+    )
+    sales_person        = models.ForeignKey(SalesPerson, on_delete=models.CASCADE, verbose_name = _('Менеджер'))  # Many-to-One relation
+    company             = models.CharField(max_length=50, blank=True, verbose_name = _('Компания'))
+    position            = models.CharField(max_length=50, blank=True, verbose_name = _('Должность'))
+    email_address       = models.EmailField(max_length=80,  blank=True, verbose_name=_('Эл.почта') )  # EmaiField has validator
+    brith_data          = models.DateField(blank=True, null=True, verbose_name=_('Дата рождения'))
+    status              = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name = _('Статус'))
+    comment             = models.TextField(blank=True, verbose_name=_('Комментарий'))
+
+    class Meta:
+        verbose_name = _('Клиент')
+        verbose_name_plural =  _('Всего клиентов')
 
     def __str__(self):
         return '%s %s' % (self.first_name, self.second_name)
@@ -92,18 +96,26 @@ class Contact(Person):
 
 class Deal(models.Model):
     STATUS_CHOICES = (
-        ('E', 'First contact'),
-        ('D', 'Decision making'),
-        ('H', 'Harmonization of contract'),
-        ('S', 'The contract is signed'),
-        ('P', 'Checkout paid'),
-        ('E', 'Contract executed successfully'),
-        ('A', 'DEAD DEAL'),
+        ('E', _('Первый контакт')),
+        ('D', _('Принятие решения')),
+        ('H', _('Согласование контракта')),
+        ('S', _('Контракт подписан')),
+        ('P', _('Ожидание денег')),
+        ('E', _('Контракт выполнен успешно')),
+        ('A', _('Мертвый контракт')),
     )
-    sales_person    = models.ForeignKey(SalesPerson, on_delete=models.CASCADE)  # Many-to-One relation
+    sales_person    = models.ForeignKey(SalesPerson, on_delete=models.CASCADE, verbose_name = _('Менеджер'))  # Many-to-One relation
     description     = models.TextField(verbose_name = _('Описание'))
-    status          = models.CharField(max_length=1, choices=STATUS_CHOICES)
-    data_time       = models.DateTimeField(auto_now_add=True)
+    status          = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name = _('Статус'))
+    data_time       = models.DateTimeField(auto_now_add=True, verbose_name = _('Дата и время'))
+
+    class Meta:
+        verbose_name = _('Сделка')
+        verbose_name_plural = _('Всего сделок')
+
+    def __str__(self):
+        return '%s %s' % (self.data_time, self.description)
+
 
 class Product(models.Model):
     sku         = models.ForeignKey(Deal, on_delete=models.CASCADE)  # Many-to-One relation

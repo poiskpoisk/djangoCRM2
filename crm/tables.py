@@ -2,7 +2,7 @@
 __author__ = 'AMA'
 
 import django_tables2 as tables
-from .models import SalesPerson, Todo
+from .models import SalesPerson, Todo, Customer, Deal
 from django.utils.translation import ugettext as _
 from django_tables2.utils import A  # alias for Accessor
 
@@ -27,3 +27,24 @@ class ToDosTable(tables.Table):
         model = Todo
         attrs = {'class': 'paleblue table table-striped table-bordered'}
         empty_text = _('Пока нет ни одного запланированного дела. Для добавления используйте соответствующий пункт меню')
+
+
+class CustomersTable(tables.Table):
+
+    id = tables.LinkColumn('customerpage', args=[A('pk')])
+
+    class Meta:
+        model = Customer
+        exclude = ('avatar','comment')
+        attrs = {'class': 'paleblue table table-striped table-bordered'}
+        empty_text = _('Пока нет ни одного клиента. Для добавления используйте соответствующий пункт меню')
+
+
+class DealsTable(tables.Table):
+
+    id = tables.LinkColumn('dealpage', args=[A('pk')])
+
+    class Meta:
+        model = Deal
+        attrs = {'class': 'paleblue table table-striped table-bordered'}
+        empty_text = _('Пока нет ни одной сделки. Для добавления используйте соответствующий пункт меню')
