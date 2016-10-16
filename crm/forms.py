@@ -1,4 +1,4 @@
-from datetimewidget.widgets import DateTimeWidget
+from datetimewidget.widgets import DateTimeWidget, DateWidget
 from django import forms
 from django.utils.translation import ugettext as _
 from crm.models import SalesPerson, Todo, Customer, Deal
@@ -40,15 +40,15 @@ class CustomerForm(forms.ModelForm):
                   'email_address','brith_data','comment','status','sales_person')
         widgets = {
             'avatar': imageWidget,
-            'first_name': faWidget('fa fa-user fa',
-                                   attrs={'placeholder': _('Фамилия (ОБЯЗАТЕЛЬНО)'), 'class': 'form-control'}),
-            'second_name': faWidget('fa fa-user fa',
-                                    attrs={'placeholder': _('Имя (ОБЯЗАТЕЛЬНО)'), 'class': 'form-control'}),
-            'phone_number': faWidget('fa fa-phone fa-lg', attrs={'placeholder': _('Телефон: +999999999. До 15 цифр.'),
-                                                                 'class': 'form-control'}),
-            'mobile_number': faWidget('fa fa-mobile fa-lg',
-                                      attrs={'placeholder': _('Моб. телефон: +999999999. До 15 цифр.'),
-                                             'class': 'form-control'}),
+            'first_name': faWidget('fa fa-user fa', attrs={'placeholder': _('Фамилия (ОБЯЗАТЕЛЬНО)'), 'class': 'form-control'}),
+            'second_name': faWidget('fa fa-user fa', attrs={'placeholder': _('Имя (ОБЯЗАТЕЛЬНО)'), 'class': 'form-control'}),
+            'phone_number': faWidget('fa fa-phone fa-lg', attrs={'placeholder': _('Телефон: +999999999. До 15 цифр.'),'class': 'form-control'}),
+            'mobile_number': faWidget('fa fa-mobile fa-lg', attrs={'placeholder': _('Моб. телефон: +999999999. До 15 цифр.'),'class': 'form-control'}),
+            'company': faWidget('fa fa-home fa-lg', attrs={'placeholder': _('Место работы'), 'class': 'form-control'}),
+            'position': faWidget('fa fa-arrows-h', attrs={'placeholder': _('Должность'), 'class': 'form-control'}),
+            'email_address': faWidget( 'fa fa-envelope-o', attrs={'class': 'form-control', 'type': 'email', 'placeholder': _('Электронная почта')}),
+            'brith_data': DateWidget(attrs={'id': "yourdatetimeid"}, usel10n=True, bootstrap_version=3),
+
         }
 
 
@@ -57,7 +57,11 @@ class DealForm(forms.ModelForm):
     class Meta:
         model = Deal
         # В форме поля будут в том же порядке, как перечисленны ниже
-        fields = "__all__"
+        fields = ('sales_person','ident','data_time','price','description', 'status')
         widgets = {
-            #'data_time': DateTimeWidget(attrs={'id':"yourdatetimeid"}, usel10n=True, bootstrap_version=3)
+            'data_time': DateTimeWidget(attrs={'id': "yourdatetimeid"}, usel10n=True, bootstrap_version=3),
+            'price': faWidget('fa fa-usd fa', attrs={'placeholder': _('Предполагаемая сумма сделки (ОБЯЗАТЕЛЬНО)'), 'class': 'form-control'}),
+            'ident': faWidget('fa fa-anchor fa', attrs={'placeholder': _('Уникальный номер сделки (ОБЯЗАТЕЛЬНО)'), 'class': 'form-control'}),
         }
+
+

@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-#
+from django_filters.views import FilterView
+
+from crm.filters import DealFilter
 from crm.tables import ToDosTable, CustomersTable, DealsTable
 
 __author__ = 'AMA'
@@ -8,9 +11,10 @@ from django.conf.urls import url
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
-from crm.views import setLang, tableSalesPerson, tableCommon
+from crm.views import setLang, tableSalesPerson, tableFilterCommon
 from crm.models import SalesPerson, Todo, Customer, Deal
 from crm.forms import SalesPersonForm, ToDoForm, CustomerForm, DealForm
+
 
 # common URLS prefix is /crm/
 urlpatterns = [
@@ -51,7 +55,7 @@ urlpatterns = [
                                                                                  success_url=reverse_lazy('todos')
                                                                                  )), name='todo_del'),
 
-    url(r'^todos/$', tableCommon, { 'model':Todo, 'modelTable':ToDosTable }, name='todos'),
+    url(r'^todos/$', tableFilterCommon, {'model':Todo, 'modelTable':ToDosTable}, name='todos'),
 
     url(r'^todos/new/$', login_required(CreateView.as_view( model=Todo,
                                                             template_name='crm/todo_new.html',
@@ -72,7 +76,7 @@ urlpatterns = [
                                                                           success_url=reverse_lazy('customers')
                                                                           )), name='customer_del'),
 
-    url(r'^customers/$', tableCommon, { 'model': Customer, 'modelTable': CustomersTable }, name='customers'),
+    url(r'^customers/$', tableFilterCommon, {'model': Customer, 'modelTable': CustomersTable}, name='customers'),
 
     url(r'^customers/new/$', login_required(CreateView.as_view(model=Customer,
                                                            template_name='crm/customer_new.html',
@@ -93,7 +97,7 @@ urlpatterns = [
                                                                           success_url=reverse_lazy('deals')
                                                                           )), name='deal_del'),
 
-    url(r'^deal/$', tableCommon, { 'model': Deal, 'modelTable': DealsTable }, name='deals'),
+    url(r'^deal/$', tableFilterCommon, {'model': Deal, 'modelTable': DealsTable, 'classFilter': DealFilter}, name='deals'),
 
     url(r'^deal/new/$', login_required(CreateView.as_view(model=Deal,
                                                            template_name='crm/deal_new.html',
@@ -102,5 +106,8 @@ urlpatterns = [
                                                            )), name='deal_new'),
 
 
-    url(r'^lang/', setLang, name='lang'),
+    # ---------------------------------------------- Reports ------------------------------------------
+
+
+
 ]

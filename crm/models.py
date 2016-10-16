@@ -104,10 +104,12 @@ class Deal(models.Model):
         ('E', _('Контракт выполнен успешно')),
         ('A', _('Мертвый контракт')),
     )
+    ident           = models.IntegerField(unique=True, verbose_name = _('Номер сделки'))
     sales_person    = models.ForeignKey(SalesPerson, on_delete=models.CASCADE, verbose_name = _('Менеджер'))  # Many-to-One relation
+    price           = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=_('Цена'))
     description     = models.TextField(verbose_name = _('Описание'))
     status          = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name = _('Статус'))
-    data_time       = models.DateTimeField(auto_now_add=True, verbose_name = _('Дата и время'))
+    data_time       = models.DateTimeField(verbose_name = _('Дата и время'))
 
     class Meta:
         verbose_name = _('Сделка')
