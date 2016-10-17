@@ -17,9 +17,9 @@ class Command(BaseCommand):
         models = django.apps.apps.get_models()
         self.stdout.write("Detected models in CRM app:")
         for model in models:
-            if 'crm' in model._meta.db_table:
+            if 'crm' in model._meta.db_table or 'auth_user' in model._meta.db_table:
                 self.stdout.write("    " + model._meta.model_name)
                 data = serializers.serialize("yaml", model.objects.all())
-                dir = BASE_DIR + "/crm/fixtures/" + model._meta.model_name + ".yaml"
+                dir = BASE_DIR + "/crm/fixtures/yamlsrc/" + model._meta.model_name + ".yaml"
                 with open(dir, "w") as out:
                     print(data, end="", file=out)

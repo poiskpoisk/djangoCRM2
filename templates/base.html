@@ -34,33 +34,6 @@
         {% include "top_menu.html" %}
 
       <div class="content">
-          <div class="container">
-              <div id="funnel"></div>
-
-                <script src="https://d3js.org/d3.v4.min.js"></script>
-                <script src="{% static 'crm/d3-funnel.js' %}"></script>
-
-
-              <script>
-                    const data = [
-                        ['Plants',     5000],
-                        ['Flowers',    2500],
-                        ['Perennials', 200],
-                        ['Roses',      50],
-                    ];
-
-
-                    const chart = new D3Funnel('#funnel');
-var options = {
-  chart: {
-    width: 200,
-    height: 100
-  }
-};
-                    chart.draw(data,options);
-            </script>
-
-          </div>
 
         {% block content %}
 

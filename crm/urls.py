@@ -11,7 +11,7 @@ from django.conf.urls import url
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
-from crm.views import setLang, tableSalesPerson, tableFilterCommon
+from crm.views import setLang, tableSalesPerson, tableFilterCommon, reportFunnel
 from crm.models import SalesPerson, Todo, Customer, Deal
 from crm.forms import SalesPersonForm, ToDoForm, CustomerForm, DealForm
 
@@ -108,6 +108,6 @@ urlpatterns = [
 
     # ---------------------------------------------- Reports ------------------------------------------
 
-
+    url(r'^report/$', reportFunnel, {'model': Deal, 'modelTable': DealsTable, 'classFilter': DealFilter}, name='reportfunnel'),
 
 ]

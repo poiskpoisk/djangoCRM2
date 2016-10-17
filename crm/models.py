@@ -101,10 +101,10 @@ class Deal(models.Model):
         ('H', _('Согласование контракта')),
         ('S', _('Контракт подписан')),
         ('P', _('Ожидание денег')),
-        ('E', _('Контракт выполнен успешно')),
+        ('O', _('Контракт выполнен')),
         ('A', _('Мертвый контракт')),
     )
-    ident           = models.IntegerField(unique=True, verbose_name = _('Номер сделки'))
+    ident           = models.IntegerField(verbose_name = _('Номер сделки'))
     sales_person    = models.ForeignKey(SalesPerson, on_delete=models.CASCADE, verbose_name = _('Менеджер'))  # Many-to-One relation
     price           = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=_('Цена'))
     description     = models.TextField(verbose_name = _('Описание'))
