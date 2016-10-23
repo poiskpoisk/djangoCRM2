@@ -1,68 +1,68 @@
 - model: crm.deal
   pk: 3
   fields: {ident: 1, sales_person: 3, price: '100.00', description: Газонокосилка, status: E,
-    data_time: !!timestamp '2016-10-14 05:54:23.634148+00:00'}
+    deal_data: 2015-10-18, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 4
   fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, status: E,
-    data_time: !!timestamp '2016-10-09 12:40:58+00:00'}
+    deal_data: 2015-10-18, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 5
   fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, status: D,
-    data_time: !!timestamp '2016-10-09 12:40:58+00:00'}
+    deal_data: 2015-10-18, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 6
   fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, status: H,
-    data_time: !!timestamp '2016-10-09 12:40:58+00:00'}
+    deal_data: 2016-11-18, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 7
   fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, status: S,
-    data_time: !!timestamp '2016-10-09 12:40:58+00:00'}
+    deal_data: 2016-11-18, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 8
   fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, status: P,
-    data_time: !!timestamp '2016-10-09 12:40:58+00:00'}
+    deal_data: 2016-11-18, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 9
   fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, status: O,
-    data_time: !!timestamp '2016-10-09 12:40:58+00:00'}
+    deal_data: 2016-10-28, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 10
   fields: {ident: 1, sales_person: 3, price: '100.00', description: Газонокосилка, status: A,
-    data_time: !!timestamp '2016-10-14 05:54:23.634148+00:00'}
+    deal_data: 2016-10-28, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 11
   fields: {ident: 3, sales_person: 3, price: '100.00', description: Газонокосилка, status: E,
-    data_time: !!timestamp '2016-10-14 05:54:23.634148+00:00'}
+    deal_data: 2016-10-28, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 12
   fields: {ident: 4, sales_person: 3, price: '100.00', description: Газонокосилка, status: E,
-    data_time: !!timestamp '2016-10-14 05:54:23.634148+00:00'}
+    deal_data: 2010-10-18, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 13
   fields: {ident: 5, sales_person: 6, price: '10.00', description: Грабли, status: E,
-    data_time: !!timestamp '2016-10-14 05:54:23.634148+00:00'}
+    deal_data: 2016-7-18, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 14
   fields: {ident: 6, sales_person: 6, price: '20.00', description: Лопата, status: E,
-    data_time: !!timestamp '2016-10-14 05:54:23.634148+00:00'}
+    deal_data: 2016-1-18, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 15
   fields: {ident: 7, sales_person: 5, price: '100.00', description: Газонокосилка, status: D,
-    data_time: !!timestamp '2016-10-14 05:54:23.634148+00:00'}
+    deal_data: 2016-3-18, deal_time: '19:50:58', customer: 4}
 - model: crm.deal
   pk: 16
   fields: {ident: 7, sales_person: 5, price: '100.00', description: Газонокосилка, status: E,
-    data_time: !!timestamp '2016-10-14 05:54:23.634148+00:00'}
+    deal_data: 2006-10-18, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 17
   fields: {ident: 8, sales_person: 4, price: '100.00', description: Газонокосилка, status: E,
-    data_time: !!timestamp '2016-10-14 05:54:23.634148+00:00'}
+    deal_data: 2016-10-08, deal_time: '19:50:58', customer: 2}
 - model: crm.deal
   pk: 18
   fields: {ident: 9, sales_person: 4, price: '10.00', description: Грабли, status: E,
-    data_time: !!timestamp '2016-10-14 05:54:23.634148+00:00'}
+    deal_data: 2012-10-18, deal_time: '19:50:58', customer: 3}
 - model: crm.deal
   pk: 19
   fields: {ident: 10, sales_person: 5, price: '20.00', description: Лопата, status: E,
-    data_time: !!timestamp '2016-10-14 05:54:23.634148+00:00'}
+    deal_data: 2011-10-18, deal_time: '19:50:58', customer: 2}

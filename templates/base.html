@@ -3,7 +3,7 @@
 {% load staticfiles %}
 {% load i18n %}
 
-<html lang="ru">
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,10 +17,11 @@
     <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
     <link href="{% static 'crm/style.css' %}" rel="stylesheet">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="{% static 'crm/bootstrap3/js/bootstrap.min.js' %}"></script>
-        {{ form.media }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'crm/bootstrap3/js/bootstrap.min.js' %}"></script>
+    <link href ="{% static '/crm/bootstrap-datetimepicker.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+    <script src="{% static 'crm/bootstrap-datetimepicker.min.js' %}"></script>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,6 +30,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
 
+</head>
 
     <body>
         {% include "top_menu.html" %}

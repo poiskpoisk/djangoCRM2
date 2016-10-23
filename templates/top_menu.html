@@ -25,12 +25,15 @@
                 </li>
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Продажи" %}<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Контракты" %}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                          <li><a href="{% url 'deals' %}">{% trans "Список продаж" %}</a></li>
-                          <li><a href="{% url 'deal_new' %}">{% trans "Добавить новую" %}</a></li>
+                          <li><a href="{% url 'deals' %}">{% trans "Список контрактов" %}</a></li>
+                          <li><a href="{% url 'deal_new' %}">{% trans "Добавить контракт" %}</a></li>
                           <li class="divider"></li>
-                          <li><a href="#">Отдельная ссылка</a></li>
+                          <li><a href="{% url 'dealsfilters' %}">{% trans "Список контрактов с фильтрами" %}</a></li>
+                          <li><a href="{% url 'dealstoday' %}">{% trans "Контракты за сегодня" %}</a></li>
+                          <li><a href="{% url 'dealsmonth' %}">{% trans "Контракты за текущий месяц" %}</a></li>
+                          <li><a href="{% url 'dealsyear' %}">{% trans "Контракты за текущий год" %}</a></li>
                     </ul>
                 </li>
 

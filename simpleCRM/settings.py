@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -48,6 +47,8 @@ INSTALLED_APPS = [
     'bootstrapform',
     'floppyforms',
     'datetimewidget',
+    'django_select2',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -190,6 +191,8 @@ DEFAULT_FROM_EMAIL  = EMAIL_HOST_USER
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+DATETIME_FORMAT = 'Y N, j, P'
 
 
 

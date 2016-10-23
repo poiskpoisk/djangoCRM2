@@ -42,6 +42,8 @@ urlpatterns += [
     url(r'^accounts/logout/$', auth_views.logout, {'template_name': 'registration/logout.html'}, name='logout'),
     url(r'^accounts/userlist/$', login_required(UserListView.as_view(template_name='registration/userlist.html')), name='userlist'),
     url(r'^accounts/',  include('registration.backends.default.urls')),
+
+    url(r'^select2/', include('django_select2.urls')),
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

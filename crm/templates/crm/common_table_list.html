@@ -3,6 +3,8 @@
 {% load staticfiles %}
 {% load bootstrap %}
 
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
 
 {% block content %}
 
@@ -11,7 +13,7 @@
         {% if filter != 'NONFILTER' %}
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-2 col-md-8 col-md-offset-1 col-sm-11 col-xs-12">
-                    <form action="" method="get">
+                    <form action="" method="get">{% csrf_token %}
                         {{ filter.form|bootstrap_horizontal }}
                         <button class="btn btn-primary btn-xm" type="submit" ><i class="fa fa-pencil-square-o fa-lg"></i>&nbsp;&nbsp;{%trans 'Обновить' %}</button>
                     </form>
