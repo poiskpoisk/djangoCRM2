@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<div class="container">
+    <div class="row main">
+        <div class="panel-heading">
+           <div class="panel-title text-center">
+                <h2 class="title">{% trans "Войдите в систему" %}</h2>
+                <hr id='hrreg' />
+            </div>
+        </div>
+        <div class="main-login main-center-login">
+
+            <form class="form-horizontal" method="POST" action="">{% csrf_token %}
+
+                   {{ form.as_p }}
+
+                  <div class="form-group ">
+                      <button class="btn btn-primary btn-lg btn-block login-button" type="submit" >{%trans 'Войти' %}</button>
+					  <input type="hidden" name="next" value="{{ next }}" />
+                  </div>
+
+					{% if form.errors %}
+						<div class="errorlist">
+							<p>{% trans "Ошибочный пароль или логин" %}</p>
+						</div>
+
+					{% endif %}
+
+					{% if next %}
+						{% if user.is_authenticated %}
+							<p>Your account doesn't have access to this page. To proceed,
+							please login with an account that has access.</p>
+						{% else %}
+							<p>{% trans "Для просмотра надо войдите в систему" %}</p>
+						{% endif %}
+					{% endif %}
+                </form>
+				<p>&nbsp;</p>
+				<div class="login-register">
+                    <a href="{% url 'register' %}">{% trans 'Зарегистрироваться'%}</a>
+						<div class="login-register">
+                    <a href="/accounts/login/">{% trans 'Забыли пароль ?'%}</a>
+						</div>
+
+                 </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

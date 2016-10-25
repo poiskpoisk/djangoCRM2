@@ -11,20 +11,22 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from .secret import login,pwd,sec_key
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-8h8mq3b$2s7yhp0w)y@u%h1^7b@_5)^^bmhfuhh9e87*^t%0w'
+SECRET_KEY = sec_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Белый список хостов куда можно переходить без проверки токена CSFR
 ALLOWED_HOSTS = []
 
 
@@ -33,11 +35,20 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration',                     # добавляем пакет для регистрации пользователей
+    'crispy_forms',
     'crm',
+    'django_tables2',
+    'bootstrapform',
+    'floppyforms',
+    'datetimewidget',
+    'django_select2',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -109,13 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # язык сайта по умолчанию, если не удалось определить язык другими способами
 LANGUAGE_CODE = 'en'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 # указываем, где лежат файлы перевода
@@ -131,4 +138,62 @@ LANGUAGES = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+# Список из возможных абсолютных путей
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+# URL относительно корня как будут показаны статические файла ( иконки, картинки, CSS )
 STATIC_URL = '/static/'
+
+# Абсолютный путь к загружаемым пользователем файлам
+MEDIA_ROOT = os.path.join( BASE_DIR, 'media')
+# Сылка относительно корня, как будут показаны загружаемые пользователем файлы
+MEDIA_URL = '/media/'
+
+# Настройки для django-registration-redux
+REGISTRATION_OPEN = True        # Если равно True, то пользователи могут регистрироваться
+ACCOUNT_ACTIVATION_DAYS = 7     # время в днях течении которого можно активировать аккаунт;
+REGISTRATION_AUTO_LOGIN = True  # Если равно  True, то пользователь будет автоматически входить в систему.
+LOGIN_REDIRECT_URL = '/'        # Страница, на которую будут попадать пользователи, после успешного входа в систему.
+
+LOGIN_URL = 'login'             # Страница, на которую перенаправляются пользователи, если они не вошли в систему и
+                                # пытаются получить доступ к страницам, которые требуют аутентификации
+LOGOUT_URL = 'logout'
+
+# http://djbook.ru/forum/topic/220/
+SITE_ID = 1
+
+#localhost с запуском тестового SMTP сервера
+#EMAIL_HOST = 'localhost'
+#EMAIL_PORT = 1025
+
+# gmail.com
+#EMAIL_HOST          = 'smtp.gmail.com'
+#EMAIL_PORT          = 587
+#EMAIL_HOST_USER     = ""
+#EMAIL_HOST_PASSWORD = ""
+#EMAIL_USE_TLS       = True
+
+# yandex.ru
+EMAIL_HOST          = 'smtp.yandex.ru'
+EMAIL_PORT          = 465
+EMAIL_HOST_USER     = login
+EMAIL_HOST_PASSWORD = pwd
+EMAIL_USE_SSL       = True
+
+
+# Добавьте ещё две следующие строчки для отправки писем (трейсбека) админам при возникновении ошибок на сайте:
+# Яндекс и mail без указания SERVER_EMAIL такого же как адрес пользователя при подключении к SMPT серверу,
+#  т.е. EMAIL_HOST_USER, не будет посылать письма об ошибках.
+
+SERVER_EMAIL        = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL  = EMAIL_HOST_USER
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+DATETIME_FORMAT = 'Y N, j, P'
+
+
+
+

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block content %}
+{% load bootstrap %}
+
+<div class="container">
+    <div id="funnel"></div>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="{% static 'crm/d3-funnel.min.js' %}"></script>
+
+    <script>
+        const data = {{ records|safe }};
+        const chart = new D3Funnel('#funnel');
+        var options = {
+                          chart: {
+                            width: 400,
+                            height: 200
+                          }
+                        };
+        chart.draw(data,options);
+    </script>
+
+</div>
+
+
+
+{% endblock %}

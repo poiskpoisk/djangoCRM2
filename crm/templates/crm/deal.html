@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap %}
+{% block content %}
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" type="text/css" media="screen" rel="stylesheet">
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script type="text/javascript" src="/static/django_select2/django_select2.js"></script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div  align="center" class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+                    <h2 class="title">{% trans "Обновить данные по контракту" %}</h2>
+                    <hr id='hrreg' />
+        </div>
+
+        <!-- <div class="main-login main-center-spnew"> -->
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+
+                    {{ form|bootstrap_horizontal }}
+
+                    {{ formset_products.management_form }}
+                    {{ formset_status.management_form }}
+
+                    <div class="row">
+                        <div  align="center" class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+                            <h2 class="title">{% trans "Список товаров" %}</h2>
+                            <hr id='hrreg' />
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        {% for f in formset_products %}
+                            <div class="col-lg-5 col-lg-offset-1 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                                {{ f.product|bootstrap}}
+                                {{ f.item_price|bootstrap}}
+                            </div>
+                            <div class="col-lg-5 col-lg-offset-1 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                                {{ f.qty|bootstrap}}
+                                {{ f.total_price|bootstrap}}
+                                <h5><small>{{ f.DELETE}} &nbsp; &nbsp; {% trans " Удалить" %}</small></h5>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="row">
+                        <div  align="center" class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+                            <h2 class="title">{% trans "Статус контракта" %}</h2>
+                            <hr id='hrreg' />
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for ff in formset_status %}
+                            <div class="col-lg-5 col-lg-offset-1 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                                {{ ff.status|bootstrap}}
+                                {{ ff.deal_data|bootstrap}}
+                            </div>
+                            <div class="col-lg-5 col-lg-offset-1 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                                {{ ff.deal_time|bootstrap}}
+                                {{ ff.remark|bootstrap}}
+                                <h5><small>{{ ff.DELETE}} &nbsp; &nbsp; {% trans " Удалить" %}</small></h5>
+
+                            </div>
+                        {% endfor %}
+                    </div>
+                        <div class="row">
+                                <div class="col-lg-4">
+                                    <button class="btn btn-success btn-lg  btn-block" type="submit" ><i class="fa fa-pencil-square-o fa-lg"></i>&nbsp;&nbsp;{%trans 'Обновить' %}</button>
+                                </div>
+                                <div class="col-lg-4">
+                                    <a class="btn btn-danger btn-lg btn-block " href="{% url 'deal_del' object.pk %}" ><i class="fa fa-times fa-lg"></i>&nbsp;&nbsp;{%trans 'Удалить' %}</a>
+                                </div>
+                                <div class="col-lg-4">
+                                    <a class="btn btn-default btn-lg btn-block" href="{% url 'deals' %}"><i class="fa fa-sign-out fa-lg"></i>&nbsp;&nbsp;{%trans 'Выйти' %}</a>
+                                </div>
+                        </div>
+
+                          <input type="hidden" name="next" value="{{ next }}" />
+
+                    {% if form.errors %}
+                            <div class="errorlist">
+                                <p>{% trans "Что-то пошло не так" %}</p>
+                            </div>
+                    {% endif %}
+                </form>
+            </div>
+        <div class="col-lg-2 col-md-2"> </div>
+        </div>
+        </div>
+       <!-- </div> -->
+    </div>
+</div>
+
+{% endblock %}
+

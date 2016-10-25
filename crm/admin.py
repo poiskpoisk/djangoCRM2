@@ -1,6 +1,7 @@
 from django.contrib import admin
-
-from .models import Contact, SalesPerson, Todo, Deal, Product
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
+from crm.models import Customer, SalesPerson, Todo, Deal, Product, DealProducts, DealStatus
 
 # Customize admin panel
 admin.AdminSite.index_title = u'simpleCRM, simple administration.'
@@ -20,21 +21,44 @@ class TodoAdmin(admin.ModelAdmin):
     list_display  = ('action', 'action_description', 'data_time', 'sales_person')
     list_filter   = ['data_time']
 
+# Define an inline admin descriptor for SalePerson model which acts a bit like a singleton
+class SalePersonInline(admin.StackedInline):
+    model = SalesPerson
+    can_delete = False
+    verbose_name_plural = 'SalesPersons'
+
 class SalesPersonAdmin(admin.ModelAdmin):
-    list_display  = ('first_name', 'second_name', 'phone_number')
-    inlines = [DealInline]
-    search_fields = ['first_name']
+    model = SalesPerson
+
+# Define a new User admin
+class UserAdmin(UserAdmin):
+    inlines = (SalePersonInline, )
 
 class DealAdmin(admin.ModelAdmin):
-    list_display    = ('status', 'description', 'data_time', 'sales_person')
-    list_filter     = ['sales_person', 'data_time']
+    list_display    = ('description', 'sales_person')
+    list_filter     = ['sales_person']
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('sku', 'description', 'price')
 
-admin.site.register(SalesPerson, SalesPersonAdmin)
-admin.site.register(Contact, ContactAdmin)
+class DealProductsAdmin(admin.ModelAdmin):
+    list_display = ('product', 'qty')
+
+class DealStatusAdmin(admin.ModelAdmin):
+    list_display = ('status',)
+
+admin.site.register(Customer, ContactAdmin)
+admin.site.register(DealProducts, DealProductsAdmin)
+admin.site.register(DealStatus, DealStatusAdmin)
 admin.site.register(Todo, TodoAdmin)
 admin.site.register(Deal, DealAdmin )
 admin.site.register(Product, ProductAdmin )
+admin.site.register(SalesPerson, SalesPersonAdmin )
+# Re-register UserAdmin
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
+
+
+
+
 

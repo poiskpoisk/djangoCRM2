@@ -1,0 +1,51 @@
+- model: crm.dealproducts
+  pk: 1
+  fields: {deal: 3, product: 1, qty: 23, item_price: 10, total_price: 100}
+- model: crm.dealproducts
+  pk: 2
+  fields: {deal: 3, product: 2, qty: 23, item_price: 10, total_price: 100}
+- model: crm.dealproducts
+  pk: 3
+  fields: {deal: 5, product: 3, qty: 23, item_price: 10, total_price: 100}
+- model: crm.dealproducts
+  pk: 4
+  fields: {deal: 5, product: 4, qty: 23, item_price: 10, total_price: 100}
+- model: crm.dealproducts
+  pk: 5
+  fields: {deal: 5, product: 5, qty: 23, item_price: 10, total_price: 100}
+- model: crm.dealproducts
+  pk: 6
+  fields: {deal: 5, product: 1, qty: 23, item_price: 0, total_price: 0}
+- model: crm.dealproducts
+  pk: 7
+  fields: {deal: 9, product: 2, qty: 23, item_price: 0, total_price: 0}
+- model: crm.dealproducts
+  pk: 8
+  fields: {deal: 9, product: 2, qty: 23, item_price: 0, total_price: 0}
+- model: crm.dealproducts
+  pk: 9
+  fields: {deal: 11, product: 2, qty: 23, item_price: 0, total_price: 0}
+- model: crm.dealproducts
+  pk: 10
+  fields: {deal: 12, product: 2, qty: 23, item_price: 0, total_price: 0}
+- model: crm.dealproducts
+  pk: 11
+  fields: {deal: 13, product: 2, qty: 23, item_price: 0, total_price: 0}
+- model: crm.dealproducts
+  pk: 12
+  fields: {deal: 14, product: 2, qty: 23, item_price: 0, total_price: 0}
+- model: crm.dealproducts
+  pk: 13
+  fields: {deal: 15, product: 2, qty: 23, item_price: 0, total_price: 0}
+- model: crm.dealproducts
+  pk: 14
+  fields: {deal: 16, product: 2, qty: 23, item_price: 0, total_price: 0}
+- model: crm.dealproducts
+  pk: 15
+  fields: {deal: 17, product: 2, qty: 23, item_price: 0, total_price: 0}
+- model: crm.dealproducts
+  pk: 16
+  fields: {deal: 18, product: 2, qty: 23, item_price: 0, total_price: 0}
+- model: crm.dealproducts
+  pk: 17
+  fields: {deal: 19, product: 2, qty: 23, item_price: 0, total_price: 0}
