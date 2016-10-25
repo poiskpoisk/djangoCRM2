@@ -21,14 +21,18 @@ class imageWidget(ClearableFileInput):
 
 class faWidget( widgets.TextInput):
 
-    def __init__(self, fa, **kwargs ):
+    def __init__(self, fa, hidden=False, **kwargs ):
         self.fa = fa
+        self.hidden = hidden
         super().__init__( **kwargs )
 
     def render(self, name, value, attrs=None):
+        if self.hidden:
+            attrs['disabled'] = 'disabled'
         html = super().render( name, value, attrs)
         new_html = '''<div class="cols-sm-10 input-group"><span class="input-group-addon"><i class="'''+self.fa+'''" aria-hidden="true"></i></span>'''+ html + '''</div>'''
         return mark_safe(new_html)
+
 
 
 

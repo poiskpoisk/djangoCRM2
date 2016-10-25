@@ -21,17 +21,51 @@
                 <form class="form-horizontal" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
 
                     {{ form|bootstrap_horizontal }}
+
+                    {{ formset_products.management_form }}
+                    {{ formset_status.management_form }}
+
                     <div class="row">
                         <div  align="center" class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
                             <h2 class="title">{% trans "Список товаров" %}</h2>
                             <hr id='hrreg' />
                         </div>
                     </div>
+                    <div class="row">
 
-                    {{ formset|bootstrap_horizontal }}
+                        {% for f in formset_products %}
+                            <div class="col-lg-5 col-lg-offset-1 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                                {{ f.product|bootstrap}}
+                                {{ f.item_price|bootstrap}}
+                            </div>
+                            <div class="col-lg-5 col-lg-offset-1 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                                {{ f.qty|bootstrap}}
+                                {{ f.total_price|bootstrap}}
+                                <h5><small>{{ f.DELETE}} &nbsp; &nbsp; {% trans " Удалить" %}</small></h5>
+                            </div>
+                        {% endfor %}
 
-                    <p>&nbsp;</p>
+                    </div>
+                    <div class="row">
+                        <div  align="center" class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+                            <h2 class="title">{% trans "Статус контракта" %}</h2>
+                            <hr id='hrreg' />
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for ff in formset_status %}
+                            <div class="col-lg-5 col-lg-offset-1 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                                {{ ff.status|bootstrap}}
+                                {{ ff.deal_data|bootstrap}}
+                            </div>
+                            <div class="col-lg-5 col-lg-offset-1 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                                {{ ff.deal_time|bootstrap}}
+                                {{ ff.remark|bootstrap}}
+                                <h5><small>{{ ff.DELETE}} &nbsp; &nbsp; {% trans " Удалить" %}</small></h5>
 
+                            </div>
+                        {% endfor %}
+                    </div>
                         <div class="row">
                                 <div class="col-lg-4">
                                     <button class="btn btn-success btn-lg  btn-block" type="submit" ><i class="fa fa-pencil-square-o fa-lg"></i>&nbsp;&nbsp;{%trans 'Обновить' %}</button>

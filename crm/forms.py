@@ -1,12 +1,8 @@
 from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
 from django import forms
-from django.forms import formset_factory, modelformset_factory
 from django.utils.translation import ugettext as _
-from django_select2.forms import ModelSelect2TagWidget, Select2Widget, ModelSelect2Widget, ModelSelect2MultipleWidget
-
 from crm.models import SalesPerson, Todo, Customer, Deal, Product, DealProducts
 from crm.widgets import imageWidget, faWidget
-from django.forms import HiddenInput
 
 
 class SalesPersonForm(forms.ModelForm):
@@ -70,30 +66,13 @@ class DealForm(forms.ModelForm):
         model = Deal
         # В форме поля будут в том же порядке, как перечисленны ниже
         fields = (
-            'sales_person', 'customer', 'ident', 'deal_data', 'deal_time', 'price', 'description', 'status')
+            'sales_person', 'customer', 'ident', 'price', 'description')
         widgets = {
-            'deal_data': DateWidget(attrs={'id': "yourdateid"}, usel10n=True, bootstrap_version=3),
-            'deal_time': TimeWidget(attrs={'id': "yourtimeid"}, usel10n=True, bootstrap_version=3),
-            'price': faWidget('fa fa-usd fa', attrs={'placeholder': _('Предполагаемая сумма сделки (ОБЯЗАТЕЛЬНО)'),
+            'price': faWidget('fa fa-usd fa', hidden=True, attrs={'placeholder': _('Предполагаемая сумма сделки (ОБЯЗАТЕЛЬНО)'),
                                                      'class': 'form-control'}),
             'ident': faWidget('fa fa-anchor fa', attrs={'placeholder': _('Уникальный номер сделки (ОБЯЗАТЕЛЬНО)'),
                                                         'class': 'form-control'}),
         }
 
 
-class DealProductForm(forms.ModelForm):
-    item_price = forms.IntegerField(label=_('Цена за штуку'), disabled=True,
-                                    help_text=_(
-                                    '<h5><small>Эта строка вычислится автоматически при сохранении формы </h5></small>'))
 
-    total_price = forms.IntegerField(label=_('Цена за все'), disabled=True,
-                                    help_text=_(
-                                    '<h5><small>Эта строка вычислится автоматически при сохранении формы </h5></small>'))
-
-    class Meta:
-        model = DealProducts
-        fields = '__all__'
-        widgets = {'product': ModelSelect2Widget(model=DealProducts,
-                                                 search_fields=['description__icontains'],
-                                                 queryset=Product.objects.all()),
-                   'deal': HiddenInput()}

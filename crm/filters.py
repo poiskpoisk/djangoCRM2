@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-#
-from datetimewidget.widgets import DateTimeWidget, DateWidget
-
 __author__ = 'AMA'
 
 # Keep in the mind this is generic FilterView.as_view(model=Model) similar as ListView
@@ -10,21 +8,22 @@ __author__ = 'AMA'
 
 import django_filters
 from django_filters.widgets import RangeWidget
-from crm.models import Deal
+from crm.models import Deal, DealStatus
 from django.utils.translation import ugettext as _
+from datetimewidget.widgets import DateWidget
 
 
 class DealFilter(django_filters.FilterSet):
 
     STATUS_CHOICES = [('Z', _('Все контракты'))]
-    for STATUS in list(Deal.STATUS_CHOICES):
+    for STATUS in list(DealStatus.STATUS_CHOICES):
         STATUS_CHOICES.append(STATUS)
     STATUS_CHOICES = tuple(STATUS_CHOICES)
 
-    label = Deal._meta.get_field('status').verbose_name.title()
+    label = DealStatus._meta.get_field('status').verbose_name.title()
     status    = django_filters.ChoiceFilter(choices=STATUS_CHOICES, method='filter_deal', label=label )
 
-    label = Deal._meta.get_field('deal_data').verbose_name.title()
+    label = DealStatus._meta.get_field('deal_data').verbose_name.title()
     deal_data = django_filters.DateTimeFromToRangeFilter( label=label, widget=RangeWidget(attrs={'placeholder': 'YYYY-MM-DD'}))
 
     deal_data.widget.widgets[0] = DateWidget(attrs={'id':"yourdateid"}, usel10n=True, bootstrap_version=3)
@@ -50,11 +49,11 @@ DealFilter.base_filters['deal_data'].field.help_text = _('<h5><small>Выбер�
 class DealFilterWithoutData(django_filters.FilterSet):
 
     STATUS_CHOICES = [('Z', _('Все контракты'))]
-    for STATUS in list(Deal.STATUS_CHOICES):
+    for STATUS in list(DealStatus.STATUS_CHOICES):
         STATUS_CHOICES.append(STATUS)
     STATUS_CHOICES = tuple(STATUS_CHOICES)
 
-    label = Deal._meta.get_field('status').verbose_name.title()
+    label = DealStatus._meta.get_field('status').verbose_name.title()
     status    = django_filters.ChoiceFilter(choices=STATUS_CHOICES, method='filter_deal', label=label )
 
 
@@ -77,4 +76,4 @@ DealFilterWithoutData.base_filters['sales_person'].field.help_text = _('<h5><sma
 class ReportFilter(django_filters.FilterSet):
     class Meta:
         model = Deal
-        fields = ['deal_data']
+        fields = '__all__'

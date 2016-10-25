@@ -1,8 +1,9 @@
 from django.db import models
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, MinValueValidator
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
-from django_select2.forms import ModelSelect2MultipleWidget
+from decimal import Decimal
+from django import forms
 
 
 class Person(models.Model):  # ABS class define abstract Person
@@ -106,34 +107,24 @@ class Customer(Person):
 
 
 class Deal(models.Model):
-    STATUS_CHOICES = (
-        ('E', _('Первый контакт')),
-        ('D', _('Принятие решения')),
-        ('H', _('Согласование контракта')),
-        ('S', _('Контракт подписан')),
-        ('P', _('Ожидание денег')),
-        ('O', _('Контракт выполнен')),
-        ('A', _('Мертвый контракт')),
-    )
 
     sales_person = models.ForeignKey(SalesPerson, verbose_name=_('Менеджер'))  # Many-to-One relation
     customer = models.ForeignKey(Customer, blank=True, verbose_name=_('Клиент'))  # Many-to-One relation
     products = models.ManyToManyField('Product', through='DealProducts',
                                       verbose_name=_('Список продуктов'))  # Many-to-Many с промежуточной моделью
 
-    price = models.DecimalField(_('Цена всего'), max_digits=12, decimal_places=2)
-    ident = models.PositiveIntegerField(_('Номер контракта'))
+    price = models.DecimalField(_('Цена всего'), max_digits=12, decimal_places=2, default=0,  blank=True,
+                                help_text=_('<h5><small>Стоимость контракта будет вычисленна автоматически</h5></small>'),
+                                validators=[MinValueValidator(Decimal('0.00'), )])
+    ident = models.PositiveIntegerField(_('Номер контракта') )
     description = models.TextField(verbose_name=_('Описание'))
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name=_('Статус'))
-    deal_data = models.DateField(verbose_name=_('Дата'))
-    deal_time = models.TimeField(blank=True, verbose_name=_('Время'))
 
     class Meta:
         verbose_name = _('Сделка')
         verbose_name_plural = _('Всего сделок')
 
     def __str__(self):
-        return '%s %s' % (self.deal_data, self.ident)
+        return '%s' % (self.ident)
 
 
 class Product(models.Model):
@@ -150,17 +141,49 @@ class Product(models.Model):
 
 
 class DealProducts(models.Model):  # Промежуточная модель
+
     deal = models.ForeignKey(Deal, on_delete=models.CASCADE, blank=True, null=True,
                              verbose_name=_('Контракт'))  # Many-to-One relation
     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True,
                                 verbose_name=_('Продукт'))  # Many-to-One relation
 
-    qty = models.PositiveIntegerField(_('Количество товара'), null=True, blank=True, default=0 )
+    qty = models.PositiveIntegerField(_('Количество товара'), null=True, blank=True, default=0)
+    hlp = '<h5><small>Если эту строку оставить пустой, он вычислится автоматически при сохранении формы </h5></small>'
+    item_price = models.PositiveIntegerField(_('Цена за штуку'), null=True, blank=True, default=0, help_text=_(hlp))
+    total_price = models.PositiveIntegerField(_('Цена за все'), null=True, blank=True, default=0, help_text=_(hlp))
 
     class Meta:
-        auto_created = True
+        # auto_created = True
         verbose_name = _('Продукт в контракте')
         verbose_name_plural = _('Всего продуктов в контракте')
 
     def __str__(self):
         return '%s' % (self.product)
+
+
+class DealStatus(models.Model):
+
+    STATUS_CHOICES = (
+        ('E', _('Первый контакт')),
+        ('D', _('Принятие решения')),
+        ('H', _('Согласование контракта')),
+        ('S', _('Контракт подписан')),
+        ('P', _('Ожидание денег')),
+        ('O', _('Контракт выполнен')),
+        ('A', _('Мертвый контракт')),
+    )
+
+    deal = models.ForeignKey(Deal, on_delete=models.CASCADE, blank=True, null=True,
+                             verbose_name=_('Контракт'))  # Many-to-One relation
+
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name=_('Статус'))
+    deal_data = models.DateField(verbose_name=_('Дата'))
+    deal_time = models.TimeField(blank=True, verbose_name=_('Время'))
+    remark = models.CharField(_('Примечание'), max_length=100,  blank=True,)
+
+    class Meta:
+        verbose_name = _('Статус контракта')
+        verbose_name_plural = _('Статусы контракта')
+
+    def __str__(self):
+        return '%s' % (self.status)

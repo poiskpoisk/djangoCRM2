@@ -1,15 +1,17 @@
 import datetime
+
+from datetimewidget.widgets import DateWidget, TimeWidget
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.forms import modelformset_factory
-from django.shortcuts import render
-from django.utils.decorators import method_decorator
+from django.shortcuts import render, render_to_response
+from django.forms import HiddenInput
 from django.views.generic import UpdateView
 from django_select2.forms import ModelSelect2Widget
 from django_tables2 import RequestConfig
-from crm.forms import DealForm, DealProductForm
+from crm.forms import DealForm
 from crm.tables import SalesPersonTable
-from crm.models import SalesPerson, Deal, DealProducts, Product
+from crm.models import SalesPerson, Deal, DealProducts, Product, DealStatus
 from django.urls import reverse_lazy
 
 
@@ -74,51 +76,54 @@ def setLang(request):
 
 
 class DealUpdateView(UpdateView):
-
     model = Deal
     form_class = DealForm
     template_name = 'crm/deal.html'
     success_url = reverse_lazy('deals')
 
     def __init__(self, *args, **kwargs):
-        self.CommonFormset = modelformset_factory(DealProducts, form=DealProductForm,
-                                                  extra=1, can_delete=True)
+        self.total_deal_price = 0
+
+        self.ProductFormset = modelformset_factory(DealProducts, fields='__all__',
+                                                   widgets={'product': ModelSelect2Widget(
+                                                       model=DealProducts, search_fields=['description__icontains'],
+                                                       queryset=Product.objects.all()), 'deal': HiddenInput()},
+                                                   extra=1, can_delete=True)
+
+        self.StatusFormset = modelformset_factory(DealStatus, fields='__all__', widgets={
+            'deal_data': DateWidget(attrs={'id': "yourdateid"}, usel10n=True, bootstrap_version=3),
+            'deal_time': TimeWidget(attrs={'id': "yourtimeid"}, usel10n=True, bootstrap_version=3)},
+                                                  extra=1, exclude=('deal',), can_delete=True)
 
     # Add some more context ( formset )
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
-        formset = self.CommonFormset(queryset=DealProducts.objects.filter(deal=self.kwargs['pk']))
-        for form in formset:
-            try:
-                product= Product.objects.get(description=form.instance.product)
-                form.item_price = 22
-                v=1
-                #form.fields['item_price'] = product.price
-            except:
-                pass
-
-
-        context['formset'] = formset
+        context['formset_products'] = self.ProductFormset(queryset=DealProducts.objects.filter(deal=self.kwargs['pk']),
+                                                          prefix='products')
+        context['formset_status'] = self.StatusFormset(queryset=DealStatus.objects.filter(deal=self.kwargs['pk']),
+                                                       prefix='status')
         return context
-
-
-    def get(self, request, *args, **kwargs):
-        pass
-
-        return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
 
         request = self.change_request(request)
         form = DealForm(request.POST)
-        formset = self.CommonFormset(request.POST)
+        product_formset = self.ProductFormset(request.POST, prefix='products')
+        status_formset = self.StatusFormset(request.POST, prefix='status')
 
-        if form.is_valid() and formset.is_valid():
+        if form.is_valid():
+            form.data['price'] = str(self.total_deal_price)
             form.save()
-            formset.save()
-        return super().post(request, *args, **kwargs)
+            if product_formset.is_valid(): product_formset.save()
+            if status_formset.is_valid(): status_formset.save()
+
+        return render_to_response( 'crm/deal.html', {
+        'form' :form,
+        'formset_products': product_formset,
+        'formset_status': status_formset,
+    })
 
     def change_request(self, request):
         """
@@ -127,17 +132,31 @@ class DealUpdateView(UpdateView):
 
         1. Deal field is hidden and don't fill proper value. We need fill it correct value before saving.
         2. User may delete product field from django-select2 widget and we must to mark this form in formset as DELETED
+        3. If item price or total price is empty that we need to calc their for every form in formset
 
         """
+        a = int(request.POST['products-TOTAL_FORMS'])
+        for i in range(int(request.POST['products-TOTAL_FORMS'])):
 
-        for i in range(int(request.POST['form-TOTAL_FORMS'])):
-            s = 'form-' + str(i)
-            sproduct = s + '-product'
-            sdeal = s + '-deal'
-            sdelete = s + '-DELETE'
-            if len(request.POST[sproduct]) > 0:
-                request.POST[sdeal] = self.kwargs['pk']
+            product = 'products-' + str(i) + '-product'
+            item_price = 'products-' + str(i) + '-item_price'
+            total_price = 'products-' + str(i) + '-total_price'
+            deal = 'products-' + str(i) + '-deal'
+            qty = 'products-' + str(i) + '-qty'
+            delete = 'products-' + str(i) + '-DELETE'
+
+            if request.POST[item_price] == '0' or request.POST[total_price] == '0' \
+                    or request.POST[item_price] == '' or request.POST[total_price] == '':
+                try:
+                    pr = Product.objects.get(pk=request.POST[product])
+                    request.POST[item_price] = pr.price
+                    request.POST[total_price] = str(int(pr.price) * int(request.POST[qty]))
+                except:
+                    pass
+            if len(request.POST[product]) > 0:
+                request.POST[deal] = self.kwargs['pk']
             else:
-                request.POST[sdelete] = 'on'
+                request.POST[delete] = 'on'
 
+            self.total_deal_price += int(request.POST[total_price])
         return request

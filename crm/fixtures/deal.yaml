@@ -1,68 +1,54 @@
 - model: crm.deal
+  pk: 1
+  fields: {sales_person: 3, customer: 2, price: '23.00', ident: 333, description: '33'}
+- model: crm.deal
   pk: 3
-  fields: {ident: 1, sales_person: 3, price: '100.00', description: Газонокосилка, status: E,
-    deal_data: 2015-10-18, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 1, sales_person: 3, price: '100.00', description: Газонокосилка, customer: 2}
 - model: crm.deal
   pk: 4
-  fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, status: E,
-    deal_data: 2015-10-18, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, customer: 2}
 - model: crm.deal
   pk: 5
-  fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, status: D,
-    deal_data: 2015-10-18, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 3, sales_person: 3, price: '1000.00', description: Поливалка, customer: 2}
 - model: crm.deal
   pk: 6
-  fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, status: H,
-    deal_data: 2016-11-18, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 4, sales_person: 3, price: '1000.00', description: Поливалка, customer: 2}
 - model: crm.deal
   pk: 7
-  fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, status: S,
-    deal_data: 2016-11-18, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 5, sales_person: 3, price: '1000.00', description: Поливалка, customer: 2}
 - model: crm.deal
   pk: 8
-  fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, status: P,
-    deal_data: 2016-11-18, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 6, sales_person: 3, price: '1000.00', description: Поливалка, customer: 2}
 - model: crm.deal
   pk: 9
-  fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, status: O,
-    deal_data: 2016-10-28, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 7, sales_person: 3, price: '1000.00', description: Поливалка, customer: 2}
 - model: crm.deal
   pk: 10
-  fields: {ident: 1, sales_person: 3, price: '100.00', description: Газонокосилка, status: A,
-    deal_data: 2016-10-28, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 8, sales_person: 3, price: '100.00', description: Газонокосилка, customer: 2}
 - model: crm.deal
   pk: 11
-  fields: {ident: 3, sales_person: 3, price: '100.00', description: Газонокосилка, status: E,
-    deal_data: 2016-10-28, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 9, sales_person: 3, price: '100.00', description: Газонокосилка, customer: 2}
 - model: crm.deal
   pk: 12
-  fields: {ident: 4, sales_person: 3, price: '100.00', description: Газонокосилка, status: E,
-    deal_data: 2010-10-18, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 10, sales_person: 3, price: '100.00', description: Газонокосилка, customer: 2}
 - model: crm.deal
   pk: 13
-  fields: {ident: 5, sales_person: 6, price: '10.00', description: Грабли, status: E,
-    deal_data: 2016-7-18, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 11, sales_person: 6, price: '10.00', description: Грабли, customer: 2}
 - model: crm.deal
   pk: 14
-  fields: {ident: 6, sales_person: 6, price: '20.00', description: Лопата, status: E,
-    deal_data: 2016-1-18, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 12, sales_person: 6, price: '20.00', description: Лопата, customer: 2}
 - model: crm.deal
   pk: 15
-  fields: {ident: 7, sales_person: 5, price: '100.00', description: Газонокосилка, status: D,
-    deal_data: 2016-3-18, deal_time: '19:50:58', customer: 4}
+  fields: {ident: 13, sales_person: 5, price: '100.00', description: Газонокосилка, customer: 4}
 - model: crm.deal
   pk: 16
-  fields: {ident: 7, sales_person: 5, price: '100.00', description: Газонокосилка, status: E,
-    deal_data: 2006-10-18, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 14, sales_person: 5, price: '100.00', description: Газонокосилка, customer: 2}
 - model: crm.deal
   pk: 17
-  fields: {ident: 8, sales_person: 4, price: '100.00', description: Газонокосилка, status: E,
-    deal_data: 2016-10-08, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 15, sales_person: 4, price: '100.00', description: Газонокосилка, customer: 2}
 - model: crm.deal
   pk: 18
-  fields: {ident: 9, sales_person: 4, price: '10.00', description: Грабли, status: E,
-    deal_data: 2012-10-18, deal_time: '19:50:58', customer: 3}
+  fields: {ident: 16, sales_person: 4, price: '10.00', description: Грабли, customer: 3}
 - model: crm.deal
   pk: 19
-  fields: {ident: 10, sales_person: 5, price: '20.00', description: Лопата, status: E,
-    deal_data: 2011-10-18, deal_time: '19:50:58', customer: 2}
+  fields: {ident: 17, sales_person: 5, price: '20.00', description: Лопата, customer: 2}

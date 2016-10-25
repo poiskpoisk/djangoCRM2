@@ -6,3 +6,4 @@ pm loaddata todo.yaml
 pm loaddata product.yaml
 pm loaddata deal.yaml
 pm loaddata dealproducts.yaml
+pm loaddata dealstatus.yaml
