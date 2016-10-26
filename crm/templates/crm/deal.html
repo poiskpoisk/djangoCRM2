@@ -25,6 +25,7 @@
                     {{ formset_products.management_form }}
                     {{ formset_status.management_form }}
 
+
                     <div class="row">
                         <div  align="center" class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
                             <h2 class="title">{% trans "Список товаров" %}</h2>
@@ -43,6 +44,17 @@
                                 {{ f.total_price|bootstrap}}
                                 <h5><small>{{ f.DELETE}} &nbsp; &nbsp; {% trans " Удалить" %}</small></h5>
                             </div>
+
+                            {# Very important, don't foget insert this  !!! #}
+
+                             {% for field in f.hidden_fields %}
+                                    {% if not forloop.last %}
+                                        {{ field }}
+                                    {% else %}
+                                        {{ field }}
+                                    {% endif %}
+                            {% endfor %}
+
                         {% endfor %}
 
                     </div>
@@ -62,8 +74,17 @@
                                 {{ ff.deal_time|bootstrap}}
                                 {{ ff.remark|bootstrap}}
                                 <h5><small>{{ ff.DELETE}} &nbsp; &nbsp; {% trans " Удалить" %}</small></h5>
-
                             </div>
+                            {# Very important, don't foget insert this  !!! #}
+
+                             {% for ff_field in ff.hidden_fields %}
+                                    {% if not forloop.last %}
+                                        {{ ff_field }}
+                                    {% else %}
+                                        {{ ff_field }}
+                                    {% endif %}
+                            {% endfor %}
+
                         {% endfor %}
                     </div>
                         <div class="row">

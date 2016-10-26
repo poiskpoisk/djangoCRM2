@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-from .secret import login,pwd,sec_key
+from simpleCRM.secret import login,pwd,sec_key
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

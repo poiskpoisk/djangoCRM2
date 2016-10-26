@@ -116,7 +116,7 @@ class Deal(models.Model):
     price = models.DecimalField(_('Цена всего'), max_digits=12, decimal_places=2, default=0,  blank=True,
                                 help_text=_('<h5><small>Стоимость контракта будет вычисленна автоматически</h5></small>'),
                                 validators=[MinValueValidator(Decimal('0.00'), )])
-    ident = models.PositiveIntegerField(_('Номер контракта') )
+    ident = models.PositiveIntegerField(_('Номер контракта'), unique=True)
     description = models.TextField(verbose_name=_('Описание'))
 
     class Meta:
