@@ -194,6 +194,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 DATETIME_FORMAT = 'Y N, j, P'
 
+import pytz
+
+LOCAL_ZONE=pytz.timezone('Europe/Moscow')
+
 
 
 

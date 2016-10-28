@@ -1,7 +1,9 @@
 from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
 from django import forms
 from django.utils.translation import ugettext as _
-from crm.models import SalesPerson, Todo, Customer, Deal, Product, DealProducts
+from django_select2.forms import ModelSelect2Widget
+
+from crm.models import SalesPerson, Todo, Customer, Deal, Product, DealProducts, DealStatus
 from crm.widgets import imageWidget, faWidget
 
 
@@ -68,11 +70,26 @@ class DealForm(forms.ModelForm):
         fields = (
             'sales_person', 'customer', 'ident', 'price', 'description')
         widgets = {
-            'price': faWidget('fa fa-usd fa', hidden=True, attrs={'placeholder': _('Предполагаемая сумма сделки (ОБЯЗАТЕЛЬНО)'),
-                                                     'class': 'form-control'}),
+            'price': faWidget('fa fa-usd fa', hidden=True, attrs={'class': 'form-control'}),
             'ident': faWidget('fa fa-anchor fa', attrs={'placeholder': _('Уникальный номер сделки (ОБЯЗАТЕЛЬНО)'),
                                                         'class': 'form-control'}),
         }
 
 
+class DealProductForm(forms.ModelForm):
+    class Meta:
+        model = DealProducts
+        fields = '__all__'
+        widgets = {'product': ModelSelect2Widget(
+            model=DealProducts, search_fields=['description__icontains'],
+            queryset=Product.objects.all())}
 
+
+class DealStatusForm(forms.ModelForm):
+    class Meta:
+        model = DealStatus
+        fields = '__all__'
+        widgets = {
+                       'deal_data': DateWidget(attrs={'id': "yourdateid"}, usel10n=True, bootstrap_version=3),
+                       'deal_time': TimeWidget(attrs={'id': "yourtimeid"}, usel10n=True, bootstrap_version=3)
+        }

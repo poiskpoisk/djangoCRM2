@@ -4,12 +4,16 @@
 {% block content %}
 {{ form.media }}
 
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" type="text/css" media="screen" rel="stylesheet">
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script type="text/javascript" src="/static/django_select2/django_select2.js"></script>
+
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 <div class="container">
     <div class="row">
         <div  align="center" class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
-                    <h2 class="title">{% trans "Новая сделка" %}</h2>
+                    <h2 class="title">{% trans "Новый контракт" %}</h2>
                     <hr id='hrreg' />
         </div>
 
@@ -20,18 +24,73 @@
 
                     {{ form|bootstrap_horizontal }}
 
-                    <p>&nbsp;</p>
+                    {% if form.errors %}
+                            <div class="errorlist">
+                                <center><p>{% trans "Что-то пошло не так при заполнении основных данных" %}</p></center>>
+                            </div>
+                    {% endif %}
+
+                     <div class="row">
+                        <div class="col-lg-5 col-lg-offset-1 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                            {{ f.product|bootstrap}}
+                            {{ f.item_price|bootstrap}}
+                        </div>
+                        <div class="col-lg-5 col-lg-offset-1 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                            {{ f.qty|bootstrap}}
+                            {{ f.total_price|bootstrap}}
+                        </div>
+
+                        {# Very important, don't foget insert this  !!! #}
+
+                         {% for field in f.hidden_fields %}
+                                {% if not forloop.last %}
+                                    {{ field }}
+                                {% else %}
+                                    {{ field }}
+                                {% endif %}
+                        {% endfor %}
+
+                        {% if f.errors %}
+                            <div class="errorlist">
+                                <center><p>{% trans "Что-то пошло не так при заполнении данных о товарах" %}</p></center>>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="row">
+                            <div class="col-lg-5 col-lg-offset-1 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                                {{ ff.status|bootstrap}}
+                                {{ ff.deal_data|bootstrap}}
+                            </div>
+                            <div class="col-lg-5 col-lg-offset-1 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                                {{ ff.deal_time|bootstrap}}
+                                {{ ff.remark|bootstrap}}
+                            </div>
+                            {# Very important, don't foget insert this  !!! #}
+
+                             {% for ff_field in ff.hidden_fields %}
+                                    {% if not forloop.last %}
+                                        {{ ff_field }}
+                                    {% else %}
+                                        {{ ff_field }}
+                                    {% endif %}
+                            {% endfor %}
+
+                            {% if ff.errors %}
+                                <div class="row">
+                                    <div class="errorlist">
+                                        <center><p>{% trans "Что-то пошло не так при заполнении данных о статусе контракта" %}</p></center>
+                                    </div>
+                                </div>
+                            {% endif %}
+                    </div>
 
                      <div class="form-group ">
                         <button class="btn btn-primary btn-lg btn-block login-button" type="submit" >{%trans 'Создать' %}</button>
 					    <input type="hidden" name="next" value="{{ next }}" />
                     </div>
 
-                    {% if form.errors %}
-                            <div class="errorlist">
-                                <p>{% trans "Что-то пошло не так" %}</p>
-                            </div>
-                    {% endif %}
+
                 </form>
             </div>
         <div class="col-lg-2 col-md-2"> </div>

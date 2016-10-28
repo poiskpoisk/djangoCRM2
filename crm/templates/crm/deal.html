@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load bootstrap %}
 {% block content %}
+{{ form.media }}
 
 <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" type="text/css" media="screen" rel="stylesheet">
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
@@ -55,6 +56,11 @@
                                     {% endif %}
                             {% endfor %}
 
+                            {% if f.errors %}
+                                <div class="errorlist">
+                                    <p>{% trans "Что-то пошло не так при заполнении данных о товарах" %}</p>
+                                </div>
+                            {% endif %}
                         {% endfor %}
 
                     </div>
@@ -85,8 +91,20 @@
                                     {% endif %}
                             {% endfor %}
 
+                            {% if ff.errors %}
+                                <div class="errorlist">
+                                    <p>{% trans "Что-то пошло не так при заполнении данных о статусе контракта" %}</p>
+                                </div>
+                            {% endif %}
+
                         {% endfor %}
                     </div>
+                    {% if form.errors %}
+                            <div class="errorlist">
+                                <p>{% trans "Что-то пошло не так при заполнении основных данных" %}</p>
+                            </div>
+                    {% endif %}
+                    <p>&nbsp;</p>
                         <div class="row">
                                 <div class="col-lg-4">
                                     <button class="btn btn-success btn-lg  btn-block" type="submit" ><i class="fa fa-pencil-square-o fa-lg"></i>&nbsp;&nbsp;{%trans 'Обновить' %}</button>
@@ -101,11 +119,6 @@
 
                           <input type="hidden" name="next" value="{{ next }}" />
 
-                    {% if form.errors %}
-                            <div class="errorlist">
-                                <p>{% trans "Что-то пошло не так" %}</p>
-                            </div>
-                    {% endif %}
                 </form>
             </div>
         <div class="col-lg-2 col-md-2"> </div>

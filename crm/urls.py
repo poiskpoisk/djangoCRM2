@@ -11,7 +11,7 @@ from django.conf.urls import url
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
-from crm.views import setLang, tableSalesPerson, tableFilterCommon, reportFunnel, DealUpdateView
+from crm.views import setLang, tableSalesPerson, tableFilterCommon, reportFunnel, DealUpdateView, DealCreateView
 from crm.models import SalesPerson, Todo, Customer, Deal
 from crm.forms import SalesPersonForm, ToDoForm, CustomerForm, DealForm
 
@@ -95,7 +95,7 @@ urlpatterns = [
 
     url(r'^deal/$', tableFilterCommon, {'model': Deal, 'modelTable': DealsTable }, name='deals'),
 
-    url(r'^deal/new/$', login_required(CreateView.as_view(model=Deal,
+    url(r'^deal/new/$', login_required(DealCreateView.as_view(model=Deal,
                                                            template_name='crm/deal_new.html',
                                                            form_class=DealForm,
                                                            success_url=reverse_lazy('deals')

@@ -178,7 +178,7 @@ class DealStatus(models.Model):
 
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name=_('Статус'))
     deal_data = models.DateField(verbose_name=_('Дата'))
-    deal_time = models.TimeField(blank=True, verbose_name=_('Время'))
+    deal_time = models.TimeField(verbose_name=_('Время'))
     remark = models.CharField(_('Примечание'), max_length=100,  blank=True,)
 
     class Meta:
