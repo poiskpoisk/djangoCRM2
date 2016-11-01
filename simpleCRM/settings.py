@@ -12,8 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 import pytz
-from simpleCRM.secret import login,pwd,sec_key
-
+from simpleCRM.secret import login, pwd, sec_key
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,6 +29,7 @@ DEBUG = True
 # Белый список хостов куда можно переходить без проверки токена CSFR
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = ('127.0.0.1',)
 
 # Application definition
 
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registration',                     # добавляем пакет для регистрации пользователей
+    'registration',  # добавляем пакет для регистрации пользователей
     'crispy_forms',
     'debug_toolbar',
     'crm',
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -62,7 +63,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 ]
 
 ROOT_URLCONF = 'simpleCRM.urls'
@@ -86,7 +86,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'simpleCRM.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
@@ -96,7 +95,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -116,7 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -129,7 +126,7 @@ USE_TZ = True
 
 # указываем, где лежат файлы перевода
 LOCALE_PATHS = (
-     os.path.join(BASE_DIR, 'locale'),
+    os.path.join(BASE_DIR, 'locale'),
 )
 
 # список доступных языков
@@ -137,69 +134,63 @@ LANGUAGES = (
     ('ru', 'Russian'),
     ('en', 'English'),
 )
-# Static files (CSS, JavaScript, Images)
+
+# -------------------- Static files (CSS, JavaScript, Images) --------------------------------------------
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-# Список из возможных абсолютных путей
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-# URL относительно корня как будут показаны статические файла ( иконки, картинки, CSS )
+# STATICFILES_DIRS is the list of folder where Django will search for additional static files,
+# in addition to each static folder of each app installed.
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'project_static'), ]
+# URL for APP related static assets
 STATIC_URL = '/static/'
+# URL for all static files that collected manage.py collectstatic, must be ABS path
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets_static')
+
+# -------------------- end of static settings -------------------------------------------------------------
 
 # Абсолютный путь к загружаемым пользователем файлам
-MEDIA_ROOT = os.path.join( BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Сылка относительно корня, как будут показаны загружаемые пользователем файлы
 MEDIA_URL = '/media/'
 
 # Настройки для django-registration-redux
-REGISTRATION_OPEN = True        # Если равно True, то пользователи могут регистрироваться
-ACCOUNT_ACTIVATION_DAYS = 7     # время в днях течении которого можно активировать аккаунт;
+REGISTRATION_OPEN = True  # Если равно True, то пользователи могут регистрироваться
+ACCOUNT_ACTIVATION_DAYS = 7  # время в днях течении которого можно активировать аккаунт;
 REGISTRATION_AUTO_LOGIN = True  # Если равно  True, то пользователь будет автоматически входить в систему.
-LOGIN_REDIRECT_URL = '/'        # Страница, на которую будут попадать пользователи, после успешного входа в систему.
+LOGIN_REDIRECT_URL = '/'  # Страница, на которую будут попадать пользователи, после успешного входа в систему.
 
-LOGIN_URL = 'login'             # Страница, на которую перенаправляются пользователи, если они не вошли в систему и
-                                # пытаются получить доступ к страницам, которые требуют аутентификации
+LOGIN_URL = 'login'  # Страница, на которую перенаправляются пользователи, если они не вошли в систему и
+# пытаются получить доступ к страницам, которые требуют аутентификации
 LOGOUT_URL = 'logout'
 
 # http://djbook.ru/forum/topic/220/
 SITE_ID = 1
 
-#localhost с запуском тестового SMTP сервера
-#EMAIL_HOST = 'localhost'
-#EMAIL_PORT = 1025
+# localhost с запуском тестового SMTP сервера
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = 1025
 
 # gmail.com
-#EMAIL_HOST          = 'smtp.gmail.com'
-#EMAIL_PORT          = 587
-#EMAIL_HOST_USER     = ""
-#EMAIL_HOST_PASSWORD = ""
-#EMAIL_USE_TLS       = True
+# EMAIL_HOST          = 'smtp.gmail.com'
+# EMAIL_PORT          = 587
+# EMAIL_HOST_USER     = ""
+# EMAIL_HOST_PASSWORD = ""
+# EMAIL_USE_TLS       = True
 
 # yandex.ru
-EMAIL_HOST          = 'smtp.yandex.ru'
-EMAIL_PORT          = 465
-EMAIL_HOST_USER     = login
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = login
 EMAIL_HOST_PASSWORD = pwd
-EMAIL_USE_SSL       = True
-
+EMAIL_USE_SSL = True
 
 # Добавьте ещё две следующие строчки для отправки писем (трейсбека) админам при возникновении ошибок на сайте:
 # Яндекс и mail без указания SERVER_EMAIL такого же как адрес пользователя при подключении к SMPT серверу,
 #  т.е. EMAIL_HOST_USER, не будет посылать письма об ошибках.
 
-SERVER_EMAIL        = EMAIL_HOST_USER
-DEFAULT_FROM_EMAIL  = EMAIL_HOST_USER
-
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 DATETIME_FORMAT = 'Y N, j, P'
-
-
-
-
-
-
-
-

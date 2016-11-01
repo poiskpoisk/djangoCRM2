@@ -24,6 +24,7 @@ from django.views.generic import TemplateView
 from crm.registration_forms import MyRegistrationFormUniqueEmail, MyAuthenticationForm
 from crm.views.registration_views import MyRegistrationView, UserListView
 from simpleCRM.settings import MEDIA_ROOT, MEDIA_URL
+from .settings import DEBUG
 
 urlpatterns = [url(r'^i18n/',  include('django.conf.urls.i18n')),]
 
@@ -47,3 +48,9 @@ urlpatterns += [
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
+
+if DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]

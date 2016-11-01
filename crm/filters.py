@@ -16,6 +16,7 @@ from datetimewidget.widgets import DateWidget
 class DealFilter(django_filters.FilterSet):
 
     STATUS_CHOICES = [('Z', _('Все контракты'))]
+
     for STATUS in list(DealStatus.STATUS_CHOICES):
         STATUS_CHOICES.append(STATUS)
     STATUS_CHOICES = tuple(STATUS_CHOICES)
@@ -30,16 +31,14 @@ class DealFilter(django_filters.FilterSet):
     deal_data.widget.widgets[1] = DateWidget(attrs={'id': "yourdateid"}, usel10n=True, bootstrap_version=3)
 
     def filter_deal(self, queryset, name, value):
-        if value == 'Z':
-            queryset = Deal.objects.all()
-        else:
-            queryset = queryset.filter(status__exact=value)
+        if value != 'Z':
+            queryset = queryset.filter(dealstatus__status__exact=value)
 
         return queryset
 
     class Meta:
         model = Deal
-        fields = ['status', 'sales_person', 'deal_data']
+        fields = ['sales_person']
 
 
 DealFilter.base_filters['status'].field.help_text = _('<h5><small>Выберите статус сделки</small></h5>')
