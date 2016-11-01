@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-#
-from django_filters.views import FilterView
+__author__ = 'AMA'
 
 from crm.filters import DealFilter, DealFilterWithoutData
 from crm.tables import ToDosTable, CustomersTable, DealsTable
-
-__author__ = 'AMA'
-
 from django.views.generic import UpdateView, CreateView, DeleteView
 from django.conf.urls import url
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-
-from crm.views import setLang, tableSalesPerson, tableFilterCommon, reportFunnel, DealUpdateView, DealCreateView
+from crm.views.table_views import tableSalesPerson, tableFilterCommon
+from crm.views.deal_views import DealUpdateView, DealCreateView
+from crm.views.views import setLang, reportFunnel
 from crm.models import SalesPerson, Todo, Customer, Deal
 from crm.forms import SalesPersonForm, ToDoForm, CustomerForm, DealForm
 

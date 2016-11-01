@@ -3,4 +3,4 @@
   fields: {deal: 3, status: E, deal_data: 2016-10-24, deal_time: '07:42:46', remark: no remark}
 - model: crm.dealstatus
   pk: 2
-  fields: {deal: 4, status: E, deal_data: 2016-10-24, deal_time: '07:42:46', remark: no remark}
+  fields: {deal: 4, status: E, deal_data: 2016-11-24, deal_time: '02:42:46', remark: no remark}

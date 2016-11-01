@@ -3,7 +3,6 @@ from django.core.validators import RegexValidator, MinValueValidator
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 from decimal import Decimal
-from django import forms
 
 
 class Person(models.Model):  # ABS class define abstract Person
@@ -184,6 +183,7 @@ class DealStatus(models.Model):
     class Meta:
         verbose_name = _('Статус контракта')
         verbose_name_plural = _('Статусы контракта')
+        unique_together = (("deal","deal_data", "deal_time"),)
 
     def __str__(self):
         return '%s' % (self.status)

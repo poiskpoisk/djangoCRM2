@@ -14,16 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.contrib import admin
 from django.conf.urls.static import static
-from simpleCRM.settings import MEDIA_ROOT, MEDIA_URL
-from django.views.generic import TemplateView
-from crm.registration_forms import MyRegistrationFormUniqueEmail, MyAuthenticationForm
-from crm.registration_views import MyRegistrationView, UserListView
+from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login as loginView
+from django.views.generic import TemplateView
 
+from crm.registration_forms import MyRegistrationFormUniqueEmail, MyAuthenticationForm
+from crm.views.registration_views import MyRegistrationView, UserListView
+from simpleCRM.settings import MEDIA_ROOT, MEDIA_URL
 
 urlpatterns = [url(r'^i18n/',  include('django.conf.urls.i18n')),]
 

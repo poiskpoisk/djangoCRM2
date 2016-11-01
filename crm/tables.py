@@ -41,8 +41,30 @@ class CustomersTable(tables.Table):
 
 class DealsTable(tables.Table):
     id = tables.LinkColumn('dealpage', args=[A('pk')])
-    deal_data = tables.DateTimeColumn(format="d/m/Y")
-    deal_time = tables.DateTimeColumn(format="H.i")
+    deal_data = tables.DateTimeColumn(format="d/m/Y", verbose_name=_('Дата'))
+    deal_time = tables.DateTimeColumn(format="H.i", verbose_name=_('Время'))
+    deal_status = tables.Column( verbose_name=_('Статус'))
+
+    def order_deal_data(self, queryset, is_descending):
+        if is_descending:
+            queryset = queryset.order_by('-deal_data')
+        else:
+            queryset = queryset.order_by('deal_data')
+        return (queryset, True)
+
+    def order_deal_time(self, queryset, is_descending):
+        if is_descending:
+            queryset = queryset.order_by('-deal_time')
+        else:
+            queryset = queryset.order_by('deal_time')
+        return (queryset, True)
+
+    def order_deal_status(self, queryset, is_descending):
+        if is_descending:
+            queryset = queryset.order_by('-deal_status')
+        else:
+            queryset = queryset.order_by('deal_status')
+        return (queryset, True)
 
     class Meta:
         model = Deal

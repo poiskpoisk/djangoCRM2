@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import pytz
 from simpleCRM.secret import login,pwd,sec_key
 
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'registration',                     # добавляем пакет для регистрации пользователей
     'crispy_forms',
+    'debug_toolbar',
     'crm',
     'django_tables2',
     'bootstrapform',
@@ -120,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # язык сайта по умолчанию, если не удалось определить язык другими способами
 LANGUAGE_CODE = 'en'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
@@ -194,9 +196,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 DATETIME_FORMAT = 'Y N, j, P'
 
-import pytz
 
-LOCAL_ZONE=pytz.timezone('Europe/Moscow')
+
+
 
 
 

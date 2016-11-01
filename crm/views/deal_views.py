@@ -1,80 +1,18 @@
+# -*- coding: utf-8 -*-#
+__author__ = 'AMA'
+
 import datetime
-
-from django.http import HttpResponseRedirect
-
-from simpleCRM.settings import LOCAL_ZONE
-from datetimewidget.widgets import TimeWidget, DateWidget
-from django.contrib.auth.decorators import login_required
-from django.db.models import F
+from django.contrib import messages
+from datetimewidget.widgets import DateWidget, TimeWidget
 from django.forms import modelformset_factory
-from django.shortcuts import render, render_to_response
-from django.views.generic import CreateView
-from django.views.generic import UpdateView
-from django_tables2 import RequestConfig
-from crm.forms import DealForm, DealProductForm, DealStatusForm
-from crm.tables import SalesPersonTable
-from crm.models import SalesPerson, Deal, DealProducts, Product, DealStatus
+from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.generic import UpdateView, CreateView
+from crm.forms import DealForm, DealProductForm, DealStatusForm
+from crm.models import Deal, DealProducts, DealStatus, Product
+from django.utils.translation import ugettext as _
 
 
-@login_required
-def tableSalesPerson(request):
-    queryset = SalesPerson.objects.annotate(email=F('user__email'))
-    table = SalesPersonTable(queryset)
-    RequestConfig(request).configure(table)
-    filter = 'NONFILTER'
-    return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
-
-
-@login_required
-def tableFilterCommon(request, model, modelTable, classFilter=None, duration=None):
-    '''
-    Функция комбинированного показа фильтров и результата фильтрования чрезе таблицы
-    Может не содержать фитьтров вообще, тогда classFilter=None . Duration определяет предфильтрацию перед фильтрами.
-    '''
-    now_date = datetime.date.today()  # Текущая дата (без времени)
-    if classFilter:
-        if duration == 'day':
-            queryset = model.objects.filter(deal_data__year=now_date.year)
-            queryset = queryset.filter(deal_data__month=now_date.month)
-            queryset = queryset.filter(deal_data__day=now_date.day)
-        elif duration == 'month':
-            queryset = model.objects.filter(deal_data__year=now_date.year)
-            queryset = queryset.filter(deal_data__month=now_date.month)
-        elif duration == 'year':
-            queryset = model.objects.filter(deal_data__year=now_date.year)
-        else:
-            queryset = model.objects.all()
-
-        filter = classFilter(request.GET, queryset=queryset)
-        queryset = filter.qs
-    else:
-        queryset = model.objects.all()
-        filter = 'NONFILTER'
-
-    table = modelTable(queryset)
-    RequestConfig(request).configure(table)
-
-    return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
-
-
-@login_required
-def reportFunnel(request, model, modelTable, classFilter=None):
-    # filter = ReportFilter(request.GET, queryset=Deal.objects.all())
-
-    records = []
-    for status in Deal.STATUS_CHOICES:
-        record = []
-        record.append(status[1])
-        record.append(Deal.objects.filter(status=status[0]).count())
-        records.append(record)
-
-    return render(request, 'crm/report.html', {'records': records, 'filter': filter})
-
-
-def setLang(request):
-    # get list of NOT NULL
-    return render(request, 'crm/lang.html')
 
 
 class DealUpdateView(UpdateView):
@@ -124,6 +62,8 @@ class DealUpdateView(UpdateView):
             form.save()
             product_formset.save()
             status_formset.save()
+        else:
+            messages.error(request, _('Что-то пошло не так'))
 
         return super().post(self, request, *args, **kwargs)
 
@@ -233,7 +173,7 @@ class DealCreateView(CreateView):
 
     def get_now_time5(self):
         # We rounded minutes up to 5 ( requirement DateTime picker )
-        time_now = datetime.datetime.now(LOCAL_ZONE)
+        time_now = datetime.datetime.now()
         hours = time_now.hour
         minute = int(time_now.minute)
         minute //= 5
@@ -254,10 +194,11 @@ class DealCreateView(CreateView):
         try:
             pr = Product.objects.get(pk=request.POST['product'])
         except:
-            pass
+            messages.error(request, 'Doh! Something went wrong.')
             # todo Let do err handler
-        request.POST['item_price'] = str(pr.price)
-        request.POST['total_price'] = str(pr.price * int(request.POST['qty']))
-        request.POST['price'] = request.POST['total_price']
+        else:
+            request.POST['item_price'] = str(pr.price)
+            request.POST['total_price'] = str(pr.price * int(request.POST['qty']))
+            request.POST['price'] = request.POST['total_price']
 
         return request
