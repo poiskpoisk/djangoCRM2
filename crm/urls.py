@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-#
 __author__ = 'AMA'
 
-from crm.filters import DealFilter, DealFilterWithoutData
-from crm.tables import ToDosTable, CustomersTable, DealsTable
+from crm.filters import DealFilter, DealFilterWithoutData, TodoFilter, TodoFilterWithoutData
+from crm.tables import DealsTable
 from django.views.generic import UpdateView, CreateView, DeleteView
 from django.conf.urls import url
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from crm.views.table_views import tableSalesPerson, tableFilterCommon
+from crm.views.table_views import tableSalesPerson, tableFilterDeals, tableFilterToDos, tableFilterCustomer
 from crm.views.deal_views import DealUpdateView, DealCreateView
 from crm.views.views import setLang, reportFunnel
 from crm.models import SalesPerson, Todo, Customer, Deal
@@ -53,13 +53,19 @@ urlpatterns = [
                                                                                  success_url=reverse_lazy('todos')
                                                                                  )), name='todo_del'),
 
-    url(r'^todos/$', tableFilterCommon, {'model':Todo, 'modelTable':ToDosTable}, name='todos'),
+    url(r'^todos/$', tableFilterToDos, name='todos'),
 
     url(r'^todos/new/$', login_required(CreateView.as_view( model=Todo,
                                                             template_name='crm/todo_new.html',
                                                             form_class=ToDoForm,
                                                             success_url=reverse_lazy('todos')
                                                               )), name='todo_new'),
+    # .................... with filters ................................................................................
+
+    url(r'^todosfilters/$', tableFilterToDos, {'classFilter': TodoFilter}, name='todosfilters'),
+    url(r'^todostoday/$', tableFilterToDos, {'classFilter': TodoFilterWithoutData, 'duration': 'day'}, name='todostoday'),
+    url(r'^todosmonth/$', tableFilterToDos, {'classFilter': TodoFilterWithoutData,  'duration': 'month'}, name='todosmonth'),
+    url(r'^todosyear/$', tableFilterToDos, {'classFilter': TodoFilterWithoutData,  'duration': 'year'}, name='todosyear'),
 
     # ------------------------- Customer -----------------------------------------------------------------------
 
@@ -74,7 +80,7 @@ urlpatterns = [
                                                                           success_url=reverse_lazy('customers')
                                                                           )), name='customer_del'),
 
-    url(r'^customers/$', tableFilterCommon, {'model': Customer, 'modelTable': CustomersTable}, name='customers'),
+    url(r'^customers/$', tableFilterCustomer, name='customers'),
 
     url(r'^customers/new/$', login_required(CreateView.as_view(model=Customer,
                                                            template_name='crm/customer_new.html',
@@ -85,14 +91,11 @@ urlpatterns = [
     # ----------------------------- Deal -------------------------------------------------------------------------
 
     url(r'^deal/(?P<pk>[0-9]+)/$', login_required(DealUpdateView.as_view()), name='dealpage'),
-
     url(r'^deal/del/(?P<pk>[0-9]+)/$', login_required(DeleteView.as_view(model=Deal,
                                                                           template_name='crm/deal_del.html',
                                                                           success_url=reverse_lazy('deals')
                                                                           )), name='deal_del'),
-
-    url(r'^deal/$', tableFilterCommon, {'model': Deal, 'modelTable': DealsTable }, name='deals'),
-
+    url(r'^deal/$', tableFilterDeals, name='deals'),
     url(r'^deal/new/$', login_required(DealCreateView.as_view(model=Deal,
                                                            template_name='crm/deal_new.html',
                                                            form_class=DealForm,
@@ -100,13 +103,10 @@ urlpatterns = [
                                                            )), name='deal_new'),
     # .................... with filters ................................................................................
 
-    url(r'^dealfilters/$', tableFilterCommon, {'model': Deal, 'modelTable': DealsTable, 'classFilter': DealFilter}, name='dealsfilters'),
-    url(r'^dealstoday/$', tableFilterCommon, {'model': Deal, 'modelTable': DealsTable,
-                                              'classFilter': DealFilterWithoutData, 'duration': 'day'}, name='dealstoday'),
-    url(r'^dealsmonth/$', tableFilterCommon, {'model': Deal, 'modelTable': DealsTable,
-                                              'classFilter': DealFilterWithoutData,  'duration': 'month'}, name='dealsmonth'),
-    url(r'^dealsyear/$', tableFilterCommon, {'model': Deal, 'modelTable': DealsTable,
-                                             'classFilter': DealFilterWithoutData,  'duration': 'year'}, name='dealsyear'),
+    url(r'^dealfilters/$', tableFilterDeals, {'classFilter': DealFilter}, name='dealsfilters'),
+    url(r'^dealstoday/$', tableFilterDeals, {'classFilter': DealFilterWithoutData, 'duration': 'day'}, name='dealstoday'),
+    url(r'^dealsmonth/$', tableFilterDeals, {'classFilter': DealFilterWithoutData,  'duration': 'month'}, name='dealsmonth'),
+    url(r'^dealsyear/$', tableFilterDeals, {'classFilter': DealFilterWithoutData,  'duration': 'year'}, name='dealsyear'),
 
     # ---------------------------------------------- Reports ------------------------------------------
 

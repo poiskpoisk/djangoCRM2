@@ -16,8 +16,8 @@ class ContactAdmin(admin.ModelAdmin):
 
 
 class TodoAdmin(admin.ModelAdmin):
-    list_display = ('action', 'action_description', 'data_time', 'sales_person')
-    list_filter = ['data_time']
+    list_display = ('action', 'action_description', 'todo_data', 'todo_time', 'sales_person')
+    list_filter = ['todo_data']
 
 
 # Define an inline admin descriptor for SalePerson model which acts a bit like a singleton

@@ -6,8 +6,8 @@ from django.db.models import F
 from django.shortcuts import render
 from django_tables2 import RequestConfig
 
-from crm.models import SalesPerson, DealStatus
-from crm.tables import SalesPersonTable
+from crm.models import SalesPerson, DealStatus, Deal, Todo, Customer
+from crm.tables import SalesPersonTable, DealsTable, ToDosTable, CustomersTable
 
 __author__ = 'AMA'
 
@@ -20,16 +20,15 @@ def tableSalesPerson(request):
     filter = 'NONFILTER'
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
 
-
 @login_required
-def tableFilterCommon(request, model, modelTable, classFilter=None, duration=None):
+def tableFilterDeals(request, classFilter=None, duration=None):
     '''
     Функция комбинированного показа фильтров и результата фильтрования чрезе таблицы
     Может не содержать фитьтров вообще, тогда classFilter=None . Duration определяет предфильтрацию перед фильтрами.
     '''
     now_date = datetime.date.today()  # Текущая дата (без времени)
 
-    queryset = model.objects.all()
+    queryset = Deal.objects.all()
     # add some fields from different models
     queryset = queryset.annotate(deal_data=F('dealstatus__deal_data'))
     queryset = queryset.annotate(deal_time=F('dealstatus__deal_time'))
@@ -65,7 +64,55 @@ def tableFilterCommon(request, model, modelTable, classFilter=None, duration=Non
             if query.deal_status == status[0]:
                 query.deal_status = status[1]
 
-    table = modelTable(queryset)
+    table = DealsTable(queryset)
+    RequestConfig(request).configure(table)
+
+    return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
+
+
+@login_required
+def tableFilterToDos(request, classFilter=None, duration=None):
+    '''
+    Функция комбинированного показа фильтров и результата фильтрования чрезе таблицы
+    Может не содержать фитьтров вообще, тогда classFilter=None . Duration определяет предфильтрацию перед фильтрами.
+    '''
+    now_date = datetime.date.today()  # Текущая дата (без времени)
+    queryset = Todo.objects.all()
+
+    # Add some filters
+    if classFilter:
+        if duration == 'day':
+            queryset = queryset.filter(todo_data__year=now_date.year)
+            queryset = queryset.filter(todo_data__month=now_date.month)
+            queryset = queryset.filter(todo_data__day=now_date.day)
+        elif duration == 'month':
+            queryset = queryset.filter(todo_data__year=now_date.year)
+            queryset = queryset.filter(todo_data__month=now_date.month)
+        elif duration == 'year':
+            queryset = queryset.filter(todo_data__year=now_date.year)
+
+        filter = classFilter(request.GET, queryset=queryset)
+        queryset = filter.qs
+    else:
+        filter = 'NONFILTER'
+
+    table = ToDosTable(queryset)
+    RequestConfig(request).configure(table)
+
+    return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
+
+
+@login_required
+def tableFilterCustomer(request, classFilter=None, duration=None):
+    '''
+    Функция комбинированного показа фильтров и результата фильтрования чрезе таблицы
+    Может не содержать фитьтров вообще, тогда classFilter=None . Duration определяет предфильтрацию перед фильтрами.
+    '''
+
+    queryset = Customer.objects.all()
+    filter = 'NONFILTER'
+
+    table = CustomersTable(queryset)
     RequestConfig(request).configure(table)
 
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})

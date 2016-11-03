@@ -1,32 +1,22 @@
 - model: crm.todo
   pk: 5
-  fields: {sales_person: 3, action: P, action_description: Уточнить условия, data_time: !!timestamp '2016-10-10
-      13:30:03+00:00'}
+  fields: {sales_person: 5, action: P, action_description: "\u0423\u0442\u043E\u0447\
+      \u043D\u0438\u0442\u044C \u0443\u0441\u043B\u043E\u0432\u0438\u044F", todo_data: 2016-11-02,
+    todo_time: '13:30:03'}
 - model: crm.todo
   pk: 6
-  fields: {sales_person: 4, action: E, action_description: Уточнить условия, data_time: !!timestamp '2016-10-10
-      13:30:03+00:00'}
+  fields: {sales_person: 3, action: P, action_description: "\u0423\u0442\u043E\u0447\
+      \u043D\u0438\u0442\u044C \u0443\u0441\u043B\u043E\u0432\u0438\u044F", todo_data: 2016-11-02,
+    todo_time: '13:30:06'}
 - model: crm.todo
   pk: 7
-  fields: {sales_person: 3, action: P, action_description: Уточнить условия, data_time: !!timestamp '2016-10-10
-      13:30:03+00:00'}
+  fields: {sales_person: 6, action: P, action_description: "\u0423\u0442\u043E\u0447\
+      \u043D\u0438\u0442\u044C \u0443\u0441\u043B\u043E\u0432\u0438\u044F", todo_data: 2016-11-02,
+    todo_time: '13:30:05'}
 - model: crm.todo
   pk: 8
-  fields: {sales_person: 4, action: S, action_description: Уточнить условия, data_time: !!timestamp '2016-10-10
-      13:30:03+00:00'}
-- model: crm.todo
-  pk: 9
-  fields: {sales_person: 5, action: P, action_description: Уточнить условия, data_time: !!timestamp '2016-10-10
-      13:30:03+00:00'}
-- model: crm.todo
-  pk: 10
-  fields: {sales_person: 5, action: E, action_description: Уточнить условия, data_time: !!timestamp '2016-10-10
-      13:30:03+00:00'}
-- model: crm.todo
-  pk: 11
-  fields: {sales_person: 6, action: O, action_description: Уточнить цену, data_time: !!timestamp '2016-10-10
-      13:30:03+00:00'}
-- model: crm.todo
-  pk: 12
-  fields: {sales_person: 6, action: L, action_description: Поздравить с праздником, data_time: !!timestamp '2016-10-10
-      13:30:03+00:00'}
+  fields: {sales_person: 3, action: P, action_description: "\u0423\u0442\u043E\u0447\
+      \u043D\u0438\u0442\u044C \u0443\u0441\u043B\u043E\u0432\u0438\u044F", todo_data: 2017-11-02,
+    todo_time: '13:30:05'}
+
+

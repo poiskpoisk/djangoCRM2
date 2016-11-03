@@ -63,7 +63,10 @@
                           <li><a href="{% url 'todos' %}">{% trans "Список дел" %}</a></li>
                           <li><a href="{% url 'todo_new' %}">{% trans "Добавить дело" %}</a></li>
                           <li class="divider"></li>
-                          <li><a href="{% url 'register' %}">{% trans "Что-то еще" %}</a></li>
+                          <li><a href="{% url 'todosfilters' %}">{% trans "Список дел с фильтрами" %}</a></li>
+                          <li><a href="{% url 'todostoday' %}">{% trans "Дела за сегодня" %}</a></li>
+                          <li><a href="{% url 'todosmonth' %}">{% trans "Дела за текущий месяц" %}</a></li>
+                          <li><a href="{% url 'todosyear' %}">{% trans "Дела за текущий год" %}</a></li>
                       </ul>
                 </li>
 

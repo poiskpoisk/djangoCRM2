@@ -68,8 +68,9 @@ class Todo(models.Model):
                                      verbose_name=_('Менеджер'))  # Many-to-One relation
 
     action = models.CharField(max_length=1, choices=ACTIONS_CHOICES, verbose_name=_('Действие'))
-    action_description = models.TextField(verbose_name=_('Комментарий'))
-    data_time = models.DateTimeField(verbose_name=_('Дата и время'))
+    action_description = models.TextField(_('Комментарий'))
+    todo_data = models.DateField(_('Дата'))
+    todo_time = models.TimeField(_('Время'))
 
     class Meta:
         verbose_name = _('Список дел')

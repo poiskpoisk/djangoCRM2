@@ -31,7 +31,7 @@ class ToDoForm(forms.ModelForm):
     class Meta:
         model = Todo
         # В форме поля будут в том же порядке, как перечисленны ниже
-        fields = ('action', 'data_time', 'action_description', 'sales_person')
+        fields = '__all__'
         widgets = {
             'data_time': DateTimeWidget(attrs={'id': "yourdatetimeid"}, usel10n=True, bootstrap_version=3)
         }
@@ -70,9 +70,8 @@ class DealForm(forms.ModelForm):
         fields = (
             'sales_person', 'customer', 'ident', 'price', 'description')
         widgets = {
-            'price': faWidget('fa fa-usd fa', hidden=True, attrs={'class': 'form-control'}),
-            'ident': faWidget('fa fa-anchor fa', attrs={'placeholder': _('Уникальный номер сделки (ОБЯЗАТЕЛЬНО)'),
-                                                        'class': 'form-control'}),
+            'todo_data': DateWidget(attrs={'id': "yourdateid"}, usel10n=True, bootstrap_version=3),
+            'todo_time': TimeWidget(attrs={'id': "yourtimeid"}, usel10n=True, bootstrap_version=3)
         }
 
 

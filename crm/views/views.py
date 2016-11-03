@@ -1,21 +1,43 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-
-from crm.models import Deal
+from crm.filters import ReportFilter
+from crm.models import DealStatus, Deal
+from django.db.models import F
+from django.db.models import Sum
 
 
 @login_required
 def reportFunnel(request, model, modelTable, classFilter=None):
-    # filter = ReportFilter(request.GET, queryset=Deal.objects.all())
+
+    queryset = Deal.objects.all()
+    queryset = queryset.annotate(deal_data=F('dealstatus__deal_data'))
+    queryset = queryset.annotate(deal_time=F('dealstatus__deal_time'))
+    queryset = queryset.annotate(deal_status=F('dealstatus__status'))
+
+    filter = ReportFilter(request.GET, queryset=queryset)
+    queryset = filter.qs
+
 
     records = []
-    for status in Deal.STATUS_CHOICES:
+    for status in DealStatus.STATUS_CHOICES:
         record = []
         record.append(status[1])
-        record.append(Deal.objects.filter(status=status[0]).count())
+        record.append(queryset.filter(deal_status=status[0]).count())
         records.append(record)
 
-    return render(request, 'crm/report.html', {'records': records, 'filter': filter})
+    recordsMany = []
+    for status in DealStatus.STATUS_CHOICES:
+        record = []
+        record.append(status[1])
+        sum_pr=queryset.filter(deal_status=status[0]).aggregate(Sum('price'))
+        sum_str=str(sum_pr['price__sum'])
+        if sum_str == "None":
+            sum_str='0'
+        sum_int=float(sum_str)
+        record.append(sum_int)
+        recordsMany.append(record)
+
+    return render(request, 'crm/report.html', {'records': records, 'records_many': recordsMany, 'filter': filter})
 
 
 def setLang(request):
