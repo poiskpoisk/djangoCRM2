@@ -140,7 +140,7 @@ LANGUAGES = (
     ('en', 'English'),
 )
 
-# -------------------- Static files (CSS, JavaScript, Images) --------------------------------------------
+# --------------------   Static files (CSS, JavaScript, Images)   --------------------------------------------
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 # STATICFILES_DIRS is the list of folder where Django will search for additional static files,
