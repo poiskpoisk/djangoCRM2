@@ -5,7 +5,7 @@ from crm.filters import DealFilter, DealFilterWithoutData, TodoFilter, TodoFilte
 from crm.tables import DealsTable
 from django.views.generic import UpdateView, CreateView, DeleteView
 from django.conf.urls import url
-from django.urls import reverse_lazy
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from crm.views.table_views import tableSalesPerson, tableFilterDeals, tableFilterToDos, tableFilterCustomer
 from crm.views.deal_views import DealUpdateView, DealCreateView

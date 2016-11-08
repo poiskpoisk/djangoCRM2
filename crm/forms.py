@@ -92,3 +92,4 @@ class DealStatusForm(forms.ModelForm):
                        'deal_data': DateWidget(attrs={'id': "yourdateid"}, usel10n=True, bootstrap_version=3),
                        'deal_time': TimeWidget(attrs={'id': "yourtimeid"}, usel10n=True, bootstrap_version=3)
         }
+

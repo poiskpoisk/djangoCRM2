@@ -26,31 +26,35 @@ from crm.views.registration_views import MyRegistrationView, UserListView
 from simpleCRM.settings import MEDIA_ROOT, MEDIA_URL
 from .settings import DEBUG
 
-urlpatterns = [url(r'^i18n/',  include('django.conf.urls.i18n')),]
+urlpatterns = [
+    url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^crm/', include('crm.urls')),
+    url(r'^select2/', include('django_select2.urls')),
+    #url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/', include('registration.backends.default.urls')),
+    #url(r'^globalcustomer/', include('globalcustomer.urls')),
+]
 
 # URLconfs have a hook that lets you pass extra arguments to your view FUNCTIONS (!), as a Python dictionary.
 #   url(r'^blog/(?P<year>[0-9]{4})/$', views.year_archive, {'foo': 'bar'}),
 #  for a request to /blog/2005/, Django will call views.year_archive(request, year='2005', foo='bar').
 
-
 urlpatterns += [
-    url(r'^$', loginView, {  'authentication_form' : MyAuthenticationForm }, name='mainpage'),
-    url(r'^crm/',       include('crm.urls')),
-    url(r'^admin/',     include(admin.site.urls)),
-    url(r'^accounts/register/$', MyRegistrationView.as_view( form_class=MyRegistrationFormUniqueEmail), name='register'),
-    url(r'^accounts/register/complete/$', TemplateView.as_view(template_name='registration/registration_complete.html'), name='registration_complete'),
-    url(r'^accounts/login/$', loginView, {  'authentication_form' : MyAuthenticationForm }, name='login'),
+    url(r'^$', loginView, {'authentication_form': MyAuthenticationForm}, name='mainpage'),
+    url(r'^accounts/register/$', MyRegistrationView.as_view(form_class=MyRegistrationFormUniqueEmail), name='register'),
+    url(r'^accounts/register/complete/$', TemplateView.as_view(template_name='registration/registration_complete.html'),
+        name='registration_complete'),
+    url(r'^accounts/login/$', loginView, {'authentication_form': MyAuthenticationForm}, name='login'),
     url(r'^accounts/logout/$', auth_views.logout, {'template_name': 'registration/logout.html'}, name='logout'),
-    url(r'^accounts/userlist/$', login_required(UserListView.as_view(template_name='registration/userlist.html')), name='userlist'),
-    url(r'^accounts/',  include('registration.backends.default.urls')),
-
-    url(r'^select2/', include('django_select2.urls')),
+    url(r'^accounts/userlist/$', login_required(UserListView.as_view(template_name='registration/userlist.html')),
+        name='userlist'),
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
 
 if DEBUG:
     import debug_toolbar
+
     urlpatterns += [
         url(r'^__debug__/', include(debug_toolbar.urls)),
     ]
