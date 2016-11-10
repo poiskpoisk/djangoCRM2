@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load i18n %}
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+
+<head>
+  {% include "head.html" %}
+</head>
+
+    <body>
+      <div class="content">
+
+            {% load bootstrap %}
+            <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+            <div class="container">
+                <div class="row">
+                    <div  align="center" class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+                                <h2 class="title">{% trans "Создайте новую копию CRM для своей организации" %}</h2>
+                                <hr id='hrreg' />
+                    </div>
+
+                    <!-- <div class="main-login main-center-spnew"> -->
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+
+                                {{ form|bootstrap_horizontal }}
+
+                                <p>&nbsp;</p>
+
+                                 <div class="form-group ">
+                                    <button class="btn btn-primary btn-lg btn-block login-button" type="submit" >{%trans 'Создать' %}</button>
+                                    <input type="hidden" name="next" value="{{ next }}" />
+                                </div>
+
+                                {% if form.errors %}
+                                        <div class="errorlist">
+                                            <p>{% trans "Что-то пошло не так" %}</p>
+                                        </div>
+                                {% endif %}
+                            </form>
+                        </div>
+                    <div class="col-lg-2 col-md-2"> </div>
+                    </div>
+                    </div>
+                   <!-- </div> -->
+                </div>
+            </div>
+      </div>
+
+    </body>
+</html>
+
+
+
+
+

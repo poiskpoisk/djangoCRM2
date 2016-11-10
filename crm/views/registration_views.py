@@ -3,7 +3,7 @@
 from registration.backends.default.views import RegistrationView
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
-from django.urls import reverse
+from django.core.urlresolvers import reverse
 
 
 # New user registration

@@ -11,8 +11,9 @@ from crm.widgets import faWidget
 class MyRegistrationFormUniqueEmail(RegistrationFormUniqueEmail):
 
     username = forms.RegexField( label=_("Логин"), max_length=30, regex=r"^[\w.@+-]+$",
-        error_messages={ 'invalid': _("< 30 симоволов.сДопустимо только - A-z,1-9,@/./+/-/")},
-        widget=faWidget('fa fa-user fa', attrs={'class': 'form-control','required': 'true', 'placeholder': _('Логин ( только A-z,1-9,@/./+/-/_ )')}))
+        error_messages={ 'invalid': _("< 30 симоволов. Допустимо только - A-z,1-9,@/./+/-/")},
+        widget=faWidget('fa fa-user fa', attrs={'class': 'form-control','required': 'true',
+                                                'placeholder': _('Логин ( только A-z,1-9,@/./+/-/_ )')}))
 
     email = forms.CharField(label=_("Электронная почта"), widget=faWidget( 'fa fa-envelope-o',
                             attrs={'class': 'form-control', 'type': 'email', 'placeholder': _('Электронная почта'), 'required': 'true'}))

@@ -27,17 +27,31 @@ SECRET_KEY = sec_key
 DEBUG = True
 
 # Белый список хостов куда можно переходить без проверки токена CSFR
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS=['.example.com','127.0.0.1', 'localhost', 'example.com']
 
 INTERNAL_IPS = ('127.0.0.1',)
 
-# Application definition
+SHARED_APPS = (
+    'tenant_schemas',  # mandatory
+    'globalcustomer',  # you must list the app where your tenant model resides in
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.sites',
     'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.admin',
+    'django.contrib.sites', # must have for public correct work
+)
+
+TENANT_APPS = (
+    # The following Django contrib apps must be in TENANT_APPS
+    'django.contrib.contenttypes',
+    'django.contrib.auth',
+
+
+    'django.contrib.admin',
+    'django.contrib.sites',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -51,10 +65,14 @@ INSTALLED_APPS = [
     'datetimewidget',
     'django_select2',
     'django_extensions',
-]
+)
 
+TENANT_MODEL = "globalcustomer.Client"  # app.Model
+
+INSTALLED_APPS = list(set(TENANT_APPS + SHARED_APPS))
 
 MIDDLEWARE_CLASSES = [
+    'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -66,7 +84,8 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'simpleCRM.urls'
+ROOT_URLCONF = 'simpleCRM.urls_tenants'
+PUBLIC_SCHEMA_URLCONF = 'simpleCRM.urls_public'
 
 TEMPLATES = [
     {
@@ -85,6 +104,10 @@ TEMPLATES = [
     },
 ]
 
+DATABASE_ROUTERS = (
+    'tenant_schemas.routers.TenantSyncRouter',
+)
+
 WSGI_APPLICATION = 'simpleCRM.wsgi.application'
 
 # Database
@@ -92,7 +115,8 @@ WSGI_APPLICATION = 'simpleCRM.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'tenant_schemas.postgresql_backend',
         'NAME': 'scrm',
         'USER': 'ama',
         'PASSWORD': 'alex1972',

@@ -6,13 +6,11 @@ from django.contrib import messages
 from datetimewidget.widgets import DateWidget, TimeWidget
 from django.forms import modelformset_factory
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.core.urlresolvers import reverse
 from django.views.generic import UpdateView, CreateView
 from crm.forms import DealForm, DealProductForm, DealStatusForm
 from crm.models import Deal, DealProducts, DealStatus, Product
 from django.utils.translation import ugettext as _
-
-
 
 
 class DealUpdateView(UpdateView):
