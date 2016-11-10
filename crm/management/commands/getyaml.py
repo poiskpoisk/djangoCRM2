@@ -24,8 +24,6 @@ class Command(BaseCommand):
                 self.stdout.write("CRM: " + model._meta.model_name)
             elif 'auth_user' in model._meta.db_table:
                 self.stdout.write("Auth: " + model._meta.model_name)
-            elif 'globalcustomer' in model._meta.db_table:
-                self.stdout.write("Globalcustomer: " + model._meta.model_name)
             else:
                 continue
 

@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.conf.urls.static import static
-from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login as loginView
@@ -30,9 +29,7 @@ urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^crm/', include('crm.urls')),
     url(r'^select2/', include('django_select2.urls')),
-    #url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.default.urls')),
-    #url(r'^globalcustomer/', include('globalcustomer.urls')),
 ]
 
 # URLconfs have a hook that lets you pass extra arguments to your view FUNCTIONS (!), as a Python dictionary.

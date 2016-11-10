@@ -15,7 +15,7 @@ class GlobalClientForm(forms.ModelForm):
         model = Client
         # В форме поля будут в том же порядке, как перечисленны ниже
         fields = '__all__'
-        #exclude = ['domain_url']
+        exclude = ['domain_url']
         widgets = {
             'name': faWidget('fa fa-user fa-lg',
                                    attrs={'placeholder': _('Обязательно'),
