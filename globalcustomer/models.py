@@ -4,6 +4,24 @@ from django.utils.translation import ugettext as _
 
 
 class Client(TenantMixin):
+    """
+        Client model has two types of records: Public record and Tenants records.
+
+        >>> # Load a fixture. It's some tricky for doctest.
+        >>> from django.core.management import call_command
+        >>> call_command("loaddata","client.yaml")
+        Installed 2 object(s) from 1 fixture(s)
+        >>> # Check for PUBLIC ( main record ) is present.
+        >>> rec = Client.objects.get(pk=1)
+        >>> print( rec.schema_name )
+        public
+        >>> # Check for TENANT is present.
+        >>> rec = Client.objects.get(pk=2)
+        >>> print( rec.schema_name )
+        a1
+
+    """
+
     name = models.CharField(_('Имя Вашей организации'), max_length=100)
     description = models.TextField(_("Парру слов о Вашей организации"), max_length=200, blank=True)
     created_on = models.DateField(auto_now_add=True)

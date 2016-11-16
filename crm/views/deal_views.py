@@ -11,7 +11,8 @@ from django.views.generic import UpdateView, CreateView
 from crm.forms import DealForm, DealProductForm, DealStatusForm
 from crm.models import Deal, DealProducts, DealStatus, Product
 from django.utils.translation import ugettext as _
-
+from django.http import HttpRequest
+from simpleCRM.settings  import DEBUG
 
 class DealUpdateView(UpdateView):
     model = Deal
@@ -188,11 +189,15 @@ class DealCreateView(CreateView):
         return reverse('deals')
 
     def change_request(self, request):
-        # Calculate total price for product and deal price and push these data to request
+        '''
+        Calculate total price for product and deal price and push these data to request
+        >>> print('jjjj')
+        jjjj
+        '''
         try:
             pr = Product.objects.get(pk=request.POST['product'])
         except:
-            messages.error(request, 'Doh! Something went wrong.')
+            messages.error(request, _('Doh! Something went wrong.') )
             # todo Let do err handler
         else:
             request.POST['item_price'] = str(pr.price)
@@ -200,3 +205,5 @@ class DealCreateView(CreateView):
             request.POST['price'] = request.POST['total_price']
 
         return request
+
+

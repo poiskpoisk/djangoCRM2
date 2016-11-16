@@ -6,6 +6,10 @@ from decimal import Decimal
 
 
 class Person(models.Model):  # ABS class define abstract Person
+    '''
+    >>> 1+2==3
+    True
+    '''
 
     first_name = models.CharField(max_length=100, verbose_name=_('Фамилия'))
     second_name = models.CharField(max_length=100, verbose_name=_('Имя'))
