@@ -12,7 +12,8 @@ from crm.forms import DealForm, DealProductForm, DealStatusForm
 from crm.models import Deal, DealProducts, DealStatus, Product
 from django.utils.translation import ugettext as _
 from django.http import HttpRequest
-from simpleCRM.settings  import DEBUG
+from simpleCRM.settings import DEBUG
+
 
 class DealUpdateView(UpdateView):
     model = Deal
@@ -68,7 +69,6 @@ class DealUpdateView(UpdateView):
 
     def change_request_product(self, request):
         """
-
         *** This method receive request and change it. PRODUCT formset ***
 
         1. Deal field is hidden and don't fill proper value. We need fill it correct value before saving.
@@ -123,7 +123,7 @@ class DealUpdateView(UpdateView):
         """
         prefix = 'status-'
         s = prefix + 'TOTAL_FORMS'
-        for i in range(int(request.POST[s])):
+        for i in range(int(request.POST[s])):  # request.POST['status-TOTAL_FORMS'] has number of form in formset
 
             deal = prefix + str(i) + '-deal'
             status = prefix + str(i) + '-status'
@@ -189,15 +189,11 @@ class DealCreateView(CreateView):
         return reverse('deals')
 
     def change_request(self, request):
-        '''
-        Calculate total price for product and deal price and push these data to request
-        >>> print('jjjj')
-        jjjj
-        '''
+
         try:
             pr = Product.objects.get(pk=request.POST['product'])
         except:
-            messages.error(request, _('Doh! Something went wrong.') )
+            messages.error(request, _('Doh! Something went wrong.'))
             # todo Let do err handler
         else:
             request.POST['item_price'] = str(pr.price)
@@ -205,5 +201,3 @@ class DealCreateView(CreateView):
             request.POST['price'] = request.POST['total_price']
 
         return request
-
-

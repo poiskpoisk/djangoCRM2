@@ -19,7 +19,6 @@ class Client(TenantMixin):
         >>> rec = Client.objects.get(pk=2)
         >>> print( rec.schema_name )
         a1
-
     """
 
     name = models.CharField(_('Имя Вашей организации'), max_length=100)
