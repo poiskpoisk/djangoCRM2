@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block content %}
+{% load bootstrap %}
+
+
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-2 col-md-8 col-md-offset-1 col-sm-11 col-xs-12">
+                <form action="" method="get">{% csrf_token %}
+                    {{ filter.form|bootstrap_horizontal }}
+                    <button class="btn btn-primary btn-xm" type="submit" ><i class="fa fa-pencil-square-o fa-lg"></i>&nbsp;&nbsp;{%trans 'Обновить' %}</button>
+                </form>
+            </div>
+        </div>
+        </div>
+
+        <p>&nbsp;</p>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-2 col-md-8 col-md-offset-1 col-sm-11 col-xs-12">
+                    {% if messages %}
+                        <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                                {{ message }}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        {% include_chart_jscss %}
+                        {% load_chart charttype chartdata "linechart_container" extra %}
+                        {% load_chart charttype_qty chartdata_qty "linechart_container_qty" extra %}
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-12 col-lg-offset-0 col-md-8 col-md-offset-1 col-sm-11 col-xs-12">
+                                    <h2 class="title">{% trans "Контракты по выбранному менеджеру (время/деньги)" %}</h2>
+                                    <p>&nbsp;</p>
+                                    {% include_container chartcontainer 450 800 %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>&nbsp;</p>
+
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-12 col-lg-offset-0 col-md-8 col-md-offset-1 col-sm-11 col-xs-12">
+                                    <h2 class="title">{% trans "Контракты по выбранному менеджеру (время/кол-во)" %}</h2>
+                                    <p>&nbsp;</p>
+                                    {% include_container chartcontainer_qty 450 800 %}
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
+

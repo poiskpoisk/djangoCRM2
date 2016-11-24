@@ -28,7 +28,10 @@ pm tenant_command loaddata --schema=a2 deal.yaml;
 pm tenant_command loaddata --schema=a2 dealproducts.yaml;
 pm tenant_command loaddata --schema=a2 dealstatus.yaml;
 
-echo if you want create superuser, use python manage.py createsuperuser for public part or createsuperuser --username=admin --schema=customer1 for tenants part
+pm loaddata group.yaml
+
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('ama', 'alex.abakumov@gmail.com', 'alex1972')" | python3 manage.py shell
+
 
 
 

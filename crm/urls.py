@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-#
 __author__ = 'AMA'
 
-from crm.filters import DealFilter, DealFilterWithoutData, TodoFilter, TodoFilterWithoutData
+from crm.filters import DealFilter, DealFilterWithoutData, TodoFilter, TodoFilterWithoutData, ReportFilter
 from crm.tables import DealsTable
 from django.views.generic import UpdateView, CreateView, DeleteView
 from django.conf.urls import url
@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from crm.views.table_views import tableSalesPerson, tableFilterDeals, tableFilterToDos, tableFilterCustomer
 from crm.views.deal_views import DealUpdateView, DealCreateView
-from crm.views.views import setLang, reportFunnel
+from crm.views.views import setLang, reportFunnel, reportSalesPerson
 from crm.models import SalesPerson, Todo, Customer, Deal
 from crm.forms import SalesPersonForm, ToDoForm, CustomerForm, DealForm
 
@@ -110,6 +110,7 @@ urlpatterns = [
 
     # ---------------------------------------------- Reports ------------------------------------------
 
-    url(r'^report/$', reportFunnel, {'model': Deal, 'modelTable': DealsTable, 'classFilter': DealFilter}, name='reportfunnel'),
+    url(r'^reportfunnel/$', reportFunnel,  {'model': Deal, 'classFilter': ReportFilter}, name='reportfunnel'),
+    url(r'^reportsp/$', reportSalesPerson, {'model': Deal, 'classFilter': DealFilter}, name='reportsp'),
 
 ]

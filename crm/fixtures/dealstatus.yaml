@@ -1,6 +1,72 @@
 - model: crm.dealstatus
   pk: 1
-  fields: {deal: 3, status: E, deal_data: 2016-10-24, deal_time: '07:42:46', remark: no remark}
+  fields: {deal: 1, status: E, deal_data: 2016-01-24, deal_time: '07:42:46', remark: no remark}
 - model: crm.dealstatus
   pk: 2
-  fields: {deal: 4, status: E, deal_data: 2016-11-24, deal_time: '02:42:46', remark: no remark}
+  fields: {deal: 2, status: E, deal_data: 2016-02-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 3
+  fields: {deal: 3, status: E, deal_data: 2016-03-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 4
+  fields: {deal: 4, status: E, deal_data: 2016-04-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 5
+  fields: {deal: 5, status: E, deal_data: 2016-05-24, deal_time: '07:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 6
+  fields: {deal: 6, status: E, deal_data: 2016-06-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 7
+  fields: {deal: 7, status: E, deal_data: 2016-07-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 8
+  fields: {deal: 8, status: E, deal_data: 2016-08-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 9
+  fields: {deal: 9, status: E, deal_data: 2016-09-24, deal_time: '07:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 10
+  fields: {deal: 10, status: E, deal_data: 2016-10-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 11
+  fields: {deal: 11, status: E, deal_data: 2016-11-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 12
+  fields: {deal: 12, status: E, deal_data: 2016-12-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 13
+  fields: {deal: 1, status: O, deal_data: 2017-01-24, deal_time: '07:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 14
+  fields: {deal: 2, status: O, deal_data: 2017-02-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 15
+  fields: {deal: 3, status: O, deal_data: 2017-03-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 16
+  fields: {deal: 4, status: O, deal_data: 2017-04-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 17
+  fields: {deal: 5, status: O, deal_data: 2017-05-24, deal_time: '07:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 18
+  fields: {deal: 6, status: O, deal_data: 2017-06-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 19
+  fields: {deal: 7, status: O, deal_data: 2017-07-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 20
+  fields: {deal: 8, status: O, deal_data: 2017-08-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 21
+  fields: {deal: 9, status: O, deal_data: 2017-09-24, deal_time: '07:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 22
+  fields: {deal: 10, status: O, deal_data: 2017-10-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 23
+  fields: {deal: 11, status: O, deal_data: 2017-11-24, deal_time: '02:42:46', remark: no remark}
+- model: crm.dealstatus
+  pk: 24
+  fields: {deal: 12, status: O, deal_data: 2017-12-24, deal_time: '02:42:46', remark: no remark}
