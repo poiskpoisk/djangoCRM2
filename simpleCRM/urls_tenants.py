@@ -19,6 +19,7 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login as loginView
 from django.views.generic import TemplateView
+from django.contrib import admin
 
 from crm.registration_forms import MyRegistrationFormUniqueEmail, MyAuthenticationForm
 from crm.views.registration_views import MyRegistrationView, UserListView
@@ -38,6 +39,7 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^$', loginView, {'authentication_form': MyAuthenticationForm}, name='mainpage'),
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/register/$', MyRegistrationView.as_view(form_class=MyRegistrationFormUniqueEmail), name='register'),
     url(r'^accounts/register/complete/$', TemplateView.as_view(template_name='registration/registration_complete.html'),
         name='registration_complete'),

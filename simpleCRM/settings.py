@@ -32,6 +32,7 @@ SHARED_APPS = (
     'django.contrib.sites', # must have for public correct work
     'djangobower',
     'django_nvd3',
+    'guardian',
 )
 
 TENANT_APPS = (
@@ -56,6 +57,7 @@ TENANT_APPS = (
     'django_select2',
     'django_extensions',
     'djangobower',
+    'guardian',
 )
 
 TENANT_MODEL = "globalcustomer.Client"  # app.Model
@@ -232,3 +234,7 @@ BOWER_INSTALLED_APPS = (
     'nvd3#1.7.1',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # this is default
+    'guardian.backends.ObjectPermissionBackend',
+)

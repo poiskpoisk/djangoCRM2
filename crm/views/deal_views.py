@@ -11,8 +11,6 @@ from django.views.generic import UpdateView, CreateView
 from crm.forms import DealForm, DealProductForm, DealStatusForm
 from crm.models import Deal, DealProducts, DealStatus, Product
 from django.utils.translation import ugettext as _
-from django.http import HttpRequest
-from simpleCRM.settings import DEBUG
 
 
 class DealUpdateView(UpdateView):

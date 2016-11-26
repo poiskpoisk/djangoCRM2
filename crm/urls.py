@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-#
-__author__ = 'AMA'
 
-from crm.filters import DealFilter, DealFilterWithoutData, TodoFilter, TodoFilterWithoutData, ReportFilter
-from crm.tables import DealsTable
+
 from django.views.generic import UpdateView, CreateView, DeleteView
 from django.conf.urls import url
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
+
+from crm.views.salesperson_views import SalesPersonUpdateView, SalesPersonDeleteView, SalesPersonCreateView
+from crm.filters import DealFilter, DealFilterWithoutData, TodoFilter, TodoFilterWithoutData, ReportFilter
 from crm.views.table_views import tableSalesPerson, tableFilterDeals, tableFilterToDos, tableFilterCustomer
 from crm.views.deal_views import DealUpdateView, DealCreateView
 from crm.views.views import setLang, reportFunnel, reportSalesPerson
@@ -21,24 +22,10 @@ urlpatterns = [
 
     # ----------------------- Sales Person ------------------------------------------------------------------------
 
-    url(r'^salespersons/(?P<pk>[0-9]+)/$', login_required(UpdateView.as_view(   model=SalesPerson,
-                                                                                template_name='crm/salesperson.html',
-                                                                                form_class=SalesPersonForm,
-                                                                                success_url = reverse_lazy('salespersons')
-                                                                             )), name='salespersonpage'),
-
-    url(r'^salespersons/del/(?P<pk>[0-9]+)/$', login_required(DeleteView.as_view(   model=SalesPerson,
-                                                                                template_name='crm/salesperson_del.html',
-                                                                                success_url = reverse_lazy('salespersons')
-                                                                             )), name='salesperson_del'),
-
+    url(r'^salespersons/(?P<pk>[0-9]+)/$', SalesPersonUpdateView.as_view(), name='salespersonpage'),
+    url(r'^salespersons/del/(?P<pk>[0-9]+)/$', SalesPersonDeleteView.as_view(), name='salesperson_del'),
     url(r'^salespersons/$', tableSalesPerson, name='salespersons'),
-
-    url(r'^salespersons/new/$', login_required(CreateView.as_view(  model= SalesPerson,
-                                                                    template_name='crm/salesperson_new.html',
-                                                                    form_class = SalesPersonForm,
-                                                                    success_url=reverse_lazy('salespersons')
-                                                                    )), name='salesperson_new'),
+    url(r'^salespersons/new/$', SalesPersonCreateView.as_view(), name='salesperson_new'),
 
     # ---------------------------- ToDo ------------------------------------------------------------
 

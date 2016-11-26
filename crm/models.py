@@ -51,6 +51,7 @@ class SalesPerson(Person):
     class Meta:
         verbose_name = _('Менеджер по продажам')
         verbose_name_plural = _('Всего менеджеров по продажам')
+        permissions = (('read_salesperson', _('Просмотр менеджера по продажам')),)
 
     def __str__(self):
         return '%s %s' % (self.first_name, self.second_name)
@@ -122,6 +123,7 @@ class Deal(models.Model):
     class Meta:
         verbose_name = _('Сделка')
         verbose_name_plural = _('Всего сделок')
+        permissions = ( ('read_deal', _('Просмотр контрактов')),)
 
     def __str__(self):
         return '%s' % (self.ident)

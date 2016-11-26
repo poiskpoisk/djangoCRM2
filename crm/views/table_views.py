@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-#
+
 import datetime
 
 from django.contrib.auth.decorators import login_required
@@ -6,13 +7,15 @@ from django.db.models import F
 from django.shortcuts import render
 from django_tables2 import RequestConfig
 
+from guardian.decorators import  permission_required
+
 from crm.models import SalesPerson, DealStatus, Deal, Todo, Customer
 from crm.tables import SalesPersonTable, DealsTable, ToDosTable, CustomersTable
 
 __author__ = 'AMA'
 
 
-@login_required
+@permission_required('crm.read_salesperson', accept_global_perms=True)
 def tableSalesPerson(request):
     queryset = SalesPerson.objects.annotate(email=F('user__email'))
     table = SalesPersonTable(queryset)
@@ -20,7 +23,7 @@ def tableSalesPerson(request):
     filter = 'NONFILTER'
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
 
-@login_required
+@permission_required('crm.read_deals', accept_global_perms=True)
 def tableFilterDeals(request, classFilter=None, duration=None):
     '''
     Функция комбинированного показа фильтров и результата фильтрования чрезе таблицы

@@ -53,21 +53,16 @@ class Command(BaseCommand):
                     self.stdout.write("CRM: " + model._meta.model_name)
                 elif 'auth_user' in model._meta.db_table:
                     self.stdout.write("Auth: " + model._meta.model_name)
-                else:
-                    continue
-            else:
-                if 'auth_group' in model._meta.db_table:
+                elif 'auth_group' in model._meta.db_table:
                     self.stdout.write("Group: " + model._meta.model_name)
-                elif 'auth_group_permissions' in model._meta.db_table:
-                    self.stdout.write("Group permissions: " + model._meta.model_name)
                 else:
                     continue
 
-            data = serializers.serialize("yaml", model.objects.all())
-            dir = BASE_DIR + "/crm/fixtures/yamlsrc/" + str(schema)+'__'+model._meta.model_name + ".yaml"
-            ct += 1
-            with open(dir, "w") as out:
-                print(data, end="", file=out)
+                data = serializers.serialize("yaml", model.objects.all())
+                dir = BASE_DIR + "/crm/fixtures/yamlsrc/" + str(schema)+'__'+model._meta.model_name + ".yaml"
+                ct += 1
+                with open(dir, "w") as out:
+                    print(data, end="", file=out)
 
         self.stdout.write(" ")
         self.stdout.write("Number of created .yaml for schema "+str(schema)+" are " + str(ct))
