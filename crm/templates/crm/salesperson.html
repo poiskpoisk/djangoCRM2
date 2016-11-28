@@ -37,9 +37,20 @@
 
                     {% if form.errors %}
                             <div class="errorlist">
-                                <p>{% trans "Что-то пошло не так" %}</p>
+                                <p>{% trans "Ошибка в форме. Что-то пошло не так" %}</p>
                             </div>
                     {% endif %}
+
+                    {% if messages %}
+                        <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                                {{ message }}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+
                 </form>
             </div>
         <div class="col-lg-2 col-md-2"> </div>

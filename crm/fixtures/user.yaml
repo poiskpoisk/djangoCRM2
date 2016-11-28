@@ -1,19 +1,4 @@
 - model: auth.user
-  pk: 1
-  fields:
-    password: pbkdf2_sha256$30000$FUpOk13kUJy1$Qyp/ULQ+i4DiNWI/1HwxvKtOMe+J8WrhfrL5wxtnlb4=
-    last_login: 2016-10-11 13:42:13.235085+00:00
-    is_superuser: true
-    username: ama
-    first_name: ''
-    last_name: ''
-    email: alex-abakumov@yandex.ru
-    is_staff: true
-    is_active: true
-    date_joined: 2016-10-11 10:47:00.801048+00:00
-    groups: []
-    user_permissions: []
-- model: auth.user
   pk: 2
   fields:
     password: pbkdf2_sha256$30000$3lNgL4EoqzPa$iCPXLj3FtgIoXsmGRK0pjKsWl/+rTNxYCnNPKO+F8zA=
@@ -25,7 +10,7 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
+    date_joined: 2016-10-11 07:48:14.395428+00:00
     groups: []
     user_permissions: []
 - model: auth.user
@@ -40,7 +25,7 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
+    date_joined: 2016-10-11 07:48:14.395428+00:00
     groups: []
     user_permissions: []
 - model: auth.user
@@ -55,7 +40,7 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
+    date_joined: 2016-10-11 07:48:14.395428+00:00
     groups: []
     user_permissions: []
 - model: auth.user
@@ -70,7 +55,7 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
+    date_joined: 2016-10-11 07:48:14.395428+00:00
     groups: []
     user_permissions: []
 - model: auth.user
@@ -85,7 +70,7 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
+    date_joined: 2016-10-11 07:48:14.395428+00:00
     groups: []
     user_permissions: []
 - model: auth.user
@@ -100,7 +85,7 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
+    date_joined: 2016-10-11 07:48:14.395428+00:00
     groups: []
     user_permissions: []
 - model: auth.user
@@ -115,37 +100,7 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
-    groups: []
-    user_permissions: []
-- model: auth.user
-  pk: 9
-  fields:
-    password: pbkdf2_sha256$30000$3lNgL4EoqzPa$iCPXLj3FtgIoXsmGRK0pjKsWl/+rTNxYCnNPKO+F8zA=
-    last_login: null
-    is_superuser: false
-    username: Alex
-    first_name: ''
-    last_name: ''
-    email: ''
-    is_staff: false
-    is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
-    groups: []
-    user_permissions: []
-- model: auth.user
-  pk: 10
-  fields:
-    password: pbkdf2_sha256$30000$3lNgL4EoqzPa$iCPXLj3FtgIoXsmGRK0pjKsWl/+rTNxYCnNPKO+F8zA=
-    last_login: null
-    is_superuser: false
-    username: Alex1972
-    first_name: ''
-    last_name: ''
-    email: ''
-    is_staff: false
-    is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
+    date_joined: 2016-10-11 07:48:14.395428+00:00
     groups: []
     user_permissions: []
 - model: auth.user
@@ -160,7 +115,7 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
+    date_joined: 2016-10-11 07:48:14.395428+00:00
     groups: []
     user_permissions: []
 - model: auth.user
@@ -175,7 +130,7 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
+    date_joined: 2016-10-11 07:48:14.395428+00:00
     groups: []
     user_permissions: []
 - model: auth.user
@@ -190,7 +145,7 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
+    date_joined: 2016-10-11 07:48:14.395428+00:00
     groups: []
     user_permissions: []
 - model: auth.user
@@ -205,7 +160,7 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
+    date_joined: 2016-10-11 07:48:14.395428+00:00
     groups: []
     user_permissions: []
 - model: auth.user
@@ -220,6 +175,51 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2016-10-11 10:48:14.395428+00:00
+    date_joined: 2016-10-11 07:48:14.395428+00:00
     groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 9
+  fields:
+    password: pbkdf2_sha256$30000$3lNgL4EoqzPa$iCPXLj3FtgIoXsmGRK0pjKsWl/+rTNxYCnNPKO+F8zA=
+    last_login: null
+    is_superuser: false
+    username: Alex
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2016-10-11 07:48:14+00:00
+    groups: [1]
+    user_permissions: []
+- model: auth.user
+  pk: 10
+  fields:
+    password: pbkdf2_sha256$30000$3lNgL4EoqzPa$iCPXLj3FtgIoXsmGRK0pjKsWl/+rTNxYCnNPKO+F8zA=
+    last_login: null
+    is_superuser: false
+    username: Alex1972
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2016-10-11 07:48:14+00:00
+    groups: [2]
+    user_permissions: []
+- model: auth.user
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$24000$rWdtxC2KBZCE$nErWtk4iAtq30cvefDv+o1Az+/V/ppZl90U5qTKwJ7E=
+    last_login: 2016-11-27 18:35:33+00:00
+    is_superuser: true
+    username: ama
+    first_name: ''
+    last_name: ''
+    email: alex-abakumov@yandex.ru
+    is_staff: true
+    is_active: true
+    date_joined: 2016-10-11 07:47:00+00:00
+    groups: [3]
     user_permissions: []

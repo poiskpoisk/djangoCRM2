@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from crm.views.salesperson_views import SalesPersonUpdateView, SalesPersonDeleteView, SalesPersonCreateView
 from crm.filters import DealFilter, DealFilterWithoutData, TodoFilter, TodoFilterWithoutData, ReportFilter
 from crm.views.table_views import tableSalesPerson, tableFilterDeals, tableFilterToDos, tableFilterCustomer
-from crm.views.deal_views import DealUpdateView, DealCreateView
+from crm.views.deal_views import DealUpdateView, DealCreateView, DealDeleteView
 from crm.views.views import setLang, reportFunnel, reportSalesPerson
 from crm.models import SalesPerson, Todo, Customer, Deal
 from crm.forms import SalesPersonForm, ToDoForm, CustomerForm, DealForm
@@ -77,17 +77,10 @@ urlpatterns = [
 
     # ----------------------------- Deal -------------------------------------------------------------------------
 
-    url(r'^deal/(?P<pk>[0-9]+)/$', login_required(DealUpdateView.as_view()), name='dealpage'),
-    url(r'^deal/del/(?P<pk>[0-9]+)/$', login_required(DeleteView.as_view(model=Deal,
-                                                                          template_name='crm/deal_del.html',
-                                                                          success_url=reverse_lazy('deals')
-                                                                          )), name='deal_del'),
+    url(r'^deal/(?P<pk>[0-9]+)/$', DealUpdateView.as_view(), name='dealpage'),
+    url(r'^deal/del/(?P<pk>[0-9]+)/$', DealDeleteView.as_view(), name='deal_del'),
     url(r'^deal/$', tableFilterDeals, name='deals'),
-    url(r'^deal/new/$', login_required(DealCreateView.as_view(model=Deal,
-                                                           template_name='crm/deal_new.html',
-                                                           form_class=DealForm,
-                                                           success_url=reverse_lazy('deals')
-                                                           )), name='deal_new'),
+    url(r'^deal/new/$', DealCreateView.as_view(), name='deal_new'),
     # .................... with filters ................................................................................
 
     url(r'^dealfilters/$', tableFilterDeals, {'classFilter': DealFilter}, name='dealsfilters'),

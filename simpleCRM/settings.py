@@ -58,6 +58,7 @@ TENANT_APPS = (
     'django_extensions',
     'djangobower',
     'guardian',
+    'accounts',
 )
 
 TENANT_MODEL = "globalcustomer.Client"  # app.Model

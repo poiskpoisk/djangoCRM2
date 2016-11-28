@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 from decimal import Decimal
 
+# how to override the verbose name of a superclass model field in django
+# http://stackoverflow.com/questions/927729/how-to-override-the-verbose-name-of-a-superclass-model-field-in-django
+User._meta.get_field('is_staff').verbose_name = _('персонал')
+User._meta.get_field('is_superuser').verbose_name = _('админ.')
 
 class Person(models.Model):  # ABS class define abstract Person
 
@@ -42,11 +46,20 @@ class Person(models.Model):  # ABS class define abstract Person
 
 
 class SalesPerson(Person):
+    ROLE_CHOICES = (
+        ('B', _('Руководитель')),
+        ('A', _('Администратор')),
+        ('M', _('Менеджер')),
+    )
     # see http://djbook.ru/rel1.8/topics/auth/customizing.html
     user = models.OneToOneField(User, on_delete=models.CASCADE,
                                 verbose_name=_('Логин'))  # Связываем модель с данными USER ( РАСШИРЯЕМ USER )
 
     division = models.CharField(max_length=50, blank=True, verbose_name=_('Подразделение'))
+    role = models.CharField(max_length=1, choices=ROLE_CHOICES, verbose_name=_('Роль'),
+                        help_text='По соображениям безопасности роль можно назначить только при создании нвого менеджера по продажам. '
+                                  'Если понадобится изменить роль, то надо удалить менеджера по продажам и'
+                                  'связаный с ним пользовательский аккаунт и создать нового с требуемой ролью.')
 
     class Meta:
         verbose_name = _('Менеджер по продажам')
@@ -76,6 +89,7 @@ class Todo(models.Model):
     class Meta:
         verbose_name = _('Список дел')
         verbose_name_plural = _('Всего дел')
+        permissions = (('read_todo', _('Просмотр дел')),)
 
     def __str__(self):
         return '%s %s' % (self.action_description, self.data_time)
@@ -102,6 +116,8 @@ class Customer(Person):
     class Meta:
         verbose_name = _('Клиент')
         verbose_name_plural = _('Всего клиентов')
+        permissions = (('read_salesperson', _('Просмотр пользоателей')),)
+
 
     def __str__(self):
         return '%s %s' % (self.first_name, self.second_name)
@@ -137,6 +153,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = _('Продукт')
         verbose_name_plural = _('Всего продуктов')
+        permissions = (('read_salesperson', _('Просмотр продуктов')),)
 
     def __str__(self):
         return '%s' % (self.description)
@@ -158,6 +175,7 @@ class DealProducts(models.Model):  # Промежуточная модель
         # auto_created = True
         verbose_name = _('Продукт в контракте')
         verbose_name_plural = _('Всего продуктов в контракте')
+        permissions = (('read_salesperson', _('Просмотр продуктов в контракте')),)
 
     def __str__(self):
         return '%s' % (self.product)
@@ -187,6 +205,8 @@ class DealStatus(models.Model):
         verbose_name = _('Статус контракта')
         verbose_name_plural = _('Статусы контракта')
         unique_together = (("deal","deal_data", "deal_time"),)
+        permissions = (('read_salesperson', _('Просмотр статуса контракта')),)
+
 
     def __str__(self):
         return '%s' % (self.status)

@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-#
 __author__ = 'AMA'
 
+import django.apps
 from django.core.management import BaseCommand
 from django.core import serializers
-from simpleCRM.settings import BASE_DIR
-import django.apps
+from django.contrib.auth.models import Permission
 from django.db import connection
+
+from simpleCRM.settings import BASE_DIR
+
+
 from tenant_schemas.utils import schema_context
 
 
@@ -49,14 +53,6 @@ class Command(BaseCommand):
             self.stdout.write(model._meta.db_table)
 
             if schema != 'public':
-                if 'crm' in model._meta.db_table:
-                    self.stdout.write("CRM: " + model._meta.model_name)
-                elif 'auth_user' in model._meta.db_table:
-                    self.stdout.write("Auth: " + model._meta.model_name)
-                elif 'auth_group' in model._meta.db_table:
-                    self.stdout.write("Group: " + model._meta.model_name)
-                else:
-                    continue
 
                 data = serializers.serialize("yaml", model.objects.all())
                 dir = BASE_DIR + "/crm/fixtures/yamlsrc/" + str(schema)+'__'+model._meta.model_name + ".yaml"

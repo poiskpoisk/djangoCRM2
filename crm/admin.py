@@ -29,7 +29,7 @@ class SalePersonInline(admin.StackedInline):
     verbose_name_plural = 'SalesPersons'
 
 
-class SalesPersonAdmin(admin.ModelAdmin):
+class SalesPersonAdmin(GuardedModelAdmin):
     model = SalesPerson
 
 

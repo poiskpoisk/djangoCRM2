@@ -23,7 +23,7 @@ def tableSalesPerson(request):
     filter = 'NONFILTER'
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
 
-@permission_required('crm.read_deals', accept_global_perms=True)
+@permission_required('crm.read_deal', accept_global_perms=True)
 def tableFilterDeals(request, classFilter=None, duration=None):
     '''
     Функция комбинированного показа фильтров и результата фильтрования чрезе таблицы
@@ -72,7 +72,6 @@ def tableFilterDeals(request, classFilter=None, duration=None):
 
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
 
-
 @login_required
 def tableFilterToDos(request, classFilter=None, duration=None):
     '''
@@ -103,7 +102,6 @@ def tableFilterToDos(request, classFilter=None, duration=None):
     RequestConfig(request).configure(table)
 
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
-
 
 @login_required
 def tableFilterCustomer(request, classFilter=None, duration=None):

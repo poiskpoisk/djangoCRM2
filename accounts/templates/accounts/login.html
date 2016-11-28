@@ -32,8 +32,7 @@
 
 					{% if next %}
 						{% if user.is_authenticated %}
-							<p>Your account doesn't have access to this page. To proceed,
-							please login with an account that has access.</p>
+							<p>{% trans "Ваш аккаунт не имеет прав для запрашиваемого действия" %}</p>
 						{% else %}
 							<p>{% trans "Для просмотра надо войдите в систему" %}</p>
 						{% endif %}

@@ -4,6 +4,9 @@ __author__ = 'AMA'
 from django.forms import widgets, ClearableFileInput
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
+from django.contrib.auth.models import User
+
+from crm.models import SalesPerson
 
 
 class imageWidget(ClearableFileInput):
@@ -19,7 +22,7 @@ class imageWidget(ClearableFileInput):
         '<div id="hide-me" class="collapse out">%(clear_template)s<br/>%(input_text)s: %(input)s</div>'
     )
 
-class faWidget( widgets.TextInput):
+class FaWidget(widgets.TextInput):
 
     def __init__(self, fa, hidden=False, **kwargs ):
         self.fa = fa
@@ -33,7 +36,37 @@ class faWidget( widgets.TextInput):
         new_html = '''<div class="cols-sm-10 input-group"><span class="input-group-addon"><i class="'''+self.fa+'''" aria-hidden="true"></i></span>'''+ html + '''</div>'''
         return mark_safe(new_html)
 
+class HiddenWidget(widgets.TextInput):
 
+    def __init__(self, fa, func=None, **kwargs ):
+        self.fa = fa
+        self.func = func
+        super().__init__( **kwargs )
+
+    def render(self, name, value, attrs=None):
+
+        attrs['disabled'] = 'disabled'
+        value = self.func(pk=value)
+        html = super().render( name, value, attrs)
+        new_html = '''<div class="cols-sm-10 input-group"><span class="input-group-addon"><i class="'''+self.fa+'''" aria-hidden="true"></i></span>'''+ html + '''</div>'''
+        return mark_safe(new_html)
+
+class HiddenWidgetRole(widgets.TextInput):
+
+    def __init__(self, fa, hidden=True, **kwargs ):
+        self.fa = fa
+        self.hidden = hidden
+        super().__init__( **kwargs )
+
+    def render(self, name, value, attrs=None):
+        if self.hidden:
+            attrs['disabled'] = 'disabled'
+        for choice in SalesPerson.ROLE_CHOICES:
+            if value == choice[0]:
+                value = choice[1]
+        html = super().render( name, value, attrs)
+        new_html = '''<div class="cols-sm-10 input-group"><span class="input-group-addon"><i class="'''+self.fa+'''" aria-hidden="true"></i></span>'''+ html + '''</div>'''
+        return mark_safe(new_html)
 
 
 
