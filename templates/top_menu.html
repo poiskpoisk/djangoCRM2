@@ -19,6 +19,7 @@
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Отчеты" %}<b class="caret"></b></a>
                      <ul class="dropdown-menu">
                       <li><a href="{% url 'reportfunnel' %}">{% trans "Воронка продаж" %}</a></li>
+                      <li><a href="{% url 'reportsp' %}">{% trans "Продажи менеджеров" %}</a></li>
                       <li class="divider"></li>
                       <li><a href="#">Отдельная ссылка</a></li>
                     </ul>
@@ -76,8 +77,10 @@
                           <li><a href="{% url 'userlist' %}">{% trans "Список пользователей" %}</a></li>
                           <li><a href="{% url 'register' %}">{% trans "Добавить нового" %}</a></li>
                           <li class="divider"></li>
-                          <li><a href="{% url 'register' %}">{% trans "Сменить пароль" %}</a></li>
-                          <li><a href="{% url 'register' %}">{% trans "Напомнить пароль" %}</a></li>
+                          <li><a href="{% url 'auth_password_change' %}">{% trans "Сменить пароль" %}</a></li>
+                          <li><a href="{% url 'auth_password_reset' %}">{% trans "Сбросить пароль" %}</a></li>
+                           <li class="divider"></li>
+                           <li><a href="https://readthedocs.org/projects/djangocrm2/">{% trans "Документация" %}</a></li>
                         </ul>
                 </li>
 

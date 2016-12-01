@@ -8,7 +8,8 @@ from globalcustomer.models import Client
 # The class must be named Command, and subclass BaseCommand
 class Command(BaseCommand):
     # Show this when the user types help
-    help = "Create tenants. Usage: python manage.py create_tenant tenant_name domen_name"
+    help = "Create tenants from Sites framework record ( this's difference from standart fixture loading with loaddata command )." \
+           " Usage: python manage.py create_tenant tenant_name domen_name"
     missing_args_message='This command must have 2 arguments - tenant_name domen_name'
 
     # positional arguments

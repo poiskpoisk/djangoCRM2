@@ -1,5 +1,0 @@
-- model: globalcustomer.client
-  pk: 1
-  fields: {domain_url: 127.0.0.1, schema_name: public, name: SaSS, description: Public
-      Tenant, created_on: 2016-11-07}
-

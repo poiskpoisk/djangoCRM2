@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-#
+
 import datetime
 
 from django.contrib.auth.decorators import login_required
@@ -6,13 +7,17 @@ from django.db.models import F
 from django.shortcuts import render
 from django_tables2 import RequestConfig
 
+from guardian.decorators import permission_required
+
 from crm.models import SalesPerson, DealStatus, Deal, Todo, Customer
 from crm.tables import SalesPersonTable, DealsTable, ToDosTable, CustomersTable
+from crm.mixin import SomeUtilsMixin
 
 __author__ = 'AMA'
 
 
 @login_required
+@permission_required('crm.read_salesperson', accept_global_perms=True)
 def tableSalesPerson(request):
     queryset = SalesPerson.objects.annotate(email=F('user__email'))
     table = SalesPersonTable(queryset)
@@ -21,6 +26,7 @@ def tableSalesPerson(request):
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
 
 @login_required
+@permission_required('crm.read_deal', accept_global_perms=True)
 def tableFilterDeals(request, classFilter=None, duration=None):
     '''
     Функция комбинированного показа фильтров и результата фильтрования чрезе таблицы
@@ -58,12 +64,7 @@ def tableFilterDeals(request, classFilter=None, duration=None):
     else:
         filter = 'NONFILTER'
 
-    # Change jne letter code on hunan readable text
-    for query in queryset:
-        for status in DealStatus.STATUS_CHOICES:
-            if query.deal_status == status[0]:
-                query.deal_status = status[1]
-
+    queryset = SomeUtilsMixin.doHumanReadble_STATUS_CHOICES(0, queryset)
     table = DealsTable(queryset)
     RequestConfig(request).configure(table)
 

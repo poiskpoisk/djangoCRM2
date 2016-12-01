@@ -1,21 +1,29 @@
 # -*- coding: utf-8 -*-#
-__author__ = 'AMA'
 
 import datetime
+
 from django.contrib import messages
-from datetimewidget.widgets import DateWidget, TimeWidget
+from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView, CreateView
-from crm.forms import DealForm, DealProductForm, DealStatusForm
-from crm.models import Deal, DealProducts, DealStatus, Product
 from django.utils.translation import ugettext as _
+from django.views.generic import DeleteView
+from django.contrib.auth.models import Group, User
+
+from datetimewidget.widgets import DateWidget, TimeWidget
+from guardian.decorators import permission_required
+from guardian.shortcuts import assign_perm
+from crm.forms import BossDealForm, DealProductForm, DealStatusForm, ManagerDealForm
+from crm.mixin import SomeUtilsMixin
+from crm.models import Deal, DealProducts, DealStatus, Product, SalesPerson
 
 
-class DealUpdateView(UpdateView):
+class DealUpdateView(UpdateView, SomeUtilsMixin):
     model = Deal
-    form_class = DealForm
+    form_class = BossDealForm
     template_name = 'crm/deal.html'
 
     def __init__(self, *args, **kwargs):
@@ -28,8 +36,23 @@ class DealUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('dealpage', kwargs={'pk': self.kwargs['pk']})
 
+    @method_decorator(login_required())
+    @method_decorator(permission_required('crm.read_deal', accept_global_perms=True))
+    def get(self, request, *args, **kwargs):
+
+        self.req = request
+        user = User.objects.get(username=request.user.username)
+
+        if user.groups.filter(name='boss').exists():
+            DealUpdateView.form_class = BossDealForm
+        else:
+            DealUpdateView.form_class = ManagerDealForm
+
+        return super().get(self, request, *args, **kwargs)
+
     # Add some more context ( formset )
     def get_context_data(self, **kwargs):
+
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
@@ -43,17 +66,43 @@ class DealUpdateView(UpdateView):
             stt = 'yourtimeid' + str(i)
             f.fields['deal_data'].widget = DateWidget(attrs={'id': std}, usel10n=True, bootstrap_version=3)
             f.fields['deal_time'].widget = TimeWidget(attrs={'id': stt}, usel10n=True, bootstrap_version=3)
+
+        # Patch for initial data for readonly field
+        try:
+            # If form has errors self.req will undefined and we must handled it
+            user = User.objects.get(username=self.req.user)
+
+            if not user.groups.filter(name='boss').exists():
+                sales_person = SalesPerson.objects.get(user=user)
+                context['form'].fields['sales_person'].initial = sales_person
+        except:
+            pass
+
         return context
 
+
+    @method_decorator(login_required())
     def post(self, request, *args, **kwargs):
+
+        if not self.checkPermissions(request, Deal, 'crm.change_deal'):
+            return HttpResponseRedirect(reverse('login'))
 
         request = self.change_request_product(request)
         request = self.change_request_status(request)
+
         # .save() update record if instance argument is present, but another way .save create new record
         a = Deal.objects.get(pk=self.kwargs['pk'])
-        form = DealForm(request.POST, instance=a)
+        form = BossDealForm(request.POST, instance=a)
         product_formset = self.ProductFormset(request.POST, prefix='products')
         status_formset = self.StatusFormset(request.POST, prefix='status')
+
+        # Patch for initial data for readonly field
+        user = User.objects.get(username=request.user)
+
+        if not user.groups.filter(name='boss').exists():
+            # Patch for solve problem with hidden field
+            sp = SalesPerson.objects.get(user=request.user)
+            form.data['sales_person'] = sp.pk
 
         if form.is_valid() and product_formset.is_valid() and status_formset.is_valid():
             form.data['price'] = str(self.total_deal_price)
@@ -67,7 +116,6 @@ class DealUpdateView(UpdateView):
 
     def change_request_product(self, request):
         """
-
         *** This method receive request and change it. PRODUCT formset ***
 
         1. Deal field is hidden and don't fill proper value. We need fill it correct value before saving.
@@ -122,7 +170,7 @@ class DealUpdateView(UpdateView):
         """
         prefix = 'status-'
         s = prefix + 'TOTAL_FORMS'
-        for i in range(int(request.POST[s])):
+        for i in range(int(request.POST[s])):  # request.POST['status-TOTAL_FORMS'] has number of form in formset
 
             deal = prefix + str(i) + '-deal'
             status = prefix + str(i) + '-status'
@@ -139,25 +187,25 @@ class DealUpdateView(UpdateView):
 
 
 class DealCreateView(CreateView):
-    def post(self, request, *args, **kwargs):
+    model = Deal
+    template_name = 'crm/deal_new.html'
+    form_class = ManagerDealForm
 
-        self.change_request(request)
+    def get_success_url(self):
+        return reverse('deals')
 
-        form = DealForm(request.POST)
-        product_form = DealProductForm(request.POST)
-        status_form = DealStatusForm(request.POST)
+    @method_decorator(login_required())
+    @method_decorator(permission_required('crm.add_deal', accept_global_perms=True))
+    def get(self, request, *args, **kwargs):
+        self.req = request
+        user = User.objects.get(username=request.user.username)
 
-        if form.is_valid() and product_form.is_valid() and status_form.is_valid():
-            record = form.save()
-            pf = product_form.save(commit=False)
-            sf = status_form.save(commit=False)
-            pf.deal = record
-            sf.deal = record
-            pf.save()
-            sf.save()
-            return HttpResponseRedirect(reverse('deals'))
+        if user.groups.filter(name='boss').exists():
+            DealCreateView.form_class = BossDealForm
+        else:
+            DealCreateView.form_class = ManagerDealForm
 
-        return super().post(self, request, *args, **kwargs)
+        return super().get(self, request, *args, **kwargs)
 
     # Add some more context ( formset )
     def get_context_data(self, **kwargs):
@@ -167,7 +215,52 @@ class DealCreateView(CreateView):
         data = {'deal_data': datetime.date.today(), 'deal_time': self.get_now_time5(), 'status': 'E'}
         context['f'] = DealProductForm(self.request.POST)
         context['ff'] = DealStatusForm(data)
+
+        # Patch for initial data for readonly field
+        try:
+            # If form has errors self.req will undefined and we must handled it
+            user = User.objects.get(username=self.req.user)
+
+            if not user.groups.filter(name='boss').exists():
+                sales_person = SalesPerson.objects.get(user=user)
+                context['form'].fields['sales_person'].initial = sales_person
+        except:
+            pass
+
         return context
+
+    @method_decorator(login_required())
+    @method_decorator(permission_required('crm.add_deal', accept_global_perms=True))
+    def post(self, request, *args, **kwargs):
+
+        self.change_request(request)
+
+        form = BossDealForm(request.POST)
+        product_form = DealProductForm(request.POST)
+        status_form = DealStatusForm(request.POST)
+
+        # Patch for initial data for readonly field
+        user = User.objects.get(username=request.user)
+
+        if not user.groups.filter(name='boss').exists():
+            # Patch for solve problem with hidden field
+            sp = SalesPerson.objects.get(user=request.user)
+            form.data['sales_person'] = sp.pk
+
+        if form.is_valid() and product_form.is_valid() and status_form.is_valid():
+            record = form.save()
+            pf = product_form.save(commit=False)
+            sf = status_form.save(commit=False)
+            pf.deal = record
+            sf.deal = record
+            pf.save()
+            sf.save()
+            sales_person=record.sales_person
+            user = User.objects.get(username=sales_person.user)
+            assign_perm('crm.change_deal', user, record)
+            return HttpResponseRedirect(reverse('deals'))
+
+        return super().post(self, request, *args, **kwargs)
 
     def get_now_time5(self):
         # We rounded minutes up to 5 ( requirement DateTime picker )
@@ -188,11 +281,11 @@ class DealCreateView(CreateView):
         return reverse('deals')
 
     def change_request(self, request):
-        # Calculate total price for product and deal price and push these data to request
+
         try:
             pr = Product.objects.get(pk=request.POST['product'])
         except:
-            messages.error(request, 'Doh! Something went wrong.')
+            messages.error(request, _('Doh! Something went wrong.'))
             # todo Let do err handler
         else:
             request.POST['item_price'] = str(pr.price)
@@ -200,3 +293,17 @@ class DealCreateView(CreateView):
             request.POST['price'] = request.POST['total_price']
 
         return request
+
+
+class DealDeleteView(DeleteView, SomeUtilsMixin):
+    model = Deal
+    template_name = 'crm/deal_del.html'
+
+    def get_success_url(self):
+        return reverse('deals')
+
+    @method_decorator(login_required())
+    def get(self, request, *args, **kwargs):
+        if not self.checkPermissions(request, Deal, 'crm.change_deal'):
+            return HttpResponseRedirect(reverse('login'))
+        return super().get(self, request, *args, **kwargs)

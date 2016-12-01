@@ -1,0 +1,9 @@
+- model: globalcustomer.client
+  pk: 1
+  fields: {domain_url: 'example.com', schema_name: public, name: SaSS, description: Public
+      Tenant, created_on: 2016-11-07}
+- model: globalcustomer.client
+  pk: 2
+  fields: {domain_url: 'a1.example.com', schema_name: a1, name: SaSS, description: Tis's is A1 corp,
+      created_on: 2016-11-07}
+

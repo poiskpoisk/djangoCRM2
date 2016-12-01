@@ -16,3 +16,6 @@ table.paleblue, table.paleblue + ul.pagination {
 }
 
 .inlinewidget { display: inline; }
+
+.messages li.error { color: #9B2D30; }
+.messages li.success { color: green; }

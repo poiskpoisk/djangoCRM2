@@ -11,7 +11,8 @@ from globalcustomer.models import Client
 # The class must be named Command, and subclass BaseCommand
 class Command(BaseCommand):
     # Show this when the user types help
-    help = "Create public site. Usage: python manage.py create_public"
+    help = "Create public site from Sites framework record ( this's difference from standart fixture loading with loaddata command )." \
+           " Usage: python manage.py create_public"
 
     # A command must define handle()
     def handle(self, *args, **options):

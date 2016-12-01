@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-#
+from crm.mixin import SomeUtilsMixin
+
 __author__ = 'AMA'
 
 import django_tables2 as tables
@@ -39,7 +41,7 @@ class CustomersTable(tables.Table):
         empty_text = _('Пока нет ни одного клиента. Для добавления используйте соответствующий пункт меню')
 
 
-class DealsTable(tables.Table):
+class DealsTable(tables.Table, SomeUtilsMixin):
     id = tables.LinkColumn('dealpage', args=[A('pk')])
     deal_data = tables.DateTimeColumn(format="d/m/Y", verbose_name=_('Дата'))
     deal_time = tables.DateTimeColumn(format="H.i", verbose_name=_('Время'))
@@ -64,6 +66,7 @@ class DealsTable(tables.Table):
             queryset = queryset.order_by('-deal_status')
         else:
             queryset = queryset.order_by('deal_status')
+        queryset=self.doHumanReadble_STATUS_CHOICES(queryset)
         return (queryset, True)
 
     class Meta:

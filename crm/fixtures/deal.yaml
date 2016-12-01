@@ -2,29 +2,32 @@
   pk: 1
   fields: {sales_person: 3, customer: 2, price: '23.00', ident: 333, description: '33'}
 - model: crm.deal
+  pk: 2
+  fields: {sales_person: 6, customer: 4, price: '13.00', ident: 100, description: 'some things'}
+- model: crm.deal
   pk: 3
   fields: {ident: 1, sales_person: 3, price: '100.00', description: Газонокосилка, customer: 2}
 - model: crm.deal
   pk: 4
-  fields: {ident: 2, sales_person: 3, price: '1000.00', description: Поливалка, customer: 2}
+  fields: {ident: 2, sales_person: 6, price: '1000.00', description: Поливалка, customer: 2}
 - model: crm.deal
   pk: 5
-  fields: {ident: 3, sales_person: 3, price: '1000.00', description: Поливалка, customer: 2}
+  fields: {ident: 3, sales_person: 6, price: '1000.00', description: Поливалка, customer: 2}
 - model: crm.deal
   pk: 6
   fields: {ident: 4, sales_person: 3, price: '1000.00', description: Поливалка, customer: 2}
 - model: crm.deal
   pk: 7
-  fields: {ident: 5, sales_person: 3, price: '1000.00', description: Поливалка, customer: 2}
+  fields: {ident: 5, sales_person: 5, price: '1000.00', description: Поливалка, customer: 2}
 - model: crm.deal
   pk: 8
-  fields: {ident: 6, sales_person: 3, price: '1000.00', description: Поливалка, customer: 2}
+  fields: {ident: 6, sales_person: 5, price: '1000.00', description: Поливалка, customer: 2}
 - model: crm.deal
   pk: 9
   fields: {ident: 7, sales_person: 3, price: '1000.00', description: Поливалка, customer: 2}
 - model: crm.deal
   pk: 10
-  fields: {ident: 8, sales_person: 3, price: '100.00', description: Газонокосилка, customer: 2}
+  fields: {ident: 8, sales_person: 4, price: '100.00', description: Газонокосилка, customer: 2}
 - model: crm.deal
   pk: 11
   fields: {ident: 9, sales_person: 3, price: '100.00', description: Газонокосилка, customer: 2}

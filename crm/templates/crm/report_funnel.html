@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block content %}
+{% load bootstrap %}
+
+
+
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-2 col-md-8 col-md-offset-1 col-sm-11 col-xs-12">
+                <form action="" method="get">{% csrf_token %}
+                    {{ filter.form|bootstrap_horizontal }}
+                    <button class="btn btn-primary btn-xm" type="submit" ><i class="fa fa-pencil-square-o fa-lg"></i>&nbsp;&nbsp;{%trans 'Обновить' %}</button>
+                </form>
+            </div>
+        </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div  class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+            <h2 class="title">{% trans "Воронка продаж по количеству контрактов" %}</h2>
+            <p>&nbsp;</p>
+        </div>
+        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-1 col-sm-11 col-xs-12">
+            <div id="funnel"></div>
+
+            <script src="https://d3js.org/d3.v4.min.js"></script>
+            <script src="{% static 'crm/d3-funnel.min.js' %}"></script>
+
+            <script>
+                const data = {{ records|safe }};
+                const chart = new D3Funnel('#funnel');
+                var options = {
+                                  chart: {
+                                    width: 500,
+                                    height: 250
+                                  }
+                                };
+                chart.draw(data,options);
+            </script>
+        </div>
+    </div>
+</div>
+<p>&nbsp;</p>
+<div class="container-fluid">
+    <div class="row">
+        <div  class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+            <h2 class="title">{% trans "Воронка продаж по сумме контрактов" %}</h2>
+            <p>&nbsp;</p>
+        </div>
+        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-1 col-sm-11 col-xs-12">
+            <div id="funnel2"></div>
+
+            <script src="https://d3js.org/d3.v4.min.js"></script>
+            <script src="{% static 'crm/d3-funnel.min.js' %}"></script>
+
+            <script>
+                const data2 = {{ records_many|safe }};
+                const chart2 = new D3Funnel('#funnel2');
+                var options = {
+                                  chart: {
+                                    width: 500,
+                                    height: 250
+                                  }
+                                };
+                chart2.draw(data2,options);
+            </script>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

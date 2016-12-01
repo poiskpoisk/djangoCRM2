@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-#
-__author__ = 'AMA'
 
-from crm.filters import DealFilter, DealFilterWithoutData, TodoFilter, TodoFilterWithoutData
-from crm.tables import DealsTable
+
 from django.views.generic import UpdateView, CreateView, DeleteView
 from django.conf.urls import url
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
+
+from crm.views.salesperson_views import SalesPersonUpdateView, SalesPersonDeleteView, SalesPersonCreateView
+from crm.filters import DealFilter, DealFilterWithoutData, TodoFilter, TodoFilterWithoutData, ReportFilter
 from crm.views.table_views import tableSalesPerson, tableFilterDeals, tableFilterToDos, tableFilterCustomer
-from crm.views.deal_views import DealUpdateView, DealCreateView
-from crm.views.views import setLang, reportFunnel
+from crm.views.deal_views import DealUpdateView, DealCreateView, DealDeleteView
+from crm.views.views import setLang, reportFunnel, reportSalesPerson
 from crm.models import SalesPerson, Todo, Customer, Deal
-from crm.forms import SalesPersonForm, ToDoForm, CustomerForm, DealForm
+from crm.forms import SalesPersonForm, ToDoForm, CustomerForm, BossDealForm
 
 
 # common URLS prefix is /crm/
@@ -21,24 +22,10 @@ urlpatterns = [
 
     # ----------------------- Sales Person ------------------------------------------------------------------------
 
-    url(r'^salespersons/(?P<pk>[0-9]+)/$', login_required(UpdateView.as_view(   model=SalesPerson,
-                                                                                template_name='crm/salesperson.html',
-                                                                                form_class=SalesPersonForm,
-                                                                                success_url = reverse_lazy('salespersons')
-                                                                             )), name='salespersonpage'),
-
-    url(r'^salespersons/del/(?P<pk>[0-9]+)/$', login_required(DeleteView.as_view(   model=SalesPerson,
-                                                                                template_name='crm/salesperson_del.html',
-                                                                                success_url = reverse_lazy('salespersons')
-                                                                             )), name='salesperson_del'),
-
+    url(r'^salespersons/(?P<pk>[0-9]+)/$', SalesPersonUpdateView.as_view(), name='salespersonpage'),
+    url(r'^salespersons/del/(?P<pk>[0-9]+)/$', SalesPersonDeleteView.as_view(), name='salesperson_del'),
     url(r'^salespersons/$', tableSalesPerson, name='salespersons'),
-
-    url(r'^salespersons/new/$', login_required(CreateView.as_view(  model= SalesPerson,
-                                                                    template_name='crm/salesperson_new.html',
-                                                                    form_class = SalesPersonForm,
-                                                                    success_url=reverse_lazy('salespersons')
-                                                                    )), name='salesperson_new'),
+    url(r'^salespersons/new/$', SalesPersonCreateView.as_view(), name='salesperson_new'),
 
     # ---------------------------- ToDo ------------------------------------------------------------
 
@@ -90,17 +77,10 @@ urlpatterns = [
 
     # ----------------------------- Deal -------------------------------------------------------------------------
 
-    url(r'^deal/(?P<pk>[0-9]+)/$', login_required(DealUpdateView.as_view()), name='dealpage'),
-    url(r'^deal/del/(?P<pk>[0-9]+)/$', login_required(DeleteView.as_view(model=Deal,
-                                                                          template_name='crm/deal_del.html',
-                                                                          success_url=reverse_lazy('deals')
-                                                                          )), name='deal_del'),
+    url(r'^deal/(?P<pk>[0-9]+)/$', DealUpdateView.as_view(), name='dealpage'),
+    url(r'^deal/del/(?P<pk>[0-9]+)/$', DealDeleteView.as_view(), name='deal_del'),
     url(r'^deal/$', tableFilterDeals, name='deals'),
-    url(r'^deal/new/$', login_required(DealCreateView.as_view(model=Deal,
-                                                           template_name='crm/deal_new.html',
-                                                           form_class=DealForm,
-                                                           success_url=reverse_lazy('deals')
-                                                           )), name='deal_new'),
+    url(r'^deal/new/$', DealCreateView.as_view(), name='deal_new'),
     # .................... with filters ................................................................................
 
     url(r'^dealfilters/$', tableFilterDeals, {'classFilter': DealFilter}, name='dealsfilters'),
@@ -110,6 +90,7 @@ urlpatterns = [
 
     # ---------------------------------------------- Reports ------------------------------------------
 
-    url(r'^report/$', reportFunnel, {'model': Deal, 'modelTable': DealsTable, 'classFilter': DealFilter}, name='reportfunnel'),
+    url(r'^reportfunnel/$', reportFunnel,  {'model': Deal, 'classFilter': ReportFilter}, name='reportfunnel'),
+    url(r'^reportsp/$', reportSalesPerson, {'model': Deal, 'classFilter': DealFilter}, name='reportsp'),
 
 ]

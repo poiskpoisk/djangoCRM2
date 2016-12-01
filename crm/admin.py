@@ -4,6 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext as _
 from crm.models import Customer, SalesPerson, Todo, Deal, Product, DealProducts, DealStatus
 from globalcustomer.models import Client
+from guardian.admin import GuardedModelAdmin
 
 # Customize admin panel
 admin.AdminSite.index_title = _('simpleCRM, простая админка.')
@@ -28,7 +29,7 @@ class SalePersonInline(admin.StackedInline):
     verbose_name_plural = 'SalesPersons'
 
 
-class SalesPersonAdmin(admin.ModelAdmin):
+class SalesPersonAdmin(GuardedModelAdmin):
     model = SalesPerson
 
 
@@ -37,7 +38,7 @@ class UserAdmin(UserAdmin):
     inlines = (SalePersonInline,)
 
 
-class DealAdmin(admin.ModelAdmin):
+class DealAdmin(GuardedModelAdmin):
     list_display = ('ident', 'description', 'sales_person')
     list_filter = ['sales_person']
 

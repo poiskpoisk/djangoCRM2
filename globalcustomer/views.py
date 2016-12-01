@@ -1,5 +1,3 @@
-from django.http import HttpResponse
-from tenant_schemas.utils import schema_context, get_tenant_model
 from django.http import HttpResponseRedirect
 from django.views.generic import CreateView
 from globalcustomer.forms import GlobalClientForm
@@ -8,10 +6,11 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
-from tenant_schemas.utils import remove_www
 from simpleCRM.settings import DEBUG
 
+
 class GlobalClientCreateView(CreateView):
+
     model = Client
     form_class = GlobalClientForm
     template_name = 'globalcustomer/globalcustomer_new.html'
@@ -31,8 +30,7 @@ class GlobalClientCreateView(CreateView):
             rec = form.save(commit=False)
             rec.domain_url = form.data['schema_name'] + '.' + current_site.domain
             rec.save()
-            site = get_current_site(request).name
-            site = 'http://'+form.data['schema_name']+'.' + site
+            site = 'http://'+form.data['schema_name']+'.' + current_site.name
             if DEBUG:
                 site += ':8000'
             return HttpResponseRedirect(site)

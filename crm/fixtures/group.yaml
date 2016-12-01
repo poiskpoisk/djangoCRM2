@@ -1,0 +1,15 @@
+- model: auth.group
+  pk: 1
+  fields:
+    name: boss
+    permissions: [32, 33, 34, 25, 26, 27, 28, 29, 30, 31]
+- model: auth.group
+  pk: 2
+  fields:
+    name: manager
+    permissions: [25, 26, 27, 28, 29, 30, 16, 17, 18, 22, 23, 24, 19, 20, 21]
+- model: auth.group
+  pk: 3
+  fields:
+    name: admin
+    permissions: [48, 49, 50, 7, 8, 9]
