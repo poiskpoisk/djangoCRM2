@@ -7,7 +7,7 @@ from django.db.models import F
 from django.shortcuts import render
 from django_tables2 import RequestConfig
 
-from guardian.decorators import  permission_required
+from guardian.decorators import permission_required
 
 from crm.models import SalesPerson, DealStatus, Deal, Todo, Customer
 from crm.tables import SalesPersonTable, DealsTable, ToDosTable, CustomersTable
@@ -15,6 +15,7 @@ from crm.tables import SalesPersonTable, DealsTable, ToDosTable, CustomersTable
 __author__ = 'AMA'
 
 
+@login_required
 @permission_required('crm.read_salesperson', accept_global_perms=True)
 def tableSalesPerson(request):
     queryset = SalesPerson.objects.annotate(email=F('user__email'))
@@ -23,6 +24,7 @@ def tableSalesPerson(request):
     filter = 'NONFILTER'
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
 
+@login_required
 @permission_required('crm.read_deal', accept_global_perms=True)
 def tableFilterDeals(request, classFilter=None, duration=None):
     '''
@@ -72,6 +74,7 @@ def tableFilterDeals(request, classFilter=None, duration=None):
 
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
 
+
 @login_required
 def tableFilterToDos(request, classFilter=None, duration=None):
     '''
@@ -102,6 +105,7 @@ def tableFilterToDos(request, classFilter=None, duration=None):
     RequestConfig(request).configure(table)
 
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
+
 
 @login_required
 def tableFilterCustomer(request, classFilter=None, duration=None):

@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-#
-from django.views.generic import DeleteView
-
-__author__ = 'AMA'
 
 import datetime
 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView, CreateView
 from django.utils.translation import ugettext as _
+from django.views.generic import DeleteView
 from django.contrib.auth.models import Group, User
-from guardian.shortcuts import get_perms
 
 from datetimewidget.widgets import DateWidget, TimeWidget
 from guardian.decorators import permission_required
@@ -37,13 +35,8 @@ class DealUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('dealpage', kwargs={'pk': self.kwargs['pk']})
 
-    @method_decorator(permission_required('crm.read_deal', accept_global_perms=True))
     # Add some more context ( formset )
     def get_context_data(self, **kwargs):
-        obj=Deal.objects.get(pk=5)
-        user=User.objects.get(pk=5)
-
-        perm=get_perms(user,obj)
 
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
@@ -60,6 +53,12 @@ class DealUpdateView(UpdateView):
             f.fields['deal_time'].widget = TimeWidget(attrs={'id': stt}, usel10n=True, bootstrap_version=3)
         return context
 
+    @method_decorator(login_required())
+    @method_decorator(permission_required('crm.read_deal', accept_global_perms=True))
+    def get(self, request, *args, **kwargs):
+        return super().get(self, request, *args, **kwargs)
+
+    @method_decorator(login_required())
     @method_decorator(permission_required('change_deal', accept_global_perms=True))
     def post(self, request, *args, **kwargs):
 
@@ -158,9 +157,21 @@ class DealCreateView(CreateView):
     template_name = 'crm/deal_new.html'
     form_class = CreateDealForm
 
-
     def get_success_url(self):
         return reverse('deals')
+
+    @method_decorator(login_required())
+    @method_decorator(permission_required('crm.add_deal', accept_global_perms=True))
+    def get(self, request, *args, **kwargs):
+        self.req = request
+        user = User.objects.get(username=request.user.username)
+
+        if user.groups.filter(name='boss').exists():
+            DealCreateView.form_class = DealForm
+        else:
+            DealCreateView.form_class = CreateDealForm
+
+        return super().get(self, request, *args, **kwargs)
 
     # Add some more context ( formset )
     def get_context_data(self, **kwargs):
@@ -172,25 +183,15 @@ class DealCreateView(CreateView):
         context['ff'] = DealStatusForm(data)
 
         # Patch for initial data for readonly field
-        user = self.req.user
-        if user.username != 'ama':
+        user = User.objects.get(username=self.req.user)
+
+        if not user.groups.filter(name='boss').exists():
             sales_person = SalesPerson.objects.get(user=user)
             context['form'].fields['sales_person'].initial = sales_person
 
-
         return context
 
-    @method_decorator(permission_required('crm.add_deal', accept_global_perms=True))
-    def get(self, request, *args, **kwargs):
-        self.req = request
-
-        if request.user.username == 'ama':
-            DealCreateView.form_class = DealForm
-        else:
-            DealCreateView.form_class = CreateDealForm
-
-        return super().get(self, request, *args, **kwargs)
-
+    @method_decorator(login_required())
     @method_decorator(permission_required('crm.add_deal', accept_global_perms=True))
     def post(self, request, *args, **kwargs):
 
@@ -216,7 +217,6 @@ class DealCreateView(CreateView):
             return HttpResponseRedirect(reverse('deals'))
 
         return super().post(self, request, *args, **kwargs)
-
 
     def get_now_time5(self):
         # We rounded minutes up to 5 ( requirement DateTime picker )
@@ -258,6 +258,7 @@ class DealDeleteView(DeleteView):
     def get_success_url(self):
         return reverse('deals')
 
+    @method_decorator(login_required())
     @method_decorator(permission_required('crm.delete_deal', accept_global_perms=True))
     def get(self, request, *args, **kwargs):
         return super().get(self, request, *args, **kwargs)

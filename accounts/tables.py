@@ -11,7 +11,9 @@ __author__ = 'AMA'
 
 class UserListTable(tables.Table):
 
-    id = tables.LinkColumn('salespersonpage', args=[A('pk')])
+    sp = tables.Column(_('роль'))
+    user = tables.Column(_('сотрудник'))
+    id = tables.LinkColumn('user_del', args=[A('pk')])
 
     class Meta:
         model = User
