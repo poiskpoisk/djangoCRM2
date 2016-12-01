@@ -11,6 +11,7 @@ from guardian.decorators import permission_required
 
 from crm.models import SalesPerson, DealStatus, Deal, Todo, Customer
 from crm.tables import SalesPersonTable, DealsTable, ToDosTable, CustomersTable
+from crm.mixin import SomeUtilsMixin
 
 __author__ = 'AMA'
 
@@ -63,12 +64,7 @@ def tableFilterDeals(request, classFilter=None, duration=None):
     else:
         filter = 'NONFILTER'
 
-    # Change jne letter code on hunan readable text
-    for query in queryset:
-        for status in DealStatus.STATUS_CHOICES:
-            if query.deal_status == status[0]:
-                query.deal_status = status[1]
-
+    queryset = SomeUtilsMixin.doHumanReadble_STATUS_CHOICES(0, queryset)
     table = DealsTable(queryset)
     RequestConfig(request).configure(table)
 

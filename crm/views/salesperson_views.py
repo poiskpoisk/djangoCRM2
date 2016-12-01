@@ -13,13 +13,13 @@ from django.db.models.signals import post_delete
 from guardian.shortcuts import assign_perm
 
 from crm.forms import SalesPersonForm, SalesPersonUpdateForm
-from crm.mixin import ClearMsg
+from crm.mixin import SomeUtilsMixin
 from crm.models import SalesPerson
 
 __author__ = 'AMA'
 
 
-class SalesPersonUpdateView(UpdateView, ClearMsg):
+class SalesPersonUpdateView(UpdateView, SomeUtilsMixin):
     model = SalesPerson
     form_class = SalesPersonUpdateForm
     template_name = 'crm/salesperson.html'
@@ -36,12 +36,8 @@ class SalesPersonUpdateView(UpdateView, ClearMsg):
 
     @method_decorator(login_required())
     def post(self, request, *args, **kwargs):
-        rec=SalesPerson.objects.get(pk=self.kwargs['pk'])
-        user=User.objects.get(username=str(request.user))
-        has_perm = user.has_perm('crm.change_salesperson', rec)
-        has_perm_group = user.has_perm('crm.change_salesperson')
-        if not has_perm and not has_perm_group:
-            messages.error(request, _(' У Вашего аккаунта не хватает прав для совершения этой операции'))
+
+        if not self.checkPermissions(request, SalesPerson, 'crm.change_salesperson'):
             return HttpResponseRedirect(reverse('login'))
 
         # .save() update record if instance argument is present, but another way .save create new record
@@ -78,7 +74,7 @@ def delete_related_user(sender, **kwargs):
 post_delete.connect(delete_related_user, sender=SalesPerson)
 
 
-class SalesPersonCreateView(CreateView, ClearMsg):
+class SalesPersonCreateView(CreateView, SomeUtilsMixin):
     model = SalesPerson
     template_name = 'crm/salesperson_new.html'
     form_class = SalesPersonForm

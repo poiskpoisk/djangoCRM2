@@ -12,7 +12,7 @@ from crm.views.table_views import tableSalesPerson, tableFilterDeals, tableFilte
 from crm.views.deal_views import DealUpdateView, DealCreateView, DealDeleteView
 from crm.views.views import setLang, reportFunnel, reportSalesPerson
 from crm.models import SalesPerson, Todo, Customer, Deal
-from crm.forms import SalesPersonForm, ToDoForm, CustomerForm, DealForm
+from crm.forms import SalesPersonForm, ToDoForm, CustomerForm, BossDealForm
 
 
 # common URLS prefix is /crm/

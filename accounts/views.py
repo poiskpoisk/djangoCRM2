@@ -16,7 +16,7 @@ from registration.backends.default.views import RegistrationView
 
 from accounts.forms import MyRegistrationFormUniqueEmail, MyAuthenticationForm
 from accounts.tables import UserListTable
-from crm.mixin import ClearMsg
+from crm.mixin import SomeUtilsMixin
 from crm.models import SalesPerson
 from guardian.decorators import permission_required
 
@@ -59,7 +59,7 @@ class UserDeleteView(DeleteView):
     def get(self, request, *args, **kwargs):
         return super().get(self, request, *args, **kwargs)
 
-class MyLogin(TemplateView, ClearMsg):
+class MyLogin(TemplateView, SomeUtilsMixin):
     template_name = 'accounts/login.html'
 
     def post(self, request, *args, **kwargs):

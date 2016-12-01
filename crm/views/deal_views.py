@@ -16,13 +16,14 @@ from django.contrib.auth.models import Group, User
 from datetimewidget.widgets import DateWidget, TimeWidget
 from guardian.decorators import permission_required
 from guardian.shortcuts import assign_perm
-from crm.forms import DealForm, DealProductForm, DealStatusForm, CreateDealForm
+from crm.forms import BossDealForm, DealProductForm, DealStatusForm, ManagerDealForm
+from crm.mixin import SomeUtilsMixin
 from crm.models import Deal, DealProducts, DealStatus, Product, SalesPerson
 
 
-class DealUpdateView(UpdateView):
+class DealUpdateView(UpdateView, SomeUtilsMixin):
     model = Deal
-    form_class = DealForm
+    form_class = BossDealForm
     template_name = 'crm/deal.html'
 
     def __init__(self, *args, **kwargs):
@@ -34,6 +35,20 @@ class DealUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('dealpage', kwargs={'pk': self.kwargs['pk']})
+
+    @method_decorator(login_required())
+    @method_decorator(permission_required('crm.read_deal', accept_global_perms=True))
+    def get(self, request, *args, **kwargs):
+
+        self.req = request
+        user = User.objects.get(username=request.user.username)
+
+        if user.groups.filter(name='boss').exists():
+            DealUpdateView.form_class = BossDealForm
+        else:
+            DealUpdateView.form_class = ManagerDealForm
+
+        return super().get(self, request, *args, **kwargs)
 
     # Add some more context ( formset )
     def get_context_data(self, **kwargs):
@@ -51,24 +66,43 @@ class DealUpdateView(UpdateView):
             stt = 'yourtimeid' + str(i)
             f.fields['deal_data'].widget = DateWidget(attrs={'id': std}, usel10n=True, bootstrap_version=3)
             f.fields['deal_time'].widget = TimeWidget(attrs={'id': stt}, usel10n=True, bootstrap_version=3)
+
+        # Patch for initial data for readonly field
+        try:
+            # If form has errors self.req will undefined and we must handled it
+            user = User.objects.get(username=self.req.user)
+
+            if not user.groups.filter(name='boss').exists():
+                sales_person = SalesPerson.objects.get(user=user)
+                context['form'].fields['sales_person'].initial = sales_person
+        except:
+            pass
+
         return context
 
-    @method_decorator(login_required())
-    @method_decorator(permission_required('crm.read_deal', accept_global_perms=True))
-    def get(self, request, *args, **kwargs):
-        return super().get(self, request, *args, **kwargs)
 
     @method_decorator(login_required())
-    @method_decorator(permission_required('change_deal', accept_global_perms=True))
     def post(self, request, *args, **kwargs):
+
+        if not self.checkPermissions(request, Deal, 'crm.change_deal'):
+            return HttpResponseRedirect(reverse('login'))
 
         request = self.change_request_product(request)
         request = self.change_request_status(request)
+
         # .save() update record if instance argument is present, but another way .save create new record
         a = Deal.objects.get(pk=self.kwargs['pk'])
-        form = DealForm(request.POST, instance=a)
+        form = BossDealForm(request.POST, instance=a)
         product_formset = self.ProductFormset(request.POST, prefix='products')
         status_formset = self.StatusFormset(request.POST, prefix='status')
+
+        # Patch for initial data for readonly field
+        user = User.objects.get(username=request.user)
+
+        if not user.groups.filter(name='boss').exists():
+            # Patch for solve problem with hidden field
+            sp = SalesPerson.objects.get(user=request.user)
+            form.data['sales_person'] = sp.pk
 
         if form.is_valid() and product_formset.is_valid() and status_formset.is_valid():
             form.data['price'] = str(self.total_deal_price)
@@ -155,7 +189,7 @@ class DealUpdateView(UpdateView):
 class DealCreateView(CreateView):
     model = Deal
     template_name = 'crm/deal_new.html'
-    form_class = CreateDealForm
+    form_class = ManagerDealForm
 
     def get_success_url(self):
         return reverse('deals')
@@ -167,9 +201,9 @@ class DealCreateView(CreateView):
         user = User.objects.get(username=request.user.username)
 
         if user.groups.filter(name='boss').exists():
-            DealCreateView.form_class = DealForm
+            DealCreateView.form_class = BossDealForm
         else:
-            DealCreateView.form_class = CreateDealForm
+            DealCreateView.form_class = ManagerDealForm
 
         return super().get(self, request, *args, **kwargs)
 
@@ -183,11 +217,15 @@ class DealCreateView(CreateView):
         context['ff'] = DealStatusForm(data)
 
         # Patch for initial data for readonly field
-        user = User.objects.get(username=self.req.user)
+        try:
+            # If form has errors self.req will undefined and we must handled it
+            user = User.objects.get(username=self.req.user)
 
-        if not user.groups.filter(name='boss').exists():
-            sales_person = SalesPerson.objects.get(user=user)
-            context['form'].fields['sales_person'].initial = sales_person
+            if not user.groups.filter(name='boss').exists():
+                sales_person = SalesPerson.objects.get(user=user)
+                context['form'].fields['sales_person'].initial = sales_person
+        except:
+            pass
 
         return context
 
@@ -197,10 +235,14 @@ class DealCreateView(CreateView):
 
         self.change_request(request)
 
-        form = DealForm(request.POST)
+        form = BossDealForm(request.POST)
         product_form = DealProductForm(request.POST)
         status_form = DealStatusForm(request.POST)
-        if request.user != 'ama':
+
+        # Patch for initial data for readonly field
+        user = User.objects.get(username=request.user)
+
+        if not user.groups.filter(name='boss').exists():
             # Patch for solve problem with hidden field
             sp = SalesPerson.objects.get(user=request.user)
             form.data['sales_person'] = sp.pk
@@ -213,7 +255,9 @@ class DealCreateView(CreateView):
             sf.deal = record
             pf.save()
             sf.save()
-            assign_perm('crm.change_deal', request.user, record)
+            sales_person=record.sales_person
+            user = User.objects.get(username=sales_person.user)
+            assign_perm('crm.change_deal', user, record)
             return HttpResponseRedirect(reverse('deals'))
 
         return super().post(self, request, *args, **kwargs)
@@ -251,7 +295,7 @@ class DealCreateView(CreateView):
         return request
 
 
-class DealDeleteView(DeleteView):
+class DealDeleteView(DeleteView, SomeUtilsMixin):
     model = Deal
     template_name = 'crm/deal_del.html'
 
@@ -259,6 +303,7 @@ class DealDeleteView(DeleteView):
         return reverse('deals')
 
     @method_decorator(login_required())
-    @method_decorator(permission_required('crm.delete_deal', accept_global_perms=True))
     def get(self, request, *args, **kwargs):
+        if not self.checkPermissions(request, Deal, 'crm.change_deal'):
+            return HttpResponseRedirect(reverse('login'))
         return super().get(self, request, *args, **kwargs)

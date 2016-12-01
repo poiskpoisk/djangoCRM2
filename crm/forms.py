@@ -28,6 +28,7 @@ class SalesPersonForm(forms.ModelForm):
                                              'class': 'form-control'}),
         }
 
+
 class SalesPersonUpdateForm(SalesPersonForm):
 
     class Meta:
@@ -49,7 +50,6 @@ class SalesPersonUpdateForm(SalesPersonForm):
             'role': HiddenWidgetRole('fa fa-user fa-lg', attrs={'class': 'form-control'}),
             'user': HiddenWidget('fa fa-user fa-lg', func=User.objects.get, attrs={'class': 'form-control'}),
         }
-
 
 
 class ToDoForm(forms.ModelForm):
@@ -88,7 +88,7 @@ class CustomerForm(forms.ModelForm):
         }
 
 
-class DealForm(forms.ModelForm):
+class BossDealForm(forms.ModelForm):
     class Meta:
         model = Deal
         # В форме поля будут в том же порядке, как перечисленны ниже
@@ -98,7 +98,7 @@ class DealForm(forms.ModelForm):
             'todo_time': TimeWidget(attrs={'id': "yourtimeid"}, usel10n=True, bootstrap_version=3)
         }
 
-class CreateDealForm(forms.ModelForm):
+class ManagerDealForm(forms.ModelForm):
     class Meta:
         model = Deal
         # В форме поля будут в том же порядке, как перечисленны ниже

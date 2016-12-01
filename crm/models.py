@@ -126,7 +126,7 @@ class Customer(Person):
 class Deal(models.Model):
 
     sales_person = models.ForeignKey(SalesPerson, verbose_name=_('Менеджер'))  # Many-to-One relation
-    customer = models.ForeignKey(Customer, blank=True, verbose_name=_('Клиент'))  # Many-to-One relation
+    customer = models.ForeignKey(Customer, blank=True, null=True,verbose_name=_('Клиент'))  # Many-to-One relation
     products = models.ManyToManyField('Product', through='DealProducts',
                                       verbose_name=_('Список продуктов'))  # Many-to-Many с промежуточной моделью
 
