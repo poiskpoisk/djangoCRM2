@@ -12,8 +12,7 @@ Contents:
    :maxdepth: 2
 
    preface
-   русский
-   777
+
 
 
 
