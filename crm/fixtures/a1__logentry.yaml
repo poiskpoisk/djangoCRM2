@@ -1,0 +1,15 @@
+- model: admin.logentry
+  pk: 3
+  fields: {action_time: !!timestamp '2016-12-04 20:29:42.986778+00:00', user: 2, content_type: 14,
+    object_id: '3', object_repr: manager, action_flag: 1, change_message: "\u0414\u043E\
+      \u0431\u0430\u0432\u043B\u0435\u043D\u043E."}
+- model: admin.logentry
+  pk: 2
+  fields: {action_time: !!timestamp '2016-12-04 20:28:44.851548+00:00', user: 2, content_type: 14,
+    object_id: '2', object_repr: boss, action_flag: 1, change_message: "\u0414\u043E\
+      \u0431\u0430\u0432\u043B\u0435\u043D\u043E."}
+- model: admin.logentry
+  pk: 1
+  fields: {action_time: !!timestamp '2016-12-04 20:27:11.301492+00:00', user: 2, content_type: 14,
+    object_id: '1', object_repr: admin, action_flag: 1, change_message: "\u0414\u043E\
+      \u0431\u0430\u0432\u043B\u0435\u043D\u043E."}

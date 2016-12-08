@@ -4,7 +4,7 @@
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href=# >sCRM</a>
+            <a class="navbar-brand" href=# >djangoCRM2</a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
               <span class="sr-only"></span>
               <span class="icon-bar"></span>
@@ -20,8 +20,6 @@
                      <ul class="dropdown-menu">
                       <li><a href="{% url 'reportfunnel' %}">{% trans "Воронка продаж" %}</a></li>
                       <li><a href="{% url 'reportsp' %}">{% trans "Продажи менеджеров" %}</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Отдельная ссылка</a></li>
                     </ul>
                 </li>
 
@@ -39,22 +37,10 @@
                 </li>
 
                 <li class="dropdown">
-                  <a href="{% url 'salespersons' %}" class="dropdown-toggle" data-toggle="dropdown">{% trans "Менеджеры по продажам" %}<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="{% url 'salespersons' %}">{% trans "Список менеджеров" %}</a></li>
-                      <li><a href="{% url 'salesperson_new' %}">{% trans "Добавить нового" %}</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Отдельная ссылка</a></li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" >{% trans "Клиенты" %}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'customers' %}">{% trans "Список клиентов" %}</a></li>
                         <li><a href="{% url 'customer_new' %}">{% trans "Добавить нового" %}</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Отдельная ссылка</a></li>
                     </ul>
                 </li>
 
@@ -71,6 +57,22 @@
                       </ul>
                 </li>
 
+                 <li class="dropdown">
+                  <a href="{% url 'products' %}" class="dropdown-toggle" data-toggle="dropdown">{% trans "Продукты" %}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{% url 'products' %}">{% trans "Список продуктов" %}</a></li>
+                      <li><a href="{% url 'product_new' %}">{% trans "Добавить продукт" %}</a></li>
+                    </ul>
+                </li>
+
+                 <li class="dropdown">
+                  <a href="{% url 'salespersons' %}" class="dropdown-toggle" data-toggle="dropdown">{% trans "Менеджеры по продажам" %}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{% url 'salespersons' %}">{% trans "Список менеджеров" %}</a></li>
+                      <li><a href="{% url 'salesperson_new' %}">{% trans "Добавить нового" %}</a></li>
+                    </ul>
+                </li>
+
                 <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Сервис" %}<b class="caret"></b></a>
                        <ul class="dropdown-menu">
@@ -80,7 +82,7 @@
                           <li><a href="{% url 'auth_password_change' %}">{% trans "Сменить пароль" %}</a></li>
                           <li><a href="{% url 'auth_password_reset' %}">{% trans "Сбросить пароль" %}</a></li>
                            <li class="divider"></li>
-                           <li><a href="https://readthedocs.org/projects/djangocrm2/">{% trans "Документация" %}</a></li>
+                           <li><a href="https://djangocrm2.readthedocs.io/">{% trans "Документация" %}</a></li>
                         </ul>
                 </li>
 

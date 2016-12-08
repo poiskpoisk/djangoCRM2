@@ -1,0 +1,30 @@
+- model: auth.user
+  pk: 1
+  fields:
+    password: '!MJuOxYgszJEJSWFji6PGCtSBZJVRh9hQ88QtDfMG'
+    last_login: null
+    is_superuser: false
+    username: AnonymousUser
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2016-12-04 20:24:44.196372+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 2
+  fields:
+    password: pbkdf2_sha256$24000$PJUjwmNhpftg$nFzOnjynlTQ0N/HifNbBMhMYk0jwMTdzN5kKTBnCeqo=
+    last_login: 2016-12-04 20:25:54.408148+00:00
+    is_superuser: true
+    username: ama
+    first_name: ''
+    last_name: ''
+    email: alex-abakumov@yandex.ru
+    is_staff: true
+    is_active: true
+    date_joined: 2016-12-04 20:25:32.015445+00:00
+    groups: []
+    user_permissions: []

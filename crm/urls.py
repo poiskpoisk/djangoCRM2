@@ -6,10 +6,14 @@ from django.conf.urls import url
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 
+from crm.views.customer_views import CustomerUpdateView, CustomerDeleteView, CustomerCreateView
+from crm.views.product_views import ProductDeleteView, ProductUpdateView, ProductCreateView
 from crm.views.salesperson_views import SalesPersonUpdateView, SalesPersonDeleteView, SalesPersonCreateView
 from crm.filters import DealFilter, DealFilterWithoutData, TodoFilter, TodoFilterWithoutData, ReportFilter
-from crm.views.table_views import tableSalesPerson, tableFilterDeals, tableFilterToDos, tableFilterCustomer
+from crm.views.table_views import tableSalesPerson, tableFilterDeals, tableFilterToDos, tableFilterCustomer, \
+    tableProducts
 from crm.views.deal_views import DealUpdateView, DealCreateView, DealDeleteView
+from crm.views.todo_views import ToDoUpdateView, ToDoCreateView, ToDoDeleteView
 from crm.views.views import setLang, reportFunnel, reportSalesPerson
 from crm.models import SalesPerson, Todo, Customer, Deal
 from crm.forms import SalesPersonForm, ToDoForm, CustomerForm, BossDealForm
@@ -27,26 +31,19 @@ urlpatterns = [
     url(r'^salespersons/$', tableSalesPerson, name='salespersons'),
     url(r'^salespersons/new/$', SalesPersonCreateView.as_view(), name='salesperson_new'),
 
+    # ----------------------- Products ------------------------------------------------------------------------
+
+    url(r'^products/(?P<pk>[0-9]+)/$', ProductUpdateView.as_view(), name='product_page'),
+    url(r'^products/del/(?P<pk>[0-9]+)/$', ProductDeleteView.as_view(), name='product_del'),
+    url(r'^products/$', tableProducts, name='products'),
+    url(r'^products/new/$', ProductCreateView.as_view(), name='product_new'),
+
     # ---------------------------- ToDo ------------------------------------------------------------
 
-    url(r'^todos/(?P<pk>[0-9]+)/$', login_required(UpdateView.as_view(  model=Todo,
-                                                                        template_name='crm/todo.html',
-                                                                        form_class=ToDoForm,
-                                                                        success_url=reverse_lazy('todos')
-                                                                             )), name='todopage'),
-
-    url(r'^todos/del/(?P<pk>[0-9]+)/$', login_required(DeleteView.as_view(model=Todo,
-                                                                                 template_name='crm/todo_del.html',
-                                                                                 success_url=reverse_lazy('todos')
-                                                                                 )), name='todo_del'),
-
+    url(r'^todos/(?P<pk>[0-9]+)/$', ToDoUpdateView.as_view(), name='todopage'),
+    url(r'^todos/del/(?P<pk>[0-9]+)/$', ToDoDeleteView.as_view(), name='todo_del'),
     url(r'^todos/$', tableFilterToDos, name='todos'),
-
-    url(r'^todos/new/$', login_required(CreateView.as_view( model=Todo,
-                                                            template_name='crm/todo_new.html',
-                                                            form_class=ToDoForm,
-                                                            success_url=reverse_lazy('todos')
-                                                              )), name='todo_new'),
+    url(r'^todos/new/$', ToDoCreateView.as_view(), name='todo_new'),
     # .................... with filters ................................................................................
 
     url(r'^todosfilters/$', tableFilterToDos, {'classFilter': TodoFilter}, name='todosfilters'),
@@ -56,24 +53,10 @@ urlpatterns = [
 
     # ------------------------- Customer -----------------------------------------------------------------------
 
-    url(r'^customers/(?P<pk>[0-9]+)/$', login_required(UpdateView.as_view(model=Customer,
-                                                                      template_name='crm/customer.html',
-                                                                      form_class=CustomerForm,
-                                                                      success_url=reverse_lazy('customers')
-                                                                      )), name='customerpage'),
-
-    url(r'^customers/del/(?P<pk>[0-9]+)/$', login_required(DeleteView.as_view(model=Customer,
-                                                                          template_name='crm/customer_del.html',
-                                                                          success_url=reverse_lazy('customers')
-                                                                          )), name='customer_del'),
-
+    url(r'^customers/(?P<pk>[0-9]+)/$', CustomerUpdateView.as_view(), name='customer_page'),
+    url(r'^customers/del/(?P<pk>[0-9]+)/$', CustomerDeleteView.as_view(), name='customer_del'),
     url(r'^customers/$', tableFilterCustomer, name='customers'),
-
-    url(r'^customers/new/$', login_required(CreateView.as_view(model=Customer,
-                                                           template_name='crm/customer_new.html',
-                                                           form_class=CustomerForm,
-                                                           success_url=reverse_lazy('customers')
-                                                           )), name='customer_new'),
+    url(r'^customers/new/$', CustomerCreateView.as_view(), name='customer_new'),
 
     # ----------------------------- Deal -------------------------------------------------------------------------
 

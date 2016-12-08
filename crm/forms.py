@@ -9,6 +9,13 @@ from crm.models import SalesPerson, Todo, Customer, Deal, Product, DealProducts,
 from crm.widgets import imageWidget, FaWidget, HiddenWidgetRole, HiddenWidget
 
 
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        # В форме поля будут в том же порядке, как перечисленны ниже
+        fields = ('__all__')
+
+
 class SalesPersonForm(forms.ModelForm):
     class Meta:
         model = SalesPerson
@@ -20,17 +27,18 @@ class SalesPersonForm(forms.ModelForm):
                                    attrs={'placeholder': _('Фамилия (ОБЯЗАТЕЛЬНО)'), 'class': 'form-control'}),
             'second_name': FaWidget('fa fa-user fa-lg',
                                     attrs={'placeholder': _('Имя (ОБЯЗАТЕЛЬНО)'), 'class': 'form-control'}),
-            'phone_number': FaWidget('fa fa-phone fa', attrs={'placeholder': _('Телефон: +999999999. До 15 цифр.'),
-                                                              'class': 'form-control'}),
+            'phone_number': FaWidget('fa fa-phone fa', attrs={
+                'placeholder': _('Телефонный номер до 10 цифр. (123) 456 7899 или (123)-456-7899 или 123 456 7899'),
+                'class': 'form-control'}),
             'division': FaWidget('fa fa-users fa', attrs={'placeholder': _('Подразделение'), 'class': 'form-control'}),
             'mobile_number': FaWidget('fa fa-mobile fa-lg',
-                                      attrs={'placeholder': _('Моб. телефон: +999999999. До 15 цифр.'),
-                                             'class': 'form-control'}),
+                                      attrs={'placeholder': _(
+                                          'Телефонный номер до 10 цифр. (123) 456 7899 или (123)-456-7899 или 123 456 7899'),
+                                          'class': 'form-control'}),
         }
 
 
 class SalesPersonUpdateForm(SalesPersonForm):
-
     class Meta:
         model = SalesPerson
         # В форме поля будут в том же порядке, как перечисленны ниже
@@ -41,11 +49,13 @@ class SalesPersonUpdateForm(SalesPersonForm):
                                    attrs={'placeholder': _('Фамилия (ОБЯЗАТЕЛЬНО)'), 'class': 'form-control'}),
             'second_name': FaWidget('fa fa-user fa-lg',
                                     attrs={'placeholder': _('Имя (ОБЯЗАТЕЛЬНО)'), 'class': 'form-control'}),
-            'phone_number': FaWidget('fa fa-phone fa', attrs={'placeholder': _('Телефон: +999999999. До 15 цифр.'),
-                                                              'class': 'form-control'}),
+            'phone_number': FaWidget('fa fa-phone fa', attrs={
+                'placeholder': _('Телефонный номер до 10 цифр. (123) 456 7899 или (123)-456-7899 или 123 456 7899'),
+                'class': 'form-control'}),
             'division': FaWidget('fa fa-users fa', attrs={'placeholder': _('Подразделение'), 'class': 'form-control'}),
             'mobile_number': FaWidget('fa fa-mobile fa-lg',
-                                      attrs={'placeholder': _('Моб. телефон: +999999999. До 15 цифр.'),
+                                      attrs={'placeholder': _(
+                                          'Телефонный номер до 10 цифр. (123) 456 7899 или (123)-456-7899 или 123 456 7899'),
                                              'class': 'form-control'}),
             'role': HiddenWidgetRole('fa fa-user fa-lg', attrs={'class': 'form-control'}),
             'user': HiddenWidget('fa fa-user fa-lg', func=User.objects.get, attrs={'class': 'form-control'}),
@@ -58,7 +68,8 @@ class ToDoForm(forms.ModelForm):
         # В форме поля будут в том же порядке, как перечисленны ниже
         fields = '__all__'
         widgets = {
-            'data_time': DateTimeWidget(attrs={'id': "yourdatetimeid"}, usel10n=True, bootstrap_version=3)
+            'todo_data': DateWidget(attrs={'id': "yourdateid"}, usel10n=True, bootstrap_version=3),
+            'todo_time': TimeWidget(attrs={'id': "yourtimeid"}, usel10n=True, bootstrap_version=3),
         }
 
 
@@ -74,10 +85,12 @@ class CustomerForm(forms.ModelForm):
                                    attrs={'placeholder': _('Фамилия (ОБЯЗАТЕЛЬНО)'), 'class': 'form-control'}),
             'second_name': FaWidget('fa fa-user fa',
                                     attrs={'placeholder': _('Имя (ОБЯЗАТЕЛЬНО)'), 'class': 'form-control'}),
-            'phone_number': FaWidget('fa fa-phone fa-lg', attrs={'placeholder': _('Телефон: +999999999. До 15 цифр.'),
-                                                                 'class': 'form-control'}),
+            'phone_number': FaWidget('fa fa-phone fa-lg', attrs={
+                'placeholder': _('Телефонный номер до 10 цифр. (123) 456 7899 или (123)-456-7899 или 123 456 7899'),
+                'class': 'form-control'}),
             'mobile_number': FaWidget('fa fa-mobile fa-lg',
-                                      attrs={'placeholder': _('Моб. телефон: +999999999. До 15 цифр.'),
+                                      attrs={'placeholder': _(
+                                          'Телефонный номер до 10 цифр. (123) 456 7899 или (123)-456-7899 или 123 456 7899'),
                                              'class': 'form-control'}),
             'company': FaWidget('fa fa-home fa-lg', attrs={'placeholder': _('Место работы'), 'class': 'form-control'}),
             'position': FaWidget('fa fa-arrows-h', attrs={'placeholder': _('Должность'), 'class': 'form-control'}),
@@ -98,13 +111,15 @@ class BossDealForm(forms.ModelForm):
             'todo_time': TimeWidget(attrs={'id': "yourtimeid"}, usel10n=True, bootstrap_version=3)
         }
 
+
 class ManagerDealForm(forms.ModelForm):
     class Meta:
         model = Deal
         # В форме поля будут в том же порядке, как перечисленны ниже
         fields = ('sales_person', 'customer', 'ident', 'price', 'description')
         widgets = {
-            'sales_person': HiddenWidget('fa fa-user fa-lg', func=SalesPerson.objects.get, attrs={'class': 'form-control'}),
+            'sales_person': HiddenWidget('fa fa-user fa-lg', func=SalesPerson.objects.get,
+                                         attrs={'class': 'form-control'}),
             'todo_data': DateWidget(attrs={'id': "yourdateid"}, usel10n=True, bootstrap_version=3),
             'todo_time': TimeWidget(attrs={'id': "yourtimeid"}, usel10n=True, bootstrap_version=3)
         }
@@ -124,7 +139,6 @@ class DealStatusForm(forms.ModelForm):
         model = DealStatus
         fields = '__all__'
         widgets = {
-                       'deal_data': DateWidget(attrs={'id': "yourdateid"}, usel10n=True, bootstrap_version=3),
-                       'deal_time': TimeWidget(attrs={'id': "yourtimeid"}, usel10n=True, bootstrap_version=3)
+            'deal_data': DateWidget(attrs={'id': "yourdateid"}, usel10n=True, bootstrap_version=3),
+            'deal_time': TimeWidget(attrs={'id': "yourtimeid"}, usel10n=True, bootstrap_version=3)
         }
-

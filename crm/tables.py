@@ -4,7 +4,7 @@ from crm.mixin import SomeUtilsMixin
 __author__ = 'AMA'
 
 import django_tables2 as tables
-from .models import SalesPerson, Todo, Customer, Deal
+from .models import SalesPerson, Todo, Customer, Deal, Product
 from django.utils.translation import ugettext as _
 from django_tables2.utils import A  # alias for Accessor
 
@@ -32,7 +32,7 @@ class ToDosTable(tables.Table):
 
 
 class CustomersTable(tables.Table):
-    id = tables.LinkColumn('customerpage', args=[A('pk')])
+    id = tables.LinkColumn('customer_page', args=[A('pk')])
 
     class Meta:
         model = Customer
@@ -40,6 +40,13 @@ class CustomersTable(tables.Table):
         attrs = {'class': 'paleblue table table-striped table-bordered'}
         empty_text = _('Пока нет ни одного клиента. Для добавления используйте соответствующий пункт меню')
 
+class ProductTable(tables.Table):
+    id = tables.LinkColumn('product_page', args=[A('pk')])
+
+    class Meta:
+        model = Product
+        attrs = {'class': 'paleblue table table-striped table-bordered'}
+        empty_text = _('Пока нет ни одного продукта. Для добавления используйте соответствующий пункт меню')
 
 class DealsTable(tables.Table, SomeUtilsMixin):
     id = tables.LinkColumn('dealpage', args=[A('pk')])

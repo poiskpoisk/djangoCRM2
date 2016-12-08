@@ -4,7 +4,7 @@ Preface
 ===========
 
 This is really simple SaaS djangoCRM2 system with russian and english languages support ( any another translations are welcome ).
-It was writing on DJANGO framework and may be a excellent starting point for your own CRM system.
+It was writing on DJANGO framework and may be a excellent starting point to development your own CRM system.
 Main idea sCRM is strongly follow to DRY rule.
 We used only a generally accepted and maintained components from https://djangopackages.org
 

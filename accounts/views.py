@@ -25,7 +25,7 @@ class MyRegistrationView(RegistrationView):
     form_class = MyRegistrationFormUniqueEmail
     template_name = 'accounts/registration_form.html'
 
-    def get_success_url(self):
+    def get_success_url(self, user=None):
         return reverse('registration_complete')
 
 

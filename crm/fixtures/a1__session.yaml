@@ -1,0 +1,4 @@
+- model: sessions.session
+  pk: zvdjqi55eyvuqg83qxezju5um8vcr6s9
+  fields: {session_data: ZWVhNGY3MjdkOTM2YzdjMDJhNTEwYzZjNTU5M2ZiZjM0YzI5MTExYjp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9oYXNoIjoiZjE5Yjk4YTJlYWM5ODZiZTlmMGU3MGM0MjVhZTFhNGE4YzQyZDc4MCIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=,
+    expire_date: !!timestamp '2016-12-18 20:25:54.430767+00:00'}

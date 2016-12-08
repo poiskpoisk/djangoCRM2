@@ -1,0 +1,17 @@
+- model: crm.product
+  pk: 1
+  fields: {sku: 1, description: "\u043B\u044B\u0436\u0438", price: 10}
+- model: crm.product
+  pk: 2
+  fields: {sku: 2, description: "\u0413\u0430\u0437\u043E\u043D\u043E\u043A\u043E\u0441\
+      \u0438\u043B\u043A\u0430", price: 1000}
+- model: crm.product
+  pk: 3
+  fields: {sku: 111, description: "\u0421\u043E\u0432\u043E\u043A", price: 5}
+- model: crm.product
+  pk: 4
+  fields: {sku: 10, description: "\u041C\u044F\u0447", price: 13}
+- model: crm.product
+  pk: 5
+  fields: {sku: 18, description: "\u041C\u043E\u0442\u043E\u0446\u0438\u043A\u043B",
+    price: 108599}

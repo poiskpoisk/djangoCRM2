@@ -1,0 +1,18 @@
+- model: crm.customer
+  pk: 2
+  fields: {first_name: "\u0410\u043B\u0435\u043A\u0441\u0435\u0439", second_name: "\u041F\u0435\
+      \u0442\u0440\u043E\u0432", phone_number: '', mobile_number: '', avatar: crm/check-true_aaJb6sP.jpg,
+    sales_person: 3, company: '', position: '', email_address: '', brith_data: null,
+    status: V, comment: vvv}
+- model: crm.customer
+  pk: 3
+  fields: {first_name: "\u0421\u0432\u0435\u0436\u0438\u0439", second_name: "\u041C\u043E\
+      \u0434\u0435\u0441\u0442", phone_number: '', mobile_number: '', avatar: crm/check-true_aaJb6sP.jpg,
+    sales_person: 3, company: '', position: '', email_address: '', brith_data: null,
+    status: V, comment: vvv}
+- model: crm.customer
+  pk: 4
+  fields: {first_name: "\u0424\u0435\u0440\u0442", second_name: "\u0412\u0438\u0442\
+      \u0430\u043B\u0438\u0439", phone_number: '', mobile_number: '', avatar: crm/check-true_aaJb6sP.jpg,
+    sales_person: 3, company: '', position: '', email_address: '', brith_data: null,
+    status: V, comment: vvv}

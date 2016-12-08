@@ -258,6 +258,7 @@ class DealCreateView(CreateView):
             sales_person=record.sales_person
             user = User.objects.get(username=sales_person.user)
             assign_perm('crm.change_deal', user, record)
+            assign_perm('crm.delete_deal', user, record)
             return HttpResponseRedirect(reverse('deals'))
 
         return super().post(self, request, *args, **kwargs)
@@ -304,6 +305,6 @@ class DealDeleteView(DeleteView, SomeUtilsMixin):
 
     @method_decorator(login_required())
     def get(self, request, *args, **kwargs):
-        if not self.checkPermissions(request, Deal, 'crm.change_deal'):
+        if not self.checkPermissions(request, Deal, 'crm.delete_deal'):
             return HttpResponseRedirect(reverse('login'))
         return super().get(self, request, *args, **kwargs)

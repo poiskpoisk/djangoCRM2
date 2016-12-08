@@ -14,15 +14,13 @@ class Person(models.Model):  # ABS class define abstract Person
     first_name = models.CharField(max_length=100, verbose_name=_('Фамилия'))
     second_name = models.CharField(max_length=100, verbose_name=_('Имя'))
 
-    phone_number = models.CharField(max_length=15, verbose_name=_('Телефон'),
-                                    validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$',
-                                                               message=_(
-                                                                   "Телефонный номер должен быть в формате: '+999999999. До 15 цифр."))],
+    phone_number = models.CharField(max_length=20, verbose_name=_('Телефон'),
+                                    validators=[RegexValidator(regex=r'^(\+\d{1,2,3}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$',
+                                    message=_("Телефонный номер до 10 цифр. (123) 456 7899 или (123)-456-7899 или 123 456 7899"))],
                                     blank=True)  # validators should be a list
-    mobile_number = models.CharField(max_length=15, verbose_name=_('Мобильный телефон'),
-                                     validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$',
-                                                                message=_(
-                                                                    "Телефонный номер должен быть в формате: '+999999999. До 15 цифр."))],
+    mobile_number = models.CharField(max_length=20, verbose_name=_('Мобильный телефон'),
+                                     validators=[RegexValidator(regex=r'^(\+\d{1,2,3}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$',
+                                     message=_("Телефонный номер до 10 цифр. (123) 456 7899 или (123)-456-7899 или 123 456 7899"))],
                                      blank=True)  # validators should be a list
     # upload_to - URL относительно MEDIA_URL
     avatar = models.ImageField(upload_to='crm/', blank=True, verbose_name=_('Фотография'))
@@ -92,7 +90,7 @@ class Todo(models.Model):
         permissions = (('read_todo', _('Просмотр дел')),)
 
     def __str__(self):
-        return '%s %s' % (self.action_description, self.data_time)
+        return '%s' % (self.action_description)
 
 
 class Customer(Person):
@@ -116,7 +114,7 @@ class Customer(Person):
     class Meta:
         verbose_name = _('Клиент')
         verbose_name_plural = _('Всего клиентов')
-        permissions = (('read_salesperson', _('Просмотр пользоателей')),)
+        permissions = (('read_customer', _('Просмотр пользоателей')),)
 
 
     def __str__(self):
@@ -146,14 +144,14 @@ class Deal(models.Model):
 
 
 class Product(models.Model):
-    sku = models.IntegerField(_('Номер товара ( SKU )'), unique=True)
+    sku = models.IntegerField(_('Номер товара'), unique=True)
     description = models.TextField(_('Наименование товара'), unique=True)
-    price = models.PositiveIntegerField(default=0)
+    price = models.PositiveIntegerField(_('Цена'),default=0)
 
     class Meta:
         verbose_name = _('Продукт')
         verbose_name_plural = _('Всего продуктов')
-        permissions = (('read_salesperson', _('Просмотр продуктов')),)
+        permissions = (('read_product', _('Просмотр продуктов')),)
 
     def __str__(self):
         return '%s' % (self.description)

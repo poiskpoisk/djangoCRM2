@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-28 08:34+0300\n"
+"POT-Creation-Date: 2016-12-03 22:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,115 +17,818 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: crm/forms.py:17
+#: accounts/forms.py:13 accounts/forms.py:44 accounts/forms.py:47
+#: accounts/templates/accounts/userlist.html:11 crm/models.py:56
+msgid "Логин"
+msgstr "Login"
+
+#: accounts/forms.py:14 accounts/forms.py:45
+msgid "< 30 симоволов. Допустимо только - A-z,1-9,@/./+/-/"
+msgstr "< 30 charachters. Use only - A-z,1-9,@/./+/-/"
+
+#: accounts/forms.py:17
+msgid "Логин ( только A-z,1-9,@/./+/-/_ )"
+msgstr "Login ( only A-z,1-9,@/./+/-/_ )"
+
+#: accounts/forms.py:19 accounts/forms.py:22 crm/forms.py:92 crm/models.py:75
+msgid "Электронная почта"
+msgstr "E mail"
+
+#: accounts/forms.py:25 accounts/forms.py:49 accounts/forms.py:52
+msgid "Пароль"
+msgstr "Password"
+
+#: accounts/forms.py:30
+msgid "Пароль. Не менее 8 знаков, буквы и цифры"
+msgstr "Password. >8 characters, only char and digits"
+
+#: accounts/forms.py:32
+msgid "Подтверждение пароля"
+msgstr "Password confirmation"
+
+#: accounts/forms.py:37
+msgid "Подтверждение пароля. Оба пароля должны совпадать."
+msgstr "Password confirmation. Both passwords must be some"
+
+#: accounts/tables.py:14
+msgid "роль"
+msgstr "role"
+
+#: accounts/tables.py:15
+msgid "сотрудник"
+msgstr "staff"
+
+#: accounts/tables.py:23
+msgid ""
+"Пока нет ни одного пользователя по продажам. Для добавления используйте "
+"соответствующий пункт меню"
+msgstr "As long as there is no sales manager. To add, use the corresponding menu item"
+
+#: accounts/templates/accounts/activate.html:6
+msgid "Account activation failed"
+msgstr ""
+
+#: accounts/templates/accounts/activation_complete.html:10
+msgid "Успешная активация аккаунта."
+msgstr "Your account was activated"
+
+#: accounts/templates/accounts/activation_complete.html:12
+msgid "Для начала работы войдите в систему."
+msgstr "Please login"
+
+#: accounts/templates/accounts/activation_complete.html:13
+#: accounts/templates/accounts/login.html:22
+#: accounts/templates/accounts/logout.html:13
+#: accounts/templates/accounts/registration_complete.html:13
+#: accounts/templates/accounts/registration_form.html:32
+msgid "Войти"
+msgstr "Login"
+
+#: accounts/templates/accounts/activation_email.txt:2
+msgid "Activate account at"
+msgstr ""
+
+#: accounts/templates/accounts/activation_email.txt:6
+#, python-format
+msgid "Link is valid for %(expiration_days)s days."
+msgstr ""
+
+#: accounts/templates/accounts/activation_email_subject.txt:1
+msgid "Account activation on"
+msgstr ""
+
+#: accounts/templates/accounts/login.html:11
+msgid "Войдите в систему"
+msgstr "Login"
+
+#: accounts/templates/accounts/login.html:28
+msgid "Ошибочный пароль или логин"
+msgstr "Wrong login or password"
+
+#: accounts/templates/accounts/login.html:35
+#: accounts/templates/accounts/password_change_form.html:36
+#: accounts/templates/accounts/password_reset_form.html:36
+msgid "Ваш аккаунт не имеет прав для запрашиваемого действия"
+msgstr "You haven't got permission for do it !"
+
+#: accounts/templates/accounts/login.html:37
+#: accounts/templates/accounts/password_change_form.html:38
+#: accounts/templates/accounts/password_reset_form.html:38
+msgid "Для просмотра надо зайти в систему"
+msgstr "Please, login"
+
+#: accounts/templates/accounts/login.html:43
+#: accounts/templates/accounts/registration_form.html:26
+msgid "Зарегистрироваться"
+msgstr "Registration"
+
+#: accounts/templates/accounts/login.html:45
+msgid "Забыли пароль ?"
+msgstr "Forgot password ?"
+
+#: accounts/templates/accounts/logout.html:10
+msgid "Вы вышли из системы"
+msgstr "You gou out from CRM system"
+
+#: accounts/templates/accounts/logout.html:12
+msgid ""
+"Спасибо за то, что были с нами. Если передумали, то надо опять войти в "
+"систему."
+msgstr "Phatnx for use djangoCRM2 system."
+
+#: accounts/templates/accounts/password_change_done.html:10
+msgid "Успешное изменение пароля"
+msgstr "Password was changed successfully"
+
+#: accounts/templates/accounts/password_change_form.html:12
+msgid "Смена пароля"
+msgstr "Change password"
+
+#: accounts/templates/accounts/password_change_form.html:23
+msgid "Сменить"
+msgstr "CHange"
+
+#: accounts/templates/accounts/password_change_form.html:29
+msgid "Ошибочный пароль"
+msgstr "Wrong password"
+
+#: accounts/templates/accounts/password_reset_complete.html:6
+msgid "Password reset successfully"
+msgstr ""
+
+#: accounts/templates/accounts/password_reset_complete.html:8
+msgid "Log in"
+msgstr ""
+
+#: accounts/templates/accounts/password_reset_confirm.html:13
+msgid "Submit"
+msgstr ""
+
+#: accounts/templates/accounts/password_reset_confirm.html:18
+msgid "Password reset failed"
+msgstr ""
+
+#: accounts/templates/accounts/password_reset_done.html:10
+msgid "Мы послали на Ваш E-mail пиьмо с инструкциями для сброса пароля"
+msgstr ""
+
+#: accounts/templates/accounts/password_reset_done.html:12
+msgid "Для подтверждени сброса пароля просто перейдите по ссылке в письме"
+msgstr ""
+
+#: accounts/templates/accounts/password_reset_email.html:4
+#, python-format
+msgid "Reset password at %(site_name)s"
+msgstr ""
+
+#: accounts/templates/accounts/password_reset_form.html:12
+#: templates/top_menu.html:83
+msgid "Сбросить пароль"
+msgstr "Reset password"
+
+#: accounts/templates/accounts/password_reset_form.html:23
+msgid "Сбросить"
+msgstr "Reset"
+
+#: accounts/templates/accounts/password_reset_form.html:29
+msgid "Ошибочный E-mail"
+msgstr "Wrong E-mail"
+
+#: accounts/templates/accounts/registration_closed.html:6
+msgid "Registration is currently closed."
+msgstr ""
+
+#: accounts/templates/accounts/registration_complete.html:10
+msgid "Успешная регистрация"
+msgstr "Registration completed"
+
+#: accounts/templates/accounts/registration_complete.html:12
+msgid ""
+"Спасибо за регистрацию. Для завершения регистрации Вам надо подтвердить свой "
+"E-mail. Письмо с сылкой для подтверждения мы отправили на адрес, указанный "
+"при регистрации."
+msgstr ""
+
+#: accounts/templates/accounts/registration_form.html:11
+msgid "Новый пользователь"
+msgstr "New user"
+
+#: accounts/templates/accounts/user_del.html:9
+msgid "Вы хотите удалить пользователя: "
+msgstr ""
+
+#: accounts/templates/accounts/user_del.html:13
+#: crm/templates/crm/customer_del.html:13 crm/templates/crm/deal_del.html:13
+#: crm/templates/crm/product_del.html:13
+#: crm/templates/crm/salesperson_del.html:14 crm/templates/crm/todo_del.html:13
+msgid "Если уверенны, то нажмите на соответстыующую кнопку"
+msgstr ""
+
+#: accounts/templates/accounts/user_del.html:17
+#: crm/templates/crm/customer.html:30 crm/templates/crm/customer_del.html:17
+#: crm/templates/crm/deal.html:113 crm/templates/crm/deal_del.html:17
+#: crm/templates/crm/product.html:30 crm/templates/crm/product_del.html:17
+#: crm/templates/crm/salesperson.html:29
+#: crm/templates/crm/salesperson_del.html:18 crm/templates/crm/todo.html:30
+#: crm/templates/crm/todo_del.html:17
+msgid "Удалить"
+msgstr "Delete"
+
+#: accounts/templates/accounts/user_del.html:18
+#: crm/templates/crm/customer_del.html:18 crm/templates/crm/deal_del.html:18
+#: crm/templates/crm/product_del.html:18
+#: crm/templates/crm/salesperson_del.html:19 crm/templates/crm/todo_del.html:18
+msgid "Я передумал"
+msgstr "Cancel"
+
+#: accounts/templates/accounts/userlist.html:6
+msgid "Зарегистрированные пользователи."
+msgstr ""
+
+#: accounts/templates/accounts/userlist.html:6
+msgid "чел."
+msgstr ""
+
+#: accounts/templates/accounts/userlist.html:12 crm/models.py:111
+msgid "Эл.почта"
+msgstr "E mail"
+
+#: accounts/templates/accounts/userlist.html:24
+msgid "Пока нет ни одного зарегистрированного пользователя, "
+msgstr ""
+
+#: accounts/templates/accounts/userlist.html:24
+msgid "добавить"
+msgstr "add"
+
+#: accounts/views.py:71
+msgid ""
+"Учетная запись пользователя должна быть связанна с записью персонала или "
+"иметь статус АДМИНИСТРАТОРА."
+msgstr ""
+
+#: crm/admin.py:10
+msgid "simpleCRM, простая админка."
+msgstr ""
+
+#: crm/admin.py:11 crm/admin.py:12
+msgid "simpleCRM административная панель."
+msgstr ""
+
+#: crm/filters.py:17 crm/filters.py:51
+msgid "Все контракты"
+msgstr ""
+
+#: crm/filters.py:44 crm/filters.py:72
+msgid "<h5><small>Выберите статус сделки</small></h5>"
+msgstr ""
+
+#: crm/filters.py:45 crm/filters.py:74 crm/filters.py:84 crm/filters.py:99
+#: crm/filters.py:117
+msgid "<h5><small>Выберите менеджера по продажам</small></h5>"
+msgstr ""
+
+#: crm/filters.py:47 crm/filters.py:101 crm/filters.py:119
+msgid "<h5><small>Выберите временной диапазон для показа</small></h5>"
+msgstr ""
+
+#: crm/forms.py:27 crm/forms.py:47 crm/forms.py:81
+msgid "Фамилия (ОБЯЗАТЕЛЬНО)"
+msgstr "First name (requirement)"
+
+#: crm/forms.py:29 crm/forms.py:49 crm/forms.py:83
+msgid "Имя (ОБЯЗАТЕЛЬНО)"
+msgstr "Second name (requirement)"
+
+#: crm/forms.py:30 crm/forms.py:50 crm/forms.py:84
 msgid "Телефон: +999999999. До 15 цифр."
 msgstr ""
 
-#: crm/forms.py:18 crm/models.py:42 crm/templates/crm/salesperson.html:26
-#: crm/templates/crm/salespersons.html:12
+#: crm/forms.py:32 crm/forms.py:52 crm/models.py:58
 msgid "Подразделение"
-msgstr ""
+msgstr "Division"
 
-#: crm/forms.py:19
+#: crm/forms.py:34 crm/forms.py:54 crm/forms.py:87
 msgid "Моб. телефон: +999999999. До 15 цифр."
 msgstr ""
 
-#: crm/forms.py:20 crm/models.py:21
-msgid "Фотография"
+#: crm/forms.py:89
+msgid "Место работы"
+msgstr "Company"
+
+#: crm/forms.py:90 crm/models.py:110
+msgid "Должность"
+msgstr "Position"
+
+#: crm/mixin.py:31
+msgid " У Вашего аккаунта не хватает прав для совершения этой операции"
 msgstr ""
 
-#: crm/forms.py:25 crm/forms.py:28 templates/registration/login.html:49
-#: templates/registration/login_.html:277
-msgid "Логин"
-msgstr ""
+#: crm/models.py:9
+msgid "персонал"
+msgstr "staff"
 
-#: crm/forms.py:26
-msgid "Не более 30 символов. Допустимо - A-z,1-9,@/./+/-/_ "
-msgstr ""
+#: crm/models.py:10
+msgid "админ."
+msgstr "admin"
 
-#: crm/forms.py:27
-msgid "Допустимо только - A-z,1-9,@/./+/-/"
-msgstr ""
-
-#: crm/forms.py:30 crm/forms.py:32 crm/templates/crm/salesperson.html:48
-msgid "Электронная почта"
-msgstr ""
-
-#: crm/forms.py:34 crm/forms.py:35 templates/registration/login.html:58
-#: templates/registration/login_.html:287
-msgid "Пароль"
-msgstr ""
-
-#: crm/forms.py:36 crm/forms.py:38 templates/registration/login_.html:297
-msgid "Подтверждение пароля"
-msgstr ""
-
-#: crm/forms.py:39
-msgid "Оба пароля должны совпадать."
-msgstr ""
-
-#: crm/models.py:9 crm/models.py:63 crm/models.py:64
-#: crm/templates/crm/salespersons.html:10
-#: templates/registration/login_.html:258
-#: templates/registration/login_.html:323
+#: crm/models.py:14
 msgid "Фамилия"
-msgstr ""
+msgstr "First name"
 
-#: crm/models.py:10 crm/models.py:65 crm/templates/crm/salespersons.html:11
+#: crm/models.py:15
 msgid "Имя"
-msgstr ""
+msgstr "Last name"
 
-#: crm/models.py:12 crm/templates/crm/salespersons.html:13
+#: crm/models.py:17
 msgid "Телефон"
-msgstr ""
+msgstr "Phone"
 
-#: crm/models.py:14 crm/models.py:18
+#: crm/models.py:20 crm/models.py:25
 msgid "Телефонный номер должен быть в формате: '+999999999. До 15 цифр."
 msgstr ""
 
-#: crm/models.py:16
+#: crm/models.py:22
 msgid "Мобильный телефон"
+msgstr "Mobile phone"
+
+#: crm/models.py:28
+msgid "Фотография"
+msgstr "Photo"
+
+#: crm/models.py:50
+msgid "Руководитель"
+msgstr "Boss"
+
+#: crm/models.py:51
+msgid "Администратор"
+msgstr "Administrator"
+
+#: crm/models.py:52 crm/models.py:82 crm/models.py:107 crm/models.py:128
+msgid "Менеджер"
+msgstr "Manager"
+
+#: crm/models.py:59
+msgid "Роль"
+msgstr "Role"
+
+#: crm/models.py:65
+msgid "Менеджер по продажам"
+msgstr "Sales manager"
+
+#: crm/models.py:66
+msgid "Всего менеджеров по продажам"
+msgstr "Number of all sales managers"
+
+#: crm/models.py:67
+msgid "Просмотр менеджера по продажам"
+msgstr "View sales manager"
+
+#: crm/models.py:76
+msgid "Телефонный звонок"
+msgstr "Phone call"
+
+#: crm/models.py:77
+msgid "Личная встреча"
 msgstr ""
 
-#: crm/models.py:64
-msgid "Иванов"
-msgstr ""
+#: crm/models.py:78
+msgid "Почта бумажная"
+msgstr "Post"
 
-#: crm/models.py:73 crm/templates/crm/salespersons.html:14
-msgid "Эл.почта"
-msgstr ""
+#: crm/models.py:79 crm/models.py:104
+msgid "Что-то еще"
+msgstr "Somethings else"
+
+#: crm/models.py:84
+msgid "Действие"
+msgstr "Action"
+
+#: crm/models.py:85 crm/models.py:114
+msgid "Комментарий"
+msgstr "Comment"
+
+#: crm/models.py:86 crm/models.py:200 crm/tables.py:53
+msgid "Дата"
+msgstr "Date"
+
+#: crm/models.py:87 crm/models.py:201 crm/tables.py:54
+msgid "Время"
+msgstr "Time"
+
+#: crm/models.py:90 templates/top_menu.html:50
+msgid "Список дел"
+msgstr "ToDo list"
+
+#: crm/models.py:91
+msgid "Всего дел"
+msgstr "Number of ToDos"
 
 #: crm/models.py:92
+msgid "Просмотр дел"
+msgstr "ToDos view"
+
+#: crm/models.py:100
+msgid "Делал покупку"
+msgstr ""
+
+#: crm/models.py:101
+msgid "VIP"
+msgstr "VIP"
+
+#: crm/models.py:102
+msgid "Интересовался покупкой"
+msgstr ""
+
+#: crm/models.py:103
+msgid "Негативно настроен"
+msgstr ""
+
+#: crm/models.py:109
+msgid "Компания"
+msgstr "Company"
+
+#: crm/models.py:112
+msgid "Дата рождения"
+msgstr "Birth date"
+
+#: crm/models.py:113 crm/models.py:199 crm/tables.py:55
+msgid "Статус"
+msgstr "Status"
+
+#: crm/models.py:117 crm/models.py:129
+msgid "Клиент"
+msgstr "Customer"
+
+#: crm/models.py:118
+msgid "Всего клиентов"
+msgstr "Number of customer"
+
+#: crm/models.py:119
+msgid "Просмотр пользоателей"
+msgstr "User list"
+
+#: crm/models.py:131 templates/top_menu.html:63
+msgid "Список продуктов"
+msgstr "Products' list"
+
+#: crm/models.py:133
+msgid "Цена всего"
+msgstr "Total price"
+
+#: crm/models.py:134
+msgid ""
+"<h5><small>Стоимость контракта будет вычисленна автоматически</h5></small>"
+msgstr "Contract cost will be counted automatically"
+
+#: crm/models.py:136
+msgid "Номер контракта"
+msgstr "Contract number"
+
+#: crm/models.py:137
 msgid "Описание"
+msgstr "Description"
+
+#: crm/models.py:140
+msgid "Сделка"
+msgstr "Deal"
+
+#: crm/models.py:141
+msgid "Всего сделок"
+msgstr "Number of deals"
+
+#: crm/models.py:142
+msgid "Просмотр контрактов"
+msgstr "Contracts view"
+
+#: crm/models.py:149
+msgid "Номер товара"
+msgstr "Product number"
+
+#: crm/models.py:150
+msgid "Наименование товара"
+msgstr "Product name"
+
+#: crm/models.py:151
+msgid "Цена"
+msgstr "Price"
+
+#: crm/models.py:154 crm/models.py:167
+msgid "Продукт"
+msgstr "Product"
+
+#: crm/models.py:155
+msgid "Всего продуктов"
+msgstr "Number of products"
+
+#: crm/models.py:156
+msgid "Просмотр продуктов"
+msgstr "Products view"
+
+#: crm/models.py:165 crm/models.py:197
+msgid "Контракт"
+msgstr "Contract"
+
+#: crm/models.py:169
+msgid "Количество товара"
+msgstr "Goods qty"
+
+#: crm/models.py:171
+msgid "Цена за штуку"
+msgstr "Unit price"
+
+#: crm/models.py:172
+msgid "Цена за все"
+msgstr "Total price"
+
+#: crm/models.py:176
+msgid "Продукт в контракте"
+msgstr "Product in contract"
+
+#: crm/models.py:177
+msgid "Всего продуктов в контракте"
+msgstr "Number of products in contract"
+
+#: crm/models.py:178
+msgid "Просмотр продуктов в контракте"
+msgstr "View products in contract"
+
+#: crm/models.py:187
+msgid "Первый контакт"
+msgstr "First contact"
+
+#: crm/models.py:188
+msgid "Принятие решения"
+msgstr "Make decision"
+
+#: crm/models.py:189
+msgid "Согласование контракта"
 msgstr ""
 
-#: crm/templates/crm/salesperson.html:19
-msgid "Менеджер по продажам."
+#: crm/models.py:190
+msgid "Контракт подписан"
+msgstr "Contract signed"
+
+#: crm/models.py:191
+msgid "Ожидание денег"
+msgstr "Waiting for many"
+
+#: crm/models.py:192
+msgid "Контракт выполнен"
+msgstr "Contract has done"
+
+#: crm/models.py:193
+msgid "Мертвый контракт"
+msgstr "Dead contract"
+
+#: crm/models.py:202
+msgid "Примечание"
+msgstr "Comment"
+
+#: crm/models.py:205 crm/templates/crm/deal.html:69
+msgid "Статус контракта"
+msgstr "Contract status"
+
+#: crm/models.py:206
+msgid "Статусы контракта"
+msgstr "Contract status's"
+
+#: crm/models.py:208
+msgid "Просмотр статуса контракта"
 msgstr ""
 
-#: crm/templates/crm/salesperson.html:52
-msgid "Телефонный номер (моб):"
+#: crm/tables.py:21
+msgid ""
+"Пока нет ни одного менеджера по продажам. Для добавления используйте "
+"соответствующий пункт меню"
 msgstr ""
 
-#: crm/templates/crm/salesperson.html:56
-msgid "Телефонный номер (станц.):"
+#: crm/tables.py:31
+msgid ""
+"Пока нет ни одного запланированного дела. Для добавления используйте "
+"соответствующий пункт меню"
 msgstr ""
 
-#: crm/templates/crm/salesperson_new.html:12
-msgid "Добавление нового сотрудника-продавца"
+#: crm/tables.py:41
+msgid ""
+"Пока нет ни одного клиента. Для добавления используйте соответствующий пункт "
+"меню"
 msgstr ""
 
-#: crm/templates/crm/salesperson_new.html:44
-msgid "Добавить"
+#: crm/tables.py:49
+msgid ""
+"Пока нет ни одного продукта. Для добавления используйте соответствующий "
+"пункт меню"
 msgstr ""
 
-#: crm/templates/crm/salespersons.html:5
-msgid "Менеджеры по продажам."
+#: crm/tables.py:82
+msgid ""
+"Пока нет ни одной сделки. Для добавления используйте соответствующий пункт "
+"меню"
 msgstr ""
 
-#: crm/templates/crm/salespersons.html:5
-msgid "чел."
+#: crm/templates/crm/common_table_list.html:18
+#: crm/templates/crm/customer.html:27 crm/templates/crm/deal.html:110
+#: crm/templates/crm/product.html:27 crm/templates/crm/report_funnel.html:14
+#: crm/templates/crm/report_sp.html:13 crm/templates/crm/salesperson.html:26
+#: crm/templates/crm/todo.html:27
+msgid "Обновить"
+msgstr "Update"
+
+#: crm/templates/crm/customer.html:12
+msgid "Обновить данные клиента"
+msgstr "Update client data"
+
+#: crm/templates/crm/customer.html:33 crm/templates/crm/deal.html:116
+#: crm/templates/crm/product.html:33 crm/templates/crm/salesperson.html:32
+#: crm/templates/crm/todo.html:33
+msgid "Выйти"
+msgstr "Exit"
+
+#: crm/templates/crm/customer.html:41 crm/templates/crm/customer_new.html:31
+#: crm/templates/crm/product.html:41 crm/templates/crm/product_new.html:31
+#: crm/templates/crm/salesperson_new.html:31 crm/templates/crm/todo.html:41
+#: crm/templates/crm/todo_new.html:31 crm/views/deal_views.py:113
+#: crm/views/salesperson_views.py:53 crm/views/salesperson_views.py:125
+#: globalcustomer/templates/globalcustomer/globalcustomer_new.html:39
+#: globalcustomer/views.py:38
+msgid "Что-то пошло не так"
 msgstr ""
+
+#: crm/templates/crm/customer_del.html:9
+msgid "Вы хотите удалить клиента: "
+msgstr ""
+
+#: crm/templates/crm/customer_new.html:11
+msgid "Создать нового клиента"
+msgstr "Create new customer"
+
+#: crm/templates/crm/customer_new.html:25 crm/templates/crm/deal_new.html:89
+#: crm/templates/crm/product_new.html:25
+#: crm/templates/crm/salesperson_new.html:25 crm/templates/crm/todo_new.html:25
+#: globalcustomer/templates/globalcustomer/globalcustomer_new.html:33
+msgid "Создать"
+msgstr "Create"
+
+#: crm/templates/crm/deal.html:15
+msgid "Обновить данные по контракту"
+msgstr ""
+
+#: crm/templates/crm/deal.html:32
+msgid "Список товаров"
+msgstr "List of products"
+
+#: crm/templates/crm/deal.html:46 crm/templates/crm/deal.html:82
+msgid " Удалить"
+msgstr "Delete"
+
+#: crm/templates/crm/deal.html:61 crm/templates/crm/deal_new.html:55
+msgid "Что-то пошло не так при заполнении данных о товарах"
+msgstr ""
+
+#: crm/templates/crm/deal.html:96 crm/templates/crm/deal_new.html:82
+msgid "Что-то пошло не так при заполнении данных о статусе контракта"
+msgstr ""
+
+#: crm/templates/crm/deal.html:104 crm/templates/crm/deal_new.html:29
+msgid "Что-то пошло не так при заполнении основных данных"
+msgstr ""
+
+#: crm/templates/crm/deal_del.html:9
+msgid "Вы хотите удалить сделку: "
+msgstr ""
+
+#: crm/templates/crm/deal_new.html:16
+msgid "Новый контракт"
+msgstr "New contract"
+
+#: crm/templates/crm/product.html:12
+msgid "Обновить данные по продукту"
+msgstr ""
+
+#: crm/templates/crm/product_del.html:9
+msgid "Вы хотите удалить продукт: "
+msgstr ""
+
+#: crm/templates/crm/product_new.html:11
+msgid "Создать новый продукт"
+msgstr "Create new product"
+
+#: crm/templates/crm/report_funnel.html:23
+msgid "Воронка продаж по количеству контрактов"
+msgstr ""
+
+#: crm/templates/crm/report_funnel.html:50
+msgid "Воронка продаж по сумме контрактов"
+msgstr ""
+
+#: crm/templates/crm/report_sp.html:39
+msgid "Контракты по выбранному менеджеру (время/деньги)"
+msgstr ""
+
+#: crm/templates/crm/report_sp.html:51
+msgid "Контракты по выбранному менеджеру (время/кол-во)"
+msgstr ""
+
+#: crm/templates/crm/salesperson.html:12
+msgid "Обновить данные менеджера по продажам"
+msgstr ""
+
+#: crm/templates/crm/salesperson.html:40
+msgid "Ошибка в форме. Что-то пошло не так"
+msgstr ""
+
+#: crm/templates/crm/salesperson_del.html:9
+msgid "Вы хотите удалить менеджера по продажам: "
+msgstr ""
+
+#: crm/templates/crm/salesperson_del.html:11
+msgid "Так же будет удалена связанная учетная запись"
+msgstr ""
+
+#: crm/templates/crm/salesperson_new.html:11
+msgid "Новый менеджер по продажам"
+msgstr ""
+
+#: crm/templates/crm/todo.html:12
+msgid "Обновить данные запланированного дела"
+msgstr ""
+
+#: crm/templates/crm/todo_del.html:9
+msgid "Вы хотите удалить запланированное дело: "
+msgstr "You are going to delete ToDo:"
+
+#: crm/templates/crm/todo_new.html:11
+msgid "Новое запланированное дело"
+msgstr "New ToDo"
+
+#: crm/views/deal_views.py:288
+msgid "Doh! Something went wrong."
+msgstr ""
+
+#: crm/views/salesperson_views.py:104
+msgid "Немогу получить доступ к группе прав МЕНЕДЖЕР"
+msgstr "Can't access to group of permissions MANAGER"
+
+#: crm/views/salesperson_views.py:110
+msgid "Немогу получить доступ к группе прав РУКОВОДИТЕЛЬ"
+msgstr "Can't access to group of permissions BOSS"
+
+#: crm/views/salesperson_views.py:116
+msgid "Немогу получить доступ к группе прав АДМИНИСТРАТОР"
+msgstr "Can't access to group of permissions ADMIN"
+
+#: crm/views/views.py:31 crm/views/views.py:61
+msgid "Выбран слишком маленький временной интервал или нет релевантных данных"
+msgstr "Date range is too small or haven't got relevant data "
+
+#: crm/views/views.py:41
+msgid "Нет данных по контрактам для этого менеджера"
+msgstr "No contracts data present for this manager"
+
+#: crm/widgets.py:14
+msgid "Сейчас"
+msgstr "Now"
+
+#: crm/widgets.py:15
+msgid "Очистить выбор фотографии"
+msgstr "Clear your choice photo"
+
+#: crm/widgets.py:16
+msgid "Изменить фотографию"
+msgstr "Change photo"
+
+#: globalcustomer/forms.py:11
+msgid "Доменное имя"
+msgstr "Domen name"
+
+#: globalcustomer/forms.py:13
+msgid "Латинские буквы и цифры, без пробелов (ОБЯЗАТЕЛЬНО)"
+msgstr "A-z, 1-9 without spaces (Obligatorily)"
+
+#: globalcustomer/forms.py:21 globalcustomer/forms.py:24
+msgid "Обязательно"
+msgstr "Obligatorily"
+
+#: globalcustomer/models.py:24
+msgid "Имя Вашей организации"
+msgstr "Name of your company"
+
+#: globalcustomer/models.py:25
+msgid "Парру слов о Вашей организации"
+msgstr "Description of your company"
+
+#: globalcustomer/models.py:29
+msgid "Организация"
+msgstr "Company"
+
+#: globalcustomer/models.py:30
+msgid "Все организации"
+msgstr "Companies"
+
+#: globalcustomer/templates/globalcustomer/globalcustomer_new.html:19
+msgid "Создайте новую копию CRM для своей организации"
+msgstr "Please, create own copy of CRM system"
 
 #: templates/admin/base_site.html:3
 msgid "Django site admin"
@@ -135,177 +838,119 @@ msgstr ""
 msgid "Django administration"
 msgstr ""
 
-#: templates/base.html:45 templates/registration/login_.html:59
-#: templates/registration/login_.html:148
+#: templates/top_menu.html:19
 msgid "Отчеты"
-msgstr ""
+msgstr "Reports"
 
-#: templates/base.html:47 templates/registration/login_.html:61
-#: templates/registration/login_.html:150
+#: templates/top_menu.html:21
+msgid "Воронка продаж"
+msgstr "Funnel of sales"
+
+#: templates/top_menu.html:22
+msgid "Продажи менеджеров"
+msgstr "Sales of the managers"
+
+#: templates/top_menu.html:27
+msgid "Контракты"
+msgstr "Contracts"
+
+#: templates/top_menu.html:29
+msgid "Список контрактов"
+msgstr "List of contracts"
+
+#: templates/top_menu.html:30
+msgid "Добавить контракт"
+msgstr "Add contract"
+
+#: templates/top_menu.html:32
+msgid "Список контрактов с фильтрами"
+msgstr "List of contracts with filters"
+
+#: templates/top_menu.html:33
+msgid "Контракты за сегодня"
+msgstr "Contrcts for today"
+
+#: templates/top_menu.html:34
+msgid "Контракты за текущий месяц"
+msgstr "Contracts for the month"
+
+#: templates/top_menu.html:35
+msgid "Контракты за текущий год"
+msgstr "Contracts for the year"
+
+#: templates/top_menu.html:40
+msgid "Клиенты"
+msgstr "Clients"
+
+#: templates/top_menu.html:42
+msgid "Список клиентов"
+msgstr "List of clients"
+
+#: templates/top_menu.html:43 templates/top_menu.html:72
+#: templates/top_menu.html:80
+msgid "Добавить нового"
+msgstr "Add new"
+
+#: templates/top_menu.html:48
+msgid "Дела"
+msgstr "ToDos"
+
+#: templates/top_menu.html:51
+msgid "Добавить дело"
+msgstr "Add todo"
+
+#: templates/top_menu.html:53
+msgid "Список дел с фильтрами"
+msgstr "ToDos list with filters"
+
+#: templates/top_menu.html:54
+msgid "Дела за сегодня"
+msgstr "Now ToDos"
+
+#: templates/top_menu.html:55
+msgid "Дела за текущий месяц"
+msgstr "ToDos for the month"
+
+#: templates/top_menu.html:56
+msgid "Дела за текущий год"
+msgstr "ToDos for the year"
+
+#: templates/top_menu.html:61
+msgid "Продукты"
+msgstr "Products"
+
+#: templates/top_menu.html:64
+msgid "Добавить продукт"
+msgstr "Add product"
+
+#: templates/top_menu.html:69
 msgid "Менеджеры по продажам"
-msgstr ""
+msgstr "Sales managers"
 
-#: templates/base.html:53
-msgid "Привет,"
-msgstr ""
+#: templates/top_menu.html:71
+msgid "Список менеджеров"
+msgstr "List of managers"
 
-#: templates/base.html:54
+#: templates/top_menu.html:77
+msgid "Сервис"
+msgstr "Service"
+
+#: templates/top_menu.html:79
+msgid "Список пользователей"
+msgstr "List of users"
+
+#: templates/top_menu.html:82
+msgid "Сменить пароль"
+msgstr "Change password"
+
+#: templates/top_menu.html:85
+msgid "Документация"
+msgstr "Documentation"
+
+#: templates/top_menu.html:93
+msgid "Вы зашли как,"
+msgstr "You login as,"
+
+#: templates/top_menu.html:94
 msgid "Выход"
-msgstr ""
-
-#: templates/registration/activate.html:6
-msgid "Account activation failed"
-msgstr ""
-
-#: templates/registration/activation_complete.html:10
-msgid "Успешная активация аккаунта."
-msgstr ""
-
-#: templates/registration/activation_complete.html:12
-msgid "Для начала работы войдите в систему."
-msgstr ""
-
-#: templates/registration/activation_complete.html:13
-#: templates/registration/login.html:68 templates/registration/login_.html:76
-#: templates/registration/login_.html:162
-#: templates/registration/login_.html:313
-#: templates/registration/registration_complete.html:13
-#: templates/registration/registration_form.html:49
-msgid "Войти"
-msgstr ""
-
-#: templates/registration/activation_email.txt:2
-msgid "Activate account at"
-msgstr ""
-
-#: templates/registration/activation_email.txt:6
-#, python-format
-msgid "Link is valid for %(expiration_days)s days."
-msgstr ""
-
-#: templates/registration/activation_email_subject.txt:1
-msgid "Account activation on"
-msgstr ""
-
-#: templates/registration/login.html:11
-msgid "Войти или"
-msgstr ""
-
-#: templates/registration/login.html:36
-msgid "или"
-msgstr ""
-
-#: templates/registration/login.html:61
-msgid "Ошибочный логин или пароль"
-msgstr ""
-
-#: templates/registration/login.html:77
-msgid "Запомнить меня"
-msgstr ""
-
-#: templates/registration/login.html:82
-msgid "Забыли пароль ?"
-msgstr ""
-
-#: templates/registration/login_.html:10
-#: templates/registration/password_reset_complete.html:8
-msgid "Log in"
-msgstr ""
-
-#: templates/registration/login_.html:14 templates/registration/login_.html:105
-msgid "Forgot password"
-msgstr ""
-
-#: templates/registration/login_.html:14 templates/registration/login_.html:105
-msgid "Reset it"
-msgstr ""
-
-#: templates/registration/login_.html:15 templates/registration/login_.html:106
-msgid "Not member"
-msgstr ""
-
-#: templates/registration/login_.html:15 templates/registration/login_.html:106
-msgid "Register"
-msgstr ""
-
-#: templates/registration/login_.html:227
-#: templates/registration/password_change_form.html:10
-#: templates/registration/password_reset_confirm.html:13
-#: templates/registration/password_reset_form.html:10
-msgid "Submit"
-msgstr ""
-
-#: templates/registration/login_.html:249
-#: templates/registration/registration_form.html:11
-msgid "Новый пользователь"
-msgstr ""
-
-#: templates/registration/login_.html:262
-#: templates/registration/login_.html:327
-msgid "Введите Вашу фамилию"
-msgstr ""
-
-#: templates/registration/login_.html:267
-msgid "Почта"
-msgstr ""
-
-#: templates/registration/login_.html:271
-msgid "Введите Вашу почту"
-msgstr ""
-
-#: templates/registration/login_.html:281
-msgid "Введите Ваш логин"
-msgstr ""
-
-#: templates/registration/login_.html:291
-msgid "Введите Ваш пароль"
-msgstr ""
-
-#: templates/registration/login_.html:301
-msgid "Подтвердите Ваш пароль"
-msgstr ""
-
-#: templates/registration/login_.html:307
-#: templates/registration/registration_form.html:43
-msgid "Зарегистрироваться"
-msgstr ""
-
-#: templates/registration/logout.html:6
-msgid "Logged out"
-msgstr ""
-
-#: templates/registration/password_change_done.html:6
-msgid "Password changed"
-msgstr ""
-
-#: templates/registration/password_reset_complete.html:6
-msgid "Password reset successfully"
-msgstr ""
-
-#: templates/registration/password_reset_confirm.html:18
-msgid "Password reset failed"
-msgstr ""
-
-#: templates/registration/password_reset_done.html:6
-msgid "Email with password reset instructions has been sent."
-msgstr ""
-
-#: templates/registration/password_reset_email.html:4
-#, python-format
-msgid "Reset password at %(site_name)s"
-msgstr ""
-
-#: templates/registration/registration_closed.html:6
-msgid "Registration is currently closed."
-msgstr ""
-
-#: templates/registration/registration_complete.html:10
-msgid "Успешная регистрация"
-msgstr ""
-
-#: templates/registration/registration_complete.html:12
-msgid ""
-"Спасибо за регистрацию. Для завершения регистрации Вам надо подтвердить свой "
-"E-mail. Письмо с сылкой для подтверждения мы отправили на адрес, указанный "
-"при регистрации."
-msgstr ""
+msgstr "Exit"

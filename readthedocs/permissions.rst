@@ -13,16 +13,58 @@ It has permissions:
 
 .. table::
 
-    ================== ======= ============== ========
-     Permission          User   Sales person   Deals
-    ================== ======= ============== ========
-    Read any record     False       True        True
-    Change any record   False       False       False
-    Create any record   False       False       False
-    Delete any record   False       False       False
+    ================== ======= ============== ======== ========= ========== ===========
+     Permission          User   Sales person   Todos    Reports    Clients    Products
+    ================== ======= ============== ======== ========= ========== ===========
+    Read any record     False       True        True    False       True       True
+    Change any record   False       False       True    False       True       True
+    Create any record   False       False       True    False       True       True
+    Delete any record   False       False       True    False       True       True
 
-    Read   own record   False       True        True
-    Create own record   False       False       True
-    Change own record   False       True        True
-    Delete own record   False       False       True
-    ================== ======= ============== ========
+    Read   own record   False       True        True    False       True       True
+    Create own record   False       False       True    False       True       True
+    Change own record   False       True        True    False       True       True
+    Delete own record   False       False       True    False       True       True
+    ================== ======= ============== ======== ========= ========== ===========
+
+Boss's role
+-------------------------
+
+It has permissions:
+
+.. table::
+
+    ================== ======= ============== ======== ========= ========== ===========
+     Permission          User   Sales person   Todos    Reports    Clients    Products
+    ================== ======= ============== ======== ========= ========== ===========
+    Read any record     False       True        True    False       True       True
+    Change any record   False       False       True    False       True       True
+    Create any record   False       False       True    False       True       True
+    Delete any record   False       False       True    False       True       True
+
+    Read   own record   False       True        True    False       True       True
+    Create own record   False       False       True    False       True       True
+    Change own record   False       True        True    False       True       True
+    Delete own record   False       False       True    False       True       True
+    ================== ======= ============== ======== ========= ========== ===========
+
+Administrator's role
+-------------------------
+
+It has permissions:
+
+.. table::
+
+    ================== ======= ============== ======== ========= ========== ===========
+     Permission          User   Sales person   Todos    Reports    Clients    Products
+    ================== ======= ============== ======== ========= ========== ===========
+    Read any record     False       True        True    False       True       True
+    Change any record   False       False       True    False       True       True
+    Create any record   False       False       True    False       True       True
+    Delete any record   False       False       True    False       True       True
+
+    Read   own record   False       True        True    False       True       True
+    Create own record   False       False       True    False       True       True
+    Change own record   False       True        True    False       True       True
+    Delete own record   False       False       True    False       True       True
+    ================== ======= ============== ======== ========= ========== ===========

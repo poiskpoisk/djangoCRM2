@@ -3,14 +3,15 @@
 import datetime
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required as perm_req_std
 from django.db.models import F
 from django.shortcuts import render
 from django_tables2 import RequestConfig
 
 from guardian.decorators import permission_required
 
-from crm.models import SalesPerson, DealStatus, Deal, Todo, Customer
-from crm.tables import SalesPersonTable, DealsTable, ToDosTable, CustomersTable
+from crm.models import SalesPerson, Deal, Todo, Customer, Product
+from crm.tables import SalesPersonTable, DealsTable, ToDosTable, CustomersTable, ProductTable
 from crm.mixin import SomeUtilsMixin
 
 __author__ = 'AMA'
@@ -24,6 +25,18 @@ def tableSalesPerson(request):
     RequestConfig(request).configure(table)
     filter = 'NONFILTER'
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
+
+
+@login_required
+@perm_req_std('crm.read_product')
+def tableProducts(request):
+    queryset = Product.objects.all()
+    table = ProductTable(queryset)
+    RequestConfig(request).configure(table)
+    filter = 'NONFILTER'
+    return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
+
+
 
 @login_required
 @permission_required('crm.read_deal', accept_global_perms=True)
@@ -72,6 +85,7 @@ def tableFilterDeals(request, classFilter=None, duration=None):
 
 
 @login_required
+@perm_req_std('crm.read_todo')
 def tableFilterToDos(request, classFilter=None, duration=None):
     '''
     Функция комбинированного показа фильтров и результата фильтрования чрезе таблицы
@@ -103,7 +117,7 @@ def tableFilterToDos(request, classFilter=None, duration=None):
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
 
 
-@login_required
+@perm_req_std('crm.read_customer')
 def tableFilterCustomer(request, classFilter=None, duration=None):
     '''
     Функция комбинированного показа фильтров и результата фильтрования чрезе таблицы

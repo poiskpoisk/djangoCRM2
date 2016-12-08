@@ -1,15 +1,17 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, render_to_response
-from crm.models import DealStatus, Deal
+import time, datetime, math
+
+from django.contrib.auth.decorators import permission_required as perm_req_std
+from django.db.models import Q
+from django.shortcuts import render
+from crm.models import DealStatus
 from django.db.models import F
-from django.db.models import Sum, Min, Max
-import time, datetime
+from django.db.models import Sum
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 
 
 
-@login_required
+@perm_req_std('crm.read_customer')
 def reportSalesPerson(request, model, modelTable=None, classFilter=None):
     queryset = model.objects.all()
     # Extend a query additional data from related models
@@ -25,20 +27,36 @@ def reportSalesPerson(request, model, modelTable=None, classFilter=None):
         queryset=queryset.exclude(deal_data__isnull=True)
         data_min = queryset.earliest("deal_data").deal_data
         data_max = queryset.latest("deal_data").deal_data
-        queryset = queryset.filter(deal_data__gt=data_min, deal_data__lt=data_max)
+        queryset = queryset.filter(deal_data__gte=data_min, deal_data__lte=data_max)
     except:
-        messages.error(request, _('Выбран слишком маленький временной интервал или нет релевантных данных'))
+        messages.error(request, _('Нет релевантных данных для выбранных параметров фильтров'))
         return render(request, 'crm/report_sp.html', {'filter':filter})
+
+    for query in queryset:
+        deals = queryset.filter(ident=query.ident)
+        latest_data = deals.latest("deal_data").deal_data
+        latest_time = deals.filter(deal_data=latest_data).latest("deal_time").deal_time
+        qs=queryset.filter(ident=query.ident).exclude(deal_data=latest_data, deal_time=latest_time )
+        qs.delete()
+        a=1
+
+    #for query in queryset:
+    #    qs = queryset.filter(ident=query.ident).latest("deal_data").price
+
+    #queryset = queryset.order_by('deal_data')
+    #queryset=queryset.distinct('ident')
 
     delta = data_max - data_min
-    step = delta/20
+    # round up step
+    step = datetime.timedelta(days=math.ceil(delta.days/20))
+
+    # too small date interval forbidden
+    if delta < datetime.timedelta(days=20) or data_min > data_max:
+        messages.error(request, _('Выбран слишком маленький или не правильный временной интервал ( минимум 20 дней ) '))
+        return render(request, 'crm/report_sp.html', {'filter': filter})
 
     # selected sales_person for display on chart
-    try:
-        sales_person = queryset.exclude(sales_person__isnull=True)[0].sales_person
-    except:
-        messages.error(request, _('Нет данных по контрактам для этого менеджера'))
-        return render(request, 'crm/report_sp.html', {'filter':filter})
+    sales_person = _("Все") if filter.form.cleaned_data['sales_person'] == None else filter.form.cleaned_data['sales_person']
 
     # compute the price and qty deals of a selected date range
     xdata = []
@@ -50,16 +68,20 @@ def reportSalesPerson(request, model, modelTable=None, classFilter=None):
         xdata.append(point)
         date_end = date_begin + step
         point = int(time.mktime(date_end.timetuple())*1000)
-        qs=queryset.filter(deal_data__gt=date_begin, deal_data__lt=date_end)
+        # the same record will be rejected
+        qs=queryset.filter(deal_data__gte=date_begin, deal_data__lte=date_end)
+
+        #tp=qs.exclude(price__isnull=True).aggregate(total_price=Sum('price'))
+        qs=qs.exclude(price__isnull=True)
         ydata_qty.append(qs.count())
-        tp=qs.exclude(price__isnull=True).aggregate(total_price=Sum('price'))
-        ydata.append(int(0 if tp['total_price'] == None else tp['total_price']))
+
+        pr=0
+        for q in qs:
+            pr += q.price
+        ydata.append(str(pr))
+
+        #ydata.append(int(0 if tp['total_price'] == None else tp['total_price']))
         date_begin = date_end
-
-    if data_max == data_min or data_min > data_max:
-        messages.error(request, _('Выбран слишком маленький временной интервал или нет релевантных данных'))
-        return render(request, 'crm/report_sp.html', {'filter': filter})
-
 
 
     chartdata = {'x': xdata, 'y': ydata, 'name': str(sales_person) }
@@ -91,7 +113,7 @@ def reportSalesPerson(request, model, modelTable=None, classFilter=None):
     return render(request, 'crm/report_sp.html', data)
 
 
-@login_required
+@perm_req_std('crm.read_customer')
 def reportFunnel(request, model, modelTable=None, classFilter=None):
     queryset = model.objects.all()
     # Extend a query additional data from related models
@@ -123,7 +145,6 @@ def reportFunnel(request, model, modelTable=None, classFilter=None):
 
     return render(request, 'crm/report_funnel.html',
                   {'records': records, 'records_many': recordsMany, 'filter': filter})
-
 
 def setLang(request):
     # get list of NOT NULL

@@ -1,0 +1,75 @@
+- model: crm.deal
+  pk: 1
+  fields: {sales_person: 3, customer: 2, price: '23.00', ident: 333, description: '33'}
+- model: crm.deal
+  pk: 2
+  fields: {sales_person: 6, customer: 4, price: '13.00', ident: 100, description: some
+      things}
+- model: crm.deal
+  pk: 3
+  fields: {sales_person: 3, customer: 2, price: '100.00', ident: 1, description: "\u0413\u0430\
+      \u0437\u043E\u043D\u043E\u043A\u043E\u0441\u0438\u043B\u043A\u0430"}
+- model: crm.deal
+  pk: 4
+  fields: {sales_person: 6, customer: 2, price: '1000.00', ident: 2, description: "\u041F\u043E\
+      \u043B\u0438\u0432\u0430\u043B\u043A\u0430"}
+- model: crm.deal
+  pk: 5
+  fields: {sales_person: 6, customer: 2, price: '1000.00', ident: 3, description: "\u041F\u043E\
+      \u043B\u0438\u0432\u0430\u043B\u043A\u0430"}
+- model: crm.deal
+  pk: 6
+  fields: {sales_person: 3, customer: 2, price: '1000.00', ident: 4, description: "\u041F\u043E\
+      \u043B\u0438\u0432\u0430\u043B\u043A\u0430"}
+- model: crm.deal
+  pk: 7
+  fields: {sales_person: 5, customer: 2, price: '1000.00', ident: 5, description: "\u041F\u043E\
+      \u043B\u0438\u0432\u0430\u043B\u043A\u0430"}
+- model: crm.deal
+  pk: 8
+  fields: {sales_person: 5, customer: 2, price: '1000.00', ident: 6, description: "\u041F\u043E\
+      \u043B\u0438\u0432\u0430\u043B\u043A\u0430"}
+- model: crm.deal
+  pk: 9
+  fields: {sales_person: 3, customer: 2, price: '1000.00', ident: 7, description: "\u041F\u043E\
+      \u043B\u0438\u0432\u0430\u043B\u043A\u0430"}
+- model: crm.deal
+  pk: 10
+  fields: {sales_person: 4, customer: 2, price: '100.00', ident: 8, description: "\u0413\u0430\
+      \u0437\u043E\u043D\u043E\u043A\u043E\u0441\u0438\u043B\u043A\u0430"}
+- model: crm.deal
+  pk: 11
+  fields: {sales_person: 3, customer: 2, price: '100.00', ident: 9, description: "\u0413\u0430\
+      \u0437\u043E\u043D\u043E\u043A\u043E\u0441\u0438\u043B\u043A\u0430"}
+- model: crm.deal
+  pk: 12
+  fields: {sales_person: 3, customer: 2, price: '100.00', ident: 10, description: "\u0413\u0430\
+      \u0437\u043E\u043D\u043E\u043A\u043E\u0441\u0438\u043B\u043A\u0430"}
+- model: crm.deal
+  pk: 13
+  fields: {sales_person: 6, customer: 2, price: '10.00', ident: 11, description: "\u0413\u0440\
+      \u0430\u0431\u043B\u0438"}
+- model: crm.deal
+  pk: 14
+  fields: {sales_person: 6, customer: 2, price: '20.00', ident: 12, description: "\u041B\u043E\
+      \u043F\u0430\u0442\u0430"}
+- model: crm.deal
+  pk: 15
+  fields: {sales_person: 5, customer: 4, price: '100.00', ident: 13, description: "\u0413\u0430\
+      \u0437\u043E\u043D\u043E\u043A\u043E\u0441\u0438\u043B\u043A\u0430"}
+- model: crm.deal
+  pk: 16
+  fields: {sales_person: 5, customer: 2, price: '100.00', ident: 14, description: "\u0413\u0430\
+      \u0437\u043E\u043D\u043E\u043A\u043E\u0441\u0438\u043B\u043A\u0430"}
+- model: crm.deal
+  pk: 17
+  fields: {sales_person: 4, customer: 2, price: '100.00', ident: 15, description: "\u0413\u0430\
+      \u0437\u043E\u043D\u043E\u043A\u043E\u0441\u0438\u043B\u043A\u0430"}
+- model: crm.deal
+  pk: 18
+  fields: {sales_person: 4, customer: 3, price: '10.00', ident: 16, description: "\u0413\u0440\
+      \u0430\u0431\u043B\u0438"}
+- model: crm.deal
+  pk: 19
+  fields: {sales_person: 5, customer: 2, price: '20.00', ident: 17, description: "\u041B\u043E\
+      \u043F\u0430\u0442\u0430"}
