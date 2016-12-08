@@ -1,4 +1,4 @@
-# simpleCRM
+# djangoCRM2 the SaaS open sources CRM
 
 This is really simple CRM system with russian and english languages support ( any another translations welcome ).
 Main idea sCRM is strongly follow to DRY rule. We used only generally accepted and maintenanced components.
