@@ -1566,6 +1566,7 @@ COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
 36	3	21
 37	3	22
 38	3	23
+39	3	16
 \.
 
 
@@ -1573,7 +1574,7 @@ COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
 -- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: a1; Owner: ama
 --
 
-SELECT pg_catalog.setval('auth_group_permissions_id_seq', 38, true);
+SELECT pg_catalog.setval('auth_group_permissions_id_seq', 39, true);
 
 
 --
@@ -1658,10 +1659,10 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 61, true);
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
 1	!5K1utliluouDBBXbT6eDUDMZKSAkLHLd0a5oV7zN	\N	f	AnonymousUser				f	t	2016-12-05 05:45:08.205398+03
-4	pbkdf2_sha256$24000$GcSS9A6OiMGj$G02X2lyyL3MbMTEcgVFrmARKRBFjp2lBCNL4p4DSekA=	\N	f	new_manager				f	t	2016-12-05 06:14:29+03
-5	pbkdf2_sha256$24000$r6oqlttTauvr$YQpih09dTHIPMxBwCGJUO5GYZGg8WMdn1oUngWUnLKA=	\N	f	new_boss				f	t	2016-12-05 06:23:05+03
-2	pbkdf2_sha256$24000$ezj5tdVHm0T0$JW9fgImv4WUGm3gtHpNojVJXtUUN/3FE1CIhm8qLBDw=	2016-12-05 06:25:46.006217+03	t	ama			alex-abakumov@yandex.ru	t	t	2016-12-05 05:45:53.713181+03
-3	pbkdf2_sha256$24000$bD3BJEHem2m1$SzXfN4CndvN0/6v6vphQYoOQR3E+abga2KIFWZ9NkR4=	2016-12-05 06:26:31.866965+03	f	new_admin			new_admin@example.com	f	t	2016-12-05 05:57:24+03
+2	pbkdf2_sha256$24000$qeKvou4qfxYw$ErE9MSDvMI9885VPwEMFkPt2ArimsHU+3lmfmJwww94=	2016-12-08 18:15:27.035967+03	t	ama			alex-abakumov@yandex.ru	t	t	2016-12-05 05:45:53.713181+03
+3	pbkdf2_sha256$24000$u58vBnGtZS12$hFQsuDcU2gMLh+7tzwYvbbsbmwQbMt+fZL220ST8WH8=	2016-12-05 06:26:31.866965+03	f	new_admin			new_admin@example.com	f	t	2016-12-05 05:57:24+03
+5	pbkdf2_sha256$24000$68xPvrk9vqOe$6C+bXvntvuNPz1qgq/lWShrnIxTkYGlG5FS5K3bkYdw=	\N	f	new_boss				f	t	2016-12-05 06:23:05+03
+4	pbkdf2_sha256$24000$QgX1OnZxmExS$9YJ1ZZYPsunQt0PUoqL45n0VwKJ+L0KUyMf41QSUjtU=	\N	f	new_manager				f	t	2016-12-05 06:14:29+03
 \.
 
 
@@ -1833,6 +1834,11 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 13	2016-12-05 06:23:33.893907+03	5	new_boss	2	Изменен groups.	14	2
 14	2016-12-05 06:24:21.920607+03	4	new_manager	2	Изменены avatar для Sales manager "Ivan Candid".	14	2
 15	2016-12-05 06:25:13.313545+03	5	new_boss	2	Изменены avatar для Sales manager "Peter Bastew".	14	2
+16	2016-12-08 18:15:54.790354+03	3	manager	2	Изменен permissions.	13	2
+17	2016-12-08 18:16:19.590281+03	2	ama	2	Изменен password.	14	2
+18	2016-12-08 18:16:48.557499+03	3	new_admin	2	Изменен password.	14	2
+19	2016-12-08 18:17:11.973595+03	5	new_boss	2	Изменен password.	14	2
+20	2016-12-08 18:17:37.305768+03	4	new_manager	2	Изменен password.	14	2
 \.
 
 
@@ -1840,7 +1846,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: a1; Owner: ama
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 15, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 20, true);
 
 
 --
@@ -1922,6 +1928,7 @@ SELECT pg_catalog.setval('django_migrations_id_seq', 25, true);
 
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
 1mnj3omjwk5derym617leuvmwecat1x5	OTVhYzY2ZTc5ZTBkOWY1MTY3MmUzMjA1NzI0ODkzMzNjN2FhM2E4Zjp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYjliMjNhYWVjZGJjNDA0ZGM0ZDkwZGZmMzRiNmU0YzM1NWIzNmRlIn0=	2016-12-19 06:26:31.917221+03
+cdth8vdpg4vni93ksv7m72arp80yz55b	NTdhNDkzYTgyYzdlNDc4YzY4YTViOTJhMmZlNGRmZDE2YjNiNWQ2Nzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiJmYzAyZWVmNWU3ODJjNzRkZWZjOWE4YjhmYmVjMTljN2FkMzIzMWNjIn0=	2016-12-22 18:16:19.637463+03
 \.
 
 

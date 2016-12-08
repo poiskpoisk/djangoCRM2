@@ -32,19 +32,12 @@ def reportSalesPerson(request, model, modelTable=None, classFilter=None):
         messages.error(request, _('Нет релевантных данных для выбранных параметров фильтров'))
         return render(request, 'crm/report_sp.html', {'filter':filter})
 
+    # select only last deals and rejected other
     for query in queryset:
         deals = queryset.filter(ident=query.ident)
         latest_data = deals.latest("deal_data").deal_data
         latest_time = deals.filter(deal_data=latest_data).latest("deal_time").deal_time
-        qs=queryset.filter(ident=query.ident).exclude(deal_data=latest_data, deal_time=latest_time )
-        qs.delete()
-        a=1
-
-    #for query in queryset:
-    #    qs = queryset.filter(ident=query.ident).latest("deal_data").price
-
-    #queryset = queryset.order_by('deal_data')
-    #queryset=queryset.distinct('ident')
+        queryset = queryset.exclude( Q(ident=query.ident) and ~Q(deal_time=latest_time), ident=query.ident )
 
     delta = data_max - data_min
     # round up step
@@ -70,19 +63,10 @@ def reportSalesPerson(request, model, modelTable=None, classFilter=None):
         point = int(time.mktime(date_end.timetuple())*1000)
         # the same record will be rejected
         qs=queryset.filter(deal_data__gte=date_begin, deal_data__lte=date_end)
-
-        #tp=qs.exclude(price__isnull=True).aggregate(total_price=Sum('price'))
-        qs=qs.exclude(price__isnull=True)
+        tp=qs.exclude(price__isnull=True).aggregate(total_price=Sum('price'))
         ydata_qty.append(qs.count())
-
-        pr=0
-        for q in qs:
-            pr += q.price
-        ydata.append(str(pr))
-
-        #ydata.append(int(0 if tp['total_price'] == None else tp['total_price']))
+        ydata.append(int(0 if tp['total_price'] == None else tp['total_price']))
         date_begin = date_end
-
 
     chartdata = {'x': xdata, 'y': ydata, 'name': str(sales_person) }
     charttype = "lineChart"
