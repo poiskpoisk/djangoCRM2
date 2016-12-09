@@ -141,7 +141,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 # язык сайта по умолчанию, если не удалось определить язык другими способами
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'ru'
 TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 USE_L10N = True
@@ -239,3 +239,4 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # this is default
     'guardian.backends.ObjectPermissionBackend',
 )
+

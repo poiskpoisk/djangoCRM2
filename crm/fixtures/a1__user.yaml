@@ -22,7 +22,7 @@
     username: ama
     first_name: ''
     last_name: ''
-    email: alex-abakumov@yandex.ru
+    email: alex-abakumov@yandex.ru_RU
     is_staff: true
     is_active: true
     date_joined: 2016-12-04 20:25:32.015445+00:00

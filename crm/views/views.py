@@ -2,7 +2,9 @@ import time, datetime, math
 
 from django.contrib.auth.decorators import permission_required as perm_req_std
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
+from django.template import RequestContext
+
 from crm.models import DealStatus
 from django.db.models import F
 from django.db.models import Sum
@@ -99,6 +101,7 @@ def reportSalesPerson(request, model, modelTable=None, classFilter=None):
 
 @perm_req_std('crm.read_customer')
 def reportFunnel(request, model, modelTable=None, classFilter=None):
+
     queryset = model.objects.all()
     # Extend a query additional data from related models
     queryset = queryset.annotate(deal_data=F('dealstatus__deal_data'))
@@ -132,4 +135,5 @@ def reportFunnel(request, model, modelTable=None, classFilter=None):
 
 def setLang(request):
     # get list of NOT NULL
+
     return render(request, 'crm/lang.html')

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-#
-
-
+from django.conf.urls.i18n import i18n_patterns
 from django.views.generic import UpdateView, CreateView, DeleteView
 from django.conf.urls import url
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -77,3 +76,4 @@ urlpatterns = [
     url(r'^reportsp/$', reportSalesPerson, {'model': Deal, 'classFilter': DealFilter}, name='reportsp'),
 
 ]
+

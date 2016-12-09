@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-03 22:57+0300\n"
+"POT-Creation-Date: 2016-12-09 05:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: accounts/forms.py:13 accounts/forms.py:44 accounts/forms.py:47
-#: accounts/templates/accounts/userlist.html:11 crm/models.py:56
+#: accounts/templates/accounts/userlist.html:11 crm/models.py:54
 msgid "Логин"
 msgstr ""
 
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Логин ( только A-z,1-9,@/./+/-/_ )"
 msgstr ""
 
-#: accounts/forms.py:19 accounts/forms.py:22 crm/forms.py:92 crm/models.py:75
+#: accounts/forms.py:19 accounts/forms.py:22 crm/forms.py:98 crm/models.py:73
 msgid "Электронная почта"
 msgstr ""
 
@@ -47,7 +47,7 @@ msgstr ""
 
 #: accounts/forms.py:32
 msgid "Подтверждение пароля"
-msgstr ""
+msgstr "56666666666666666666666666666"
 
 #: accounts/forms.py:37
 msgid "Подтверждение пароля. Оба пароля должны совпадать."
@@ -252,7 +252,7 @@ msgstr ""
 msgid "чел."
 msgstr ""
 
-#: accounts/templates/accounts/userlist.html:12 crm/models.py:111
+#: accounts/templates/accounts/userlist.html:12 crm/models.py:109
 msgid "Эл.почта"
 msgstr ""
 
@@ -295,31 +295,30 @@ msgstr ""
 msgid "<h5><small>Выберите временной диапазон для показа</small></h5>"
 msgstr ""
 
-#: crm/forms.py:27 crm/forms.py:47 crm/forms.py:81
+#: crm/forms.py:27 crm/forms.py:49 crm/forms.py:85
 msgid "Фамилия (ОБЯЗАТЕЛЬНО)"
 msgstr ""
 
-#: crm/forms.py:29 crm/forms.py:49 crm/forms.py:83
+#: crm/forms.py:29 crm/forms.py:51 crm/forms.py:87
 msgid "Имя (ОБЯЗАТЕЛЬНО)"
 msgstr ""
 
-#: crm/forms.py:30 crm/forms.py:50 crm/forms.py:84
-msgid "Телефон: +999999999. До 15 цифр."
+#: crm/forms.py:31 crm/forms.py:36 crm/forms.py:53 crm/forms.py:58
+#: crm/forms.py:89 crm/forms.py:93 crm/models.py:19 crm/models.py:23
+msgid ""
+"Телефонный номер до 10 цифр. (123) 456 7899 или (123)-456-7899 или 123 456 "
+"7899"
 msgstr ""
 
-#: crm/forms.py:32 crm/forms.py:52 crm/models.py:58
+#: crm/forms.py:33 crm/forms.py:55 crm/models.py:56
 msgid "Подразделение"
 msgstr ""
 
-#: crm/forms.py:34 crm/forms.py:54 crm/forms.py:87
-msgid "Моб. телефон: +999999999. До 15 цифр."
-msgstr ""
-
-#: crm/forms.py:89
+#: crm/forms.py:95
 msgid "Место работы"
 msgstr ""
 
-#: crm/forms.py:90 crm/models.py:110
+#: crm/forms.py:96 crm/models.py:108
 msgid "Должность"
 msgstr ""
 
@@ -347,256 +346,252 @@ msgstr ""
 msgid "Телефон"
 msgstr ""
 
-#: crm/models.py:20 crm/models.py:25
-msgid "Телефонный номер должен быть в формате: '+999999999. До 15 цифр."
-msgstr ""
-
-#: crm/models.py:22
+#: crm/models.py:21
 msgid "Мобильный телефон"
 msgstr ""
 
-#: crm/models.py:28
+#: crm/models.py:26
 msgid "Фотография"
 msgstr ""
 
-#: crm/models.py:50
+#: crm/models.py:48
 msgid "Руководитель"
 msgstr ""
 
-#: crm/models.py:51
+#: crm/models.py:49
 msgid "Администратор"
 msgstr ""
 
-#: crm/models.py:52 crm/models.py:82 crm/models.py:107 crm/models.py:128
+#: crm/models.py:50 crm/models.py:80 crm/models.py:105 crm/models.py:126
 msgid "Менеджер"
 msgstr ""
 
-#: crm/models.py:59
+#: crm/models.py:57
 msgid "Роль"
 msgstr ""
 
-#: crm/models.py:65
+#: crm/models.py:63
 msgid "Менеджер по продажам"
 msgstr ""
 
-#: crm/models.py:66
+#: crm/models.py:64
 msgid "Всего менеджеров по продажам"
 msgstr ""
 
-#: crm/models.py:67
+#: crm/models.py:65
 msgid "Просмотр менеджера по продажам"
 msgstr ""
 
-#: crm/models.py:76
+#: crm/models.py:74
 msgid "Телефонный звонок"
 msgstr ""
 
-#: crm/models.py:77
+#: crm/models.py:75
 msgid "Личная встреча"
 msgstr ""
 
-#: crm/models.py:78
+#: crm/models.py:76
 msgid "Почта бумажная"
 msgstr ""
 
-#: crm/models.py:79 crm/models.py:104
+#: crm/models.py:77 crm/models.py:102
 msgid "Что-то еще"
 msgstr ""
 
-#: crm/models.py:84
+#: crm/models.py:82
 msgid "Действие"
 msgstr ""
 
-#: crm/models.py:85 crm/models.py:114
+#: crm/models.py:83 crm/models.py:112
 msgid "Комментарий"
 msgstr ""
 
-#: crm/models.py:86 crm/models.py:200 crm/tables.py:53
+#: crm/models.py:84 crm/models.py:198 crm/tables.py:53
 msgid "Дата"
 msgstr ""
 
-#: crm/models.py:87 crm/models.py:201 crm/tables.py:54
+#: crm/models.py:85 crm/models.py:199 crm/tables.py:54
 msgid "Время"
 msgstr ""
 
-#: crm/models.py:90 templates/top_menu.html:50
+#: crm/models.py:88 templates/top_menu.html:50
 msgid "Список дел"
 msgstr ""
 
-#: crm/models.py:91
+#: crm/models.py:89
 msgid "Всего дел"
 msgstr ""
 
-#: crm/models.py:92
+#: crm/models.py:90
 msgid "Просмотр дел"
 msgstr ""
 
-#: crm/models.py:100
+#: crm/models.py:98
 msgid "Делал покупку"
 msgstr ""
 
-#: crm/models.py:101
+#: crm/models.py:99
 msgid "VIP"
 msgstr ""
 
-#: crm/models.py:102
+#: crm/models.py:100
 msgid "Интересовался покупкой"
 msgstr ""
 
-#: crm/models.py:103
+#: crm/models.py:101
 msgid "Негативно настроен"
 msgstr ""
 
-#: crm/models.py:109
+#: crm/models.py:107
 msgid "Компания"
 msgstr ""
 
-#: crm/models.py:112
+#: crm/models.py:110
 msgid "Дата рождения"
 msgstr ""
 
-#: crm/models.py:113 crm/models.py:199 crm/tables.py:55
+#: crm/models.py:111 crm/models.py:197 crm/tables.py:55
 msgid "Статус"
 msgstr ""
 
-#: crm/models.py:117 crm/models.py:129
+#: crm/models.py:115 crm/models.py:127
 msgid "Клиент"
 msgstr ""
 
-#: crm/models.py:118
+#: crm/models.py:116
 msgid "Всего клиентов"
 msgstr ""
 
-#: crm/models.py:119
+#: crm/models.py:117
 msgid "Просмотр пользоателей"
 msgstr ""
 
-#: crm/models.py:131 templates/top_menu.html:63
+#: crm/models.py:129 templates/top_menu.html:63
 msgid "Список продуктов"
 msgstr ""
 
-#: crm/models.py:133
+#: crm/models.py:131
 msgid "Цена всего"
 msgstr ""
 
-#: crm/models.py:134
+#: crm/models.py:132
 msgid ""
 "<h5><small>Стоимость контракта будет вычисленна автоматически</h5></small>"
 msgstr ""
 
-#: crm/models.py:136
+#: crm/models.py:134
 msgid "Номер контракта"
 msgstr ""
 
-#: crm/models.py:137
+#: crm/models.py:135
 msgid "Описание"
 msgstr ""
 
-#: crm/models.py:140
+#: crm/models.py:138
 msgid "Сделка"
 msgstr ""
 
-#: crm/models.py:141
+#: crm/models.py:139
 msgid "Всего сделок"
 msgstr ""
 
-#: crm/models.py:142
+#: crm/models.py:140
 msgid "Просмотр контрактов"
 msgstr ""
 
-#: crm/models.py:149
+#: crm/models.py:147
 msgid "Номер товара"
 msgstr ""
 
-#: crm/models.py:150
+#: crm/models.py:148
 msgid "Наименование товара"
 msgstr ""
 
-#: crm/models.py:151
+#: crm/models.py:149
 msgid "Цена"
 msgstr ""
 
-#: crm/models.py:154 crm/models.py:167
+#: crm/models.py:152 crm/models.py:165
 msgid "Продукт"
 msgstr ""
 
-#: crm/models.py:155
+#: crm/models.py:153
 msgid "Всего продуктов"
 msgstr ""
 
-#: crm/models.py:156
+#: crm/models.py:154
 msgid "Просмотр продуктов"
 msgstr ""
 
-#: crm/models.py:165 crm/models.py:197
+#: crm/models.py:163 crm/models.py:195
 msgid "Контракт"
 msgstr ""
 
-#: crm/models.py:169
+#: crm/models.py:167
 msgid "Количество товара"
 msgstr ""
 
-#: crm/models.py:171
+#: crm/models.py:169
 msgid "Цена за штуку"
 msgstr ""
 
-#: crm/models.py:172
+#: crm/models.py:170
 msgid "Цена за все"
 msgstr ""
 
-#: crm/models.py:176
+#: crm/models.py:174
 msgid "Продукт в контракте"
 msgstr ""
 
-#: crm/models.py:177
+#: crm/models.py:175
 msgid "Всего продуктов в контракте"
 msgstr ""
 
-#: crm/models.py:178
+#: crm/models.py:176
 msgid "Просмотр продуктов в контракте"
 msgstr ""
 
-#: crm/models.py:187
+#: crm/models.py:185
 msgid "Первый контакт"
 msgstr ""
 
-#: crm/models.py:188
+#: crm/models.py:186
 msgid "Принятие решения"
 msgstr ""
 
-#: crm/models.py:189
+#: crm/models.py:187
 msgid "Согласование контракта"
 msgstr ""
 
-#: crm/models.py:190
+#: crm/models.py:188
 msgid "Контракт подписан"
 msgstr ""
 
-#: crm/models.py:191
+#: crm/models.py:189
 msgid "Ожидание денег"
 msgstr ""
 
-#: crm/models.py:192
+#: crm/models.py:190
 msgid "Контракт выполнен"
 msgstr ""
 
-#: crm/models.py:193
+#: crm/models.py:191
 msgid "Мертвый контракт"
 msgstr ""
 
-#: crm/models.py:202
+#: crm/models.py:200
 msgid "Примечание"
 msgstr ""
 
-#: crm/models.py:205 crm/templates/crm/deal.html:69
+#: crm/models.py:203 crm/templates/crm/deal.html:69
 msgid "Статус контракта"
 msgstr ""
 
-#: crm/models.py:206
+#: crm/models.py:204
 msgid "Статусы контракта"
 msgstr ""
 
-#: crm/models.py:208
+#: crm/models.py:206
 msgid "Просмотр статуса контракта"
 msgstr ""
 
@@ -705,6 +700,10 @@ msgstr ""
 msgid "Новый контракт"
 msgstr ""
 
+#: crm/templates/crm/lang.html:9
+msgid "Change your locale"
+msgstr ""
+
 #: crm/templates/crm/product.html:12
 msgid "Обновить данные по продукту"
 msgstr ""
@@ -765,7 +764,7 @@ msgstr ""
 msgid "Новое запланированное дело"
 msgstr ""
 
-#: crm/views/deal_views.py:288
+#: crm/views/deal_views.py:289
 msgid "Doh! Something went wrong."
 msgstr ""
 
@@ -781,12 +780,18 @@ msgstr ""
 msgid "Немогу получить доступ к группе прав АДМИНИСТРАТОР"
 msgstr ""
 
-#: crm/views/views.py:31 crm/views/views.py:61
-msgid "Выбран слишком маленький временной интервал или нет релевантных данных"
+#: crm/views/views.py:34
+msgid "Нет релевантных данных для выбранных параметров фильтров"
 msgstr ""
 
-#: crm/views/views.py:41
-msgid "Нет данных по контрактам для этого менеджера"
+#: crm/views/views.py:50
+msgid ""
+"Выбран слишком маленький или не правильный временной интервал ( минимум 20 "
+"дней ) "
+msgstr ""
+
+#: crm/views/views.py:54
+msgid "Все"
 msgstr ""
 
 #: crm/widgets.py:14
