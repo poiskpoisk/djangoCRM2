@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-#
+from crm.views.views import setLang
+
 __author__ = 'AMA'
 
-from globalcustomer.views import GlobalClientCreateView
+from globalcustomer.views import GlobalClientCreateView, choose_lang
 from django.conf.urls import url
 
 urlpatterns = [
@@ -10,5 +12,7 @@ urlpatterns = [
 
     # ----------------------- Create new tenant ------------------------------------------------------------------------
 
-    url(r'^$', GlobalClientCreateView.as_view(), name='globalcustomer'),
+    url(r'^tenant/$', GlobalClientCreateView.as_view(), name='globalcustomer'),
+    url(r'^$', choose_lang, name='chooselang'),
+    url(r'^sl/$', setLang, name='setlang'),
     ]

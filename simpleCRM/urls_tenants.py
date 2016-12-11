@@ -23,16 +23,19 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.generic import RedirectView
 from django.views.i18n import set_language
 
+from crm.views.views import setLang
 from simpleCRM.settings import MEDIA_ROOT, MEDIA_URL
 from .settings import DEBUG
 
-urlpatterns = i18n_patterns(
+urlpatterns = [ url(r'^lang/', setLang, name='sl'),]
+
+urlpatterns += [
     url(r'^crm/', include('crm.urls')),
     url(r'^select2/', include('django_select2.urls')),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^$', RedirectView.as_view(url=reverse_lazy('login'), permanent=False), name='mainpage'),
     url(r'^admin/', include(admin.site.urls)),
-)
+]
 
 # URLconfs have a hook that lets you pass extra arguments to your view FUNCTIONS (!), as a Python dictionary.
 #   url(r'^blog/(?P<year>[0-9]{4})/$', views.year_archive, {'foo': 'bar'}),

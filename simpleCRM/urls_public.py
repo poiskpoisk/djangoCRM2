@@ -10,14 +10,15 @@ from .settings import DEBUG
 import globalcustomer.urls
 
 urlpatterns = [
-    url(r'^setlang/$', set_language, name='set_language'),
+    url(r'^lang/', setLang, name='lang'),
+    url('^i18n/setlang/', set_language, name='set_language'),
 ]
 
-urlpatterns += i18n_patterns(
-    url(r'^lang/', setLang, name='set_language'),
+urlpatterns += [
+
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', include(globalcustomer.urls)),
-)
+    url(r'^new/', include(globalcustomer.urls)),
+]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
 

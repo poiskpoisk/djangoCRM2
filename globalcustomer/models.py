@@ -1,6 +1,6 @@
 from django.db import models
 from tenant_schemas.models import TenantMixin
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 
 class Client(TenantMixin):
@@ -20,10 +20,14 @@ class Client(TenantMixin):
         >>> print( rec.schema_name )
         a1
     """
-
+    LANG_CHOICES = (
+        ('ru', _('Русский')),
+        ('en', _('Английский')),
+    )
     name = models.CharField(_('Имя Вашей организации'), max_length=100)
     description = models.TextField(_("Парру слов о Вашей организации"), max_length=200, blank=True)
     created_on = models.DateField(auto_now_add=True)
+    lang = models.CharField(_('Язык'), max_length=2, choices=LANG_CHOICES )
 
     class Meta:
         verbose_name = _('Организация')

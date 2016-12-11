@@ -15,7 +15,7 @@ SECRET_KEY = sec_key
 DEBUG = True
 
 # Белый список хостов куда можно переходить без проверки токена CSFR
-ALLOWED_HOSTS=['.example.com','127.0.0.1', 'localhost', 'example.com']
+ALLOWED_HOSTS = ['.example.com', '127.0.0.1', 'localhost', 'example.com']
 
 INTERNAL_IPS = ('127.0.0.1',)
 
@@ -29,7 +29,7 @@ SHARED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'django.contrib.sites', # must have for public correct work
+    'django.contrib.sites',  # must have for public correct work
     'djangobower',
     'django_nvd3',
     'guardian',
@@ -39,7 +39,6 @@ TENANT_APPS = (
     # The following Django contrib apps must be in TENANT_APPS
     'django.contrib.contenttypes',
     'django.contrib.auth',
-
 
     'django.contrib.admin',
     'django.contrib.sites',
@@ -65,13 +64,21 @@ TENANT_MODEL = "globalcustomer.Client"  # app.Model
 
 INSTALLED_APPS = list(set(TENANT_APPS + SHARED_APPS))
 
+# Be CAREFUL ! Order of middleware is very IMPORTANT !
 MIDDLEWARE_CLASSES = [
+    # Make sure it’s one of the first middlewares installed.
     'tenant_schemas.middleware.TenantMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    # LocaleMiddleware should come after SessionMiddleware, because LocaleMiddleware makes use of session data.
+    # And it should come before CommonMiddleware because CommonMiddleware needs
+    # an activated language in order to resolve the requested URL.
+    # If you use CacheMiddleware, put LocaleMiddleware after it.
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -109,13 +116,13 @@ WSGI_APPLICATION = 'simpleCRM.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'ENGINE': 'tenant_schemas.postgresql_backend',
         'NAME': 'scrm',
         'USER': 'ama',
         'PASSWORD': 'alex1972',
-        'HOST': '', # Set to empty string for localhost.
-        'PORT': '', # Set to empty string for default.
+        'HOST': '',  # Set to empty string for localhost.
+        'PORT': '',  # Set to empty string for default.
     }
 }
 
@@ -142,10 +149,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # язык сайта по умолчанию, если не удалось определить язык другими способами
 LANGUAGE_CODE = 'ru'
+LANGUAGE_COOKIE_NAME = 'django_language'
+LANGUAGE_COOKIE_DOMAIN = '.example.com'
 TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+MY_LANG_CODE = LANGUAGE_CODE
 
 # указываем, где лежат файлы перевода
 LOCALE_PATHS = (
@@ -163,7 +174,7 @@ LANGUAGES = (
 
 # STATICFILES_DIRS is the list of folder where Django will search for additional static files,
 # in addition to each static folder of each app installed.
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'project_static'), ]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'project_static'), ]
 # URL for APP related static assets
 STATIC_URL = '/static/'
 # URL for all static files that collected manage.py collectstatic, must be ABS path
@@ -173,7 +184,7 @@ STATICFILES_FINDERS = (
     'djangobower.finders.BowerFinder',
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-     #'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 
 )
 
@@ -236,7 +247,6 @@ BOWER_INSTALLED_APPS = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend', # this is default
+    'django.contrib.auth.backends.ModelBackend',  # this is default
     'guardian.backends.ObjectPermissionBackend',
 )
-

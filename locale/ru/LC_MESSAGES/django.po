@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-09 05:14+0300\n"
+"POT-Creation-Date: 2016-12-11 08:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -648,8 +648,9 @@ msgstr ""
 #: crm/templates/crm/salesperson_new.html:31 crm/templates/crm/todo.html:41
 #: crm/templates/crm/todo_new.html:31 crm/views/deal_views.py:113
 #: crm/views/salesperson_views.py:53 crm/views/salesperson_views.py:125
+#: globalcustomer/templates/globalcustomer/choose_lang.html:37
 #: globalcustomer/templates/globalcustomer/globalcustomer_new.html:39
-#: globalcustomer/views.py:38
+#: globalcustomer/views.py:62
 msgid "Что-то пошло не так"
 msgstr ""
 
@@ -700,8 +701,8 @@ msgstr ""
 msgid "Новый контракт"
 msgstr ""
 
-#: crm/templates/crm/lang.html:9
-msgid "Change your locale"
+#: crm/templates/crm/lang.html:4
+msgid "Hi there folks!"
 msgstr ""
 
 #: crm/templates/crm/product.html:12
@@ -780,17 +781,17 @@ msgstr ""
 msgid "Немогу получить доступ к группе прав АДМИНИСТРАТОР"
 msgstr ""
 
-#: crm/views/views.py:34
+#: crm/views/views.py:33
 msgid "Нет релевантных данных для выбранных параметров фильтров"
 msgstr ""
 
-#: crm/views/views.py:50
+#: crm/views/views.py:49
 msgid ""
 "Выбран слишком маленький или не правильный временной интервал ( минимум 20 "
 "дней ) "
 msgstr ""
 
-#: crm/views/views.py:54
+#: crm/views/views.py:53
 msgid "Все"
 msgstr ""
 
@@ -810,33 +811,49 @@ msgstr ""
 msgid "Доменное имя"
 msgstr ""
 
-#: globalcustomer/forms.py:13
+#: globalcustomer/forms.py:14
 msgid "Латинские буквы и цифры, без пробелов (ОБЯЗАТЕЛЬНО)"
 msgstr ""
 
-#: globalcustomer/forms.py:21 globalcustomer/forms.py:24
+#: globalcustomer/forms.py:24 globalcustomer/forms.py:27
 msgid "Обязательно"
 msgstr ""
 
 #: globalcustomer/models.py:24
-msgid "Имя Вашей организации"
+msgid "Русский"
 msgstr ""
 
 #: globalcustomer/models.py:25
-msgid "Парру слов о Вашей организации"
+msgid "Английский"
+msgstr ""
+
+#: globalcustomer/models.py:26
+msgid "Китайский"
+msgstr ""
+
+#: globalcustomer/models.py:28
+msgid "Имя Вашей организации"
 msgstr ""
 
 #: globalcustomer/models.py:29
+msgid "Парру слов о Вашей организации"
+msgstr ""
+
+#: globalcustomer/models.py:31
+msgid "Язык"
+msgstr ""
+
+#: globalcustomer/models.py:34
 msgid "Организация"
 msgstr ""
 
-#: globalcustomer/models.py:30
+#: globalcustomer/models.py:35
 msgid "Все организации"
 msgstr ""
 
 #: globalcustomer/templates/globalcustomer/globalcustomer_new.html:19
 msgid "Создайте новую копию CRM для своей организации"
-msgstr ""
+msgstr "Создайте собственную копию CRM для своей организации"
 
 #: templates/admin/base_site.html:3
 msgid "Django site admin"

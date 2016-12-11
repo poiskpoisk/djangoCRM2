@@ -2,9 +2,11 @@
 
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.utils import translation
 from django.utils.translation import ugettext as _
 
 from crm.models import DealStatus
+from simpleCRM import settings
 
 __author__ = 'AMA'
 
@@ -40,3 +42,4 @@ class SomeUtilsMixin():
                 if query.deal_status == status[0]:
                     query.deal_status = status[1]
         return queryset
+

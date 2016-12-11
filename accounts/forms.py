@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-#
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from registration.forms import RegistrationFormUniqueEmail
 
 from crm.widgets import FaWidget

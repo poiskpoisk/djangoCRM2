@@ -3,11 +3,12 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.utils import translation
 from django.views.generic import DeleteView
 from django.views.generic import TemplateView
 from django_tables2 import RequestConfig
 from django.contrib.auth import views as auth_views, logout
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 from django.db.models import F
 from django.utils.decorators import method_decorator
@@ -19,6 +20,7 @@ from accounts.tables import UserListTable
 from crm.mixin import SomeUtilsMixin
 from crm.models import SalesPerson
 from guardian.decorators import permission_required
+from globalcustomer.models import Client
 
 
 class MyRegistrationView(RegistrationView):
@@ -47,6 +49,7 @@ def tableUser(request):
     filter = 'NONFILTER'
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
 
+
 class UserDeleteView(DeleteView):
     model = User
     template_name = 'accounts/user_del.html'
@@ -59,10 +62,13 @@ class UserDeleteView(DeleteView):
     def get(self, request, *args, **kwargs):
         return super().get(self, request, *args, **kwargs)
 
+
 class MyLogin(TemplateView, SomeUtilsMixin):
     template_name = 'accounts/login.html'
 
+
     def post(self, request, *args, **kwargs):
+
         resp = auth_views.login(request, template_name='accounts/login.html', authentication_form=MyAuthenticationForm)
         if not request.user.groups.filter(name='admin').exists() and str(request.user) != 'AnonymousUser':
             try:
@@ -73,12 +79,17 @@ class MyLogin(TemplateView, SomeUtilsMixin):
                 logout(request)
                 return HttpResponseRedirect(reverse('login'))
 
-
         return resp
 
     def get(self, request, *args, **kwargs):
+
+        rec = Client.objects.get(pk=request.tenant.pk)
+        translation.deactivate_all()
+        translation.activate(rec.lang)
+
         # if the forma updated we need to clear message query
-        self.clearMsg( request )
-        resp=auth_views.login(request, template_name='accounts/login.html', authentication_form=MyAuthenticationForm)
+        self.clearMsg(request)
+        resp = auth_views.login(request, template_name='accounts/login.html', authentication_form=MyAuthenticationForm)
         return resp
+
 

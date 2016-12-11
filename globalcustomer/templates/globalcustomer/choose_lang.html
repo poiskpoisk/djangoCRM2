@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load i18n %}
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+
+<head>
+  {% include "head.html" %}
+</head>
+
+    <body>
+      <div class="content">
+            <p>&nbsp;</p><p>&nbsp;</p>
+            <p>&nbsp;</p><p>&nbsp;</p>
+            <p>&nbsp;</p>
+            {% load bootstrap %}
+            <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+            <div class="container">
+                <div class="row">
+
+                    <!-- <div class="main-login main-center-spnew"> -->
+                    <div class="row">
+                        <div class="col-lg-5 col-lg-offset-3 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+                                <p>&nbsp;</p>
+                                {{ form|bootstrap_horizontal }}
+
+                                <p>&nbsp;</p>
+
+                                 <div class="form-group ">
+                                    <button class="btn btn-primary btn-lg btn-block login-button" type="submit" >Choice your language</button>
+                                    <input type="hidden" name="next" value="{{ next }}" />
+                                </div>
+
+                                {% if form.errors %}
+                                        <div class="errorlist">
+                                            <p>{% trans "Что-то пошло не так" %}</p>
+                                        </div>
+                                {% endif %}
+                            </form>
+                        </div>
+                    <div class="col-lg-2 col-md-2"> </div>
+                    </div>
+                    </div>
+                   <!-- </div> -->
+                </div>
+            </div>
+      </div>
+
+    </body>
+</html>
+
+
+
+
+

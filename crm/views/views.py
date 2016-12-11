@@ -12,7 +12,6 @@ from django.contrib import messages
 from django.utils.translation import ugettext as _
 
 
-
 @perm_req_std('crm.read_customer')
 def reportSalesPerson(request, model, modelTable=None, classFilter=None):
     queryset = model.objects.all()
