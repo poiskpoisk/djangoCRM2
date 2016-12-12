@@ -49,7 +49,7 @@ class GlobalClientCreateView(CreateView):
         if form.is_valid():
             rec = form.save(commit=False)
             rec.domain_url = form.data['schema_name'] + '.' + current_site.domain
-            rec.lang = GlobalClientCreateView.lang
+            rec.lang = settings.MY_LANG_CODE
             rec.save()
             site = 'http://' + form.data['schema_name'] + '.' + current_site.name
             if DEBUG:

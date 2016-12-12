@@ -16,9 +16,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: accounts/forms.py:13 accounts/forms.py:44 accounts/forms.py:47
 #: accounts/templates/accounts/userlist.html:11 crm/models.py:62
@@ -797,7 +794,7 @@ msgstr ""
 
 #: crm/views/deal_views.py:291
 msgid "Doh! Something went wrong."
-msgstr "Что-то пошло не так"
+msgstr ""
 
 #: crm/views/salesperson_views.py:108
 msgid "Немогу получить доступ к группе прав МЕНЕДЖЕР"
@@ -854,10 +851,8 @@ msgid "Имя Вашей организации"
 msgstr ""
 
 #: globalcustomer/models.py:30
-#, fuzzy
-#| msgid "Создайте новую копию CRM для своей организации"
 msgid "Пару слов о Вашей организации"
-msgstr "Создайте собственную копию CRM для своей организации"
+msgstr ""
 
 #: globalcustomer/models.py:35
 msgid "Организация"
@@ -869,7 +864,7 @@ msgstr ""
 
 #: globalcustomer/templates/globalcustomer/globalcustomer_new.html:19
 msgid "Создайте новую копию CRM для своей организации"
-msgstr "Создайте собственную копию CRM для своей организации"
+msgstr ""
 
 #: templates/admin/base_site.html:3
 msgid "Django site admin"

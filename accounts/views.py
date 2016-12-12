@@ -17,7 +17,7 @@ from registration.backends.default.views import RegistrationView
 
 from accounts.forms import MyRegistrationFormUniqueEmail, MyAuthenticationForm
 from accounts.tables import UserListTable
-from crm.mixin import SomeUtilsMixin
+from crm.mixin import SomeUtilsMixin, add_lang
 from crm.models import SalesPerson
 from guardian.decorators import permission_required
 from globalcustomer.models import Client
@@ -30,9 +30,18 @@ class MyRegistrationView(RegistrationView):
     def get_success_url(self, user=None):
         return reverse('registration_complete')
 
+    def get(self, request, *args, **kwargs):
+        # Set language as is tenant language
+        rec = Client.objects.get(pk=request.tenant.pk)
+        translation.deactivate_all()
+        translation.activate(rec.lang)
+        return super().get(self, request, *args, **kwargs)
+
+
 
 @login_required
 @permission_required('auth.add_user', accept_global_perms=True)
+@add_lang
 def tableUser(request):
     # add somme data from related tables
     queryset = User.objects.annotate(sp=F('salesperson__role'))
@@ -60,6 +69,7 @@ class UserDeleteView(DeleteView):
     @method_decorator(login_required())
     @method_decorator(permission_required('auth.delete_user', accept_global_perms=True))
     def get(self, request, *args, **kwargs):
+        translation.activate(request.user.salesperson.lang)
         return super().get(self, request, *args, **kwargs)
 
 
@@ -78,18 +88,18 @@ class MyLogin(TemplateView, SomeUtilsMixin):
                                           " или иметь статус АДМИНИСТРАТОРА."))
                 logout(request)
                 return HttpResponseRedirect(reverse('login'))
-
         return resp
 
     def get(self, request, *args, **kwargs):
-
+        # Set language as is tenant language
         rec = Client.objects.get(pk=request.tenant.pk)
         translation.deactivate_all()
         translation.activate(rec.lang)
-
-        # if the forma updated we need to clear message query
+        # if the form updated we need to clear message query
         self.clearMsg(request)
         resp = auth_views.login(request, template_name='accounts/login.html', authentication_form=MyAuthenticationForm)
         return resp
+
+
 
 

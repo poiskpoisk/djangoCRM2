@@ -14,6 +14,7 @@ Contents:
    preface
    permissions
    sampledata
+   localization
 
 
 

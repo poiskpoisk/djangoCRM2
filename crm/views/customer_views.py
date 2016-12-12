@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-#
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import permission_required
+from django.utils import translation
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
 from django.core.urlresolvers import reverse
 from django.views.generic import UpdateView
-
 
 from crm.forms import CustomerForm
 from crm.models import Customer
@@ -22,6 +22,7 @@ class CustomerDeleteView(DeleteView):
 
     @method_decorator(permission_required('crm.delete_customer'))
     def get(self, request, *args, **kwargs):
+        translation.activate(request.user.salesperson.lang)
         return super().get(self, request, *args, **kwargs)
 
 
@@ -35,6 +36,7 @@ class CustomerUpdateView(UpdateView):
 
     @method_decorator(permission_required('crm.change_customer'))
     def get(self, request, *args, **kwargs):
+        translation.activate(request.user.salesperson.lang)
         return super().get(self, request, *args, **kwargs)
 
     @method_decorator(permission_required('crm.change_customer'))
@@ -52,6 +54,7 @@ class CustomerCreateView(CreateView):
 
     @method_decorator(permission_required('crm.add_customer'))
     def get(self, request, *args, **kwargs):
+        translation.activate(request.user.salesperson.lang)
         return super().get(self, request, *args, **kwargs)
 
     @method_decorator(permission_required('crm.add_customer'))

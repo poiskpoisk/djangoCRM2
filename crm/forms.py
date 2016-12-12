@@ -1,8 +1,7 @@
-from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
+from datetimewidget.widgets import DateWidget, TimeWidget
 from django import forms
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django_select2.forms import ModelSelect2Widget
-from django.forms import widgets
 from django.contrib.auth.models import User
 
 from crm.models import SalesPerson, Todo, Customer, Deal, Product, DealProducts, DealStatus
@@ -20,7 +19,7 @@ class SalesPersonForm(forms.ModelForm):
     class Meta:
         model = SalesPerson
         # В форме поля будут в том же порядке, как перечисленны ниже
-        fields = ('avatar', 'first_name', 'second_name', 'division', 'phone_number', 'mobile_number', 'user', 'role')
+        fields = ('avatar', 'first_name', 'second_name', 'division', 'phone_number', 'mobile_number', 'lang', 'user', 'role')
         widgets = {
             'avatar': imageWidget,
             'first_name': FaWidget('fa fa-user fa-lg',
@@ -42,7 +41,7 @@ class SalesPersonUpdateForm(SalesPersonForm):
     class Meta:
         model = SalesPerson
         # В форме поля будут в том же порядке, как перечисленны ниже
-        fields = ('avatar', 'first_name', 'second_name', 'division', 'phone_number', 'mobile_number', 'user', 'role')
+        fields = ('avatar', 'first_name', 'second_name', 'division', 'phone_number', 'mobile_number', 'user', 'role', 'lang')
         widgets = {
             'avatar': imageWidget,
             'first_name': FaWidget('fa fa-user fa-lg',

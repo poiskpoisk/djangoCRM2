@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-#
-from django.conf.urls.i18n import i18n_patterns
-from django.views.generic import UpdateView, CreateView, DeleteView
+
 from django.conf.urls import url
-from django.core.urlresolvers import reverse, reverse_lazy
-from django.contrib.auth.decorators import login_required
+
 
 from crm.views.customer_views import CustomerUpdateView, CustomerDeleteView, CustomerCreateView
 from crm.views.product_views import ProductDeleteView, ProductUpdateView, ProductCreateView
@@ -13,9 +11,8 @@ from crm.views.table_views import tableSalesPerson, tableFilterDeals, tableFilte
     tableProducts
 from crm.views.deal_views import DealUpdateView, DealCreateView, DealDeleteView
 from crm.views.todo_views import ToDoUpdateView, ToDoCreateView, ToDoDeleteView
-from crm.views.views import setLang, reportFunnel, reportSalesPerson
-from crm.models import SalesPerson, Todo, Customer, Deal
-from crm.forms import SalesPersonForm, ToDoForm, CustomerForm, BossDealForm
+from crm.views.views import reportFunnel, reportSalesPerson
+from crm.models import Deal
 
 
 # common URLS prefix is /crm/

@@ -34,8 +34,9 @@ class GlobalClientForm(forms.ModelForm):
 class ChooseLangForm(forms.Form):
 
     LANG_CHOICES = (
-        ('en', 'English'),
         ('ru', 'Russian'),
+        ('en', 'English'),
+        ('cn', 'Chinese'),
     )
 
     Language = forms.TypedChoiceField(choices=LANG_CHOICES, empty_value='EN')

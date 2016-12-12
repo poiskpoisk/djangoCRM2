@@ -167,6 +167,7 @@ LOCALE_PATHS = (
 LANGUAGES = (
     ('ru', 'Russian'),
     ('en', 'English'),
+    ('cn', 'Chinese'),
 )
 
 # --------------------   Static files (CSS, JavaScript, Images)   --------------------------------------------

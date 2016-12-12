@@ -9,7 +9,7 @@ __author__ = 'AMA'
 import django_filters
 from django_filters.widgets import RangeWidget
 from crm.models import Deal, DealStatus, Todo
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from datetimewidget.widgets import DateWidget
 
 
@@ -20,10 +20,10 @@ class DealFilter(django_filters.FilterSet):
         STATUS_CHOICES.append(STATUS)
     STATUS_CHOICES = tuple(STATUS_CHOICES)
 
-    label = DealStatus._meta.get_field('status').verbose_name.title()
+    label = _(DealStatus._meta.get_field('status').verbose_name.title())
     status = django_filters.ChoiceFilter(choices=STATUS_CHOICES, method='filter_deal', label=label)
 
-    label = DealStatus._meta.get_field('deal_data').verbose_name.title()
+    label = _(DealStatus._meta.get_field('deal_data').verbose_name.title())
     deal_data = django_filters.DateTimeFromToRangeFilter(label=label,
                                                          widget=RangeWidget(attrs={'placeholder': 'YYYY-MM-DD'}))
 
@@ -103,7 +103,7 @@ ReportFilter.base_filters['deal_data'].field.help_text = _(
 
 class TodoFilter(django_filters.FilterSet):
 
-    label = DealStatus._meta.get_field('deal_data').verbose_name.title()
+    label = _(DealStatus._meta.get_field('deal_data').verbose_name.title())
     todo_data = django_filters.DateTimeFromToRangeFilter(label=label,
                                                          widget=RangeWidget(attrs={'placeholder': 'YYYY-MM-DD'}))
 

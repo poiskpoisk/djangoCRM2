@@ -7,11 +7,12 @@ from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.utils import translation
 from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView, CreateView
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django.views.generic import DeleteView
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import User
 
 from datetimewidget.widgets import DateWidget, TimeWidget
 from guardian.decorators import permission_required
@@ -39,7 +40,7 @@ class DealUpdateView(UpdateView, SomeUtilsMixin):
     @method_decorator(login_required())
     @method_decorator(permission_required('crm.read_deal', accept_global_perms=True))
     def get(self, request, *args, **kwargs):
-
+        translation.activate(request.user.salesperson.lang)
         self.req = request
         user = User.objects.get(username=request.user.username)
 
@@ -197,6 +198,7 @@ class DealCreateView(CreateView):
     @method_decorator(login_required())
     @method_decorator(permission_required('crm.add_deal', accept_global_perms=True))
     def get(self, request, *args, **kwargs):
+        translation.activate(request.user.salesperson.lang)
         self.req = request
         user = User.objects.get(username=request.user.username)
 
@@ -305,6 +307,7 @@ class DealDeleteView(DeleteView, SomeUtilsMixin):
 
     @method_decorator(login_required())
     def get(self, request, *args, **kwargs):
+        translation.activate(request.user.salesperson.lang)
         if not self.checkPermissions(request, Deal, 'crm.delete_deal'):
             return HttpResponseRedirect(reverse('login'))
         return super().get(self, request, *args, **kwargs)

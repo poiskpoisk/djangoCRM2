@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-#
 from django.contrib.auth.decorators import permission_required
+from django.utils import translation
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
@@ -22,6 +23,7 @@ class ToDoDeleteView(DeleteView):
 
     @method_decorator(permission_required('crm.delete_todo'))
     def get(self, request, *args, **kwargs):
+        translation.activate(request.user.salesperson.lang)
         return super().get(self, request, *args, **kwargs)
 
 
@@ -35,6 +37,7 @@ class ToDoUpdateView(UpdateView):
 
     @method_decorator(permission_required('crm.change_todo'))
     def get(self, request, *args, **kwargs):
+        translation.activate(request.user.salesperson.lang)
         return super().get(self, request, *args, **kwargs)
 
     @method_decorator(permission_required('crm.change_todo'))
@@ -52,6 +55,7 @@ class ToDoCreateView(CreateView):
 
     @method_decorator(permission_required('crm.add_todo'))
     def get(self, request, *args, **kwargs):
+        translation.activate(request.user.salesperson.lang)
         return super().get(self, request, *args, **kwargs)
 
     @method_decorator(permission_required('crm.add_todo'))

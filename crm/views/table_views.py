@@ -6,19 +6,21 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required as perm_req_std
 from django.db.models import F
 from django.shortcuts import render
+from django.utils import translation
 from django_tables2 import RequestConfig
 
 from guardian.decorators import permission_required
 
 from crm.models import SalesPerson, Deal, Todo, Customer, Product
 from crm.tables import SalesPersonTable, DealsTable, ToDosTable, CustomersTable, ProductTable
-from crm.mixin import SomeUtilsMixin
+from crm.mixin import SomeUtilsMixin, add_lang
 
 __author__ = 'AMA'
 
 
 @login_required
 @permission_required('crm.read_salesperson', accept_global_perms=True)
+@add_lang
 def tableSalesPerson(request):
     queryset = SalesPerson.objects.annotate(email=F('user__email'))
     table = SalesPersonTable(queryset)
@@ -29,6 +31,7 @@ def tableSalesPerson(request):
 
 @login_required
 @perm_req_std('crm.read_product')
+@add_lang
 def tableProducts(request):
     queryset = Product.objects.all()
     table = ProductTable(queryset)
@@ -37,9 +40,9 @@ def tableProducts(request):
     return render(request, 'crm/common_table_list.html', {'table': table, 'filter': filter})
 
 
-
 @login_required
 @permission_required('crm.read_deal', accept_global_perms=True)
+@add_lang
 def tableFilterDeals(request, classFilter=None, duration=None):
     '''
     Функция комбинированного показа фильтров и результата фильтрования чрезе таблицы
@@ -86,6 +89,7 @@ def tableFilterDeals(request, classFilter=None, duration=None):
 
 @login_required
 @perm_req_std('crm.read_todo')
+@add_lang
 def tableFilterToDos(request, classFilter=None, duration=None):
     '''
     Функция комбинированного показа фильтров и результата фильтрования чрезе таблицы
@@ -118,6 +122,7 @@ def tableFilterToDos(request, classFilter=None, duration=None):
 
 
 @perm_req_std('crm.read_customer')
+@add_lang
 def tableFilterCustomer(request, classFilter=None, duration=None):
     '''
     Функция комбинированного показа фильтров и результата фильтрования чрезе таблицы

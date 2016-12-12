@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-#
 from django.contrib.auth.decorators import login_required
+from django.utils import translation
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
@@ -9,6 +10,7 @@ from django.views.generic import UpdateView
 from guardian.decorators import permission_required
 
 from crm.forms import ProductForm
+from crm.mixin import add_lang
 from crm.models import Product
 
 __author__ = 'AMA'
@@ -24,6 +26,7 @@ class ProductDeleteView(DeleteView):
     @method_decorator(login_required())
     @method_decorator(permission_required('crm.delete_product', accept_global_perms=True))
     def get(self, request, *args, **kwargs):
+        translation.activate(request.user.salesperson.lang)
         return super().get(self, request, *args, **kwargs)
 
 
@@ -38,6 +41,7 @@ class ProductUpdateView(UpdateView):
     @method_decorator(login_required())
     @method_decorator(permission_required('crm.change_product', accept_global_perms=True))
     def get(self, request, *args, **kwargs):
+        translation.activate(request.user.salesperson.lang)
         return super().get(self, request, *args, **kwargs)
 
     @method_decorator(login_required())
@@ -57,6 +61,7 @@ class ProductCreateView(CreateView):
     @method_decorator(login_required())
     @method_decorator(permission_required('crm.add_product', accept_global_perms=True))
     def get(self, request, *args, **kwargs):
+        translation.activate(request.user.salesperson.lang)
         return super().get(self, request, *args, **kwargs)
 
     @method_decorator(login_required())

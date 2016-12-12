@@ -17,19 +17,14 @@ from django.conf.urls import url, include
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
-
-from django.shortcuts import redirect
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.core.urlresolvers import reverse_lazy
 from django.views.generic import RedirectView
-from django.views.i18n import set_language
 
-from crm.views.views import setLang
 from simpleCRM.settings import MEDIA_ROOT, MEDIA_URL
 from .settings import DEBUG
 
-urlpatterns = [ url(r'^lang/', setLang, name='sl'),]
 
-urlpatterns += [
+urlpatterns = [
     url(r'^crm/', include('crm.urls')),
     url(r'^select2/', include('django_select2.urls')),
     url(r'^accounts/', include('accounts.urls')),

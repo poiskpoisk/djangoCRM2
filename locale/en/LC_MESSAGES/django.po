@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-11 08:50+0300\n"
+"POT-Creation-Date: 2016-12-12 21:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: accounts/forms.py:13 accounts/forms.py:44 accounts/forms.py:47
-#: accounts/templates/accounts/userlist.html:11 crm/models.py:54
+#: accounts/templates/accounts/userlist.html:11 crm/models.py:62
 msgid "Логин"
 msgstr "Login"
 
@@ -30,7 +30,7 @@ msgstr "< 30 charachters. Use only - A-z,1-9,@/./+/-/"
 msgid "Логин ( только A-z,1-9,@/./+/-/_ )"
 msgstr "Login ( only A-z,1-9,@/./+/-/_ )"
 
-#: accounts/forms.py:19 accounts/forms.py:22 crm/forms.py:98 crm/models.py:73
+#: accounts/forms.py:19 accounts/forms.py:22 crm/forms.py:97 crm/models.py:82
 msgid "Электронная почта"
 msgstr "E mail"
 
@@ -135,7 +135,7 @@ msgstr "You gou out from CRM system"
 msgid ""
 "Спасибо за то, что были с нами. Если передумали, то надо опять войти в "
 "систему."
-msgstr "Phatnx for use djangoCRM2 system."
+msgstr "Thatnx for use djangoCRM2 system."
 
 #: accounts/templates/accounts/password_change_done.html:10
 msgid "Успешное изменение пароля"
@@ -147,7 +147,7 @@ msgstr "Change password"
 
 #: accounts/templates/accounts/password_change_form.html:23
 msgid "Сменить"
-msgstr "CHange"
+msgstr "Change"
 
 #: accounts/templates/accounts/password_change_form.html:29
 msgid "Ошибочный пароль"
@@ -171,11 +171,11 @@ msgstr ""
 
 #: accounts/templates/accounts/password_reset_done.html:10
 msgid "Мы послали на Ваш E-mail пиьмо с инструкциями для сброса пароля"
-msgstr ""
+msgstr "We sent your E-mail with instructions for the password reset"
 
 #: accounts/templates/accounts/password_reset_done.html:12
 msgid "Для подтверждени сброса пароля просто перейдите по ссылке в письме"
-msgstr ""
+msgstr "For password reset confirmation just follow the link in the email"
 
 #: accounts/templates/accounts/password_reset_email.html:4
 #, python-format
@@ -209,6 +209,7 @@ msgid ""
 "E-mail. Письмо с сылкой для подтверждения мы отправили на адрес, указанный "
 "при регистрации."
 msgstr ""
+"Thanks for registration. You must confirm your E-mail. Please, check it."
 
 #: accounts/templates/accounts/registration_form.html:11
 msgid "Новый пользователь"
@@ -216,14 +217,14 @@ msgstr "New user"
 
 #: accounts/templates/accounts/user_del.html:9
 msgid "Вы хотите удалить пользователя: "
-msgstr ""
+msgstr "You are going to delete user:"
 
 #: accounts/templates/accounts/user_del.html:13
 #: crm/templates/crm/customer_del.html:13 crm/templates/crm/deal_del.html:13
 #: crm/templates/crm/product_del.html:13
 #: crm/templates/crm/salesperson_del.html:14 crm/templates/crm/todo_del.html:13
 msgid "Если уверенны, то нажмите на соответстыующую кнопку"
-msgstr ""
+msgstr "Are you sure ?"
 
 #: accounts/templates/accounts/user_del.html:17
 #: crm/templates/crm/customer.html:30 crm/templates/crm/customer_del.html:17
@@ -244,384 +245,418 @@ msgstr "Cancel"
 
 #: accounts/templates/accounts/userlist.html:6
 msgid "Зарегистрированные пользователи."
-msgstr ""
+msgstr "Registered users"
 
 #: accounts/templates/accounts/userlist.html:6
 msgid "чел."
 msgstr ""
 
-#: accounts/templates/accounts/userlist.html:12 crm/models.py:109
+#: accounts/templates/accounts/userlist.html:12 crm/models.py:118
 msgid "Эл.почта"
 msgstr "E mail"
 
 #: accounts/templates/accounts/userlist.html:24
 msgid "Пока нет ни одного зарегистрированного пользователя, "
-msgstr ""
+msgstr "No one USER yet"
 
 #: accounts/templates/accounts/userlist.html:24
 msgid "добавить"
 msgstr "add"
 
-#: accounts/views.py:71
+#: accounts/views.py:87
 msgid ""
 "Учетная запись пользователя должна быть связанна с записью персонала или "
 "иметь статус АДМИНИСТРАТОРА."
-msgstr ""
+msgstr "User account must be linked with sales manager or has ADMIN status"
 
 #: crm/admin.py:10
 msgid "simpleCRM, простая админка."
-msgstr ""
+msgstr "djangoCRM2, simple admin panel"
 
 #: crm/admin.py:11 crm/admin.py:12
 msgid "simpleCRM административная панель."
-msgstr ""
+msgstr "djangoCRM2 admin panel"
 
 #: crm/filters.py:17 crm/filters.py:51
 msgid "Все контракты"
-msgstr ""
+msgstr "All deals"
 
 #: crm/filters.py:44 crm/filters.py:72
 msgid "<h5><small>Выберите статус сделки</small></h5>"
-msgstr ""
+msgstr "Selecr deal status"
 
 #: crm/filters.py:45 crm/filters.py:74 crm/filters.py:84 crm/filters.py:99
 #: crm/filters.py:117
 msgid "<h5><small>Выберите менеджера по продажам</small></h5>"
-msgstr ""
+msgstr "Select sales manager"
 
 #: crm/filters.py:47 crm/filters.py:101 crm/filters.py:119
 msgid "<h5><small>Выберите временной диапазон для показа</small></h5>"
-msgstr ""
+msgstr "Select view date range "
 
-#: crm/forms.py:27 crm/forms.py:49 crm/forms.py:85
+#: crm/forms.py:26 crm/forms.py:48 crm/forms.py:84
 msgid "Фамилия (ОБЯЗАТЕЛЬНО)"
 msgstr "First name (requirement)"
 
-#: crm/forms.py:29 crm/forms.py:51 crm/forms.py:87
+#: crm/forms.py:28 crm/forms.py:50 crm/forms.py:86
 msgid "Имя (ОБЯЗАТЕЛЬНО)"
 msgstr "Second name (requirement)"
 
-#: crm/forms.py:31 crm/forms.py:36 crm/forms.py:53 crm/forms.py:58
-#: crm/forms.py:89 crm/forms.py:93 crm/models.py:19 crm/models.py:23
+#: crm/forms.py:30 crm/forms.py:35 crm/forms.py:52 crm/forms.py:57
+#: crm/forms.py:88 crm/forms.py:92 crm/models.py:20 crm/models.py:24
 msgid ""
 "Телефонный номер до 10 цифр. (123) 456 7899 или (123)-456-7899 или 123 456 "
 "7899"
 msgstr ""
+"Phone number up to 10 digits. (123) 456 7899 or (123)-456-7899 or 123 456"
 
-#: crm/forms.py:33 crm/forms.py:55 crm/models.py:56
+#: crm/forms.py:32 crm/forms.py:54 crm/models.py:64
 msgid "Подразделение"
 msgstr "Division"
 
-#: crm/forms.py:95
+#: crm/forms.py:94
 msgid "Место работы"
 msgstr "Company"
 
-#: crm/forms.py:96 crm/models.py:108
+#: crm/forms.py:95 crm/models.py:117
 msgid "Должность"
 msgstr "Position"
 
-#: crm/mixin.py:31
+#: crm/mixin.py:38
 msgid " У Вашего аккаунта не хватает прав для совершения этой операции"
-msgstr ""
+msgstr "You haven't got permission for this action"
 
-#: crm/models.py:9
+#: crm/models.py:10
 msgid "персонал"
 msgstr "staff"
 
-#: crm/models.py:10
+#: crm/models.py:11
 msgid "админ."
 msgstr "admin"
 
-#: crm/models.py:14
+#: crm/models.py:15
 msgid "Фамилия"
 msgstr "First name"
 
-#: crm/models.py:15
+#: crm/models.py:16
 msgid "Имя"
 msgstr "Last name"
 
-#: crm/models.py:17
+#: crm/models.py:18
 msgid "Телефон"
 msgstr "Phone"
 
-#: crm/models.py:21
+#: crm/models.py:22
 msgid "Мобильный телефон"
 msgstr "Mobile phone"
 
-#: crm/models.py:26
+#: crm/models.py:27
 msgid "Фотография"
 msgstr "Photo"
 
-#: crm/models.py:48
+#: crm/models.py:50
 msgid "Руководитель"
 msgstr "Boss"
 
-#: crm/models.py:49
+#: crm/models.py:51
 msgid "Администратор"
 msgstr "Administrator"
 
-#: crm/models.py:50 crm/models.py:80 crm/models.py:105 crm/models.py:126
+#: crm/models.py:52 crm/models.py:89 crm/models.py:114 crm/models.py:135
 msgid "Менеджер"
 msgstr "Manager"
 
-#: crm/models.py:57
+#: crm/models.py:56 globalcustomer/models.py:24
+msgid "Русский"
+msgstr "Russia"
+
+#: crm/models.py:57 globalcustomer/models.py:25
+msgid "Английский"
+msgstr "English"
+
+#: crm/models.py:58 globalcustomer/models.py:26
+msgid "Китайский"
+msgstr "Chenese"
+
+#: crm/models.py:65 globalcustomer/models.py:32
+msgid "Язык"
+msgstr "Language"
+
+#: crm/models.py:66
 msgid "Роль"
 msgstr "Role"
 
-#: crm/models.py:63
+#: crm/models.py:67
+msgid ""
+"По соображениям безопасности роль можно назначить только при создании нвого "
+"менеджера по продажам. Если понадобится изменить роль, то надо удалить "
+"менеджера по продажам исвязаный с ним пользовательский аккаунт и создать "
+"нового с требуемой ролью."
+msgstr ""
+"For safety reasons a NEW role can setup only for NEW Sales personIf you wont "
+"to change role of sales manager you can delete him and create new Sales "
+"manager and appoint new role for him"
+
+#: crm/models.py:72
 msgid "Менеджер по продажам"
 msgstr "Sales manager"
 
-#: crm/models.py:64
+#: crm/models.py:73
 msgid "Всего менеджеров по продажам"
 msgstr "Number of all sales managers"
 
-#: crm/models.py:65
+#: crm/models.py:74
 msgid "Просмотр менеджера по продажам"
 msgstr "View sales manager"
 
-#: crm/models.py:74
+#: crm/models.py:83
 msgid "Телефонный звонок"
 msgstr "Phone call"
 
-#: crm/models.py:75
+#: crm/models.py:84
 msgid "Личная встреча"
-msgstr ""
+msgstr "A personal meeting"
 
-#: crm/models.py:76
+#: crm/models.py:85
 msgid "Почта бумажная"
 msgstr "Post"
 
-#: crm/models.py:77 crm/models.py:102
+#: crm/models.py:86 crm/models.py:111
 msgid "Что-то еще"
 msgstr "Somethings else"
 
-#: crm/models.py:82
+#: crm/models.py:91
 msgid "Действие"
 msgstr "Action"
 
-#: crm/models.py:83 crm/models.py:112
+#: crm/models.py:92 crm/models.py:121
 msgid "Комментарий"
 msgstr "Comment"
 
-#: crm/models.py:84 crm/models.py:198 crm/tables.py:53
+#: crm/models.py:93 crm/models.py:207 crm/tables.py:53
 msgid "Дата"
 msgstr "Date"
 
-#: crm/models.py:85 crm/models.py:199 crm/tables.py:54
+#: crm/models.py:94 crm/models.py:208 crm/tables.py:54
 msgid "Время"
 msgstr "Time"
 
-#: crm/models.py:88 templates/top_menu.html:50
+#: crm/models.py:97 templates/top_menu.html:50
 msgid "Список дел"
 msgstr "ToDo list"
 
-#: crm/models.py:89
+#: crm/models.py:98
 msgid "Всего дел"
 msgstr "Number of ToDos"
 
-#: crm/models.py:90
+#: crm/models.py:99
 msgid "Просмотр дел"
 msgstr "ToDos view"
 
-#: crm/models.py:98
+#: crm/models.py:107
 msgid "Делал покупку"
-msgstr ""
+msgstr "Make a purchase"
 
-#: crm/models.py:99
+#: crm/models.py:108
 msgid "VIP"
 msgstr "VIP"
 
-#: crm/models.py:100
+#: crm/models.py:109
 msgid "Интересовался покупкой"
-msgstr ""
+msgstr "Interested in buying"
 
-#: crm/models.py:101
+#: crm/models.py:110
 msgid "Негативно настроен"
-msgstr ""
+msgstr "Negative mood"
 
-#: crm/models.py:107
+#: crm/models.py:116
 msgid "Компания"
 msgstr "Company"
 
-#: crm/models.py:110
+#: crm/models.py:119
 msgid "Дата рождения"
 msgstr "Birth date"
 
-#: crm/models.py:111 crm/models.py:197 crm/tables.py:55
+#: crm/models.py:120 crm/models.py:206 crm/tables.py:55
 msgid "Статус"
 msgstr "Status"
 
-#: crm/models.py:115 crm/models.py:127
+#: crm/models.py:124 crm/models.py:136
 msgid "Клиент"
 msgstr "Customer"
 
-#: crm/models.py:116
+#: crm/models.py:125
 msgid "Всего клиентов"
 msgstr "Number of customer"
 
-#: crm/models.py:117
+#: crm/models.py:126
 msgid "Просмотр пользоателей"
 msgstr "User list"
 
-#: crm/models.py:129 templates/top_menu.html:63
+#: crm/models.py:138 templates/top_menu.html:63
 msgid "Список продуктов"
 msgstr "Products' list"
 
-#: crm/models.py:131
+#: crm/models.py:140
 msgid "Цена всего"
 msgstr "Total price"
 
-#: crm/models.py:132
+#: crm/models.py:141
 msgid ""
 "<h5><small>Стоимость контракта будет вычисленна автоматически</h5></small>"
 msgstr "Contract cost will be counted automatically"
 
-#: crm/models.py:134
+#: crm/models.py:143
 msgid "Номер контракта"
 msgstr "Contract number"
 
-#: crm/models.py:135
+#: crm/models.py:144
 msgid "Описание"
 msgstr "Description"
 
-#: crm/models.py:138
+#: crm/models.py:147
 msgid "Сделка"
 msgstr "Deal"
 
-#: crm/models.py:139
+#: crm/models.py:148
 msgid "Всего сделок"
 msgstr "Number of deals"
 
-#: crm/models.py:140
+#: crm/models.py:149
 msgid "Просмотр контрактов"
 msgstr "Contracts view"
 
-#: crm/models.py:147
+#: crm/models.py:156
 msgid "Номер товара"
 msgstr "Product number"
 
-#: crm/models.py:148
+#: crm/models.py:157
 msgid "Наименование товара"
 msgstr "Product name"
 
-#: crm/models.py:149
+#: crm/models.py:158
 msgid "Цена"
 msgstr "Price"
 
-#: crm/models.py:152 crm/models.py:165
+#: crm/models.py:161 crm/models.py:174
 msgid "Продукт"
 msgstr "Product"
 
-#: crm/models.py:153
+#: crm/models.py:162
 msgid "Всего продуктов"
 msgstr "Number of products"
 
-#: crm/models.py:154
+#: crm/models.py:163
 msgid "Просмотр продуктов"
 msgstr "Products view"
 
-#: crm/models.py:163 crm/models.py:195
+#: crm/models.py:172 crm/models.py:204
 msgid "Контракт"
 msgstr "Contract"
 
-#: crm/models.py:167
+#: crm/models.py:176
 msgid "Количество товара"
 msgstr "Goods qty"
 
-#: crm/models.py:169
+#: crm/models.py:177
+msgid ""
+"<h5><small>Если эту строку оставить пустой, он вычислится автоматически при "
+"сохранении формы </h5></small>"
+msgstr "<h5><small>Contract cost will be counted automatically</h5></small>"
+
+#: crm/models.py:178
 msgid "Цена за штуку"
 msgstr "Unit price"
 
-#: crm/models.py:170
+#: crm/models.py:179
 msgid "Цена за все"
 msgstr "Total price"
 
-#: crm/models.py:174
+#: crm/models.py:183
 msgid "Продукт в контракте"
 msgstr "Product in contract"
 
-#: crm/models.py:175
+#: crm/models.py:184
 msgid "Всего продуктов в контракте"
 msgstr "Number of products in contract"
 
-#: crm/models.py:176
+#: crm/models.py:185
 msgid "Просмотр продуктов в контракте"
 msgstr "View products in contract"
 
-#: crm/models.py:185
+#: crm/models.py:194 crm/views/views.py:112
 msgid "Первый контакт"
 msgstr "First contact"
 
-#: crm/models.py:186
+#: crm/models.py:195 crm/views/views.py:113
 msgid "Принятие решения"
 msgstr "Make decision"
 
-#: crm/models.py:187
+#: crm/models.py:196 crm/views/views.py:114
 msgid "Согласование контракта"
-msgstr ""
+msgstr "Deal negotiation"
 
-#: crm/models.py:188
+#: crm/models.py:197 crm/views/views.py:115
 msgid "Контракт подписан"
 msgstr "Contract signed"
 
-#: crm/models.py:189
+#: crm/models.py:198 crm/views/views.py:116
 msgid "Ожидание денег"
 msgstr "Waiting for many"
 
-#: crm/models.py:190
+#: crm/models.py:199 crm/views/views.py:117
 msgid "Контракт выполнен"
 msgstr "Contract has done"
 
-#: crm/models.py:191
+#: crm/models.py:200 crm/views/views.py:118
 msgid "Мертвый контракт"
 msgstr "Dead contract"
 
-#: crm/models.py:200
+#: crm/models.py:209
 msgid "Примечание"
 msgstr "Comment"
 
-#: crm/models.py:203 crm/templates/crm/deal.html:69
+#: crm/models.py:212 crm/templates/crm/deal.html:69
 msgid "Статус контракта"
 msgstr "Contract status"
 
-#: crm/models.py:204
+#: crm/models.py:213
 msgid "Статусы контракта"
 msgstr "Contract status's"
 
-#: crm/models.py:206
+#: crm/models.py:215
 msgid "Просмотр статуса контракта"
-msgstr ""
+msgstr "View of deal status"
 
 #: crm/tables.py:21
 msgid ""
 "Пока нет ни одного менеджера по продажам. Для добавления используйте "
 "соответствующий пункт меню"
-msgstr ""
+msgstr "No one sales manager. For add use menu"
 
 #: crm/tables.py:31
 msgid ""
 "Пока нет ни одного запланированного дела. Для добавления используйте "
 "соответствующий пункт меню"
-msgstr ""
+msgstr "No one TODO. For add use menu"
 
 #: crm/tables.py:41
 msgid ""
 "Пока нет ни одного клиента. Для добавления используйте соответствующий пункт "
 "меню"
-msgstr ""
+msgstr "No one client. For add use menu"
 
 #: crm/tables.py:49
 msgid ""
 "Пока нет ни одного продукта. Для добавления используйте соответствующий "
 "пункт меню"
-msgstr ""
+msgstr "No one product. For add use menu"
 
 #: crm/tables.py:82
 msgid ""
 "Пока нет ни одной сделки. Для добавления используйте соответствующий пункт "
 "меню"
-msgstr ""
+msgstr "No one deal. For add use menu"
 
 #: crm/templates/crm/common_table_list.html:18
 #: crm/templates/crm/customer.html:27 crm/templates/crm/deal.html:110
@@ -644,17 +679,17 @@ msgstr "Exit"
 #: crm/templates/crm/customer.html:41 crm/templates/crm/customer_new.html:31
 #: crm/templates/crm/product.html:41 crm/templates/crm/product_new.html:31
 #: crm/templates/crm/salesperson_new.html:31 crm/templates/crm/todo.html:41
-#: crm/templates/crm/todo_new.html:31 crm/views/deal_views.py:113
-#: crm/views/salesperson_views.py:53 crm/views/salesperson_views.py:125
+#: crm/templates/crm/todo_new.html:31 crm/views/deal_views.py:114
+#: crm/views/salesperson_views.py:55 crm/views/salesperson_views.py:129
 #: globalcustomer/templates/globalcustomer/choose_lang.html:37
 #: globalcustomer/templates/globalcustomer/globalcustomer_new.html:39
-#: globalcustomer/views.py:62
+#: globalcustomer/views.py:59
 msgid "Что-то пошло не так"
-msgstr ""
+msgstr "Somthing went wrong"
 
 #: crm/templates/crm/customer_del.html:9
 msgid "Вы хотите удалить клиента: "
-msgstr ""
+msgstr "You are going to delete client:"
 
 #: crm/templates/crm/customer_new.html:11
 msgid "Создать нового клиента"
@@ -669,7 +704,7 @@ msgstr "Create"
 
 #: crm/templates/crm/deal.html:15
 msgid "Обновить данные по контракту"
-msgstr ""
+msgstr "Update deal data"
 
 #: crm/templates/crm/deal.html:32
 msgid "Список товаров"
@@ -681,19 +716,19 @@ msgstr "Delete"
 
 #: crm/templates/crm/deal.html:61 crm/templates/crm/deal_new.html:55
 msgid "Что-то пошло не так при заполнении данных о товарах"
-msgstr ""
+msgstr "Something went wrong ( products data )"
 
 #: crm/templates/crm/deal.html:96 crm/templates/crm/deal_new.html:82
 msgid "Что-то пошло не так при заполнении данных о статусе контракта"
-msgstr ""
+msgstr "Something went wrong ( deal status data )"
 
 #: crm/templates/crm/deal.html:104 crm/templates/crm/deal_new.html:29
 msgid "Что-то пошло не так при заполнении основных данных"
-msgstr ""
+msgstr "Something went wrong ( main data )"
 
 #: crm/templates/crm/deal_del.html:9
 msgid "Вы хотите удалить сделку: "
-msgstr ""
+msgstr "You are going to delete deal:"
 
 #: crm/templates/crm/deal_new.html:16
 msgid "Новый контракт"
@@ -705,11 +740,11 @@ msgstr ""
 
 #: crm/templates/crm/product.html:12
 msgid "Обновить данные по продукту"
-msgstr ""
+msgstr "Update product data"
 
 #: crm/templates/crm/product_del.html:9
 msgid "Вы хотите удалить продукт: "
-msgstr ""
+msgstr "You are going to delete a product:"
 
 #: crm/templates/crm/product_new.html:11
 msgid "Создать новый продукт"
@@ -717,43 +752,43 @@ msgstr "Create new product"
 
 #: crm/templates/crm/report_funnel.html:23
 msgid "Воронка продаж по количеству контрактов"
-msgstr ""
+msgstr "Funnel report ( qty )"
 
 #: crm/templates/crm/report_funnel.html:50
 msgid "Воронка продаж по сумме контрактов"
-msgstr ""
+msgstr "Funnel report ( money )"
 
 #: crm/templates/crm/report_sp.html:39
 msgid "Контракты по выбранному менеджеру (время/деньги)"
-msgstr ""
+msgstr "Deals for selected sales manager ( time/qty )"
 
 #: crm/templates/crm/report_sp.html:51
 msgid "Контракты по выбранному менеджеру (время/кол-во)"
-msgstr ""
+msgstr "Deals for selected sales manager ( time/qty )"
 
 #: crm/templates/crm/salesperson.html:12
 msgid "Обновить данные менеджера по продажам"
-msgstr ""
+msgstr "Update data of Sales manager "
 
 #: crm/templates/crm/salesperson.html:40
 msgid "Ошибка в форме. Что-то пошло не так"
-msgstr ""
+msgstr "Error in the form. Somthings went wrong"
 
 #: crm/templates/crm/salesperson_del.html:9
 msgid "Вы хотите удалить менеджера по продажам: "
-msgstr ""
+msgstr "You are going to delete sales manager:"
 
 #: crm/templates/crm/salesperson_del.html:11
 msgid "Так же будет удалена связанная учетная запись"
-msgstr ""
+msgstr "Linked account will delete yet"
 
 #: crm/templates/crm/salesperson_new.html:11
 msgid "Новый менеджер по продажам"
-msgstr ""
+msgstr "New Sales manager"
 
 #: crm/templates/crm/todo.html:12
 msgid "Обновить данные запланированного дела"
-msgstr ""
+msgstr "Update data for todo"
 
 #: crm/templates/crm/todo_del.html:9
 msgid "Вы хотите удалить запланированное дело: "
@@ -763,27 +798,27 @@ msgstr "You are going to delete ToDo:"
 msgid "Новое запланированное дело"
 msgstr "New ToDo"
 
-#: crm/views/deal_views.py:289
+#: crm/views/deal_views.py:291
 msgid "Doh! Something went wrong."
-msgstr ""
+msgstr "Doh! Something went wrong."
 
-#: crm/views/salesperson_views.py:104
+#: crm/views/salesperson_views.py:108
 msgid "Немогу получить доступ к группе прав МЕНЕДЖЕР"
 msgstr "Can't access to group of permissions MANAGER"
 
-#: crm/views/salesperson_views.py:110
+#: crm/views/salesperson_views.py:114
 msgid "Немогу получить доступ к группе прав РУКОВОДИТЕЛЬ"
 msgstr "Can't access to group of permissions BOSS"
 
-#: crm/views/salesperson_views.py:116
+#: crm/views/salesperson_views.py:120
 msgid "Немогу получить доступ к группе прав АДМИНИСТРАТОР"
 msgstr "Can't access to group of permissions ADMIN"
 
-#: crm/views/views.py:33
+#: crm/views/views.py:38
 msgid "Нет релевантных данных для выбранных параметров фильтров"
-msgstr ""
+msgstr "Haven't got relevant data for selected filters"
 
-#: crm/views/views.py:49
+#: crm/views/views.py:54
 #, fuzzy
 #| msgid ""
 #| "Выбран слишком маленький временной интервал или нет релевантных данных"
@@ -792,21 +827,21 @@ msgid ""
 "дней ) "
 msgstr "Date range is too small or haven't got relevant data "
 
-#: crm/views/views.py:53
+#: crm/views/views.py:58
 #, fuzzy
 #| msgid "Время"
 msgid "Все"
 msgstr "Time"
 
-#: crm/widgets.py:14
+#: crm/widgets.py:13
 msgid "Сейчас"
 msgstr "Now"
 
-#: crm/widgets.py:15
+#: crm/widgets.py:14
 msgid "Очистить выбор фотографии"
 msgstr "Clear your choice photo"
 
-#: crm/widgets.py:16
+#: crm/widgets.py:15
 msgid "Изменить фотографию"
 msgstr "Change photo"
 
@@ -822,35 +857,21 @@ msgstr "A-z, 1-9 without spaces (Obligatorily)"
 msgid "Обязательно"
 msgstr "Obligatorily"
 
-#: globalcustomer/models.py:24
-msgid "Русский"
-msgstr ""
-
-#: globalcustomer/models.py:25
-msgid "Английский"
-msgstr ""
-
-#: globalcustomer/models.py:26
-msgid "Китайский"
-msgstr ""
-
-#: globalcustomer/models.py:28
+#: globalcustomer/models.py:29
 msgid "Имя Вашей организации"
 msgstr "Name of your company"
 
-#: globalcustomer/models.py:29
-msgid "Парру слов о Вашей организации"
+#: globalcustomer/models.py:30
+#, fuzzy
+#| msgid "Парру слов о Вашей организации"
+msgid "Пару слов о Вашей организации"
 msgstr "Description of your company"
 
-#: globalcustomer/models.py:31
-msgid "Язык"
-msgstr ""
-
-#: globalcustomer/models.py:34
+#: globalcustomer/models.py:35
 msgid "Организация"
 msgstr "Company"
 
-#: globalcustomer/models.py:35
+#: globalcustomer/models.py:36
 msgid "Все организации"
 msgstr "Companies"
 
@@ -982,6 +1003,11 @@ msgstr "You login as,"
 #: templates/top_menu.html:94
 msgid "Выход"
 msgstr "Exit"
+
+#, fuzzy
+#~| msgid "Дата"
+#~ msgid "Датаccc"
+#~ msgstr "Date"
 
 #~ msgid "Нет данных по контрактам для этого менеджера"
 #~ msgstr "No contracts data present for this manager"

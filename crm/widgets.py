@@ -3,8 +3,7 @@ __author__ = 'AMA'
 
 from django.forms import widgets, ClearableFileInput
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
-from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
 from crm.models import SalesPerson
 

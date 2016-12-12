@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from crm.models import Customer, SalesPerson, Todo, Deal, Product, DealProducts, DealStatus
 from globalcustomer.models import Client
 from guardian.admin import GuardedModelAdmin

@@ -23,9 +23,11 @@ class Client(TenantMixin):
     LANG_CHOICES = (
         ('ru', _('Русский')),
         ('en', _('Английский')),
+        ('cn', _('Китайский')),
     )
+
     name = models.CharField(_('Имя Вашей организации'), max_length=100)
-    description = models.TextField(_("Парру слов о Вашей организации"), max_length=200, blank=True)
+    description = models.TextField(_("Пару слов о Вашей организации"), max_length=200, blank=True)
     created_on = models.DateField(auto_now_add=True)
     lang = models.CharField(_('Язык'), max_length=2, choices=LANG_CHOICES )
 

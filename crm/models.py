@@ -1,7 +1,8 @@
 from django.db import models
 from django.core.validators import RegexValidator, MinValueValidator
 from django.contrib.auth.models import User
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as __
 from decimal import Decimal
 
 # how to override the verbose name of a superclass model field in django
@@ -44,20 +45,28 @@ class Person(models.Model):  # ABS class define abstract Person
 
 
 class SalesPerson(Person):
+
     ROLE_CHOICES = (
         ('B', _('Руководитель')),
         ('A', _('Администратор')),
         ('M', _('Менеджер')),
+    )
+
+    LANG_CHOICES = (
+        ('ru', _('Русский')),
+        ('en', _('Английский')),
+        ('cn', _('Китайский')),
     )
     # see http://djbook.ru/rel1.8/topics/auth/customizing.html
     user = models.OneToOneField(User, on_delete=models.CASCADE,
                                 verbose_name=_('Логин'))  # Связываем модель с данными USER ( РАСШИРЯЕМ USER )
 
     division = models.CharField(max_length=50, blank=True, verbose_name=_('Подразделение'))
+    lang = models.CharField(_('Язык'), max_length=2, choices=LANG_CHOICES)
     role = models.CharField(max_length=1, choices=ROLE_CHOICES, verbose_name=_('Роль'),
-                        help_text='По соображениям безопасности роль можно назначить только при создании нвого менеджера по продажам. '
+                        help_text=_('По соображениям безопасности роль можно назначить только при создании нвого менеджера по продажам. '
                                   'Если понадобится изменить роль, то надо удалить менеджера по продажам и'
-                                  'связаный с ним пользовательский аккаунт и создать нового с требуемой ролью.')
+                                  'связаный с ним пользовательский аккаунт и создать нового с требуемой ролью.'))
 
     class Meta:
         verbose_name = _('Менеджер по продажам')
@@ -165,7 +174,7 @@ class DealProducts(models.Model):  # Промежуточная модель
                                 verbose_name=_('Продукт'))  # Many-to-One relation
 
     qty = models.PositiveIntegerField(_('Количество товара'), null=True, blank=True, default=0)
-    hlp = '<h5><small>Если эту строку оставить пустой, он вычислится автоматически при сохранении формы </h5></small>'
+    hlp = _('<h5><small>Если эту строку оставить пустой, он вычислится автоматически при сохранении формы </h5></small>')
     item_price = models.PositiveIntegerField(_('Цена за штуку'), null=True, blank=True, default=0, help_text=_(hlp))
     total_price = models.PositiveIntegerField(_('Цена за все'), null=True, blank=True, default=0, help_text=_(hlp))
 

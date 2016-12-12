@@ -3,17 +3,23 @@
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.utils import translation
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 from crm.models import DealStatus
-from simpleCRM import settings
 
 __author__ = 'AMA'
 
 
+# The decorator, than choose a language in dependence from a user preferred language
+def add_lang(view):
+    def f(request, *args, **kwargs):
+        translation.activate(request.user.salesperson.lang)
+        return view(request, *args, **kwargs)
+    return f
+
+
 # It's only set of useful utils for CRUD classes
 class SomeUtilsMixin():
-
     # If we don't clear storage of message's that old message's showed
     def clearMsg(self, request):
         storage = messages.get_messages(request)
@@ -42,4 +48,3 @@ class SomeUtilsMixin():
                 if query.deal_status == status[0]:
                     query.deal_status = status[1]
         return queryset
-
