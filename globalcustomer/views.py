@@ -69,29 +69,45 @@ class GlobalClientCreateView(CreateView):
                 for perm in perms:
                     perms_a.append([perm.name,perm.codename,perm.content_type])
 
+                group_b = Group.objects.get(name='boss')
+                perms = group_b.permissions.all()
+                for perm in perms:
+                    perms_b.append([perm.name,perm.codename,perm.content_type])
+
 
             with schema_context(form.data['schema_name']):
 
                 Permission.objects.all().delete()
                 content_types = ContentType.objects.all()
 
-
                 for perm in perms_a:
                     for ct in content_types:
                         if str(perm[2]) == str(ct):
-                            perm[2]=ct
+                            perm[2] = ct
 
                 mygroup, created = Group.objects.get_or_create(name=group_a.name)
                 mygroup.permissions.clear()
 
-
-                perms_list=[]
                 for perm in perms_a:
                     permission = Permission.objects.get_or_create(codename=perm[1], name=perm[0], content_type=perm[2])
-                    perms_list.append(permission[0])
-                    p=permission[0]
-                    mygroup.permissions.add(p)
-                    a=3
+                    mygroup.permissions.add(permission[0])
+
+                for perm in perms_b:
+                    for ct in content_types:
+                        if str(perm[2]) == str(ct):
+                            perm[2] = ct
+
+                mygroup, created = Group.objects.get_or_create(name=group_b.name)
+                mygroup.permissions.clear()
+
+                for perm in perms_b:
+                    permission = Permission.objects.get_or_create(codename=perm[1], name=perm[0], content_type=perm[2])
+                    mygroup.permissions.add(permission[0])
+
+
+
+
+
 
 
 
