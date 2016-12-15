@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap %}
+{% block content %}
+
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<div class="container">
+    <div class="row">
+        <div  align="center" class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+                    <h2 class="title">{% trans "Главная страница " %}</h2>
+                    <hr id='hrreg' />
+        </div>
+
+        <!-- <div class="main-login main-center-spnew"> -->
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-4 col-md-9 col-md-offset-1 col-sm-10 col-xs-12">
+                <p>&nbsp;</p>
+                 <ul>
+                           <li><a href="https://djangocrm2.readthedocs.io/">{% trans "Документация" %}</a></li>
+                           <li><a href="https://github.com/poiskpoisk/djangoCRM2">{% trans "Исходный код на Github" %}</a></li>
+                 </ul>
+            </div>
+        <div class="col-lg-2 col-md-2"> </div>
+        </div>
+        </div>
+       <!-- </div> -->
+    </div>
+</div>
+
+{% endblock %}

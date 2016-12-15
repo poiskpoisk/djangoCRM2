@@ -37,7 +37,7 @@ urlpatterns = [
     url(r'^password/change/done/$', login_required(add_lang(auth_views.password_change_done)),
         {'template_name': 'accounts/password_change_done.html'}, name='auth_password_change_done'),
 
-    url(r'^password/reset/$', login_required(add_lang(auth_views.password_reset)), {'template_name': 'accounts/password_reset_form.html',
+    url(r'^password/reset/$', add_lang(auth_views.password_reset), {'template_name': 'accounts/password_reset_form.html',
         'post_reset_redirect': reverse_lazy('auth_password_reset_done')},name='auth_password_reset'),
 
     url(r'^password/reset/complete/$', login_required(add_lang(auth_views.password_reset_complete)),

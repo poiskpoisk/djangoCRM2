@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import RedirectView
 
+from crm.views.views import main_page
 from simpleCRM.settings import MEDIA_ROOT, MEDIA_URL
 from .settings import DEBUG
 
@@ -28,7 +29,7 @@ urlpatterns = [
     url(r'^crm/', include('crm.urls')),
     url(r'^select2/', include('django_select2.urls')),
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^$', RedirectView.as_view(url=reverse_lazy('login'), permanent=False), name='mainpage'),
+    url(r'^$', main_page, name='mainpage'),
     url(r'^admin/', include(admin.site.urls)),
 ]
 

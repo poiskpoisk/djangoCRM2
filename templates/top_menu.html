@@ -79,6 +79,9 @@
                           <li><a href="{% url 'userlist' %}">{% trans "Список пользователей" %}</a></li>
                           <li><a href="{% url 'register' %}">{% trans "Добавить нового" %}</a></li>
                           <li class="divider"></li>
+                           <li><a href="{% url 'login' %}">{% trans "Зайти в систему" %}</a></li>
+                           <li><a href="{% url 'logout' %}">{% trans "Выйти из системы" %}</a></li>
+                           <li class="divider"></li>
                           <li><a href="{% url 'auth_password_change' %}">{% trans "Сменить пароль" %}</a></li>
                           <li><a href="{% url 'auth_password_reset' %}">{% trans "Сбросить пароль" %}</a></li>
                            <li class="divider"></li>
@@ -92,6 +95,8 @@
                 {% if request.user.username %}
                     {% trans "Вы зашли как," %}<strong>{{request.user.username}}  </strong>
                     <a href="{% url 'logout' %}" class="navbar-link"> &nbsp;{% trans "Выход" %}&nbsp;</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="navbar-link"> &nbsp;{% trans "Войти" %}&nbsp;</a>
                 {% endif %}
             </div>
         </div>

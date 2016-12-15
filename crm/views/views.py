@@ -138,3 +138,7 @@ def reportFunnel(request, model, modelTable=None, classFilter=None):
 
     return render(request, 'crm/report_funnel.html',
                   {'records': records, 'records_many': recordsMany, 'filter': filter})
+
+def main_page(request):
+    context = {}
+    return render(request, 'crm/main_page.html', context)

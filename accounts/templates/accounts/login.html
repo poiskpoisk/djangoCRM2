@@ -42,7 +42,7 @@
 				<div class="login-register">
                     <a href="{% url 'register' %}">{% trans 'Зарегистрироваться'%}</a>
 						<div class="login-register">
-                    <a href="/accounts/login/">{% trans 'Забыли пароль ?'%}</a>
+                    <a href="{% url 'auth_password_reset' %}">{% trans 'Забыли пароль ?'%}</a>
 						</div>
 
                  </div>

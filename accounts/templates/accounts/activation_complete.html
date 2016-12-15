@@ -10,7 +10,7 @@
         <br><br> <h2 style="color:#0fad00">{% trans "Успешная активация аккаунта." %}</h2>
         <img src="{% static 'crm/check-true.jpg' %}">
         <p style="font-size:20px;color:#5C5C5C;">{% trans "Для начала работы попросите администратора определить Ваш уровень досупа ( руководитель или менеджер ) и войдите в систему." %}</p>
-        <a href="/" class="btn btn-success">   {% trans "Войти" %}      </a>
+        <a href="{% url 'login' %}" class="btn btn-success">   {% trans "Войти" %}      </a>
     <br><br>
         </div>
 
