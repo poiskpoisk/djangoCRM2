@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from registration.backends.default.views import ActivationView
 
-from accounts.views import MyRegistrationView, tableUser, MyLogin, UserDeleteView
+from accounts.views import MyRegistrationView, tableUser, MyLogin, UserDeleteView, MyTemplateView
 from crm.mixin import add_lang
 
 __author__ = 'AMA'
@@ -50,8 +50,8 @@ urlpatterns = [
         login_required(add_lang(auth_views.password_reset_confirm)),
         {'post_reset_redirect': reverse_lazy('auth_password_reset_complete')}, name='auth_password_reset_confirm'),
 
-    url(r'^activate/(?P<activation_key>\w+)/$', ActivationView.as_view(),name='registration_activate'),
+    url(r'^activate/(?P<activation_key>\w+)/$', ActivationView.as_view(template_name='accounts/activation_complete.html'),name='registration_activate'),
 
-    url(r'^activate/complete/$', TemplateView.as_view(template_name='accounts/activation_complete.html'),
+    url(r'^activate/complete/$', MyTemplateView.as_view(template_name='accounts/activation_complete.html'),
         name='registration_activation_complete'),
 ]

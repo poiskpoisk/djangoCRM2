@@ -1,5 +1,3 @@
-import time
-
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.urlresolvers import reverse
@@ -41,7 +39,7 @@ class GlobalClientCreateView(CreateView):
 
     def get(self, request, *args, **kwargs):
         # change active language in dependence of received signal
-        translation.activate( settings.MY_LANG_CODE )
+        translation.activate(settings.MY_LANG_CODE)
         return super().get(self, request, *args, **kwargs)
 
     def get_success_url(self):
@@ -59,72 +57,8 @@ class GlobalClientCreateView(CreateView):
             rec.save()
             site = 'http://' + form.data['schema_name'] + '.' + current_site.name
 
-
-            all_perms=[]
-
-            with schema_context('a1'):
-
-                groups = Group.objects.all()
-                for group in groups:
-                    perms = group.permissions.all()
-                    perms_list = []
-                    for perm in perms:
-                        perms_list.append([perm.name,perm.codename,perm.content_type])
-                    all_perms.append(perms_list)
-
-            with schema_context(form.data['schema_name']):
-
-                Permission.objects.all().delete()
-                content_types = ContentType.objects.all()
-
-                for group, perms in zip(groups, all_perms):
-                    for perm in perms:
-                        for ct in content_types:
-                            if str(perm[2]) == str(ct):
-                                perm[2] = ct
-
-                    mygroup, created = Group.objects.get_or_create(name=group.name)
-                    mygroup.permissions.clear()
-
-                    for perm in perms:
-                        permission = Permission.objects.get_or_create(codename=perm[1], name=perm[0], content_type=perm[2])
-                        mygroup.permissions.add(permission[0])
-
-
-
-
-
-
-
-
-
-
-                '''mygroup, created = Group.objects.get_or_create(name=group_b.name)
-                for perm in perms_b:
-                    mygroup.permissions.add(perm)
-
-                mygroup, created = Group.objects.get_or_create(name=group_m.name)
-                for perm in perms_m:
-                    mygroup.permissions.add(perm)
-                '''
-
-                user = User.objects.create_user(username='admin', password='djangoone')
-                user.is_staff = True
-                user.is_superuser = True
-                user.save()
-
-            '''user = User(username='new_admin', password='djangoone')
-            user.is_staff = False
-            user.is_superuser = False
-            try:
-                group = Group.objects.get(name='admin')
-            except:
-                messages.error(request, _('Немогу получить доступ к группе прав АДМИНИСТРАТОР'))
-                return super().post(self, request, *args, **kwargs)
-
-            # set group permission for user which linked with salesperson
-            user.groups.add(group)
-            user.save()'''
+            self.create_group_and_permissions(form.data['schema_name'])
+            self.create_users(form.data['schema_name'])
 
             if DEBUG:
                 site += ':8000'
@@ -132,3 +66,54 @@ class GlobalClientCreateView(CreateView):
         else:
             messages.error(request, _('Что-то пошло не так'))
             return super().post(self, request, *args, **kwargs)
+
+    def create_group_and_permissions(self, schema_name):
+
+        all_perms=[]
+        # Use a1 schema, as a source permissions and groups data
+        with schema_context('a1'):
+            # Go through all groups and grab permissions for each one
+            groups = Group.objects.all()
+            for group in groups:
+                perms = group.permissions.all()
+                perms_list = []
+                for perm in perms:
+                    perms_list.append([perm.name,perm.codename,perm.content_type])
+                all_perms.append(perms_list)
+        # So, we have groups - the list of group and all_perms - the list of permissions of each permission group
+        with schema_context(schema_name):
+            # Delete all permissions to avoid future conflicts
+            Permission.objects.all().delete()
+            # Grab all content types from new tenant
+            content_types = ContentType.objects.all()
+
+            for group, perms in zip(groups, all_perms):
+                # Some tricky moment. Change content type from source tenant on content type new tenant
+                for perm in perms:
+                    for ct in content_types:
+                        if str(perm[2]) == str(ct):
+                            perm[2] = ct
+
+                mygroup, created = Group.objects.get_or_create(name=group.name)
+                # Delete all group permissions to avoid future conflicts
+                mygroup.permissions.clear()
+                # Create permissions and add it to group
+                for perm in perms:
+                    permission = Permission.objects.get_or_create(codename=perm[1], name=perm[0], content_type=perm[2])
+                    mygroup.permissions.add(permission[0])
+
+    def create_users(self, schema_name):
+
+        with schema_context(schema_name):
+            user = User.objects.create_user(username='admin', password='djangoone')
+            user.is_staff = True
+            user.is_superuser = True
+            user.save()
+
+            user = User.objects.create_user(username='new_admin', password='djangoone')
+            user.is_staff = False
+            user.is_superuser = False
+            group = Group.objects.get(name='admin')
+            # set group permission for user which linked with salesperson
+            user.groups.add(group)
+            user.save()
