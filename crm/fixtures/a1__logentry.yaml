@@ -1,15 +1,111 @@
 - model: admin.logentry
+  pk: 21
+  fields: {action_time: !!timestamp '2016-12-13 15:15:11.897085+00:00', user: 2, content_type: 14,
+    object_id: '2', object_repr: admin, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D username."}
+- model: admin.logentry
+  pk: 20
+  fields: {action_time: !!timestamp '2016-12-08 15:17:37.305768+00:00', user: 2, content_type: 14,
+    object_id: '4', object_repr: new_manager, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D password."}
+- model: admin.logentry
+  pk: 19
+  fields: {action_time: !!timestamp '2016-12-08 15:17:11.973595+00:00', user: 2, content_type: 14,
+    object_id: '5', object_repr: new_boss, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D password."}
+- model: admin.logentry
+  pk: 18
+  fields: {action_time: !!timestamp '2016-12-08 15:16:48.557499+00:00', user: 2, content_type: 14,
+    object_id: '3', object_repr: new_admin, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D password."}
+- model: admin.logentry
+  pk: 17
+  fields: {action_time: !!timestamp '2016-12-08 15:16:19.590281+00:00', user: 2, content_type: 14,
+    object_id: '2', object_repr: ama, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D password."}
+- model: admin.logentry
+  pk: 16
+  fields: {action_time: !!timestamp '2016-12-08 15:15:54.790354+00:00', user: 2, content_type: 13,
+    object_id: '3', object_repr: manager, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D permissions."}
+- model: admin.logentry
+  pk: 15
+  fields: {action_time: !!timestamp '2016-12-05 03:25:13.313545+00:00', user: 2, content_type: 14,
+    object_id: '5', object_repr: new_boss, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D\u044B avatar \u0434\u043B\u044F Sales manager\
+      \ \"Peter Bastew\"."}
+- model: admin.logentry
+  pk: 14
+  fields: {action_time: !!timestamp '2016-12-05 03:24:21.920607+00:00', user: 2, content_type: 14,
+    object_id: '4', object_repr: new_manager, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D\u044B avatar \u0434\u043B\u044F Sales manager\
+      \ \"Ivan Candid\"."}
+- model: admin.logentry
+  pk: 13
+  fields: {action_time: !!timestamp '2016-12-05 03:23:33.893907+00:00', user: 2, content_type: 14,
+    object_id: '5', object_repr: new_boss, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D groups."}
+- model: admin.logentry
+  pk: 12
+  fields: {action_time: !!timestamp '2016-12-05 03:23:05.364038+00:00', user: 2, content_type: 14,
+    object_id: '5', object_repr: new_boss, action_flag: 1, change_message: "\u0414\u043E\
+      \u0431\u0430\u0432\u043B\u0435\u043D\u043E. \u0414\u043E\u0431\u0430\u0432\u043B\
+      \u0435\u043D Sales manager \"Peter Bastew\"."}
+- model: admin.logentry
+  pk: 11
+  fields: {action_time: !!timestamp '2016-12-05 03:16:11.867003+00:00', user: 2, content_type: 14,
+    object_id: '3', object_repr: new_admin, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D groups."}
+- model: admin.logentry
+  pk: 10
+  fields: {action_time: !!timestamp '2016-12-05 03:15:59.338376+00:00', user: 2, content_type: 14,
+    object_id: '4', object_repr: new_manager, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D groups."}
+- model: admin.logentry
+  pk: 9
+  fields: {action_time: !!timestamp '2016-12-05 03:15:41.522953+00:00', user: 2, content_type: 14,
+    object_id: '4', object_repr: new_manager, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D password."}
+- model: admin.logentry
+  pk: 8
+  fields: {action_time: !!timestamp '2016-12-05 03:15:21.505391+00:00', user: 2, content_type: 14,
+    object_id: '3', object_repr: new_admin, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D password."}
+- model: admin.logentry
+  pk: 7
+  fields: {action_time: !!timestamp '2016-12-05 03:14:29.101970+00:00', user: 2, content_type: 14,
+    object_id: '4', object_repr: new_manager, action_flag: 1, change_message: "\u0414\u043E\
+      \u0431\u0430\u0432\u043B\u0435\u043D\u043E. \u0414\u043E\u0431\u0430\u0432\u043B\
+      \u0435\u043D Sales manager \"Ivan Candid\"."}
+- model: admin.logentry
+  pk: 6
+  fields: {action_time: !!timestamp '2016-12-05 03:11:28.778073+00:00', user: 2, content_type: 14,
+    object_id: '3', object_repr: new_admin, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D email."}
+- model: admin.logentry
+  pk: 5
+  fields: {action_time: !!timestamp '2016-12-05 03:10:43.388267+00:00', user: 2, content_type: 14,
+    object_id: '3', object_repr: new_admin, action_flag: 2, change_message: "\u0418\u0437\
+      \u043C\u0435\u043D\u0435\u043D\u044B phone_number, mobile_number \u0438 division\
+      \ \u0434\u043B\u044F Sales manager \"Djon Smith\"."}
+- model: admin.logentry
+  pk: 4
+  fields: {action_time: !!timestamp '2016-12-05 02:57:24.403106+00:00', user: 2, content_type: 14,
+    object_id: '3', object_repr: new_admin, action_flag: 1, change_message: "\u0414\u043E\
+      \u0431\u0430\u0432\u043B\u0435\u043D\u043E. \u0414\u043E\u0431\u0430\u0432\u043B\
+      \u0435\u043D Sales manager \"Djon Smith\"."}
+- model: admin.logentry
   pk: 3
-  fields: {action_time: !!timestamp '2016-12-04 20:29:42.986778+00:00', user: 2, content_type: 14,
+  fields: {action_time: !!timestamp '2016-12-05 02:50:47.588643+00:00', user: 2, content_type: 13,
     object_id: '3', object_repr: manager, action_flag: 1, change_message: "\u0414\u043E\
       \u0431\u0430\u0432\u043B\u0435\u043D\u043E."}
 - model: admin.logentry
   pk: 2
-  fields: {action_time: !!timestamp '2016-12-04 20:28:44.851548+00:00', user: 2, content_type: 14,
+  fields: {action_time: !!timestamp '2016-12-05 02:48:46.893013+00:00', user: 2, content_type: 13,
     object_id: '2', object_repr: boss, action_flag: 1, change_message: "\u0414\u043E\
       \u0431\u0430\u0432\u043B\u0435\u043D\u043E."}
 - model: admin.logentry
   pk: 1
-  fields: {action_time: !!timestamp '2016-12-04 20:27:11.301492+00:00', user: 2, content_type: 14,
+  fields: {action_time: !!timestamp '2016-12-05 02:47:09.424611+00:00', user: 2, content_type: 13,
     object_id: '1', object_repr: admin, action_flag: 1, change_message: "\u0414\u043E\
       \u0431\u0430\u0432\u043B\u0435\u043D\u043E."}

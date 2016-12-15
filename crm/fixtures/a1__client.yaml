@@ -1,8 +1,8 @@
 - model: globalcustomer.client
   pk: 1
   fields: {domain_url: example.com, schema_name: public, name: SaaS, description: '',
-    created_on: 2016-12-04}
+    created_on: 2016-12-05, lang: EN}
 - model: globalcustomer.client
   pk: 2
   fields: {domain_url: a1.example.com, schema_name: a1, name: aaa, description: '',
-    created_on: 2016-12-04}
+    created_on: 2016-12-05, lang: EN}

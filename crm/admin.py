@@ -1,6 +1,4 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
-from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext_lazy as _
 from crm.models import Customer, SalesPerson, Todo, Deal, Product, DealProducts, DealStatus
 from globalcustomer.models import Client
@@ -22,20 +20,8 @@ class TodoAdmin(admin.ModelAdmin):
     list_filter = ['todo_data']
 
 
-# Define an inline admin descriptor for SalePerson model which acts a bit like a singleton
-class SalePersonInline(admin.StackedInline):
-    model = SalesPerson
-    can_delete = False
-    verbose_name_plural = 'SalesPersons'
-
-
-class SalesPersonAdmin(GuardedModelAdmin):
-    model = SalesPerson
-
-
-# Define a new User admin
-class UserAdmin(UserAdmin):
-    inlines = (SalePersonInline,)
+class SalesPersonAdmin(admin.ModelAdmin):
+    pass
 
 
 class DealAdmin(GuardedModelAdmin):
@@ -65,6 +51,4 @@ admin.site.register(Todo, TodoAdmin)
 admin.site.register(Deal, DealAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(SalesPerson, SalesPersonAdmin)
-# Re-register UserAdmin
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+

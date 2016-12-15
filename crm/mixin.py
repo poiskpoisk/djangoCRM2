@@ -6,6 +6,7 @@ from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 
 from crm.models import DealStatus
+from simpleCRM import settings
 
 __author__ = 'AMA'
 
@@ -13,7 +14,10 @@ __author__ = 'AMA'
 # The decorator, than choose a language in dependence from a user preferred language
 def add_lang(view):
     def f(request, *args, **kwargs):
-        translation.activate(request.user.salesperson.lang)
+        try:
+            translation.activate(request.user.salesperson.lang)
+        except:
+            translation.activate(settings.MY_LANG_CODE)
         return view(request, *args, **kwargs)
     return f
 
@@ -48,3 +52,9 @@ class SomeUtilsMixin():
                 if query.deal_status == status[0]:
                     query.deal_status = status[1]
         return queryset
+
+    def set_lang(self, request):
+        try:
+            translation.activate(request.user.salesperson.lang)
+        except:
+            translation.activate(settings.MY_LANG_CODE)

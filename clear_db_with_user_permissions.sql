@@ -462,7 +462,8 @@ CREATE TABLE crm_salesperson (
     avatar character varying(100) NOT NULL,
     division character varying(50) NOT NULL,
     role character varying(1) NOT NULL,
-    user_id integer NOT NULL
+    user_id integer NOT NULL,
+    lang character varying(2) NOT NULL
 );
 
 
@@ -1169,7 +1170,8 @@ CREATE TABLE globalcustomer_client (
     schema_name character varying(63) NOT NULL,
     name character varying(100) NOT NULL,
     description text NOT NULL,
-    created_on date NOT NULL
+    created_on date NOT NULL,
+    lang character varying(2) NOT NULL
 );
 
 
@@ -1659,10 +1661,10 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 61, true);
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
 1	!5K1utliluouDBBXbT6eDUDMZKSAkLHLd0a5oV7zN	\N	f	AnonymousUser				f	t	2016-12-05 05:45:08.205398+03
-2	pbkdf2_sha256$24000$qeKvou4qfxYw$ErE9MSDvMI9885VPwEMFkPt2ArimsHU+3lmfmJwww94=	2016-12-08 18:15:27.035967+03	t	ama			alex-abakumov@yandex.ru	t	t	2016-12-05 05:45:53.713181+03
 3	pbkdf2_sha256$24000$u58vBnGtZS12$hFQsuDcU2gMLh+7tzwYvbbsbmwQbMt+fZL220ST8WH8=	2016-12-05 06:26:31.866965+03	f	new_admin			new_admin@example.com	f	t	2016-12-05 05:57:24+03
 5	pbkdf2_sha256$24000$68xPvrk9vqOe$6C+bXvntvuNPz1qgq/lWShrnIxTkYGlG5FS5K3bkYdw=	\N	f	new_boss				f	t	2016-12-05 06:23:05+03
 4	pbkdf2_sha256$24000$QgX1OnZxmExS$9YJ1ZZYPsunQt0PUoqL45n0VwKJ+L0KUyMf41QSUjtU=	\N	f	new_manager				f	t	2016-12-05 06:14:29+03
+2	pbkdf2_sha256$24000$qeKvou4qfxYw$ErE9MSDvMI9885VPwEMFkPt2ArimsHU+3lmfmJwww94=	2016-12-13 18:14:52+03	t	admin			alex-abakumov@yandex.ru	t	t	2016-12-05 05:45:53+03
 \.
 
 
@@ -1785,10 +1787,10 @@ SELECT pg_catalog.setval('crm_product_id_seq', 1, false);
 -- Data for Name: crm_salesperson; Type: TABLE DATA; Schema: a1; Owner: ama
 --
 
-COPY crm_salesperson (id, first_name, second_name, phone_number, mobile_number, avatar, division, role, user_id) FROM stdin;
-1	Djon	Smith	(123) 456 7899	(173) 456 7899		ID dept	A	3
-2	Ivan	Candid	(123) 456 7899	(123) 456 7899	crm/556b6be8d8cc8693ce58d77196299e90.jpeg	Sales dept	M	4
-3	Peter	Bastew	123 456 7899	998 765 4322	crm/556b6be8d8cc8693ce58d77196299e90_QsCm0km.jpeg	Top mng	B	5
+COPY crm_salesperson (id, first_name, second_name, phone_number, mobile_number, avatar, division, role, user_id, lang) FROM stdin;
+1	Djon	Smith	(123) 456 7899	(173) 456 7899		ID dept	A	3	en
+2	Ivan	Candid	(123) 456 7899	(123) 456 7899	crm/556b6be8d8cc8693ce58d77196299e90.jpeg	Sales dept	M	4	en
+3	Peter	Bastew	123 456 7899	998 765 4322	crm/556b6be8d8cc8693ce58d77196299e90_QsCm0km.jpeg	Top mng	B	5	en
 \.
 
 
@@ -1839,6 +1841,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 18	2016-12-08 18:16:48.557499+03	3	new_admin	2	Изменен password.	14	2
 19	2016-12-08 18:17:11.973595+03	5	new_boss	2	Изменен password.	14	2
 20	2016-12-08 18:17:37.305768+03	4	new_manager	2	Изменен password.	14	2
+21	2016-12-13 18:15:11.897085+03	2	admin	2	Изменен username.	14	2
 \.
 
 
@@ -1846,7 +1849,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: a1; Owner: ama
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 20, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 21, true);
 
 
 --
@@ -1912,6 +1915,13 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 23	crm	0002_auto_20161205_0602	2016-12-05 06:02:30.990229+03
 24	crm	0003_auto_20161205_0610	2016-12-05 06:10:22.263561+03
 25	crm	0004_auto_20161205_0621	2016-12-05 06:21:58.141474+03
+26	crm	0002_auto_20161210_2008	2016-12-13 18:13:28.294469+03
+27	crm	0003_salesperson_lang	2016-12-13 18:13:28.483863+03
+28	crm	0004_auto_20161212_1542	2016-12-13 18:13:28.511167+03
+29	globalcustomer	0002_client_lang	2016-12-13 18:13:28.521978+03
+30	globalcustomer	0003_auto_20161211_1523	2016-12-13 18:13:28.530742+03
+31	globalcustomer	0004_auto_20161211_2213	2016-12-13 18:13:28.544492+03
+32	globalcustomer	0005_auto_20161212_1542	2016-12-13 18:13:28.553727+03
 \.
 
 
@@ -1919,7 +1929,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: a1; Owner: ama
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 25, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 32, true);
 
 
 --
@@ -1929,6 +1939,7 @@ SELECT pg_catalog.setval('django_migrations_id_seq', 25, true);
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
 1mnj3omjwk5derym617leuvmwecat1x5	OTVhYzY2ZTc5ZTBkOWY1MTY3MmUzMjA1NzI0ODkzMzNjN2FhM2E4Zjp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYjliMjNhYWVjZGJjNDA0ZGM0ZDkwZGZmMzRiNmU0YzM1NWIzNmRlIn0=	2016-12-19 06:26:31.917221+03
 cdth8vdpg4vni93ksv7m72arp80yz55b	NTdhNDkzYTgyYzdlNDc4YzY4YTViOTJhMmZlNGRmZDE2YjNiNWQ2Nzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiJmYzAyZWVmNWU3ODJjNzRkZWZjOWE4YjhmYmVjMTljN2FkMzIzMWNjIn0=	2016-12-22 18:16:19.637463+03
+u1ieqv4strpluz61qo6wxcc41u242vks	OTI3ZmVhZGZkNTg3Yzk3ODAzMzE5ODE0ZDE5YjFiYjBlNTRiMmIwOTp7Il9hdXRoX3VzZXJfaGFzaCI6ImZjMDJlZWY1ZTc4MmM3NGRlZmM5YThiOGZiZWMxOWM3YWQzMjMxY2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=	2016-12-27 18:14:52.258378+03
 \.
 
 
@@ -2107,7 +2118,7 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 61, true);
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
 1	!zox6fMNgmYHI8qJPgokYH6o4xP23c68kjn9narCH	\N	f	AnonymousUser				f	t	2016-12-05 05:45:01.512888+03
-2	pbkdf2_sha256$24000$WSnaoy9cNlBq$5Cs3oAWz8ZpylR/+3nf5TDPeWgjRABZFSm+efSSaKZE=	\N	t	ama			alex-abakumov@yandex.ru	t	t	2016-12-05 05:45:24.202972+03
+2	pbkdf2_sha256$24000$CiFuj2XaWQXe$NfQ7sdGsgdedXarSPi/qEd9MaLwT9s4IspOXuoA1U/s=	2016-12-13 19:54:11.158866+03	t	admin			alex-abakumov@yandex.ru	t	t	2016-12-05 05:45:24+03
 \.
 
 
@@ -2153,6 +2164,8 @@ SELECT pg_catalog.setval('auth_user_user_permissions_id_seq', 1, false);
 --
 
 COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2016-12-13 18:14:05.746679+03	2	admin	2	Изменен username.	6	2
+2	2016-12-13 19:54:42.610892+03	2	admin	2	Изменен password.	6	2
 \.
 
 
@@ -2160,7 +2173,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ama
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 1, false);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 2, true);
 
 
 --
@@ -2226,6 +2239,13 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 23	crm	0002_auto_20161205_0602	2016-12-05 06:02:30.812188+03
 24	crm	0003_auto_20161205_0610	2016-12-05 06:10:22.069672+03
 25	crm	0004_auto_20161205_0621	2016-12-05 06:21:57.937824+03
+26	crm	0002_auto_20161210_2008	2016-12-13 18:13:26.923807+03
+27	crm	0003_salesperson_lang	2016-12-13 18:13:26.964867+03
+28	crm	0004_auto_20161212_1542	2016-12-13 18:13:26.98656+03
+29	globalcustomer	0002_client_lang	2016-12-13 18:13:27.371706+03
+30	globalcustomer	0003_auto_20161211_1523	2016-12-13 18:13:27.384982+03
+31	globalcustomer	0004_auto_20161211_2213	2016-12-13 18:13:27.399716+03
+32	globalcustomer	0005_auto_20161212_1542	2016-12-13 18:13:27.407889+03
 \.
 
 
@@ -2233,7 +2253,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ama
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 25, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 32, true);
 
 
 --
@@ -2241,6 +2261,8 @@ SELECT pg_catalog.setval('django_migrations_id_seq', 25, true);
 --
 
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
+s7xl4j6kae4cbk2378tkytdk4oqdl7wj	MGJkZWQ1NTc1OGQ3ZjcwNTFlMzhlZDg1NGI0MzIzYThmY2U1MDFhZjp7Il9hdXRoX3VzZXJfaGFzaCI6IjEzNDQ2ZjNhZTYzYjFkYWQ2MjhhNzJiN2Y2ZmRlMTliMGIwZmRlYzYiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=	2016-12-27 18:13:47.389844+03
+47n6g6zmctxdsqruuv2t4o6q2hmrn4d4	Y2YzMThiN2ZmMzEzNTk2ODI0ZTRjNDk5ZmQ4NTAwOGI3MDI0Yzc3Yzp7Il9hdXRoX3VzZXJfaGFzaCI6IjViNjE3OWY1MWZlNTk4YTc0OWI2YjcwYTFkNWMyMzg2Nzk4ZTZhOTAiLCJfYXV0aF91c2VyX2lkIjoiMiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=	2016-12-27 19:54:42.634439+03
 \.
 
 
@@ -2264,9 +2286,9 @@ SELECT pg_catalog.setval('django_site_id_seq', 1, true);
 -- Data for Name: globalcustomer_client; Type: TABLE DATA; Schema: public; Owner: ama
 --
 
-COPY globalcustomer_client (id, domain_url, schema_name, name, description, created_on) FROM stdin;
-1	example.com	public	SaaS		2016-12-05
-2	a1.example.com	a1	aaa		2016-12-05
+COPY globalcustomer_client (id, domain_url, schema_name, name, description, created_on, lang) FROM stdin;
+1	example.com	public	SaaS		2016-12-05	EN
+2	a1.example.com	a1	aaa		2016-12-05	EN
 \.
 
 

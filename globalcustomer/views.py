@@ -1,3 +1,5 @@
+import time
+
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.urlresolvers import reverse
@@ -6,10 +8,14 @@ from django.shortcuts import render
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import CreateView
+from django.contrib.auth.models import Group, User, Permission
+from django.contrib.contenttypes.models import ContentType
+from tenant_schemas.utils import schema_context
 
 from globalcustomer.forms import GlobalClientForm, ChooseLangForm
 from globalcustomer.models import Client
 from globalcustomer.signals import ChooseLang
+
 from simpleCRM.settings import DEBUG
 from simpleCRM import settings
 
@@ -52,6 +58,70 @@ class GlobalClientCreateView(CreateView):
             rec.lang = settings.MY_LANG_CODE
             rec.save()
             site = 'http://' + form.data['schema_name'] + '.' + current_site.name
+
+            perms_a=[]
+            perms_b=[]
+            perms_m=[]
+
+            with schema_context('a1'):
+                group_a = Group.objects.get(name='admin')
+                perms = group_a.permissions.all()
+                for perm in perms:
+                    perms_a.append([perm.name,perm.codename,perm.content_type])
+
+
+            with schema_context(form.data['schema_name']):
+
+                Permission.objects.all().delete()
+                content_types = ContentType.objects.all()
+
+
+                for perm in perms_a:
+                    for ct in content_types:
+                        if str(perm[2]) == str(ct):
+                            perm[2]=ct
+
+                mygroup, created = Group.objects.get_or_create(name=group_a.name)
+                mygroup.permissions.clear()
+
+
+                perms_list=[]
+                for perm in perms_a:
+                    permission = Permission.objects.get_or_create(codename=perm[1], name=perm[0], content_type=perm[2])
+                    perms_list.append(permission[0])
+                    p=permission[0]
+                    mygroup.permissions.add(p)
+                    a=3
+
+
+
+                '''mygroup, created = Group.objects.get_or_create(name=group_b.name)
+                for perm in perms_b:
+                    mygroup.permissions.add(perm)
+
+                mygroup, created = Group.objects.get_or_create(name=group_m.name)
+                for perm in perms_m:
+                    mygroup.permissions.add(perm)
+                '''
+
+                user = User.objects.create_user(username='admin', password='djangoone')
+                user.is_staff = True
+                user.is_superuser = True
+                user.save()
+
+            '''user = User(username='new_admin', password='djangoone')
+            user.is_staff = False
+            user.is_superuser = False
+            try:
+                group = Group.objects.get(name='admin')
+            except:
+                messages.error(request, _('Немогу получить доступ к группе прав АДМИНИСТРАТОР'))
+                return super().post(self, request, *args, **kwargs)
+
+            # set group permission for user which linked with salesperson
+            user.groups.add(group)
+            user.save()'''
+
             if DEBUG:
                 site += ':8000'
             return HttpResponseRedirect(site)

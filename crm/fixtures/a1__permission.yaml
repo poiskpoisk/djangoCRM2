@@ -1,161 +1,161 @@
 - model: auth.permission
-  pk: 29
-  fields: {name: Can add log entry, content_type: 8, codename: add_logentry}
-- model: auth.permission
-  pk: 30
-  fields: {name: Can change log entry, content_type: 8, codename: change_logentry}
-- model: auth.permission
-  pk: 31
-  fields: {name: Can delete log entry, content_type: 8, codename: delete_logentry}
-- model: auth.permission
   pk: 50
-  fields: {name: Can add group, content_type: 14, codename: add_group}
+  fields: {name: Can add log entry, content_type: 15, codename: add_logentry}
 - model: auth.permission
   pk: 51
-  fields: {name: Can change group, content_type: 14, codename: change_group}
+  fields: {name: Can change log entry, content_type: 15, codename: change_logentry}
 - model: auth.permission
   pk: 52
-  fields: {name: Can delete group, content_type: 14, codename: delete_group}
-- model: auth.permission
-  pk: 47
-  fields: {name: Can add permission, content_type: 16, codename: add_permission}
-- model: auth.permission
-  pk: 48
-  fields: {name: Can change permission, content_type: 16, codename: change_permission}
-- model: auth.permission
-  pk: 49
-  fields: {name: Can delete permission, content_type: 16, codename: delete_permission}
-- model: auth.permission
-  pk: 53
-  fields: {name: Can add user, content_type: 15, codename: add_user}
-- model: auth.permission
-  pk: 54
-  fields: {name: Can change user, content_type: 15, codename: change_user}
-- model: auth.permission
-  pk: 55
-  fields: {name: Can delete user, content_type: 15, codename: delete_user}
+  fields: {name: Can delete log entry, content_type: 15, codename: delete_logentry}
 - model: auth.permission
   pk: 44
-  fields: {name: Can add content type, content_type: 13, codename: add_contenttype}
+  fields: {name: Can add group, content_type: 13, codename: add_group}
 - model: auth.permission
   pk: 45
-  fields: {name: Can change content type, content_type: 13, codename: change_contenttype}
+  fields: {name: Can change group, content_type: 13, codename: change_group}
 - model: auth.permission
   pk: 46
-  fields: {name: Can delete content type, content_type: 13, codename: delete_contenttype}
-- model: auth.permission
-  pk: 9
-  fields: {name: Can add Customer, content_type: 7, codename: add_customer}
-- model: auth.permission
-  pk: 10
-  fields: {name: Can change Customer, content_type: 7, codename: change_customer}
-- model: auth.permission
-  pk: 11
-  fields: {name: Can delete Customer, content_type: 7, codename: delete_customer}
-- model: auth.permission
-  pk: 12
-  fields: {name: User list, content_type: 7, codename: read_customer}
-- model: auth.permission
-  pk: 13
-  fields: {name: Can add Deal, content_type: 5, codename: add_deal}
-- model: auth.permission
-  pk: 14
-  fields: {name: Can change Deal, content_type: 5, codename: change_deal}
-- model: auth.permission
-  pk: 15
-  fields: {name: Can delete Deal, content_type: 5, codename: delete_deal}
-- model: auth.permission
-  pk: 16
-  fields: {name: Contracts view, content_type: 5, codename: read_deal}
-- model: auth.permission
-  pk: 21
-  fields: {name: Can add Product in contract, content_type: 4, codename: add_dealproducts}
-- model: auth.permission
-  pk: 22
-  fields: {name: Can change Product in contract, content_type: 4, codename: change_dealproducts}
-- model: auth.permission
-  pk: 23
-  fields: {name: Can delete Product in contract, content_type: 4, codename: delete_dealproducts}
-- model: auth.permission
-  pk: 24
-  fields: {name: View products in contract, content_type: 4, codename: read_salesperson}
-- model: auth.permission
-  pk: 25
-  fields: {name: Can add Contract status, content_type: 2, codename: add_dealstatus}
-- model: auth.permission
-  pk: 26
-  fields: {name: Can change Contract status, content_type: 2, codename: change_dealstatus}
-- model: auth.permission
-  pk: 27
-  fields: {name: Can delete Contract status, content_type: 2, codename: delete_dealstatus}
-- model: auth.permission
-  pk: 28
-  fields: {name: "\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440 \u0441\u0442\u0430\
-      \u0442\u0443\u0441\u0430 \u043A\u043E\u043D\u0442\u0440\u0430\u043A\u0442\u0430",
-    content_type: 2, codename: read_salesperson}
-- model: auth.permission
-  pk: 17
-  fields: {name: Can add Product, content_type: 3, codename: add_product}
-- model: auth.permission
-  pk: 18
-  fields: {name: Can change Product, content_type: 3, codename: change_product}
-- model: auth.permission
-  pk: 19
-  fields: {name: Can delete Product, content_type: 3, codename: delete_product}
-- model: auth.permission
-  pk: 20
-  fields: {name: Products view, content_type: 3, codename: read_product}
-- model: auth.permission
-  pk: 1
-  fields: {name: Can add Sales manager, content_type: 1, codename: add_salesperson}
-- model: auth.permission
-  pk: 2
-  fields: {name: Can change Sales manager, content_type: 1, codename: change_salesperson}
-- model: auth.permission
-  pk: 3
-  fields: {name: Can delete Sales manager, content_type: 1, codename: delete_salesperson}
-- model: auth.permission
-  pk: 4
-  fields: {name: View sales manager, content_type: 1, codename: read_salesperson}
-- model: auth.permission
-  pk: 5
-  fields: {name: Can add ToDo list, content_type: 6, codename: add_todo}
-- model: auth.permission
-  pk: 6
-  fields: {name: Can change ToDo list, content_type: 6, codename: change_todo}
-- model: auth.permission
-  pk: 7
-  fields: {name: Can delete ToDo list, content_type: 6, codename: delete_todo}
-- model: auth.permission
-  pk: 8
-  fields: {name: ToDos view, content_type: 6, codename: read_todo}
-- model: auth.permission
-  pk: 35
-  fields: {name: Can add Company, content_type: 10, codename: add_client}
-- model: auth.permission
-  pk: 36
-  fields: {name: Can change Company, content_type: 10, codename: change_client}
-- model: auth.permission
-  pk: 37
-  fields: {name: Can delete Company, content_type: 10, codename: delete_client}
+  fields: {name: Can delete group, content_type: 13, codename: delete_group}
 - model: auth.permission
   pk: 41
-  fields: {name: Can add group object permission, content_type: 11, codename: add_groupobjectpermission}
+  fields: {name: Can add permission, content_type: 12, codename: add_permission}
 - model: auth.permission
   pk: 42
-  fields: {name: Can change group object permission, content_type: 11, codename: change_groupobjectpermission}
+  fields: {name: Can change permission, content_type: 12, codename: change_permission}
 - model: auth.permission
   pk: 43
-  fields: {name: Can delete group object permission, content_type: 11, codename: delete_groupobjectpermission}
+  fields: {name: Can delete permission, content_type: 12, codename: delete_permission}
+- model: auth.permission
+  pk: 47
+  fields: {name: Can add user, content_type: 14, codename: add_user}
+- model: auth.permission
+  pk: 48
+  fields: {name: Can change user, content_type: 14, codename: change_user}
+- model: auth.permission
+  pk: 49
+  fields: {name: Can delete user, content_type: 14, codename: delete_user}
+- model: auth.permission
+  pk: 59
+  fields: {name: Can add content type, content_type: 18, codename: add_contenttype}
+- model: auth.permission
+  pk: 60
+  fields: {name: Can change content type, content_type: 18, codename: change_contenttype}
+- model: auth.permission
+  pk: 61
+  fields: {name: Can delete content type, content_type: 18, codename: delete_contenttype}
+- model: auth.permission
+  pk: 12
+  fields: {name: Can add Customer, content_type: 4, codename: add_customer}
+- model: auth.permission
+  pk: 13
+  fields: {name: Can change Customer, content_type: 4, codename: change_customer}
+- model: auth.permission
+  pk: 14
+  fields: {name: Can delete Customer, content_type: 4, codename: delete_customer}
+- model: auth.permission
+  pk: 15
+  fields: {name: User list, content_type: 4, codename: read_customer}
+- model: auth.permission
+  pk: 16
+  fields: {name: Can add Deal, content_type: 5, codename: add_deal}
+- model: auth.permission
+  pk: 17
+  fields: {name: Can change Deal, content_type: 5, codename: change_deal}
+- model: auth.permission
+  pk: 18
+  fields: {name: Can delete Deal, content_type: 5, codename: delete_deal}
+- model: auth.permission
+  pk: 19
+  fields: {name: Contracts view, content_type: 5, codename: read_deal}
+- model: auth.permission
+  pk: 24
+  fields: {name: Can add Product in contract, content_type: 7, codename: add_dealproducts}
+- model: auth.permission
+  pk: 25
+  fields: {name: Can change Product in contract, content_type: 7, codename: change_dealproducts}
+- model: auth.permission
+  pk: 26
+  fields: {name: Can delete Product in contract, content_type: 7, codename: delete_dealproducts}
+- model: auth.permission
+  pk: 27
+  fields: {name: View products in contract, content_type: 7, codename: read_salesperson}
+- model: auth.permission
+  pk: 28
+  fields: {name: Can add Contract status, content_type: 8, codename: add_dealstatus}
+- model: auth.permission
+  pk: 29
+  fields: {name: Can change Contract status, content_type: 8, codename: change_dealstatus}
+- model: auth.permission
+  pk: 30
+  fields: {name: Can delete Contract status, content_type: 8, codename: delete_dealstatus}
+- model: auth.permission
+  pk: 31
+  fields: {name: "\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440 \u0441\u0442\u0430\
+      \u0442\u0443\u0441\u0430 \u043A\u043E\u043D\u0442\u0440\u0430\u043A\u0442\u0430",
+    content_type: 8, codename: read_salesperson}
+- model: auth.permission
+  pk: 20
+  fields: {name: Can add Product, content_type: 6, codename: add_product}
+- model: auth.permission
+  pk: 21
+  fields: {name: Can change Product, content_type: 6, codename: change_product}
+- model: auth.permission
+  pk: 22
+  fields: {name: Can delete Product, content_type: 6, codename: delete_product}
+- model: auth.permission
+  pk: 23
+  fields: {name: Products view, content_type: 6, codename: read_product}
+- model: auth.permission
+  pk: 4
+  fields: {name: Can add Sales manager, content_type: 2, codename: add_salesperson}
+- model: auth.permission
+  pk: 5
+  fields: {name: Can change Sales manager, content_type: 2, codename: change_salesperson}
+- model: auth.permission
+  pk: 6
+  fields: {name: Can delete Sales manager, content_type: 2, codename: delete_salesperson}
+- model: auth.permission
+  pk: 7
+  fields: {name: View sales manager, content_type: 2, codename: read_salesperson}
+- model: auth.permission
+  pk: 8
+  fields: {name: Can add ToDo list, content_type: 3, codename: add_todo}
+- model: auth.permission
+  pk: 9
+  fields: {name: Can change ToDo list, content_type: 3, codename: change_todo}
+- model: auth.permission
+  pk: 10
+  fields: {name: Can delete ToDo list, content_type: 3, codename: delete_todo}
+- model: auth.permission
+  pk: 11
+  fields: {name: ToDos view, content_type: 3, codename: read_todo}
+- model: auth.permission
+  pk: 53
+  fields: {name: Can add Company, content_type: 16, codename: add_client}
+- model: auth.permission
+  pk: 54
+  fields: {name: Can change Company, content_type: 16, codename: change_client}
+- model: auth.permission
+  pk: 55
+  fields: {name: Can delete Company, content_type: 16, codename: delete_client}
 - model: auth.permission
   pk: 38
-  fields: {name: Can add user object permission, content_type: 12, codename: add_userobjectpermission}
+  fields: {name: Can add group object permission, content_type: 11, codename: add_groupobjectpermission}
 - model: auth.permission
   pk: 39
-  fields: {name: Can change user object permission, content_type: 12, codename: change_userobjectpermission}
+  fields: {name: Can change group object permission, content_type: 11, codename: change_groupobjectpermission}
 - model: auth.permission
   pk: 40
-  fields: {name: Can delete user object permission, content_type: 12, codename: delete_userobjectpermission}
+  fields: {name: Can delete group object permission, content_type: 11, codename: delete_groupobjectpermission}
+- model: auth.permission
+  pk: 35
+  fields: {name: Can add user object permission, content_type: 10, codename: add_userobjectpermission}
+- model: auth.permission
+  pk: 36
+  fields: {name: Can change user object permission, content_type: 10, codename: change_userobjectpermission}
+- model: auth.permission
+  pk: 37
+  fields: {name: Can delete user object permission, content_type: 10, codename: delete_userobjectpermission}
 - model: auth.permission
   pk: 32
   fields: {name: Can add registration profile, content_type: 9, codename: add_registrationprofile}
@@ -166,20 +166,20 @@
   pk: 34
   fields: {name: Can delete registration profile, content_type: 9, codename: delete_registrationprofile}
 - model: auth.permission
-  pk: 59
-  fields: {name: Can add session, content_type: 18, codename: add_session}
-- model: auth.permission
-  pk: 60
-  fields: {name: Can change session, content_type: 18, codename: change_session}
-- model: auth.permission
-  pk: 61
-  fields: {name: Can delete session, content_type: 18, codename: delete_session}
-- model: auth.permission
   pk: 56
-  fields: {name: Can add site, content_type: 17, codename: add_site}
+  fields: {name: Can add session, content_type: 17, codename: add_session}
 - model: auth.permission
   pk: 57
-  fields: {name: Can change site, content_type: 17, codename: change_site}
+  fields: {name: Can change session, content_type: 17, codename: change_session}
 - model: auth.permission
   pk: 58
-  fields: {name: Can delete site, content_type: 17, codename: delete_site}
+  fields: {name: Can delete session, content_type: 17, codename: delete_session}
+- model: auth.permission
+  pk: 1
+  fields: {name: Can add site, content_type: 1, codename: add_site}
+- model: auth.permission
+  pk: 2
+  fields: {name: Can change site, content_type: 1, codename: change_site}
+- model: auth.permission
+  pk: 3
+  fields: {name: Can delete site, content_type: 1, codename: delete_site}

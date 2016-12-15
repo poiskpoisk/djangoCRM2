@@ -23,7 +23,7 @@ from guardian.decorators import permission_required
 from globalcustomer.models import Client
 
 
-class MyRegistrationView(RegistrationView):
+class MyRegistrationView(RegistrationView, SomeUtilsMixin):
     form_class = MyRegistrationFormUniqueEmail
     template_name = 'accounts/registration_form.html'
 
@@ -35,6 +35,8 @@ class MyRegistrationView(RegistrationView):
         rec = Client.objects.get(pk=request.tenant.pk)
         translation.deactivate_all()
         translation.activate(rec.lang)
+        # if the form updated we need to clear message query
+        self.clearMsg(request)
         return super().get(self, request, *args, **kwargs)
 
 

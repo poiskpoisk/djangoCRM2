@@ -52,6 +52,6 @@ urlpatterns = [
 
     url(r'^activate/(?P<activation_key>\w+)/$', ActivationView.as_view(),name='registration_activate'),
 
-    url(r'^activate/complete/$', TemplateView.as_view(template_name='registration/activation_complete.html'),
+    url(r'^activate/complete/$', TemplateView.as_view(template_name='accounts/activation_complete.html'),
         name='registration_activation_complete'),
 ]

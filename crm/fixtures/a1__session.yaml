@@ -1,4 +1,12 @@
 - model: sessions.session
-  pk: zvdjqi55eyvuqg83qxezju5um8vcr6s9
-  fields: {session_data: ZWVhNGY3MjdkOTM2YzdjMDJhNTEwYzZjNTU5M2ZiZjM0YzI5MTExYjp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9oYXNoIjoiZjE5Yjk4YTJlYWM5ODZiZTlmMGU3MGM0MjVhZTFhNGE4YzQyZDc4MCIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=,
-    expire_date: !!timestamp '2016-12-18 20:25:54.430767+00:00'}
+  pk: 1mnj3omjwk5derym617leuvmwecat1x5
+  fields: {session_data: OTVhYzY2ZTc5ZTBkOWY1MTY3MmUzMjA1NzI0ODkzMzNjN2FhM2E4Zjp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYjliMjNhYWVjZGJjNDA0ZGM0ZDkwZGZmMzRiNmU0YzM1NWIzNmRlIn0=,
+    expire_date: !!timestamp '2016-12-19 03:26:31.917221+00:00'}
+- model: sessions.session
+  pk: cdth8vdpg4vni93ksv7m72arp80yz55b
+  fields: {session_data: NTdhNDkzYTgyYzdlNDc4YzY4YTViOTJhMmZlNGRmZDE2YjNiNWQ2Nzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiJmYzAyZWVmNWU3ODJjNzRkZWZjOWE4YjhmYmVjMTljN2FkMzIzMWNjIn0=,
+    expire_date: !!timestamp '2016-12-22 15:16:19.637463+00:00'}
+- model: sessions.session
+  pk: u1ieqv4strpluz61qo6wxcc41u242vks
+  fields: {session_data: OTI3ZmVhZGZkNTg3Yzk3ODAzMzE5ODE0ZDE5YjFiYjBlNTRiMmIwOTp7Il9hdXRoX3VzZXJfaGFzaCI6ImZjMDJlZWY1ZTc4MmM3NGRlZmM5YThiOGZiZWMxOWM3YWQzMjMxY2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=,
+    expire_date: !!timestamp '2016-12-27 15:14:52.258378+00:00'}

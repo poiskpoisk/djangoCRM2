@@ -1,7 +1,7 @@
 - model: auth.user
   pk: 1
   fields:
-    password: '!MJuOxYgszJEJSWFji6PGCtSBZJVRh9hQ88QtDfMG'
+    password: '!5K1utliluouDBBXbT6eDUDMZKSAkLHLd0a5oV7zN'
     last_login: null
     is_superuser: false
     username: AnonymousUser
@@ -10,21 +10,66 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2016-12-04 20:24:44.196372+00:00
+    date_joined: 2016-12-05 02:45:08.205398+00:00
     groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 3
+  fields:
+    password: pbkdf2_sha256$24000$u58vBnGtZS12$hFQsuDcU2gMLh+7tzwYvbbsbmwQbMt+fZL220ST8WH8=
+    last_login: 2016-12-05 03:26:31.866965+00:00
+    is_superuser: false
+    username: new_admin
+    first_name: ''
+    last_name: ''
+    email: new_admin@example.com
+    is_staff: false
+    is_active: true
+    date_joined: 2016-12-05 02:57:24+00:00
+    groups: [1]
+    user_permissions: []
+- model: auth.user
+  pk: 5
+  fields:
+    password: pbkdf2_sha256$24000$68xPvrk9vqOe$6C+bXvntvuNPz1qgq/lWShrnIxTkYGlG5FS5K3bkYdw=
+    last_login: null
+    is_superuser: false
+    username: new_boss
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2016-12-05 03:23:05+00:00
+    groups: [2]
+    user_permissions: []
+- model: auth.user
+  pk: 4
+  fields:
+    password: pbkdf2_sha256$24000$QgX1OnZxmExS$9YJ1ZZYPsunQt0PUoqL45n0VwKJ+L0KUyMf41QSUjtU=
+    last_login: null
+    is_superuser: false
+    username: new_manager
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2016-12-05 03:14:29+00:00
+    groups: [3]
     user_permissions: []
 - model: auth.user
   pk: 2
   fields:
-    password: pbkdf2_sha256$24000$PJUjwmNhpftg$nFzOnjynlTQ0N/HifNbBMhMYk0jwMTdzN5kKTBnCeqo=
-    last_login: 2016-12-04 20:25:54.408148+00:00
+    password: pbkdf2_sha256$24000$qeKvou4qfxYw$ErE9MSDvMI9885VPwEMFkPt2ArimsHU+3lmfmJwww94=
+    last_login: 2016-12-13 15:14:52+00:00
     is_superuser: true
-    username: ama
+    username: admin
     first_name: ''
     last_name: ''
-    email: alex-abakumov@yandex.ru_RU
+    email: alex-abakumov@yandex.ru
     is_staff: true
     is_active: true
-    date_joined: 2016-12-04 20:25:32.015445+00:00
+    date_joined: 2016-12-05 02:45:53+00:00
     groups: []
     user_permissions: []

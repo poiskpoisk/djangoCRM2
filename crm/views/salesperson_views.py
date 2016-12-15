@@ -31,7 +31,7 @@ class SalesPersonUpdateView(UpdateView, SomeUtilsMixin):
     @method_decorator(login_required())
     @method_decorator(permission_required('crm.read_salesperson', accept_global_perms=True))
     def get(self, request, *args, **kwargs):
-        translation.activate(request.user.salesperson.lang)
+        self.set_lang(request)
         # if the forma updated we need to clear message query
         self.clearMsg(request)
         return super().get(self, request, *args, **kwargs)
@@ -56,7 +56,7 @@ class SalesPersonUpdateView(UpdateView, SomeUtilsMixin):
             return super().post(self, request, *args, **kwargs)
 
 
-class SalesPersonDeleteView(DeleteView):
+class SalesPersonDeleteView(DeleteView, SomeUtilsMixin):
     model = SalesPerson
     template_name = 'crm/salesperson_del.html'
 
@@ -66,7 +66,7 @@ class SalesPersonDeleteView(DeleteView):
     @method_decorator(login_required())
     @method_decorator(permission_required('crm.delete_salesperson', accept_global_perms=True))
     def get(self, request, *args, **kwargs):
-        translation.activate(request.user.salesperson.lang)
+        self.set_lang(request)
         return super().get(self, request, *args, **kwargs)
 
 # ---------------- Set signal for delete User instance together with SalesPerson --------------------
@@ -88,7 +88,7 @@ class SalesPersonCreateView(CreateView, SomeUtilsMixin):
     @method_decorator(login_required())
     @method_decorator(permission_required('crm.add_salesperson', accept_global_perms=True))
     def get(self, request, *args, **kwargs):
-        translation.activate(request.user.salesperson.lang)
+        self.set_lang(request)
         # if the forma updated we need to clear message query
         self.clearMsg(request)
         return super().get(self, request, *args, **kwargs)

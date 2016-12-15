@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-#
-from crm.views.views import setLang
 
 __author__ = 'AMA'
 
@@ -14,5 +13,4 @@ urlpatterns = [
 
     url(r'^tenant/$', GlobalClientCreateView.as_view(), name='globalcustomer'),
     url(r'^$', choose_lang, name='chooselang'),
-    url(r'^sl/$', setLang, name='setlang'),
     ]

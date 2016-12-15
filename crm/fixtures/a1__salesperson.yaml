@@ -1,1 +1,14 @@
-[]
+- model: crm.salesperson
+  pk: 1
+  fields: {first_name: Djon, second_name: Smith, phone_number: (123) 456 7899, mobile_number: (173)
+      456 7899, avatar: '', user: 3, division: ID dept, lang: en, role: A}
+- model: crm.salesperson
+  pk: 2
+  fields: {first_name: Ivan, second_name: Candid, phone_number: (123) 456 7899, mobile_number: (123)
+      456 7899, avatar: crm/556b6be8d8cc8693ce58d77196299e90.jpeg, user: 4, division: Sales
+      dept, lang: en, role: M}
+- model: crm.salesperson
+  pk: 3
+  fields: {first_name: Peter, second_name: Bastew, phone_number: 123 456 7899, mobile_number: 998
+      765 4322, avatar: crm/556b6be8d8cc8693ce58d77196299e90_QsCm0km.jpeg, user: 5,
+    division: Top mng, lang: en, role: B}
