@@ -59,50 +59,38 @@ class GlobalClientCreateView(CreateView):
             rec.save()
             site = 'http://' + form.data['schema_name'] + '.' + current_site.name
 
-            perms_a=[]
-            perms_b=[]
-            perms_m=[]
+
+            all_perms=[]
 
             with schema_context('a1'):
-                group_a = Group.objects.get(name='admin')
-                perms = group_a.permissions.all()
-                for perm in perms:
-                    perms_a.append([perm.name,perm.codename,perm.content_type])
 
-                group_b = Group.objects.get(name='boss')
-                perms = group_b.permissions.all()
-                for perm in perms:
-                    perms_b.append([perm.name,perm.codename,perm.content_type])
-
+                groups = Group.objects.all()
+                for group in groups:
+                    perms = group.permissions.all()
+                    perms_list = []
+                    for perm in perms:
+                        perms_list.append([perm.name,perm.codename,perm.content_type])
+                    all_perms.append(perms_list)
 
             with schema_context(form.data['schema_name']):
 
                 Permission.objects.all().delete()
                 content_types = ContentType.objects.all()
 
-                for perm in perms_a:
-                    for ct in content_types:
-                        if str(perm[2]) == str(ct):
-                            perm[2] = ct
+                for group, perms in zip(groups, all_perms):
+                    for perm in perms:
+                        for ct in content_types:
+                            if str(perm[2]) == str(ct):
+                                perm[2] = ct
 
-                mygroup, created = Group.objects.get_or_create(name=group_a.name)
-                mygroup.permissions.clear()
+                    mygroup, created = Group.objects.get_or_create(name=group.name)
+                    mygroup.permissions.clear()
 
-                for perm in perms_a:
-                    permission = Permission.objects.get_or_create(codename=perm[1], name=perm[0], content_type=perm[2])
-                    mygroup.permissions.add(permission[0])
+                    for perm in perms:
+                        permission = Permission.objects.get_or_create(codename=perm[1], name=perm[0], content_type=perm[2])
+                        mygroup.permissions.add(permission[0])
 
-                for perm in perms_b:
-                    for ct in content_types:
-                        if str(perm[2]) == str(ct):
-                            perm[2] = ct
 
-                mygroup, created = Group.objects.get_or_create(name=group_b.name)
-                mygroup.permissions.clear()
-
-                for perm in perms_b:
-                    permission = Permission.objects.get_or_create(codename=perm[1], name=perm[0], content_type=perm[2])
-                    mygroup.permissions.add(permission[0])
 
 
 
