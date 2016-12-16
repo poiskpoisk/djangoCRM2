@@ -3549,6 +3549,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 7	2016-12-17 00:19:57.32199+03	3	Client object	2	Изменен name и description.	9	2
 8	2016-12-17 00:20:08.971089+03	2	Client object	2	Изменен domain_url.	9	2
 9	2016-12-17 00:20:16.440558+03	3	Client object	2	Изменен domain_url.	9	2
+10	2016-12-17 00:50:49.311997+03	1	django.one	2	Изменен domain и name.	3	2
 \.
 
 
@@ -3556,7 +3557,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ama
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 9, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 10, true);
 
 
 --
@@ -3655,7 +3656,7 @@ ggw9ebo9c1mj1z9g5gfazjt281zj70rj	NGNlYjY0MTZmNjhiNmY2ZDU1YTg3Mzk0MmQ4ZjIzZWZlNzE
 --
 
 COPY django_site (id, domain, name) FROM stdin;
-1	example.com	example.com
+1	django.one	django.one
 \.
 
 
