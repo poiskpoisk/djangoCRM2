@@ -2565,7 +2565,7 @@ COPY auth_user (id, password, last_login, is_superuser, username, first_name, la
 6	!uFD6vKR5ufjwl2WVkWsO9r1au6CYNDV8BBB5YNyr	\N	f	AnonymousUser				f	t	2016-12-12 15:42:20.862485+03
 5	pbkdf2_sha256$24000$d15BBKCdpVJv$HR1DXWQTnpbyXJmuoJ105AOGM8VdByaWAEtSOm8Xhg8=	2016-12-12 16:29:07.55731+03	f	new_boss				f	t	2016-12-05 06:23:05+03
 4	pbkdf2_sha256$24000$1BkHPxOFwNHB$umUq+nerCgYpB0pXfg3uRLYzAW3FPGrnyLTv14GzoRM=	2016-12-12 23:03:15.005451+03	f	new_manager				f	t	2016-12-05 06:14:29+03
-2	pbkdf2_sha256$24000$jZl3MTWlgO4q$7l/egXkXrEcJCt2uuXeKbnndoSRPyRdw5tuUOmKVen8=	2016-12-13 18:09:46+03	t	admin			alex-abakumov@yandex.ru	t	t	2016-12-05 05:45:53+03
+2	pbkdf2_sha256$24000$jZl3MTWlgO4q$7l/egXkXrEcJCt2uuXeKbnndoSRPyRdw5tuUOmKVen8=	2016-12-17 00:38:10.776691+03	t	admin			alex-abakumov@yandex.ru	t	t	2016-12-05 05:45:53+03
 \.
 
 
@@ -2781,6 +2781,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 19	2016-12-08 17:01:31.368762+03	4	new_manager	2	Изменен password.	14	2
 20	2016-12-08 17:45:14.540795+03	3	manager	2	Изменен permissions.	13	2
 21	2016-12-13 18:10:06.488642+03	2	admin	2	Изменен username.	14	2
+22	2016-12-17 00:38:51.504965+03	1	django.one	2	Изменен domain и name.	1	2
 \.
 
 
@@ -2788,7 +2789,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: a1; Owner: ama
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 21, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 22, true);
 
 
 --
@@ -2879,6 +2880,7 @@ COPY django_session (session_key, session_data, expire_date) FROM stdin;
 1mnj3omjwk5derym617leuvmwecat1x5	OTVhYzY2ZTc5ZTBkOWY1MTY3MmUzMjA1NzI0ODkzMzNjN2FhM2E4Zjp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYjliMjNhYWVjZGJjNDA0ZGM0ZDkwZGZmMzRiNmU0YzM1NWIzNmRlIn0=	2016-12-19 06:26:31.917221+03
 b6r1z8zmkhs495gpc54kb905qnwyfk64	ZWQ0NTI3YjZmYWRmMTkzZDA3YmZhMmY2NzhlYTcwMGVjZmRjYzQ2NTp7Il9hdXRoX3VzZXJfaGFzaCI6IjNjM2VlZDIyNDkyMzg4OWQ3NzBiZjVjZmZmYjViYmIzOTliYzg5YzQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiI1In0=	2016-12-22 18:05:45.353734+03
 i3jlqv7x7wpdy0pjvowxknlol5usomzb	ZTI0NTBiMzBkNjNjOTkwMjVlODA4ZjM1MjZlNjIzM2Y2M2Q4NDg5NTp7Il9hdXRoX3VzZXJfaGFzaCI6ImZjNDFjNjA2OGMxZjE0YmE0NDY2ZWZiMzkwMmRhZjZhYzQ1MmM4NTQiLCJfYXV0aF91c2VyX2lkIjoiMiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=	2016-12-27 18:09:46.435574+03
+t9gbwxrrpxava30jlrm6kin98cf6bzo6	M2U2MWVmYzY5YWVhMjIwZDIxYmRjZjE5ZWRiN2RmZTMzYTUyNjdlOTp7Il9hdXRoX3VzZXJfaGFzaCI6ImZjNDFjNjA2OGMxZjE0YmE0NDY2ZWZiMzkwMmRhZjZhYzQ1MmM4NTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=	2016-12-31 00:38:10.833405+03
 \.
 
 
@@ -2887,7 +2889,7 @@ i3jlqv7x7wpdy0pjvowxknlol5usomzb	ZTI0NTBiMzBkNjNjOTkwMjVlODA4ZjM1MjZlNjIzM2Y2M2Q
 --
 
 COPY django_site (id, domain, name) FROM stdin;
-1	example.com	example.com
+1	django.one	django.one
 \.
 
 
