@@ -2564,8 +2564,8 @@ COPY auth_user (id, password, last_login, is_superuser, username, first_name, la
 1	!5K1utliluouDBBXbT6eDUDMZKSAkLHLd0a5oV7zN	\N	f	AnonymousUser				f	t	2016-12-05 05:45:08.205398+03
 5	pbkdf2_sha256$24000$68xPvrk9vqOe$6C+bXvntvuNPz1qgq/lWShrnIxTkYGlG5FS5K3bkYdw=	\N	f	new_boss				f	t	2016-12-05 06:23:05+03
 4	pbkdf2_sha256$24000$QgX1OnZxmExS$9YJ1ZZYPsunQt0PUoqL45n0VwKJ+L0KUyMf41QSUjtU=	\N	f	new_manager				f	t	2016-12-05 06:14:29+03
-2	pbkdf2_sha256$24000$qeKvou4qfxYw$ErE9MSDvMI9885VPwEMFkPt2ArimsHU+3lmfmJwww94=	2016-12-15 20:48:39.809936+03	t	admin			alex-abakumov@yandex.ru	t	t	2016-12-05 05:45:53+03
 3	pbkdf2_sha256$24000$u58vBnGtZS12$hFQsuDcU2gMLh+7tzwYvbbsbmwQbMt+fZL220ST8WH8=	2016-12-15 20:48:46.28854+03	f	new_admin			new_admin@example.com	f	t	2016-12-05 05:57:24+03
+2	pbkdf2_sha256$24000$qeKvou4qfxYw$ErE9MSDvMI9885VPwEMFkPt2ArimsHU+3lmfmJwww94=	2016-12-16 21:36:53.207631+03	t	admin			alex-abakumov@yandex.ru	t	t	2016-12-05 05:45:53+03
 \.
 
 
@@ -2743,6 +2743,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 19	2016-12-08 18:17:11.973595+03	5	new_boss	2	Изменен password.	14	2
 20	2016-12-08 18:17:37.305768+03	4	new_manager	2	Изменен password.	14	2
 21	2016-12-13 18:15:11.897085+03	2	admin	2	Изменен username.	14	2
+22	2016-12-16 21:37:13.416958+03	1	django.one	2	Изменен domain и name.	1	2
 \.
 
 
@@ -2750,7 +2751,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: a1; Owner: ama
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 21, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 22, true);
 
 
 --
@@ -2841,7 +2842,7 @@ COPY django_session (session_key, session_data, expire_date) FROM stdin;
 1mnj3omjwk5derym617leuvmwecat1x5	OTVhYzY2ZTc5ZTBkOWY1MTY3MmUzMjA1NzI0ODkzMzNjN2FhM2E4Zjp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYjliMjNhYWVjZGJjNDA0ZGM0ZDkwZGZmMzRiNmU0YzM1NWIzNmRlIn0=	2016-12-19 06:26:31.917221+03
 cdth8vdpg4vni93ksv7m72arp80yz55b	NTdhNDkzYTgyYzdlNDc4YzY4YTViOTJhMmZlNGRmZDE2YjNiNWQ2Nzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiJmYzAyZWVmNWU3ODJjNzRkZWZjOWE4YjhmYmVjMTljN2FkMzIzMWNjIn0=	2016-12-22 18:16:19.637463+03
 u1ieqv4strpluz61qo6wxcc41u242vks	OTI3ZmVhZGZkNTg3Yzk3ODAzMzE5ODE0ZDE5YjFiYjBlNTRiMmIwOTp7Il9hdXRoX3VzZXJfaGFzaCI6ImZjMDJlZWY1ZTc4MmM3NGRlZmM5YThiOGZiZWMxOWM3YWQzMjMxY2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=	2016-12-27 18:14:52.258378+03
-ehja4phzqx1fuv91n0fxj302qpmtbijk	NzVkNGNmZDQ4MjM3MjA5Yjc3ZmE0Y2Y1MzU5Nzc5OWY0NjgzN2I0Yzp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2OWQ0MTAwZjk5OTI0MjZmNzUyZDAzMGM0OTIxZjY2MDI3ZDU5MmM2In0=	2016-12-29 20:48:46.323898+03
+dfdtpwampyx85mhami457op6vhsb21ly	MjUyYzYxZTRjNTRlNzJkYjU2OTUzMThlMGMxMzNkNGJjMjUwZDJlZjp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9oYXNoIjoiZmMwMmVlZjVlNzgyYzc0ZGVmYzlhOGI4ZmJlYzE5YzdhZDMyMzFjYyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=	2016-12-30 21:36:53.242312+03
 \.
 
 
@@ -2850,7 +2851,7 @@ ehja4phzqx1fuv91n0fxj302qpmtbijk	NzVkNGNmZDQ4MjM3MjA5Yjc3ZmE0Y2Y1MzU5Nzc5OWY0Njg
 --
 
 COPY django_site (id, domain, name) FROM stdin;
-1	example.com	example.com
+1	django.one	django.one
 \.
 
 
@@ -3498,6 +3499,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 2	2016-12-13 19:54:42.610892+03	2	admin	2	Изменен password.	6	2
 3	2016-12-16 20:57:32.343592+03	1	django.one	2	Изменен domain и name.	3	2
 4	2016-12-16 20:57:45.119827+03	1	django.one	2	Ни одно поле не изменено.	3	2
+5	2016-12-16 21:38:40.098287+03	1	Client object	2	Изменен domain_url и lang.	9	2
 \.
 
 
@@ -3505,7 +3507,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ama
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 4, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 5, true);
 
 
 --
@@ -3620,9 +3622,9 @@ SELECT pg_catalog.setval('django_site_id_seq', 1, true);
 --
 
 COPY globalcustomer_client (id, domain_url, schema_name, name, description, created_on, lang) FROM stdin;
-1	example.com	public	SaaS		2016-12-05	EN
 2	a1.example.com	a1	aaa		2016-12-05	EN
 3	a2.example.com	a2	www		2016-12-15	ru
+1	django.one	public	SaaS		2016-12-05	en
 \.
 
 
