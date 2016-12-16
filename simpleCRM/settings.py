@@ -15,7 +15,7 @@ SECRET_KEY = sec_key
 DEBUG = True
 
 # Белый список хостов куда можно переходить без проверки токена CSFR
-ALLOWED_HOSTS = ['.example.com', '127.0.0.1', 'localhost', 'example.com']
+ALLOWED_HOSTS = ['.django.one', '127.0.0.1', 'localhost', 'django.one']
 
 INTERNAL_IPS = ('127.0.0.1',)
 
